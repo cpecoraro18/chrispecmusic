@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-5">
+    <div class="container py-5 vh-100">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h1 class="mb-4">Contact Me</h1>

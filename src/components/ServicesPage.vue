@@ -12,7 +12,7 @@
         <div class="col-md-4 mb-4">
           <div class="card service bg-light-blue">
             <div class="p-2">
-                <img class="card-img-top service-image rounded" src="/studio.png" alt="Studio Sessions" />
+                <img class="card-img-top service-image rounded" src="img/studio.png" alt="Studio Sessions" />
             </div>
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Studio Sessions</h2>
@@ -24,7 +24,7 @@
         <div class="col-md-4 mb-4">
           <div class="card service bg-light-blue">
               <div class="p-2">
-                <img class="card-img-top service-image rounded" src="/live-performances.jpg" alt="Live Performances" />
+                <img class="card-img-top service-image rounded" src="img/live-performances.jpg" alt="Live Performances" />
               </div>
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Live Performances</h2>
@@ -36,7 +36,7 @@
         <div class="col-md-4 mb-4">
           <div class="card service bg-light-blue">
               <div class="p-2">
-                <img class="card-img-top service-image rounded" src="path/to/bass-lessons.jpg" alt="Bass Lessons" />
+                <img class="card-img-top service-image rounded" src="img/bass-lessons.jpg" alt="Bass Lessons" />
               </div>
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Bass Lessons</h2>

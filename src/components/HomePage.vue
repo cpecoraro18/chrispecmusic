@@ -58,9 +58,9 @@ export default {
     data() {
       return {
         discography: [
-          { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: 'albums/SoLongMyQueen.jpeg', link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },
-          { name: 'In This Life', artist: 'Sean Mckee Band', image: 'albums/InThisLife.jpeg', link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
-          { name: 'Poison Ivy', artist: 'Sean Mckee Band', image: 'albums/PoisonIvy.jpeg', link: 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A' },
+          { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: 'img/albums/SoLongMyQueen.jpeg', link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },
+          { name: 'In This Life', artist: 'Sean Mckee Band', image: 'img/albums/InThisLife.jpeg', link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
+          { name: 'Poison Ivy', artist: 'Sean Mckee Band', image: 'img/albums/PoisonIvy.jpeg', link: 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A' },
         ],
         reviews: [
           { name: 'jk6strings on Fiverr', text: 'Really enjoy working with Chris. He provided two versions of basslines for my song, and they\'re both awesome! I can\'t decide which I like best. Turnaround time and communication also excellent. Very highly reccomend.' },
@@ -83,7 +83,7 @@ export default {
 <style scoped>
 .hero-image {
   height: 90vh;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../../public/ChrisPecMusic.png");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../../public/img/ChrisPecMusic.png");
   background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;

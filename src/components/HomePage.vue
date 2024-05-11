@@ -106,7 +106,7 @@ export default {
 
 .hero-image {
   height: 90vh;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../../public/img/ChrisPecMusic.png");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../../public/img/ChrisPecMusic.jpg");
   background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;

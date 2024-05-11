@@ -9,10 +9,10 @@
           </router-link>
         </div>
       <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 offset-md-2 mb-4">
           <div class="card service bg-light-blue">
             <div class="p-2">
-                <img class="card-img-top service-image rounded" src="img/studio.png" alt="Studio Sessions" />
+                <img class="card-img-top service-image rounded" src="img/studio.jpg" alt="Studio Sessions" />
             </div>
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Studio Sessions</h2>
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
           <div class="card service bg-light-blue">
               <div class="p-2">
                 <img class="card-img-top service-image rounded" src="img/live-performances.jpg" alt="Live Performances" />

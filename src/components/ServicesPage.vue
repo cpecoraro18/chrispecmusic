@@ -9,7 +9,7 @@
           </router-link>
         </div>
       <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-4">
           <div class="card service bg-light-blue">
             <div class="p-2">
                 <img class="card-img-top service-image rounded" src="img/studio.png" alt="Studio Sessions" />
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-4">
           <div class="card service bg-light-blue">
               <div class="p-2">
                 <img class="card-img-top service-image rounded" src="img/live-performances.jpg" alt="Live Performances" />
@@ -30,18 +30,6 @@
               <h2 class="card-title">Live Performances</h2>
               <p class="card-text text-justify">Need a bassist for your live shows? I have extensive experience performing in a variety of settings, from small clubs to large venues. I adapt to different band setups and styles, bringing energy and expertise to your live performances. Let's make your next gig unforgettable.</p>
               <button class="btn btn-primary mt-auto" v-on:click="gig">Hire Me for a Gig</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card service bg-light-blue">
-              <div class="p-2">
-                <img class="card-img-top service-image rounded" src="img/bass-lessons.jpg" alt="Bass Lessons" />
-              </div>
-            <div class="card-body d-flex flex-column">
-              <h2 class="card-title">Bass Lessons</h2>
-              <p class="card-text text-justify">If you're looking to learn bass or improve your skills, I offer personalized bass lessons tailored to your goals. Whether you're a beginner or an advanced player, I can help you build technique, music theory knowledge, and confidence on the bass. Sessions are available in-person or online for your convenience.</p>
-              <button class="btn btn-primary mt-auto" v-on:click="lessons">Schedule a Lesson</button>
             </div>
           </div>
         </div>
@@ -68,6 +56,11 @@ export default {
 </script>
 
 <style scoped>
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
 
 .bg-light-blue {
   background-color: var(--bg-light-blue);

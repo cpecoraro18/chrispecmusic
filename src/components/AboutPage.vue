@@ -21,7 +21,7 @@
         </div>
 
         <h3>Current Projects</h3>
-        <p>Currently, I play with the Sean McKee Band, winners of the Chicago portion of the 2023 International Blues Challenge. I'm passionate about collaborating with other musicians, both in person and remotely, and I always look for opportunities to contribute to new projects.</p>
+        <p>Currently, I play with the <a href="https://www.seanmckeeband.com" target="_blank">Sean McKee Band</a>, winners of the Chicago portion of the 2023 International Blues Challenge. I'm passionate about collaborating with other musicians, both in person and remotely, and I always look for opportunities to contribute to new projects.</p>
         
         <img src="img/SeanMcKeeBand.jpeg" alt="Sean Mckee Band" class="img-fluid mb-4 w-50 mx-auto d-block rounded mb-5">
 

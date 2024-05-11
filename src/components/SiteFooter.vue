@@ -2,8 +2,7 @@
   <footer class="footer bg-dark text-white text-center py-3 mt-auto">
     <div class="container d-flex justify-content-between">
       <p class="mb-0">&copy; 2024 ChrisPecMusic</p>
-      <p class="mb-0">Email: chrispecmusic@gmail.com</p>
-    </div>
+      <p class="mb-0">Email: <a href="mailto:chrispecmusic@gmail.com">chrispecmusic@gmail.com</a></p>    </div>
   </footer>
 </template>
 

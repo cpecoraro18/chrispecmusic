@@ -38,18 +38,17 @@ export default {
 
 <style scoped>
 .social-icon {
-    width: 30px;
-    height: 30px;
+    width: 1em;;
+    height: 1em;
     margin-left: 10px;
 }
 
 @media only screen and (max-width: 991px) {
     .social-icon {
-    width: 30px;
-    height: 30px;
-    margin-left: 0;
-    margin-top: 10px;
-}
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
 }
 

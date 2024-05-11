@@ -24,7 +24,8 @@ export default {
 
 <style>
 :root {
-  --primary: #1f2d43;
+  --primary: #0066CC;
+  --primary-rgb: 0, 102, 204;
   --secondary: #a6b3c2;
   --brown: #5c4033;
   --brown-dark: #2e1f1a;
@@ -36,17 +37,20 @@ export default {
   --text-color-rgb: rgb(255,255,255);
   --text-color-dark: rgb(0,0,0, 0.7);
 
-    --bg-dark: #404040;
+  --bg-dark: #404040;
   --bg-dark-blue: #1f2d43;
   --bg-light-blue: #a6b3c2;
   --bg-light: #f0f0f0;
 
   --bs-body-bg: var(--bg-dark-blue) !important;
   --bs-body-color: var(--text-color) !important;
+
   --bs-link-color: var(--text-color) !important;
   --bs-link-color-rgb: var(--text-color-rgb) !important;
   --bs-link-hover-color: var(--gray) !important;
   --bs-link-hover-color-rgb: var(--gray-rgb) !important;
+
+  --bs-btn-bg: var(--primary) !important;
 
   
 }

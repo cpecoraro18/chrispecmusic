@@ -10,7 +10,7 @@
     <div class="container mt-5">
       <div class="row pb-5">
         <div class="col-lg-8 mx-auto">
-          <p class="lead">Welcome to my site! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth an groove to your music, you've come to the right place!</p>
+          <p class="lead">Welcome! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth an groove to your music, you've come to the right place!</p>
           <p class="lead">I specialize in a broad range of styles, from rock, jazz, funk, and blues to pop and R&B. My adaptable approach ensures that my bass lines blend seamlessly into your tracks, adding the perfect rhythm and texture to elevate your music.</p>
           <p class="lead">I offer both in-studio and remote recording services, making it easy for you to collaborate with me whether you're in Chicago or working from anywhere else in the world. My professional home studio is equipped with top-of-the-line audio equipment, ensuring high-quality bass recordings for your projects.</p>
           <p class="lead">Explore my portfolio to hear examples of my bass work, and don't hesitate to contact me for rates and availability. Let's create amazing music together!</p>
@@ -27,9 +27,13 @@
         </div>
         <div class="row">
           <div class="col-lg-4 album" v-for="album in discography" :key="album.name">
-            <a :href="album.link" target="_blank">
-              <img :src="album.image" :alt="album.name" class="img-fluid album-image">
-              <p>{{ album.name }}</p>
+            <a :href="album.link" target="_blank" class="album-link">
+              <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
+              <div class="album-info">
+                <h3>{{ album.name }}</h3>
+                <p>{{ album.artist }}</p>
+                <p>{{ album.year }}</p>
+              </div>
             </a>
           </div>
         </div>
@@ -43,13 +47,27 @@
       <div class="row">
         <div class="col-lg-8 mx-auto my-2" v-for="review in reviews" :key="review.name">
           <p>"{{ review.text }}"</p>
-          <small>- {{ review.name }}</small>
-
+          <small class="fst-italic">
+            - <a href="https://www.fiverr.com/cpecoraro18" target="_blank">{{ review.name }}</a>
+          </small>
         </div>
       </div>
     </div>
 
   </div>
+
+  <div class="container-fluid py-3 bg-dark">
+    <div class="row">
+      <h2 class="mx-auto my-5">Contact Me</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 mx-auto my-2">
+        <p>Email: <a href="mailto:chrispecmusic@gmail.com">chrispecmusic@gmail.com</a></p>
+    </div>
+  </div>
+
+</div>
+  
 </template>
 
 <script>
@@ -58,9 +76,9 @@ export default {
     data() {
       return {
         discography: [
-          { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: 'img/albums/SoLongMyQueen.jpeg', link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },
-          { name: 'In This Life', artist: 'Sean Mckee Band', image: 'img/albums/InThisLife.jpeg', link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
-          { name: 'Poison Ivy', artist: 'Sean Mckee Band', image: 'img/albums/PoisonIvy.jpeg', link: 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A' },
+          { name: 'In This Life', artist: 'Sean Mckee Band', image: 'img/albums/InThisLife.jpeg', year: "2023", link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
+          { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: 'img/albums/SoLongMyQueen.jpeg', year: "2022", link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },
+          { name: 'Poison Ivy', artist: 'Sean Mckee Band', image: 'img/albums/PoisonIvy.jpeg', year: "2021", link: 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A' },
         ],
         reviews: [
           { name: 'jk6strings on Fiverr', text: 'Really enjoy working with Chris. He provided two versions of basslines for my song, and they\'re both awesome! I can\'t decide which I like best. Turnaround time and communication also excellent. Very highly reccomend.' },
@@ -81,6 +99,11 @@ export default {
 </script>
 
 <style scoped>
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
 .hero-image {
   height: 90vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../../public/img/ChrisPecMusic.png");
@@ -118,6 +141,10 @@ export default {
 
 .album:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.album-link:hover {
+  color: var(--primary)
 }
 
 .album-image {

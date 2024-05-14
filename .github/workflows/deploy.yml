@@ -26,9 +26,10 @@ jobs:
       
       - name: Remove unnecessary files
         run: |
+          shopt -s extglob
           rm -r !("dist"|"CNAME")
           mv dist/* .
-          rm -r dist
+        shell: bash
       
       - name: Add CNAME file
         run: echo "chrispecmusic.com" > CNAME

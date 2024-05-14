@@ -6,6 +6,7 @@ import ContactPage from './components/ContactPage.vue'
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL || '/'),
+  mode: 'hash',
   routes: [
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },

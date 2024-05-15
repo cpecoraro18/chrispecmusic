@@ -1,7 +1,9 @@
 <template>
     <header class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <router-link to="/" class="navbar-brand">Chris Pec Music</router-link>
+            <router-link to="/">
+                <img src="/img/CPMusic-Logo-White.png" alt="Chris Pec Music" class="navbar-brand logo">
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,6 +39,12 @@ export default {
 </script>
 
 <style scoped>
+
+.logo {
+        width: 150px; /* adjust as needed */
+        height: auto; /* maintain aspect ratio */
+}
+
 .social-icon {
     width: 1em;;
     height: 1em;
@@ -44,6 +52,8 @@ export default {
 }
 
 @media only screen and (max-width: 991px) {
+
+
     .social-icon {
         margin-left: 0;
         margin-top: 10px;

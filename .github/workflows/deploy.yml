@@ -21,14 +21,18 @@ jobs:
       
       - name: Install dependencies and build
         run: |
+          cd frontend
           npm install
           npm run build
+        shell: bash
       
       - name: Remove unnecessary files
         run: |
           shopt -s extglob
-          rm -r !("dist"|"CNAME")
-          mv dist/* .
+          cd frontend
+          mv dist/* ../
+          cd ..
+          rm -rf frontend
         shell: bash
       
       - name: Add CNAME file

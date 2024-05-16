@@ -54,8 +54,5 @@ jobs:
           aws-region: us-east-2
 
       - name: Sync backend directory to S3
-        uses: aws-actions/aws-cli@v1
         with:
-          cli-command: s3 sync
-          cli-subcommand: ./backend s3://chrispecmusic-backend
-          cli-arguments: --delete
+          run: aws s3 sync ./backend s3://chrispecmusic-backend --delete

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1621.0",
+    "axios": "^1.6.8"
+  }
+}

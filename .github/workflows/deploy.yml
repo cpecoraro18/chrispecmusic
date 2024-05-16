@@ -46,6 +46,12 @@ jobs:
           git commit -m "Deploy"
           git push --force origin gh-pages
 
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+        shell: bash
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

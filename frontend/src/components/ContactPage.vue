@@ -70,6 +70,10 @@ export default {
                         }
             
                         self.thankYouMessage = 'Thank you for your message!';
+                        // Clear the form
+                        self.name = '';
+                        self.email = '';
+                        self.message = '';
                     });
                 });
             } catch (error) {

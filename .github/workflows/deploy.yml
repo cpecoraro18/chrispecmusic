@@ -52,7 +52,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-
       - name: Sync backend directory to S3
         with:
           run: aws s3 sync ./backend s3://chrispecmusic-backend --delete

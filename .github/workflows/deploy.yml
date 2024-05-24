@@ -4,11 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
 
 jobs:
-  deploy:
+  deploy-frontend:
     runs-on: ubuntu-latest
-
+    if: contains(github.event.head_commit.message, 'frontend')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -46,24 +49,28 @@ jobs:
           git commit -m "Deploy"
           git push --force origin gh-pages
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
-        shell: bash
+    deploy-backend:
+      runs-on: ubuntu-latest
+      if: contains(github.event.head_commit.message, 'backend')
+      steps:
+        - name: Install backend dependencies
+          run: |
+            cd backend
+            npm install
+          shell: bash
 
-      - name: Zip backend directory
-        run: |
-          cd backend
-          zip -r ../backend.zip .
-        shell: bash
+        - name: Zip backend directory
+          run: |
+            cd backend
+            zip -r ../backend.zip .
+          shell: bash
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: us-east-2
 
-      - name: Sync backend directory to S3
-        run: aws s3 cp ./backend.zip s3://chrispecmusic-backend/backend.zip
+        - name: Sync backend directory to S3
+          run: aws s3 cp ./backend.zip s3://chrispecmusic-backend/backend.zip

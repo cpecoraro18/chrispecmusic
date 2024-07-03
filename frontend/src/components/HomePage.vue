@@ -21,25 +21,7 @@
       </div>
     </div>
 
-    <div class="container-fluid mt-5 bg-light text-dark">
-      <div class="container py-5">
-        <div class="row">
-          <h2 class="mx-auto mb-5">Discography</h2>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 album" v-for="album in discography" :key="album.name">
-            <a :href="album.link" target="_blank" class="album-link">
-              <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
-              <div class="album-info">
-                <h3>{{ album.name }}</h3>
-                <p>{{ album.artist }}</p>
-                <p>{{ album.year }}</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <discography-list></discography-list>
 
     <div class="container py-3">
       <div class="row">
@@ -72,30 +54,29 @@
 </template>
 
 <script>
+
+import DiscographyList from './DiscographyList.vue';
+
 export default {
   name: 'HomePage',
-    data() {
-      return {
-        discography: [
-          { name: 'In This Life', artist: 'Sean Mckee Band', image: 'img/albums/InThisLife.jpeg', year: "2023", link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
-          { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: 'img/albums/SoLongMyQueen.jpeg', year: "2022", link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },
-          { name: 'Poison Ivy', artist: 'Sean Mckee Band', image: 'img/albums/PoisonIvy.jpeg', year: "2021", link: 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A' },
-        ],
-        reviews: [
-          { name: 'jk6strings on Fiverr', text: 'Really enjoy working with Chris. He provided two versions of basslines for my song, and they\'re both awesome! I can\'t decide which I like best. Turnaround time and communication also excellent. Very highly reccomend.' },
-          { name: 'oldmanlion on Fiverr', text: 'Chris P came up with two alternative bass tracks for my song, both in raw and mixed form. Met the breif perfectly. Response time and turnaround time were both amazingly fast. Totally professional job, and unquestionable value for money. Would certainly come back again.' },
-          { name: 'wadleyworld on Fiverr', text: 'Wow, blown away by how tight he is... well done man! delivered two songs flawlessly. no notes or revisions needed. Will utilize his talent in the future. Highly recommended Obvi...' },
-          { name: 'davidmusic2018 on Fiverr', text: 'It was a pleasure working with Chris. His recordings and performance were excellent and made my job as audio engineer much easier than it could have been. In my case, it was symphonic/orchestral music and I was able to quickly place Chris\' work in the mix. Looking forward to working together again!' },
-
-
-        ],
-      };
-    },
-    methods: {
-      contact() {
-        window.location.href = "mailto:contact@chrispecmusic.com"
-      }
+  components: {
+    DiscographyList,
+  },
+  data() {
+    return {
+      reviews: [
+        { name: 'jk6strings on Fiverr', text: 'Really enjoy working with Chris. He provided two versions of basslines for my song, and they\'re both awesome! I can\'t decide which I like best. Turnaround time and communication also excellent. Very highly reccomend.' },
+        { name: 'oldmanlion on Fiverr', text: 'Chris P came up with two alternative bass tracks for my song, both in raw and mixed form. Met the breif perfectly. Response time and turnaround time were both amazingly fast. Totally professional job, and unquestionable value for money. Would certainly come back again.' },
+        { name: 'wadleyworld on Fiverr', text: 'Wow, blown away by how tight he is... well done man! delivered two songs flawlessly. no notes or revisions needed. Will utilize his talent in the future. Highly recommended Obvi...' },
+        { name: 'davidmusic2018 on Fiverr', text: 'It was a pleasure working with Chris. His recordings and performance were excellent and made my job as audio engineer much easier than it could have been. In my case, it was symphonic/orchestral music and I was able to quickly place Chris\' work in the mix. Looking forward to working together again!' },
+      ],
+    };
+  },
+  methods: {
+    contact() {
+      window.location.href = "mailto:contact@chrispecmusic.com"
     }
+  }
 }
 </script>
 

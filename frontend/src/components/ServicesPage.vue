@@ -43,10 +43,10 @@ export default {
   name: 'ServicesPage',
   methods: {
     studio() {
-      window.open("https://docs.google.com/forms/d/e/1FAIpQLScHQvfiOjz0E0FuXDik6prbJevLq7FyR-GcmU1nckpgGmSzpw/viewform?usp=sf_link", "_blank");
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSc8-7ieBniq4XbeI-eFB2R3X134V_PeGqEeqXJp21kdFYTSQg/viewform?usp=sf_link", "_blank");
     },
     gig() {
-      window.open("https://docs.google.com/forms/d/e/1FAIpQLSc6j31rPbvKItBikh-u8-hvM-rnohLwwKsiQ8UnoUvysi1XbQ/viewform?usp=sf_link", "_blank");
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLScjH2TAHX2a4w97208k6ARgvH9KdWgavi951l0aGf6fZ4bUeQ/viewform?usp=sf_link", "_blank");
     },
     lessons() {
       window.open("", "_blank");

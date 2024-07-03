@@ -63,7 +63,7 @@
     </div>
     <div class="row">
       <div class="col-lg-8 mx-auto my-2">
-        <p>Email: <a href="mailto:chrispecmusic@gmail.com">chrispecmusic@gmail.com</a></p>
+        <p>Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
     </div>
   </div>
 
@@ -93,7 +93,7 @@ export default {
     },
     methods: {
       contact() {
-        window.location.href = "mailto:chrispecmusic@gmail.com"
+        window.location.href = "mailto:contact@chrispecmusic.com"
       }
     }
 }

@@ -39,7 +39,7 @@ export default {
   name: 'AboutPage',
   methods: {
     contact() {
-      window.location.href = "mailto:chrispecmusic@gmail.com"
+      window.location.href = "mailto:contact@chrispecmusic.com"
     }
   }
 }

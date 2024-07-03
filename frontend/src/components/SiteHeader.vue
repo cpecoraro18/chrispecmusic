@@ -26,7 +26,7 @@
                     <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
                         <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
-                    <a href="https://www.youtube.com/chrispecmusic/" target="_blank" class="nav-link">
+                    <a href="https://www.youtube.com/channel/UCxZoyuxrCDUY_67PVsGbUDg" target="_blank" class="nav-link">
                         <img src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
                 </div>

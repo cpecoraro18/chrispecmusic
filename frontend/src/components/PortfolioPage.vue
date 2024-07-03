@@ -59,7 +59,7 @@ export default {
                 {
                     id: 4,
                     title: 'University of Minnesota Jazz Ensemble I 2019 Spring Concert',
-                    url: 'https://www.youtube.com/embed/AQ_slt8-i5o?si=3X9Yahu7iaj_h9Sx',
+                    url: 'https://www.youtube.com/embed/VwqKnToOPik?si=cKkhHEbjdgcKHF4B',
                     description: 'University of Minnesota Jazz Ensemble I\'s 2019 Spring Concert. Featuring a diverse repertoire and exceptional musicianship, this concert highlights the ensemble\'s dedication to jazz.'
                 },
                 {

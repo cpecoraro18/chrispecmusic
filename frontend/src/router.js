@@ -3,6 +3,7 @@ import HomePage from './components/HomePage.vue'
 import AboutPage from './components/AboutPage.vue'
 import ServicesPage from './components/ServicesPage.vue'
 import ContactPage from './components/ContactPage.vue'
+import GearPage from './components/GearPage.vue'
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL || '/'),
@@ -11,6 +12,7 @@ export default createRouter({
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },
     { path: '/services', component: ServicesPage },
-    { path: '/contact', component: ContactPage }
+    { path: '/contact', component: ContactPage },
+    { path: '/gear', component: GearPage }
   ]
 })

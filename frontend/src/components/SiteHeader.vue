@@ -19,13 +19,19 @@
                         <router-link to="/services" class="nav-link">Services</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/contact" class="nav-link">Contact</router-link>
                     </li>
                 </ul>
-                <div class="justify-self-end">
-                    <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link">
+                <div class="d-flex justify-content-center justify-self-end align-items-center">
+                    <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
                         <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
-                    </a>                
+                    </a>          
+                    <a href="https://www.youtube.com/channel/UCxZoyuxrCDUY_67PVsGbUDg" target="_blank" class="nav-link">
+                        <img src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
+                    </a>          
                 </div>
             </div>
         </div>
@@ -46,8 +52,8 @@ export default {
 }
 
 .social-icon {
-    width: 1em;;
-    height: 1em;
+    width: 1em;
+    height: auto;
     margin-left: 10px;
 }
 

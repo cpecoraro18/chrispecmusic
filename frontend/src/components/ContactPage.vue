@@ -4,7 +4,7 @@
             <div class="col-lg-8 mx-auto">
                 <h1 class="mb-4">Contact Information</h1>
                 <div class="contact-info mt-5">
-                    <p>Email: <a href="mailto:your-email@example.com">chrispecmusic@gmail.com</a></p>
+                    <p>Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
                 </div>
                 <h2 class="mt-5">Send me a message</h2>
                 <form @submit.prevent="submitForm" class="mt-4">

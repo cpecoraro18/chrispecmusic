@@ -4,6 +4,8 @@ import AboutPage from './components/AboutPage.vue'
 import ServicesPage from './components/ServicesPage.vue'
 import ContactPage from './components/ContactPage.vue'
 import PortfolioPage from './components/PortfolioPage.vue'
+import GearPage from './components/GearPage.vue'
+
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL || '/'),
@@ -13,6 +15,7 @@ export default createRouter({
     { path: '/about', component: AboutPage },
     { path: '/services', component: ServicesPage },
     { path: '/contact', component: ContactPage },
-    { path: '/portfolio', component: PortfolioPage }
+    { path: '/portfolio', component: PortfolioPage },
+    { path: '/gear', component: GearPage }
   ]
 })

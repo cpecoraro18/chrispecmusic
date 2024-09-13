@@ -17,7 +17,7 @@
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Studio Sessions</h2>
               <p class="card-text text-justify">I offer professional bass tracks for your recording projects, available for both live in-studio sessions or remote recording. Whether you're producing an album, a single, or a commercial jingle, I create bass lines that elevate your music. I specialize in a variety of genres and guarantee a fast turnaround without sacrificing quality. If you're a studio or artist looking to add depth and groove to your tracks, let's collaborate to bring your music to life.</p>
-              <button class="btn btn-primary mt-auto" v-on:click="studio">Book a Session</button>
+              <a class="btn btn-primary mt-auto" href="https://docs.google.com/forms/d/e/1FAIpQLSc8-7ieBniq4XbeI-eFB2R3X134V_PeGqEeqXJp21kdFYTSQg/viewform?usp=sf_link" target="_blank">Book a Session</a>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="card-body d-flex flex-column">
               <h2 class="card-title">Live Performances</h2>
               <p class="card-text text-justify">Need a bassist for your live shows? I have extensive experience performing in a variety of settings, from small clubs to large venues. I adapt to different band setups and styles, bringing energy and expertise to your live performances. Let's make your next gig unforgettable.</p>
-              <button class="btn btn-primary mt-auto" v-on:click="gig">Hire Me for a Gig</button>
+              <a class="btn btn-primary mt-auto" href="https://docs.google.com/forms/d/e/1FAIpQLScjH2TAHX2a4w97208k6ARgvH9KdWgavi951l0aGf6fZ4bUeQ/viewform?usp=sf_link" target="_blank">Hire Me for a Gig</a>
             </div>
           </div>
         </div>
@@ -42,12 +42,6 @@
 export default {
   name: 'ServicesPage',
   methods: {
-    studio() {
-      window.open("https://docs.google.com/forms/d/e/1FAIpQLSc8-7ieBniq4XbeI-eFB2R3X134V_PeGqEeqXJp21kdFYTSQg/viewform?usp=sf_link", "_blank");
-    },
-    gig() {
-      window.open("https://docs.google.com/forms/d/e/1FAIpQLScjH2TAHX2a4w97208k6ARgvH9KdWgavi951l0aGf6fZ4bUeQ/viewform?usp=sf_link", "_blank");
-    },
     lessons() {
       window.open("", "_blank");
     },

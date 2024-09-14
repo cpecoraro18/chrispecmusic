@@ -18,6 +18,15 @@ export default {
   components: {
     SiteHeader,
     SiteFooter
+  },
+  created() {
+    const query = this.$route.query;
+
+    if (query && query['/']) {
+      const redirectPath = query['/'];
+
+      this.$router.replace(redirectPath);
+    }
   }
 }
 </script>

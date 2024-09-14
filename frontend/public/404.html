@@ -34,13 +34,9 @@
         <p>Redirecting you to the homepage...</p>
     </div>
 
-    <script>
-        new Vue({
-            el: '#app',
-            mounted() {
-                window.location.href = `/`;
-            }
-        });
-    </script>
+    <script type="text/javascript">
+        var redirectPath = window.location.pathname;
+        window.location.replace("/?" + redirectPath);
+      </script>
 </body>
 </html>

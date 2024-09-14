@@ -9,7 +9,6 @@ import GearPage from './components/GearPage.vue'
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL || '/'),
-  mode: 'hash',
   routes: [
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },

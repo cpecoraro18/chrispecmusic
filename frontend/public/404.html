@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        #app {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -16,7 +38,7 @@
         new Vue({
             el: '#app',
             mounted() {
-                window.location.href = `/`;
+                //window.location.href = `/`;
             }
         });
     </script>

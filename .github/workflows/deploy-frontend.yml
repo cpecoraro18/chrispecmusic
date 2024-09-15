@@ -3,9 +3,9 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - nuxt
     paths:
-      - 'frontend/**'
+      - 'frontend-nuxt/**'
 
 jobs:
   deploy:
@@ -15,25 +15,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: Delete existing gh-pages branch
-        run: git branch -D gh-pages || true
+      - name: Delete existing gh-pages-test branch
+        run: git branch -D gh-pages-test || true
       
-      - name: Create new gh-pages branch
-        run: git checkout -b gh-pages
+      - name: Create new gh-pages-test branch
+        run: git checkout -b gh-pages-test
       
       - name: Install dependencies and build
         run: |
           cd frontend
           npm install
-          npm run build
+          nuxi generate
         shell: bash
       
-      - name: Remove unnecessary files
+      - name: Move generated files
         run: |
-          shopt -s extglob
-          cd frontend
-          mv dist/* ../
-          cd ..
+          mv frontend/.output/public/* ../
           rm -rf frontend
         shell: bash
       
@@ -46,4 +43,4 @@ jobs:
           git config --global user.name "GitHub Actions"
           git add .
           git commit -m "Deploy"
-          git push --force origin gh-pages
+          git push --force origin gh-pages-test

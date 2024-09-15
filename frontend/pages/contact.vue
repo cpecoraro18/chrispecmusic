@@ -49,7 +49,7 @@ const submitForm = async () => {
         if (typeof grecaptcha !== 'undefined') {
             grecaptcha.ready(function() {
                 grecaptcha.execute('6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF', { action: 'CONTACT_FORM_SUBMIT' }).then(async function(token) {
-                    const response = await fetch('https://api.chrispecmusic.com/contact', {
+                    const response = await $fetch('https://api.chrispecmusic.com/contact', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

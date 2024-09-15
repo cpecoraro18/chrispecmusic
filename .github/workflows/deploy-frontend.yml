@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
 
 jobs:
   deploy:
@@ -25,16 +26,15 @@ jobs:
         run: |
           cd frontend
           npm install
-          npm run build
+          npx nuxi generate
         shell: bash
       
-      - name: Remove unnecessary files
+      - name: Move generated files
         run: |
-          shopt -s extglob
-          cd frontend
-          mv dist/* ../
-          cd ..
+          mv frontend/.output/public/* ./
           rm -rf frontend
+          rm -rf backend
+          rm -rf .github
         shell: bash
       
       - name: Add CNAME file

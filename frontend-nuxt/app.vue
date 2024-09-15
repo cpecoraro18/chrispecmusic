@@ -1,34 +1,14 @@
 <template>
   <div id="app">
-    <SiteHeader></SiteHeader>
-    <div class="content">
-      <router-view>
-      </router-view>
-    </div>
-    <SiteFooter></SiteFooter>
+    <NuxtLayout>
+        <SiteHeader/>
+        <NuxtPage/>
+        <SiteFooter/>
+    </NuxtLayout>
   </div>
 </template>
 
 <script>
-import SiteHeader from './components/SiteHeader.vue'
-import SiteFooter from './components/SiteFooter.vue'
-
-export default {
-  name: 'App',
-  components: {
-    SiteHeader,
-    SiteFooter
-  },
-  created() {
-    const query = this.$route.query;
-
-    if (query && query['/']) {
-      const redirectPath = query['/'];
-
-      this.$router.replace(redirectPath);
-    }
-  }
-}
 </script>
 
 <style>
@@ -73,7 +53,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
-  background-color: var(--bg-dark-blue)
+  background-color: var(--bg-dark-blue);
+  margin-bottom: 3em;
 }
 
 .vh-100 {

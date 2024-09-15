@@ -23,27 +23,15 @@
         <h3>Current Projects</h3>
         <p>Currently, I play with the <a href="https://www.seanmckeeband.com" target="_blank">Sean McKee Band</a>, winners of the Chicago portion of the 2023 International Blues Challenge. I'm passionate about collaborating with other musicians, both in person and remotely, and I always look for opportunities to contribute to new projects.</p>
         
-        <img src="img/SeanMcKeeBand.jpg" alt="Sean Mckee Band" class="img-fluid mb-4 mx-auto w-75 d-block rounded mb-5">
+        <img src="/img/SeanMcKeeBand.jpg" alt="Sean Mckee Band" class="img-fluid mb-4 mx-auto w-75 d-block rounded mb-5">
 
         <h3>Work with Me</h3>
         <p>If you'd like to work together, whether it's for a recording session, live performance, or another musical project, I'd love to hear from you. Let's make some great music.</p>
-        <p>I'm available for studio sessions, live performances, and bass lessons. If you're interested in working with me, please <a href="#" v-on:click="contact">contact me</a>.</p>
+        <p>I'm available for studio sessions, live performances, and bass lessons. If you're interested in working with me, please <a href="mailto:contact@chrispecmusic.com">contact me</a>.</p>
       </div>
     </div>
   </div>
 </template>
-
-
-<script>
-export default {
-  name: 'AboutPage',
-  methods: {
-    contact() {
-      window.location.href = "mailto:contact@chrispecmusic.com"
-    }
-  }
-}
-</script>
 
 <style scoped>
 .influence-img {

@@ -28,13 +28,9 @@
 </template>
 
 <script>
-import DiscographyList from './DiscographyList.vue';
 
 export default {
     name: 'PortfolioPage',
-    components: {
-        DiscographyList
-    },
     data() {
         return {
             videos: [

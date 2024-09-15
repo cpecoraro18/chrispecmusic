@@ -6,6 +6,7 @@ on:
       - nuxt
     paths:
       - 'frontend-nuxt/**'
+      - '.github/workflows/deploy-frontend.yml'
 
 jobs:
   deploy:

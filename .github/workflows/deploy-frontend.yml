@@ -31,9 +31,7 @@ jobs:
       
       - name: Move generated files
         run: |
-          cd frontend-nuxt
           mv frontend-nuxt/.output/public/* ../
-          cd ..
           rm -rf frontend-nuxt
           rm -rf backend
           rm -rf .github

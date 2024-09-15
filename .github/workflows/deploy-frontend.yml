@@ -23,15 +23,15 @@ jobs:
       
       - name: Install dependencies and build
         run: |
-          cd frontend
+          cd frontend-nuxt
           npm install
           nuxi generate
         shell: bash
       
       - name: Move generated files
         run: |
-          mv frontend/.output/public/* ../
-          rm -rf frontend
+          mv frontend-nuxt/.output/public/* ../
+          rm -rf frontend-nuxt
         shell: bash
       
       - name: Add CNAME file

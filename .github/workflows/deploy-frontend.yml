@@ -25,7 +25,7 @@ jobs:
         run: |
           cd frontend-nuxt
           npm install
-          nuxi generate
+          npx nuxi generate
         shell: bash
       
       - name: Move generated files

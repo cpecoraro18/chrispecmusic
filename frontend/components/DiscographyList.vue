@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-4 album" v-for="album in discography" :key="album.name">
                     <a :href="album.link" target="_blank" class="album-link">
-                        <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
+                        <NuxtImg :src="album.image" :alt="album.name" class="img-fluid album-image mb-3"></NuxtImg>
                         <div class="album-info">
                             <h3>{{ album.name }}</h3>
                             <p>{{ album.artist }}</p>

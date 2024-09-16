@@ -3,7 +3,7 @@
     <div class="hero-image">
       <div class="hero-text">
         <h1>Chris Pecoraro</h1>
-        <h2 class="h5">Professional Bass Player</h2>
+        <p>Professional Bass Player</p>
         <button class="btn btn-primary" v-on:click="contact">Contact Me</button>
       </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="col-lg-8 mx-auto">
           <p class="lead">Welcome! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth an groove to your music, you've come to the right place!</p>
           <p class="lead">I specialize in a broad range of styles, from rock, jazz, funk, and blues to pop and R&B. My adaptable approach ensures that my bass lines blend seamlessly into your tracks, adding the perfect rhythm and texture to elevate your music.</p>
-          <NuxtImg  src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid my-4 w-75 mx-auto d-block rounded mb-5"></NuxtImg>
+          <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid my-4 w-75 mx-auto d-block rounded mb-5">
           <p class="lead">I offer both in-studio and remote recording services, making it easy for you to collaborate with me whether you're in Chicago or working from anywhere else in the world. My professional home studio is equipped with top-of-the-line audio equipment, ensuring high-quality bass recordings for your projects.</p>
           <p class="lead">Explore my portfolio to hear examples of my bass work, and don't hesitate to contact me for rates and availability. Let's create amazing music together!</p>
 

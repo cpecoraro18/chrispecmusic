@@ -2,7 +2,7 @@
     <header class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <router-link to="/">
-                <NuxtImg src="/img/CPMusic-Logo-White.png" alt="Chris Pec Music" class="navbar-brand logo"></NuxtImg>
+                <img src="/img/CPMusic-Logo-White.png" alt="Chris Pec Music" class="navbar-brand logo">
             </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,10 +30,10 @@
                 </ul>
                 <div class="d-flex justify-content-center justify-self-end align-items-center">
                     <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
-                        <NuxtImg src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
+                        <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
                     <a href="https://www.youtube.com/channel/UCxZoyuxrCDUY_67PVsGbUDg" target="_blank" class="nav-link">
-                        <NuxtImg src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
+                        <img src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
                 </div>
             </div>

@@ -22,7 +22,7 @@
             <!-- Gear Items -->
             <div v-for="item in filteredGearItems" :key="item.name" class="col-12 col-lg-4">
                 <div class="card h-100 shadow-sm">
-                    <NuxtImg :src="item.image" :alt="item.name" class="card-img-top" />
+                    <img :src="item.image" :alt="item.name" class="card-img-top" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ item.name }}</h5>
                          <div>

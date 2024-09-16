@@ -28,9 +28,20 @@
 </template>
 
 <script>
-
 export default {
     name: 'PortfolioPage',
+    created() {
+        useHead({
+            title: 'Portfolio - Chris Pecoraro',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Watch videos of Chris Pecoraro performing with the Sean McKee Band and more.'
+                }
+            ]
+        })
+    },
     data() {
         return {
             videos: [

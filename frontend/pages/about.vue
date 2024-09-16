@@ -33,6 +33,19 @@
   </div>
 </template>
 
+<script setup>
+  useHead({
+    title: 'About Me - Chris Pecoraro',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Learn more about Chris Pecoraro, a bass player with over 10 years of experience playing in a variety of musical settings.'
+      }
+    ]
+  })
+</script>
+
 <style scoped>
 .influence-img {
   width: 30%; /* Adjust this value to change the size of the images */

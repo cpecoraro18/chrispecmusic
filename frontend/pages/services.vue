@@ -38,17 +38,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ServicesPage',
-  methods: {
-    lessons() {
-      window.open("", "_blank");
-    },
-  }
-}
-</script>
+<script setup>
 
+useHead({
+  title: 'Services - Chris Pecoraro',
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: 'Learn more about the services Chris Pecoraro offers, including studio sessions and live performances.'
+    }
+  ]
+});
+
+</script>
 <style scoped>
 
 .btn-primary {

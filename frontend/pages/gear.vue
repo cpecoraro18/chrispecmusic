@@ -148,6 +148,18 @@ export default {
             ]
         };
     },
+    created() {
+        useHead({
+            title: 'My Gear - Chris Pecoraro',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Learn more about the gear Chris Pecoraro uses, including basses, amps, pedals, and microphones.'
+                }
+            ]
+        });
+    },
     computed: {
         filteredGearItems() {
             return this.gearItems.filter(item => {

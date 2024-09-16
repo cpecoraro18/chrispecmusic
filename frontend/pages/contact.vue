@@ -37,11 +37,19 @@ const thankYouMessage = ref('');
 
 
 useHead({
+    title: 'Contact Me - Chris Pecoraro',
     script: [
         {
             src: 'https://www.google.com/recaptcha/api.js?render=6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF',
             async: true,
             defer: true
+        },
+    ],
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content: 'Contact Chris Pecoraro by email at contact@chrispecmusic.com.'
         }
     ]
 });

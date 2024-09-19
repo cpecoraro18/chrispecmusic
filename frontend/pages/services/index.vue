@@ -7,7 +7,7 @@
           <router-link to="/contact" class="btn btn-primary">Contact Me</router-link>
         </div>
       <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 offset-md-2 mb-4">
           <div class="card service bg-light-blue">
             <div class="p-2">
                 <img class="card-img-top service-image rounded" src="/img/studio.jpg" alt="Studio Sessions" />
@@ -28,19 +28,6 @@
               <h2 class="card-title">Live Performances</h2>
               <p class="card-text text-justify">Need a bassist for your live shows? I have extensive experience performing in a variety of settings, from small clubs to large venues. I adapt to different band setups and styles, bringing energy and expertise to your live performances. Let's make your next gig unforgettable.</p>
               <router-link to="/services/gig" class="btn btn-primary mt-auto">Learn More</router-link>
-            </div>
-          </div>
-        </div>
-        <!-- Lessons -->
-        <div class="col-md-4 mb-4">
-          <div class="card service bg-light-blue">
-            <div class="p-2">
-                <img class="card-img-top service-image rounded" src="/img/studio.jpg" alt="Lessons" />
-            </div>
-            <div class="card-body d-flex flex-column">
-              <h2 class="card-title">Lessons</h2>
-              <p class="card-text text-justify">I offer bass lessons for all skill levels, from beginners to advanced players. Whether you're just starting out or looking to refine your technique, I provide personalized instruction to help you reach your musical goals. Lessons are available in-person or online, and I tailor each session to your interests and learning style. Let's work together to improve your bass playing and musicianship.</p>
-              <router-link to="/services/lessons" class="btn btn-primary mt-auto">Learn More</router-link>
             </div>
           </div>
         </div>

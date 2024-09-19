@@ -1,6 +1,9 @@
 <template>
     <div class="container py-5 min-vh-100">
         <h1 class="mb-4 text-center display-4">My Gear</h1>
+        <p>
+            Explore the essential equipment that shapes my sound and performance. From bass guitars and effects to amplifiers and recording tools, each piece is selected to enhance my music. Check out the gear that drives my setup below.
+        </p>
         <div class="row mb-4 gx-3">
             <div class="col-lg-3 offset-lg-9 mb-3">
                 <select
@@ -182,16 +185,6 @@ export default {
 .card-body {
     display: flex;
     flex-direction: column;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
 }
 
 .card-img-top {

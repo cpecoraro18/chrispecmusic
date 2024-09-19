@@ -1,19 +1,21 @@
 <template>
-    <div class="container-fluid mt-5 bg-light text-dark">
+    <div class="container-fluid mt-5">
         <div class="container py-5">
             <div class="row">
                 <h2 class="mx-auto mb-5">Discography</h2>
             </div>
             <div class="row">
-                <div class="col-lg-4 album" v-for="album in discography" :key="album.name">
-                    <a :href="album.link" target="_blank" class="album-link">
-                        <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
-                        <div class="album-info">
-                            <h3>{{ album.name }}</h3>
-                            <p>{{ album.artist }}</p>
-                            <p>{{ album.year }}</p>
-                        </div>
-                    </a>
+                <div class="col-lg-4" v-for="album in discography" :key="album.name">
+                    <div class="album">
+                        <a :href="album.link" target="_blank" class="album-link">
+                            <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
+                            <div class="album-info">
+                                <h3>{{ album.name }}</h3>
+                                <p>{{ album.artist }}</p>
+                                <p>{{ album.year }}</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,19 +39,18 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid {
+    background-color: var(--bs-gray);
+}
+
 .album {
   transition: box-shadow .3s;
   border-radius: 5px;
-  padding: 20px;
   cursor: pointer;
 }
 
-.album:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.album-link:hover {
-  color: var(--primary)
+.album-image:hover, .album:hover .album-image {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .album-image {

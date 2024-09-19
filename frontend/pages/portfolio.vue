@@ -8,6 +8,9 @@
                     <button class="btn btn-primary">Contact Me</button>
                 </router-link>
             </div>
+            <div class="d-flex justify-content-center">
+                <h2 class="border-bottom pb-1 mb-4">Videos</h2>
+            </div>
             <div class="row">
                 <div class="col-md-6 mb-4" v-for="video in videos" :key="video.id">
                     <div class="card bg-light-blue">
@@ -88,10 +91,6 @@ export default {
 </script>
 
 <style scoped>
-.btn-primary {
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
 
 .bg-light-blue {
     background-color: var(--bg-light-blue);

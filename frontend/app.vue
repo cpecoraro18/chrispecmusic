@@ -64,4 +64,14 @@ body {
 .content {
   margin-bottom: 5em;
 }
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
 </style>

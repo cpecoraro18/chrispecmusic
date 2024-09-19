@@ -3,20 +3,21 @@
     <div class="hero-image">
       <div class="hero-text">
         <h1>Chris Pecoraro</h1>
-        <p>Professional Bass Player</p>
-        <button class="btn btn-primary" v-on:click="contact">Contact Me</button>
+        <h2 class="h5">Professional Freelance Bassist for Studio & Live Sessions.</h2>
+        <a class="btn btn-primary" href="mailto:contact@chrispecmusic.com">Contact Me</a>
       </div>
     </div>
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
       <div class="row pb-5">
-        <div class="col-lg-8 mx-auto">
-          <p class="lead">Welcome! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth an groove to your music, you've come to the right place!</p>
-          <p class="lead">I specialize in a broad range of styles, from rock, jazz, funk, and blues to pop and R&B. My adaptable approach ensures that my bass lines blend seamlessly into your tracks, adding the perfect rhythm and texture to elevate your music.</p>
-          <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid my-4 w-75 mx-auto d-block rounded mb-5">
-          <p class="lead">I offer both in-studio and remote recording services, making it easy for you to collaborate with me whether you're in Chicago or working from anywhere else in the world. My professional home studio is equipped with top-of-the-line audio equipment, ensuring high-quality bass recordings for your projects.</p>
-          <p class="lead">Explore my portfolio to hear examples of my bass work, and don't hesitate to contact me for rates and availability. Let's create amazing music together!</p>
+        <div class="col-12 col-lg-5 offset-2 mx-auto">
+          <p class="lead">Welcome! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth and groove to your music, you've come to the right place!</p>
+          <p class="lead">I specialize in a broad range of styles, from rock, jazz, funk, and blues to pop and R&B. Available for local studio sessions in Chicago or remote recordings.</p>
+          <p class="lead">Explore <router-link to="/portfolio">my portfolio</router-link> to hear examples of my bass work, and don't hesitate to contact me for rates and availability. Let's create amazing music together! <router-link class="small" to="/about">Read more...</router-link></p>
 
-          <button class="btn btn-primary mt-3" v-on:click="contact">Contact Me</button>
+          <a class="btn btn-primary mt-3" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+        </div>
+        <div class="col-12 col-lg-5">
+          <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid my-4 w-75 mx-auto d-block rounded mb-5">
         </div>
       </div>
     </div>
@@ -71,21 +72,11 @@ export default {
         { name: 'davidmusic2018 on Fiverr', text: 'It was a pleasure working with Chris. His recordings and performance were excellent and made my job as audio engineer much easier than it could have been. In my case, it was symphonic/orchestral music and I was able to quickly place Chris\' work in the mix. Looking forward to working together again!' },
       ],
     };
-  },
-  methods: {
-    contact() {
-      window.location.href = "mailto:contact@chrispecmusic.com"
-    }
   }
 }
 </script>
 
 <style scoped>
-.btn-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
 .hero-image {
   height: 90vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/img/ChrisPecMusic.jpg");

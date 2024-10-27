@@ -1,6 +1,7 @@
 // google tag manager insert into head and body nuxt 3
 
 export default defineNuxtPlugin((nuxtApp) => {
+    if (!document) return;
     const head = document.head;
     const body = document.body;
     

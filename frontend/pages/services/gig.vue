@@ -7,7 +7,7 @@
       <h1 class="text-center mb-4">Live Performances</h1>
       <div class="text-center mb-5">
         <p class="lead">
-          Get adynamic, professional bass plater that elevate your live shows. Available for gigs, tours, and special events.
+          Get a dynamic, professional bass player that elevate your live shows. Available for gigs, tours, and special events.
         </p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScjH2TAHX2a4w97208k6ARgvH9KdWgavi951l0aGf6fZ4bUeQ/viewform?usp=sf_link" target="_blank" class="btn btn-primary btn-lg">Hire Me for a Gig</a>
       </div>

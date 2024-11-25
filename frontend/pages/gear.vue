@@ -50,6 +50,12 @@ export default {
             selectedType: '',
             gearItems: [
                 {
+                    name: 'Lakland 5501',
+                    type: 'Bass',
+                    image: '/img/gear/Lakland5501.png',
+                    description: 'Versatile 5-string bass with a bright, punchy tone and smooth playability. Upgraded with Bartolini pickups and a Lakland LH3 preamp.'
+                },
+                {
                     name: 'Fender Jazz Bass',
                     type: 'Bass',
                     image: '/img/gear/Fender-J-Bass.png',
@@ -94,6 +100,12 @@ export default {
                     link: 'https://amzn.to/3MDDMBR'
                 },
                 {
+                    name: 'Origin Effects Bass Rig Super Vintage',
+                    type: 'Pedal',
+                    image: '/img/gear/Origin-Effects-BassRig-Super-Vintage.png',
+                    description: 'Vintage-inspired SVT simulator with tube-like warmth and harmonics.',
+                },
+                {
                     name: 'Korg Pitchblack Advanced',
                     type: 'Pedal',
                     image: '/img/gear/Kork-Pitchblack-Advanced.png',
@@ -106,6 +118,12 @@ export default {
                     image: '/img/gear/Cioks-DC7.png',
                     description: 'Slim, multi-output power supply to handle all my pedals without noise.',
                     link: 'https://amzn.to/4d9uvMI'
+                },
+                {
+                    name: 'Cali76 Bass Compressor',
+                    type: 'Pedal',
+                    image: '/img/gear/Cali76-Bass-Compressor.png',
+                    description: 'Studio-grade compression with a vintage sound, perfect for bass solos and slap lines.',
                 },
                 {
                     name: 'MXR Bass Compressor',
@@ -127,6 +145,12 @@ export default {
                     image: '/img/gear/Aguilar-Filter-Twin.png',
                     description: 'Dynamic filter pedal to shape bass tone with vintage-inspired sweeps.',
                     link: 'https://amzn.to/47lap0C'
+                },
+                {
+                    name: "Electro-Harmonix Pico Pog",
+                    type: 'Pedal',
+                    image: '/img/gear/PicoPog.png',
+                    description: 'Octave pedal with polyphonic tracking, used mainly for soloing and Thundercat tones.',
                 },
                 {
                     name: 'Pedaltrain Metro 20',

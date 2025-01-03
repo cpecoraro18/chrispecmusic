@@ -65,7 +65,7 @@
 
 <script setup>
 useHead({
-  title: 'Studio Bass Sessions by Chris Pecoraro - Elevate Your Music',
+  title: 'Studio Bass Sessions - Chris Pecoraro',
   meta: [
     {
       hid: 'description',

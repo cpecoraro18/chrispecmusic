@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-3 bg-white review-container">
+  <div class="container-fluid py-3 bg-light-blue review-container">
     <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
       <div class="carousel-inner px-5">
         <div
@@ -178,7 +178,7 @@ export default {
 }
 
 .review-item {
-  background-color: #f8f9fa;
+  background-color: var(--bg-light);
   border-radius: 10px;
   padding: 20px;
   margin: 5px;

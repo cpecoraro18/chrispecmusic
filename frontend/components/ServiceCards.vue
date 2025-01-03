@@ -3,8 +3,8 @@
     <div class="container">
       <h1 class="text-center mb-3">Services</h1>
         <div class="text-center mb-3">
-          <p>Explore live gig and studio session bass services</p>
-        </div>
+          <p class="lead">Explore live gig and studio session bass services</p>
+        </div> 
         <div class="row">
         <div class="col-12 col-lg-6 mb-4">
           <router-link to="/services/gig" class="text-decoration-none">
@@ -39,12 +39,8 @@
 
 <style scoped>
 
-.bg-light-blue {
-  background-color: var(--bg-light-blue);
-}
-
 .custom-card {
-  background-color: var(--bg-light);
+  background-color: var(--bg-light-blue);
   color: var(--text-color-dark);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;

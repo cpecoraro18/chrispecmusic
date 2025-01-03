@@ -68,6 +68,10 @@ body {
   margin-bottom: 5em;
 }
 
+.bg-light-blue {
+  background-color: var(--bg-light-blue);
+}
+
 .btn-primary {
   background-color: var(--primary);
   border-color: var(--primary);

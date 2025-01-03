@@ -1,8 +1,8 @@
 <template>
     <div class="container py-5 min-vh-100">
         <h1 class="mb-4 text-center display-4">My Gear</h1>
-        <p>
-            Explore the essential equipment that shapes my sound and performance. From bass guitars and effects to amplifiers and recording tools, each piece is selected to enhance my music. Check out the gear that drives my setup below.
+        <p class="lead">
+            Learn more about the gear I use for live performances, studio recordings, and practice sessions.
         </p>
         <div class="row mb-4 gx-3">
             <div class="col-lg-3 offset-lg-9 mb-3">
@@ -10,7 +10,7 @@
                     v-model="selectedType"
                     class="form-select"
                 >
-                    <option value="">All Types</option>
+                    <option value="">Filter by Type</option>
                     <option value="Bass">Bass</option>
                     <option value="Amp">Amp</option>
                     <option value="Cabinet">Cabinet</option>
@@ -24,8 +24,8 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <!-- Gear Items -->
             <div v-for="item in filteredGearItems" :key="item.name" class="col-12 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                    <img :src="item.image" :alt="item.name" class="card-img-top" />
+                <div class="card h-100 shadow-sm bg-light-blue text-dark border-0">
+                    <img :src="item.image" :alt="item.name" class="card-img-top m-0" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ item.name }}</h5>
                          <div>
@@ -65,13 +65,13 @@ export default {
                     name: 'Fender American Standard P Bass',
                     type: 'Bass',
                     image: '/img/gear/Fender-P-Bass.png',
-                    description: 'Latest addition, delivering classic Precision Bass tones with modern reliability.'
+                    description: 'Delivering classic Precision Bass tones with modern reliability.'
                 },
                 {
                     name: 'Knilling Bucharest Upright Bass',
                     type: 'Bass',
                     image: '/img/gear/Knilling-Upright.png',
-                    description: 'My new upright bass, perfect for jazz and acoustic sessions.'
+                    description: 'Upright bass, perfect for jazz and acoustic sessions.'
                 },
                 {
                     name: 'Markbass Little Mark 3 Amp',

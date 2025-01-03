@@ -29,9 +29,9 @@
 
     <service-cards></service-cards>
 
-    <div class="bg-white py-5 mt-5">
+    <div class="bg-light-blue py-5 mt-5">
       <h3 class="text-dark">Reviews</h3>
-      <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
+      <p class="lead text-muted">Read what my clients have to say about working with me.</p>
       <review-list></review-list>
     </div>
 
@@ -42,7 +42,7 @@
   <div class="container-fluid py-3 mt-5">
     <div class="row text-center">
     <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
-    <p class="text-muted">Have questions or want to book a session? Let’s connect!</p>
+    <p class="text-muted lead">Have questions or want to book a session? Let’s connect!</p>
   </div>
   <div class="row">
     <div class="col-lg-6 mx-auto text-center">

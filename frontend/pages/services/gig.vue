@@ -63,6 +63,7 @@ useHead({
   background-color: var(--bg-light-blue);
   color: var(--text-color-dark);
   border: none;
+  padding: 1em;
 }
 
 .img-fluid {

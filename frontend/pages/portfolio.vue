@@ -1,7 +1,8 @@
 <template>
     <div class="portfolio py-5">
-        <div class="container-fluid">
-            <h1 class="text-center mb-5">Portfolio</h1>
+        <div class="container-fluid px-5">
+            <h1 class="text-center">Portfolio</h1>
+            <p class="lead">Explore My Work</p>
             <div class="d-flex justify-content-center">
                 <h2 class="border-bottom pb-1 mb-4">Videos</h2>
             </div>
@@ -22,6 +23,21 @@
     </div>
 
     <discography-list></discography-list>
+
+
+    <div class="bg-light-blue py-5">
+      <h3 class="text-dark">Reviews</h3>
+      <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
+      <review-list></review-list>
+    </div>
+
+
+    <div class="container-fluid py-3 mt-5">
+        <div class="row text-center">
+            <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
+            <p>Have questions or want to book a session? <a href="mailto:contact@chrispecmusic.com">Reach Out!</a></p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -91,13 +107,8 @@ export default {
 </script>
 
 <style scoped>
-
-.bg-light-blue {
-    background-color: var(--bg-light-blue);
-}
-
 .embed-responsive-item {
-    height: 40vh;
+    height: 30vh;
     width: 100%;
 }
 </style>

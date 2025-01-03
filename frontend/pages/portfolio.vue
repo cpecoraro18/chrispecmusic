@@ -42,7 +42,13 @@ export default {
     data() {
         return {
             videos: [
-            {
+                {
+                    id: 0,
+                    title: 'Sean\'s Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover',
+                    url: 'https://www.youtube.com/embed/OFJ75eQKOlc?si=qs_fROpyNnZkR5uX',
+                    description: 'Enjoy this cover of "Got to Get Better in a Little While" by Sean\'s Guitar Lounge featuring Sophie Hafer. This performance showcases the band\'s talent and creativity in the studio, delivering a fresh take on a classic track.'
+                },
+                {
                     id: 1,
                     title: 'Sean McKee Band - Got to Get Better in a Little While Cover',
                     url: 'https://www.youtube.com/embed/53Vx75OUEQw?si=gM0xiImyhF59Mqzs',

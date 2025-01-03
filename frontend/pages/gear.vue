@@ -16,6 +16,7 @@
                     <option value="Cabinet">Cabinet</option>
                     <option value="Preamp">Preamp</option>
                     <option value="Pedal">Pedal</option>
+                    <option value="Power Supply">Power Supply</option>
                     <option value="Microphone">Microphone</option>
                 </select>
             </div>
@@ -86,6 +87,12 @@ export default {
                     description: '4x10 cabinet delivering punchy lows and detailed mids for live performances.'
                 },
                 {
+                    name: 'Markbass New York 121 Cab',
+                    type: 'Cabinet',
+                    image: '/img/gear/Markbass-NewYork-121.png',
+                    description: 'Compact, lightweight cab with a warm, full sound for small venues and rehearsals.'
+                },
+                {
                     name: 'Phil Jones Double 4',
                     type: 'Amp',
                     image: '/img/gear/Phil-Jones-Double-Four.png',
@@ -106,6 +113,12 @@ export default {
                     description: 'Vintage-inspired SVT simulator with tube-like warmth and harmonics.',
                 },
                 {
+                    name: "JHS Colour Box V2",
+                    type: 'Pedal',
+                    image: '/img/gear/JHS-ColorBox.webp',
+                    description: 'Versatile preamp pedal with a wide range of tones, from clean to overdriven.',
+                },
+                {
                     name: 'Korg Pitchblack Advanced',
                     type: 'Pedal',
                     image: '/img/gear/Kork-Pitchblack-Advanced.png',
@@ -114,7 +127,7 @@ export default {
                 },
                 {
                     name: 'Cioks DC7 Battery',
-                    type: 'Pedal',
+                    type: 'Power Supply',
                     image: '/img/gear/Cioks-DC7.png',
                     description: 'Slim, multi-output power supply to handle all my pedals without noise.',
                     link: 'https://amzn.to/4d9uvMI'

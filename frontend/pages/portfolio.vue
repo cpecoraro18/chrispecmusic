@@ -7,7 +7,7 @@
                 <h2 class="border-bottom pb-1 mb-4">Videos</h2>
             </div>
             <div class="row">
-                <div class="col-4 mb-4" v-for="video in videos" :key="video.id">
+                <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
                     <div class="card bg-light-blue">
                         <div class="card-body">
                             <h2 class="card-title">{{ video.title }}</h2>

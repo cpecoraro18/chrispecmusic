@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid py-5">
         <div class="row">
-            <h2 class="mx-auto mb-5">Discography</h2>
+            <h3 class="mx-auto fw-bold h2 mb-5">Discography</h3>
         </div>
         <div class="row">
             <div class="col-lg-3" v-for="album in discography" :key="album.name">

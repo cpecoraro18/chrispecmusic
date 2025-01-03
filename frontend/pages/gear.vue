@@ -1,6 +1,6 @@
 <template>
     <div class="container py-5 min-vh-100">
-        <h1 class="mb-4 text-center display-4">My Gear</h1>
+        <h1 class="mb-4 text-center">My Gear</h1>
         <p class="lead">
             Learn more about the gear I use for live performances, studio recordings, and practice sessions.
         </p>

@@ -1,21 +1,18 @@
 <template>
-    <div class="portfolio py-5">
-        <div class="container-fluid px-5">
-            <h1 class="text-center">Portfolio</h1>
-            <p class="lead">Explore My Work</p>
-            <div class="d-flex justify-content-center">
-                <h2 class="border-bottom pb-1 mb-4">Videos</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
-                    <div class="card bg-light-blue">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ video.title }}</h2>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
-                            </div>
-                            <p class="card-text mt-3">{{ video.description }}</p>
+    <div class="container-fluid p-5">
+        <h1 class="text-cente mb-4">Portfolio</h1>
+        <p class="lead">Explore My Work</p>
+        <h2 class="pb-1 mb-4">Videos</h2>
+
+        <div class="row">
+            <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
+                <div class="card bg-light-blue">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ video.title }}</h2>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
                         </div>
+                        <p class="card-text mt-3">{{ video.description }}</p>
                     </div>
                 </div>
             </div>

@@ -11,14 +11,14 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-12 col-lg-5 offset-2 mx-auto">
-          <h3 class="display-4 text-center mb-4 h-5">Welcome</h3>
+          <h3 class="display-4 text-center mb-4">Welcome</h3>
           <p class="lead text-center mb-4">
             I’m <span class=" fw-bold">Chris Pecoraro</span>, a professional electric and upright bassist offering 
             <span class="fw-semibold">live performance</span> and
             <span class="fw-semibold">studio recording</span>.
             Whether you're a band, producer, or aspiring bassist, I’m here to provide the sound and support you need. 
             Let’s make your next project a success. 
-            <router-link class="fw-semibold" to="/about">Read more...</router-link>
+            <router-link class="fw-semibold" to="/bio">Read more...</router-link>
         </p>
         </div>
         <div class="col-12 col-lg-5">
@@ -27,10 +27,15 @@
       </div>
     </div>
 
+    <h3 class="text-center fw-bold mb-3 h2">Services</h3>
+      <div class="text-center mb-3">
+        <p class="lead">Explore live gig and studio session bass services</p>
+    </div> 
+
     <service-cards></service-cards>
 
     <div class="bg-light-blue py-5 mt-5">
-      <h3 class="text-dark">Reviews</h3>
+      <h3 class="text-dark fw-bold h2">Reviews</h3>
       <p class="lead text-muted">Read what my clients have to say about working with me.</p>
       <review-list></review-list>
     </div>
@@ -41,7 +46,7 @@
 
   <div class="container-fluid py-3 mt-5">
     <div class="row text-center">
-    <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
+    <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
     <p class="text-muted lead">Have questions or want to book a session? Let’s connect!</p>
   </div>
   <div class="row">

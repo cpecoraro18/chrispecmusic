@@ -1,10 +1,6 @@
 <template>
 <div class="services py-5">
     <div class="container">
-      <h1 class="text-center mb-3">Services</h1>
-        <div class="text-center mb-3">
-          <p class="lead">Explore live gig and studio session bass services</p>
-        </div> 
         <div class="row">
         <div class="col-12 col-lg-6 mb-4">
           <router-link to="/services/gig" class="text-decoration-none">

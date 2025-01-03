@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container py-5">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <h1 class="mb-4 mt-2">About Me</h1>
+        <h1 class="mb-4">Bio</h1>
 
         <img src="/img/ChrisPecMusicSmall.jpg" alt="Your Image" class="img-fluid mb-4 w-50 mx-auto d-block rounded mb-5">
 
@@ -12,7 +12,7 @@
         
         <img src="/img/SeanMcKeeBand.jpg" alt="Sean Mckee Band" class="img-fluid mb-4 mx-auto w-75 d-block rounded mb-5">
 
-        <div class="mb-5">
+        <div>
           <p>For inquiries or bookings, <a href="mailto:contact@chrispecmusic.com">get in touch</a>.</p>
         </div>
       </div>
@@ -22,7 +22,7 @@
 
 <script setup>
   useHead({
-    title: 'About Me - Chris Pecoraro',
+    title: 'Bio - Chris Pecoraro',
     meta: [
       {
         hid: 'description',

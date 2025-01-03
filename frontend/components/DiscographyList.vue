@@ -1,21 +1,19 @@
 <template>
-    <div class="container-fluid mt-5">
-        <div class="container py-5">
-            <div class="row">
-                <h2 class="mx-auto mb-5">Discography</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-4" v-for="album in discography" :key="album.name">
-                    <div class="album">
-                        <a :href="album.link" target="_blank" class="album-link">
-                            <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
-                            <div class="album-info">
-                                <h3>{{ album.name }}</h3>
-                                <p>{{ album.artist }}</p>
-                                <p>{{ album.year }}</p>
-                            </div>
-                        </a>
-                    </div>
+    <div class="container-fluid py-5">
+        <div class="row">
+            <h2 class="mx-auto mb-5">Discography</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3" v-for="album in discography" :key="album.name">
+                <div class="album">
+                    <a :href="album.link" target="_blank" class="album-link">
+                        <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
+                        <div class="album-info" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
+                            <h5 class="album-name">{{ album.name }}</h5>
+                            <p>{{ album.artist }}</p>
+                            <p>{{ album.year }}</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -40,13 +38,19 @@ export default {
 
 <style scoped>
 .container-fluid {
-    background-color: var(--bs-gray);
+    background-color: var(--bg-black);
 }
 
 .album {
   transition: box-shadow .3s;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.album-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .album-image:hover, .album:hover .album-image {

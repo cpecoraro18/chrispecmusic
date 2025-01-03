@@ -30,9 +30,12 @@
   --bg-dark-blue: #1f2d43;
   --bg-light-blue: #a6b3c2;
   --bg-light: #f0f0f0;
+  --bg-black: #1a1a1a;
 
   --bs-body-bg: var(--bg-dark-blue) !important;
   --bs-body-color: var(--text-color) !important;
+
+  --bs-secondary-color: #6c757d !important;
 
   --bs-link-color: var(--text-color) !important;
   --bs-link-color-rgb: var(--text-color-rgb) !important;

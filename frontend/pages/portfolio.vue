@@ -1,18 +1,12 @@
 <template>
     <div class="portfolio py-5">
-        <div class="container">
+        <div class="container-fluid">
             <h1 class="text-center mb-5">Portfolio</h1>
-            <div class="text-center mb-5">
-                <p>Check out some of my performances below. If you like what you see and want to discuss a project or booking, don't hesitate to reach out.</p>
-                <router-link to="/contact" class="nav-link">
-                    <button class="btn btn-primary">Contact Me</button>
-                </router-link>
-            </div>
             <div class="d-flex justify-content-center">
                 <h2 class="border-bottom pb-1 mb-4">Videos</h2>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-4" v-for="video in videos" :key="video.id">
+                <div class="col-4 mb-4" v-for="video in videos" :key="video.id">
                     <div class="card bg-light-blue">
                         <div class="card-body">
                             <h2 class="card-title">{{ video.title }}</h2>

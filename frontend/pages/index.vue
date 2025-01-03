@@ -1,52 +1,60 @@
 <template>
   <div>
     <div class="hero-image">
-      <div class="hero-text">
+      <div class="hero-text text-center">
         <h1>Chris Pecoraro</h1>
-        <h2 class="h5">Professional Freelance Bassist for Studio & Live Sessions.</h2>
-        <a class="btn btn-primary" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+        <h2 class="h5 text-muted">Professional Electric and Upright Bassist | Chicago</h2>
+        <a class="btn btn-primary hero-button mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
       </div>
     </div>
-    <div class="container-fluid mt-5">
-      <div class="row pb-5">
-        <div class="col-12 col-lg-5 offset-2 mx-auto">
-          <p class="lead">Welcome! My name is Chris Pecoraro, a professional session bassist in Chicago, with over 10 years of experience playing bass for a variety of musical projects. If you are a music producer, recording studio, or artist seeking a versatile session player to bring depth and groove to your music, you've come to the right place!</p>
-          <p class="lead">I specialize in a broad range of styles, from rock, jazz, funk, and blues to pop and R&B. Available for local studio sessions in Chicago or remote recordings.</p>
-          <p class="lead">Explore <router-link to="/portfolio">my portfolio</router-link> to hear examples of my bass work, and don't hesitate to contact me for rates and availability. Let's create amazing music together! <router-link class="small" to="/about">Read more...</router-link></p>
 
-          <a class="btn btn-primary mt-3" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-lg-5 offset-2 mx-auto">
+          <h3 class="display-4 text-center mb-4 h-5">Welcome</h3>
+          <p class="lead text-center mb-4">
+            I’m <span class=" fw-bold">Chris Pecoraro</span>, a professional electric and upright bassist offering 
+            <span class="fw-semibold">live performance</span> and
+            <span class="fw-semibold">studio recording</span>.
+            Whether you're a band, producer, or aspiring bassist, I’m here to provide the sound and support you need. 
+            Let’s make your next project a success. 
+            <router-link class="fw-semibold" to="/about">Read more...</router-link>
+        </p>
         </div>
         <div class="col-12 col-lg-5">
-          <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid my-4 w-75 mx-auto d-block rounded mb-5">
+          <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid mx-auto d-block rounded mb-5">
         </div>
       </div>
+    </div>
+
+    <service-cards></service-cards>
+
+    <div class="bg-white py-5 mt-5">
+      <h3 class="text-dark">Reviews</h3>
+      <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
+      <review-list></review-list>
     </div>
 
     <discography-list></discography-list>
 
-    <div class="container py-3">
-      <div class="row">
-        <h2 class="mx-auto my-5">Reviews</h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-8 mx-auto my-2" v-for="review in reviews" :key="review.name">
-          <p>"{{ review.text }}"</p>
-          <small class="fst-italic">
-            - <a href="https://www.fiverr.com/cpecoraro18" target="_blank">{{ review.name }}</a>
-          </small>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="container-fluid py-3 bg-dark">
-    <div class="row">
-      <h2 class="mx-auto my-5">Contact Me</h2>
+  <div class="container-fluid py-3 mt-5">
+    <div class="row text-center">
+    <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
+    <p class="text-muted">Have questions or want to book a session? Let’s connect!</p>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 mx-auto text-center">
+      <p class="lead">
+        <i class="bi bi-envelope text-primary"></i> 
+        Email: <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+      </p>
     </div>
-    <div class="row">
-      <div class="col-lg-8 mx-auto my-2">
-        <p>Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
+  </div>
+  <div class="row mt-2 mb-4">
+    <div class="col-lg-6 mx-auto text-center">
+      <a class="btn btn-primary py-2 mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
     </div>
   </div>
 
@@ -57,28 +65,20 @@
 <script>
 
 import DiscographyList from '../components/DiscographyList.vue';
+import ServiceCards from '~/components/ServiceCards.vue';
 
 export default {
   name: 'HomePage',
   components: {
     DiscographyList,
+    ServiceCards
   },
-  data() {
-    return {
-      reviews: [
-        { name: 'jk6strings on Fiverr', text: 'Really enjoy working with Chris. He provided two versions of basslines for my song, and they\'re both awesome! I can\'t decide which I like best. Turnaround time and communication also excellent. Very highly reccomend.' },
-        { name: 'oldmanlion on Fiverr', text: 'Chris P came up with two alternative bass tracks for my song, both in raw and mixed form. Met the breif perfectly. Response time and turnaround time were both amazingly fast. Totally professional job, and unquestionable value for money. Would certainly come back again.' },
-        { name: 'wadleyworld on Fiverr', text: 'Wow, blown away by how tight he is... well done man! delivered two songs flawlessly. no notes or revisions needed. Will utilize his talent in the future. Highly recommended Obvi...' },
-        { name: 'davidmusic2018 on Fiverr', text: 'It was a pleasure working with Chris. His recordings and performance were excellent and made my job as audio engineer much easier than it could have been. In my case, it was symphonic/orchestral music and I was able to quickly place Chris\' work in the mix. Looking forward to working together again!' },
-      ],
-    };
-  }
 }
 </script>
 
 <style scoped>
 .hero-image {
-  height: 90vh;
+  height: 80vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/img/ChrisPecMusic.jpg");
   background-position: center right;
   background-repeat: no-repeat;
@@ -98,11 +98,17 @@ export default {
 }
 
 .hero-text h1 {
-  font-size: 50px;
+  font-size: 60px;
 }
 
 .hero-text p {
   font-size: 20px;
+}
+
+.hero-button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 16px;
 }
 
 .album {
@@ -126,6 +132,27 @@ export default {
   object-fit: cover;
 }
 
+.custom-card {
+  background-color: var(--bg-light);
+  color: var(--text-color-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: var(--primary);
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
 /* Mobile styles */
 @media only screen and (max-width: 991px) {
   .hero-image {
@@ -141,7 +168,7 @@ export default {
   }
 
   .hero-text h1 {
-    font-size: 30px;
+    font-size: 40px;
   }
 
   .hero-text p {

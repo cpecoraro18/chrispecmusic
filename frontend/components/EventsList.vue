@@ -22,8 +22,8 @@ export default {
       events: []
     };
   },
-  async mounted() {
-    await this.fetchEvents();
+  created() {
+    this.fetchEvents();
   },
   methods: {
     async fetchEvents() {

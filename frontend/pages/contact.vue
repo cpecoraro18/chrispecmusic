@@ -6,6 +6,7 @@
                 <div class="contact-info mt-5">
                     <p>Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
                 </div>
+                <!--
                 <h2 class="mt-5">Send me a message</h2>
                 <form @submit.prevent="submitForm" class="mt-4">
                     <div class="mb-3">
@@ -21,6 +22,7 @@
                 <div v-if="thankYouMessage" class="mt-4 alert alert-success" role="alert">
                     {{ thankYouMessage }}
                 </div>
+                -->
             </div>
         </div>
     </div>

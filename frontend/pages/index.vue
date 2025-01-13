@@ -42,8 +42,9 @@
 
     <discography-list></discography-list>
 
+    <!--
     <events-list></events-list>
-
+    -->
     <div class="container mt-5">
       <div class="w-100 border-bottom"></div>
     </div>

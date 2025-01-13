@@ -52,6 +52,7 @@ jobs:
             # Use deploy-lambda for cleaner deployment
             aws lambda update-function-code \
               --function-name "$function_name" \
-              --zip-file "fileb://$file"
+              --zip-file "fileb://$file" \
+              --query "Configuration.FunctionArn" --output text
           done
         shell: bash

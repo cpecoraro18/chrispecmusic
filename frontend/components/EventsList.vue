@@ -15,33 +15,24 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      events: []
-    };
-  },
-  created() {
-    this.fetchEvents();
-  },
-  methods: {
-    async fetchEvents() {
-      try {
-        const response = await $fetch('https://api.chrispecmusic.com/events', {
-            method: 'GET'
-        });
-        this.events = JSON.parse(response).items;
-        } catch (error) {
-        console.error(error);
-        }
-    },
-    formatDate(dateTime) {
-        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        return new Date(dateTime).toLocaleDateString(undefined, options);
-    }
-  }
-};
+<script setup>
+
+const events = ref([]);
+
+async function getEvents() {
+  const response = await $fetch('https://api.chrispecmusic.com/events');
+  console.log(response);
+  events.value = JSON.parse(response).items;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString();
+}
+
+onMounted(() => {
+  getEvents();
+});
 </script>
 
 <style scoped>

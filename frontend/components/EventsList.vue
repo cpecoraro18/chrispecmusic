@@ -22,8 +22,8 @@ export default {
       events: []
     };
   },
-  created() {
-    this.fetchEvents();
+  async mounted() {
+    await this.fetchEvents();
   },
   methods: {
     async fetchEvents() {
@@ -31,7 +31,6 @@ export default {
         const response = await $fetch('https://api.chrispecmusic.com/events', {
             method: 'GET'
         });
-        console.log(response)
         this.events = JSON.parse(response).items;
         } catch (error) {
         console.error(error);

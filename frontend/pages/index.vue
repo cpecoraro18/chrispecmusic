@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-5">
     <div class="hero-image">
       <div class="hero-text text-center">
         <h1>Chris Pecoraro</h1>
@@ -28,8 +28,8 @@
     </div>
 
     <h3 class="text-center fw-bold mb-3 h2">Services</h3>
-      <div class="text-center mb-3">
-        <p class="lead">Explore live gig and studio session bass services</p>
+    <div class="text-center mb-3">
+      <p class="lead">Explore live gig and studio session bass services</p>
     </div> 
 
     <service-cards></service-cards>
@@ -42,29 +42,34 @@
 
     <discography-list></discography-list>
 
-  </div>
+    <events-list></events-list>
 
-  <div class="container-fluid py-3 mt-5">
-    <div class="row text-center">
-    <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
-    <p class="text-muted lead">Have questions or want to book a session? Let’s connect!</p>
-  </div>
-  <div class="row">
-    <div class="col-lg-6 mx-auto text-center">
-      <p class="lead">
-        <i class="bi bi-envelope text-primary"></i> 
-        Email: <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
-      </p>
+    <div class="container mt-5">
+      <div class="w-100 border-bottom"></div>
+    </div>
+
+
+    <div class="container-fluid py-3 mt-5">
+      <div class="row text-center">
+        <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
+        <p class="text-muted lead">Have questions or want to book a session? Let’s connect!</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mx-auto text-center">
+          <p class="lead">
+            <i class="bi bi-envelope text-primary"></i> 
+            Email: <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="row mt-2 mb-4">
+        <div class="col-lg-6 mx-auto text-center">
+          <a class="btn btn-primary py-2 mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row mt-2 mb-4">
-    <div class="col-lg-6 mx-auto text-center">
-      <a class="btn btn-primary py-2 mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
-    </div>
-  </div>
 
-</div>
-  
 </template>
 
 <script>

@@ -81,4 +81,8 @@ body {
     background-color: #0056b3;
     border-color: #004085;
 }
+
+.text-info {
+  color: var(--secondary) !important;
+}
 </style>

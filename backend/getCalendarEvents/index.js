@@ -1,4 +1,4 @@
-const { google } = require('google-auth-library');
+const  google = require('google-auth-library');
 
 const CALENDAR_ID = process.env.CALENDAR_ID;
 const GOOGLE_CREDENTIALS = JSON.parse(process.env.GOOGLE_CREDENTIALS);

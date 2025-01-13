@@ -9,7 +9,13 @@ exports.handler = async (event) => {
         client.scopes = ['https://www.googleapis.com/auth/calendar.readonly'];
 
         const response = await client.request({
-            url: `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`
+            url: `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`,
+            method: 'GET',
+            params: {
+                timeMin: new Date().toISOString(),
+                singleEvents: true,
+                orderBy: 'startTime'
+            }
         });
 
         return {

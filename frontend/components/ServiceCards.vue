@@ -6,7 +6,7 @@
           <router-link to="/services/gig" class="text-decoration-none">
             <div class="card text-center h-100 custom-card">
               <div class="card-body">
-                <h4 class="card-title">Live Performances</h4>
+                <h4 class="card-title"><i class="fas fa-music me-2"></i>Live Gigs</h4>
                 <p class="text-muted">Experienced bassist for live performances, concerts, and tours. Available for local and international gigs.</p>
               </div>
               <div class="mb-3">
@@ -19,7 +19,7 @@
           <router-link to="/services/studio" class="text-decoration-none">
             <div class="card text-center h-100 custom-card">
               <div class="card-body">
-                <h4 class="card-title">Studio Recordings</h4>
+                <h4 class="card-title"><i class="fas fa-microphone me-2"></i>Studio Recordings</h4>
                 <p class="text-muted">Professional bass tracks for your music project. Available for local studio sessions in Chicago or remote recordings.</p>
               </div>
               <div class="mb-3">

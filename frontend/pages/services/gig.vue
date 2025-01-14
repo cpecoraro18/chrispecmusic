@@ -1,5 +1,5 @@
 <template>
-  <div class="service-details mt-4">
+  <div class="service-details py-5">
     <div class="container">
       <div class="d-flex mb-3">
         <router-link to="/services" class="me-2">Services</router-link> - <span class="ms-2">Live Performances</span>

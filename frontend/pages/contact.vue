@@ -7,7 +7,7 @@
                     <p class="h4">Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
                 </div>
                 <h2 class="mt-5">Send me a message</h2>
-                <form @submit.prevent="submitForm" class="mt-4">
+                <form @submit.prevent="submitForm" class="mt-4" v-if="!thankYouMessage">
                     <div class="mb-3">
                         <label for="email" class="form-label">Your Email Address</label>
                         <input type="email" class="form-control" id="email" v-model="email" placeholder="Your email" required>
@@ -21,6 +21,9 @@
                 <div v-if="thankYouMessage" class="mt-4 alert alert-success" role="alert">
                     {{ thankYouMessage }}
                 </div>
+                <div v-if="errorMessage" class="mt-4 alert alert-danger" role="alert">
+                    {{ errorMessage }}
+                </div>
             </div>
         </div>
     </div>
@@ -32,6 +35,7 @@ const name = ref('');
 const email = ref('');
 const message = ref('');
 const thankYouMessage = ref('');
+const errorMessage = ref('');
 
 
 useHead({
@@ -57,36 +61,43 @@ const submitForm = async () => {
         if (typeof grecaptcha !== 'undefined') {
             grecaptcha.ready(function() {
                 grecaptcha.execute('6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF', { action: 'CONTACT_FORM_SUBMIT' }).then(async function(token) {
-                    const response = await $fetch('https://api.chrispecmusic.com/contact', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            name: name.value,
-                            email: email.value,
-                            message: message.value,
-                            recaptcha: token
-                        })
-                    });
-                                        
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                    try {
+                        const response = await $fetch('https://api.chrispecmusic.com/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: name.value,
+                                email: email.value,
+                                message: message.value,
+                                recaptcha: token
+                            })
+                        });
+
+                        // Check if the response indicates failure
+                        if (response.status !== 'success') {
+                            throw new Error(response.message || 'Failed to send email');
+                        }
+
+                        thankYouMessage.value = 'Thank you for your message! I will get back to you as soon as possible.';
+                        // Clear the form
+                        name.value = '';
+                        email.value = '';
+                        message.value = '';
+                    } catch (error) {
+                        console.error('A problem occurred while sending the message.', error);
+                        errorMessage.value = 'Something went wrong. Please try again later.';
                     }
-        
-                    thankYouMessage.value = 'Thank you for your message!';
-                    // Clear the form
-                    name.value = '';
-                    email.value = '';
-                    message.value = '';
                 });
             });
         } else {
             throw new Error('reCAPTCHA not loaded');
         }
     } catch (error) {
-        console.error('A problem occurred while sending the message.', error);
-        thankYouMessage.value = 'Something went wrong. Please try again.';
+        console.error('A problem occurred while processing the form.', error);
+        errorMessage.value = 'Something went wrong. Please try again later.';
     }
 };
+
 </script>

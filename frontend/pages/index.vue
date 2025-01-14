@@ -42,14 +42,12 @@
 
     <discography-list></discography-list>
 
-    <!--
     <events-list></events-list>
-    -->
+
     <div class="container mt-5">
       <div class="w-100 border-bottom"></div>
     </div>
 
-    <events-list></events-list>
 
     <div class="container-fluid py-3 mt-5">
       <div class="row text-center">

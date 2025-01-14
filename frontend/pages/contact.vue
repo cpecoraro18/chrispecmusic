@@ -75,9 +75,11 @@ const submitForm = async () => {
                             })
                         });
 
+                        const data = JSON.parse(response);
+
                         // Check if the response indicates failure
-                        if (response.status !== 'success') {
-                            throw new Error(response.message || 'Failed to send email');
+                        if (data.status !== 'success') {
+                            throw new Error(data.message || 'Failed to send email');
                         }
 
                         thankYouMessage.value = 'Thank you for your message! I will get back to you as soon as possible.';

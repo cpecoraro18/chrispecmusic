@@ -21,7 +21,12 @@ exports.handler = async (event) => {
         }
 
         // Verify reCAPTCHA
-        const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${body.recaptcha}`);
+        const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
+            params: {
+                secret: RECAPTCHA_SECRET,
+                response: body.recaptcha
+            }
+        });
         const data = response.data;
 
         if (!data.success || data.score < RECAPTCHA_SCORE_THRESHOLD) {

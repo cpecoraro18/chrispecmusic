@@ -3,6 +3,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: true,
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // Adjusting entry and chunk file names for JS files
+          entryFileNames: 'assets/[name]-[hash].js',  // Main JS file
+          chunkFileNames: 'assets/[name]-[hash].js',  // Chunk JS files
+        }
+      }
+    }
+  },
   app: {
     buildAssetsDir: 'assets',
     head: {

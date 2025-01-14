@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   app: {
+    buildAssetsDir: 'assets',
     head: {
       title: 'Chris Pecoraro - Chicago Bass Player',
       meta: [

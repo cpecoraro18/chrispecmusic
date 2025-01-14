@@ -11,8 +11,9 @@ const ses = new AWS.SES({ region: AWS_REGION });
 
 exports.handler = async (event) => {
     try {
+        const body = JSON.parse(event.body);
         // Check if the required form elements are present
-        if (!event.email || !event.message || !event.recaptcha) {
+        if (!body.email || !body.message || !body.recaptcha) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ message: 'Missing email, message, or reCAPTCHA response in form data' })
@@ -20,7 +21,7 @@ exports.handler = async (event) => {
         }
 
         // Verify reCAPTCHA
-        const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${event.recaptcha}`);
+        const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${body.recaptcha}`);
         const data = response.data;
 
         if (!data.success || data.score < RECAPTCHA_SCORE_THRESHOLD) {
@@ -38,7 +39,7 @@ exports.handler = async (event) => {
             Message: {
                 Body: {
                     Text: {
-                        Data: `Email: ${event.email}\n\nMessage: ${event.message}`
+                        Data: `Email: ${body.email}\n\nMessage: ${body.message}`
                     }
                 },
                 Subject: { Data: 'Contact Form Submission' }

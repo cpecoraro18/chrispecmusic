@@ -4,7 +4,7 @@
       <div class="hero-text text-center">
         <h1>Chris Pecoraro</h1>
         <h2 class="h5 text-muted">Professional Electric and Upright Bassist | Chicago</h2>
-        <a class="btn btn-primary hero-button mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+        <nuxt-link class="btn btn-primary hero-button mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
       </div>
     </div>
 
@@ -64,7 +64,7 @@
       </div>
       <div class="row mt-2 mb-4">
         <div class="col-lg-6 mx-auto text-center">
-          <a class="btn btn-primary py-2 mt-3 rounded-lg" href="mailto:contact@chrispecmusic.com">Contact Me</a>
+          <nuxt-link class="btn btn-primary mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
         </div>
       </div>
     </div>

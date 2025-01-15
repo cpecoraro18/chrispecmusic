@@ -1,75 +1,27 @@
-# Nuxt 3 Minimal Starter
+# Chris Pecoraro Music Website
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is the official website for Chris Pecoraro, a professional electric and upright bassist based in Chicago. The website showcases his portfolio, services, and contact information.
 
-## Setup
+## Project Structure
 
-Make sure to install the dependencies:
+The project is divided into two main parts: `frontend` and `backend`.
 
-```bash
-# npm
-npm install
+### Frontend
 
-# pnpm
-pnpm install
+The frontend is built with Nuxt 3 and includes the following directories:
 
-# yarn
-yarn install
+- `components/`: Vue components used throughout the site.
+- `pages/`: Vue pages for different routes.
+- `plugins/`: Nuxt plugins.
+- `public/`: Static assets.
+- `server/`: Server-side code.
+- `package.json`: Project dependencies and scripts.
+- `nuxt.config.ts`: Nuxt configuration file.
 
-# bun
-bun install
-```
+### Backend
 
-## Development Server
+The backend includes two main services:
 
-Start the development server on `http://localhost:3000`:
+- `getCalendarEvents/`: Service to fetch calendar events.
+- `sendContactEmail/`: Service to send contact emails.
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -9,7 +9,6 @@
         <p class="lead">
           Dynamic, Professional Bassist for Live Shows, Tours, and Special Events
         </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScjH2TAHX2a4w97208k6ARgvH9KdWgavi951l0aGf6fZ4bUeQ/viewform?usp=sf_link" target="_blank" class="btn btn-primary btn-lg">Hire Me for a Gig</a>
       </div>
       <div class="row mb-5">
         <div class="col-md-6">

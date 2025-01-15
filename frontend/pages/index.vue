@@ -27,8 +27,8 @@
       </div>
     </div>
 
-    <h3 class="text-center fw-bold mb-3 h2">Services</h3>
-    <div class="text-center mb-3">
+    <h3 class="text-center fw-bold mb-2 h2">Services</h3>
+    <div class="text-center mb-2">
       <p class="lead">Explore live gig and studio session bass services</p>
     </div> 
 
@@ -42,7 +42,7 @@
 
     <discography-list></discography-list>
 
-    <events-list></events-list>
+    <events-list :limit="5"></events-list>
 
     <div class="container mt-5">
       <div class="w-100 border-bottom"></div>
@@ -88,9 +88,9 @@ export default {
 
 <style scoped>
 .hero-image {
-  height: 80vh;
+  height: 70vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/img/ChrisPecMusic.jpg");
-  background-position: center right;
+  background-position: center 20%;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -111,14 +111,8 @@ export default {
   font-size: 60px;
 }
 
-.hero-text p {
+.hero-text h2 {
   font-size: 20px;
-}
-
-.hero-button {
-  padding: 15px 30px;
-  font-size: 20px;
-  border-radius: 16px;
 }
 
 .album {
@@ -166,23 +160,32 @@ export default {
 /* Mobile styles */
 @media only screen and (max-width: 991px) {
   .hero-image {
+    height: 60vh;
     background-position: center center;
     background-size: cover;
   }
 
   .hero-text {
     position: absolute;
-    top: 50%;
-    left: 30%;
+    top: 65%;
+    left: 25%;
     transform: translate(-30%, -50%);
   }
 
   .hero-text h1 {
-    font-size: 40px;
+    font-size: 30px;
   }
 
-  .hero-text p {
-    font-size: 16px;
+  .hero-text h2 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .hero-button {
+    padding: 1rem 2rem;
+    font-size: 20px;
+    border-radius: 16px;
   }
 }
 </style>

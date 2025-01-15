@@ -9,13 +9,6 @@
         <p class="lead">
           Professional Electric and Upright Bass for Your Studio Projects
         </p>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSc8-7ieBniq4XbeI-eFB2R3X134V_PeGqEeqXJp21kdFYTSQg/viewform?usp=sf_link"
-          target="_blank"
-          class="btn btn-primary btn-lg"
-        >
-          Book Your Custom Bass Track
-        </a>
       </div>
       <div class="row mb-5">
         <div class="col-md-6">

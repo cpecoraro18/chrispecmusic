@@ -9,13 +9,16 @@
     
     <!-- Events List -->
     <div v-if="!loading && events.length" class="list-group">
-      <div v-for="event in events" :key="event.id" class="list-group-item list-group-item-dark mb-3">
+      <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item list-group-item-dark mb-3">
         <div class="p-2">
           <h5 class="mb-1">{{ event.summary }}</h5>
-          <small>{{ formatDate(event.start.dateTime) }} - {{ formatDate(event.end.dateTime) }}</small>
+          <small>{{ formatEvent(event.start.dateTime, event.end.dateTime) }}</small>
         </div>
         <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank" class="mb-1 text-info">{{ event.location }}</a>
         <p v-if="event.description" class="mt-2 mb-0">{{ event.description }}</p>
+      </div>
+      <div v-if="events.length > limit" class="text-center mt-3">
+        <a href="/events" class="text-info">See all</a>
       </div>
     </div>
 
@@ -25,6 +28,15 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue';
+
+const props = defineProps({
+  limit: {
+    type: Number,
+    default: Infinity
+  }
+});
+
 const events = ref([]);
 const loading = ref(true); // Add loading state
 
@@ -34,10 +46,21 @@ async function getEvents() {
   loading.value = false; // Set loading to false once the events are loaded
 }
 
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  return date.toLocaleString();
+function formatEvent(startDateString, endDateString) {
+  const startDate = new Date(startDateString);
+  const endDate = new Date(endDateString);
+
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = startDate.toLocaleDateString(undefined, options);
+  const formattedStartTime = startDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const formattedEndTime = endDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+  return `${formattedDate} ${formattedStartTime} - ${formattedEndTime}`;
 }
+
+const limitedEvents = computed(() => {
+  return events.value.slice(0, props.limit);
+});
 
 onMounted(() => {
   getEvents();

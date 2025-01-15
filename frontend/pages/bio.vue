@@ -8,13 +8,12 @@
 
         <p>Chris Pecoraro is a professional bassist with over a decade of experience spanning live performances and studio recordings. Proficient in both electric and upright bass, he excels in genres such as rock, jazz, funk, blues, and pop. His playing style is influenced by legends like Jaco Pastorius, Pino Palladino, and Oteil Burbridge.</p>
 
-        <p>Chris has played with a variety of groups, including the <a href="https://www.seanmckeeband.com" target="_blank">Sean McKee Band</a>, winners of the Chicago portion of the 2023 International Blues Challenge, and is always excited to collaborate with new artists and projects.</p>
+        <p>Chris has played with a variety of groups, including the <a href="https://www.seanmckeeband.com" target="_blank">Sean McKee Band</a>, 2024 International Blues Challenge semi-finalists, and is always excited to collaborate with new artists and projects.</p>
         
         <img src="/img/SeanMcKeeBand.jpg" alt="Sean Mckee Band" class="img-fluid mb-4 mx-auto w-75 d-block rounded mb-5">
 
         <div>
-          <p>For inquiries or bookings, <a href="mailto:contact@chrispecmusic.com">get in touch</a>.</p>
-        </div>
+          <p>For inquiries or bookings, <nuxt-link to="/contact">get in touch</nuxt-link>.</p>        </div>
       </div>
     </div>
   </div>

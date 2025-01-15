@@ -11,6 +11,7 @@
                     class="form-select"
                 >
                     <option value="">Filter by Type</option>
+                    <option value="">All</option>
                     <option value="Bass">Bass</option>
                     <option value="Amp">Amp</option>
                     <option value="Cabinet">Cabinet</option>

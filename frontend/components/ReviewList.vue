@@ -174,14 +174,14 @@ export default {
 
 <style scoped>
 .review-container {
-  min-height: 200px;
+  min-height: 15em; /* 200px / 16 */
 }
 
 .review-item {
   background-color: var(--bg-light);
-  border-radius: 10px;
-  padding: 20px;
-  margin: 5px;
+  border-radius: 0.625em; /* 10px / 16 */
+  padding: 1.25em; /* 20px / 16 */
+  margin: 0.3125em; /* 5px / 16 */
 }
 
 .review-text {
@@ -209,10 +209,16 @@ export default {
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 5%;
+  width: 5%; /* 5% of 16px */
 }
 
 .carousel-item {
   color: var(--text-color-dark);
+}
+
+@media only screen and (max-width: 991px) {
+  .review-container {
+    min-height: 40em; /* 200px / 16 */
+  }
 }
 </style>

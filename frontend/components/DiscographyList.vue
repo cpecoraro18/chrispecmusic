@@ -4,14 +4,14 @@
             <h3 class="mx-auto fw-bold h2 mb-5">Discography</h3>
         </div>
         <div class="row">
-            <div class="col-lg-4" v-for="album in discography" :key="album.name">
+            <div class="col-6 col-lg-4" v-for="album in discography" :key="album.name">
                 <div class="album">
                     <a :href="album.link" target="_blank" class="album-link">
                         <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
-                        <div class="album-info" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
-                            <h5 class="album-name">{{ album.name }}</h5>
-                            <p>{{ album.artist }}</p>
-                            <p>{{ album.year }}</p>
+                        <div class="album-info d-none d-lg-block" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
+                            <h5 class="album-name fs-6">{{ album.name }}</h5>
+                            <p class="small mb-0">{{ album.artist }}</p>
+                            <p class="small">{{ album.year }}</p>
                         </div>
                     </a>
                 </div>
@@ -43,7 +43,7 @@ export default {
 
 .album {
   transition: box-shadow .3s;
-  border-radius: 5px;
+  border-radius: 0.3125em; /* 5px / 16 */
   cursor: pointer;
 }
 
@@ -54,12 +54,19 @@ export default {
 }
 
 .album-image:hover, .album:hover .album-image {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.5); /* 10px / 16 and 30px / 16 */
 }
 
 .album-image {
-  width: 300px;
-  height: 300px;
+  width: 18.75em; /* 300px / 16 */
+  height: 18.75em; /* 300px / 16 */
   object-fit: cover;
+}
+
+@media only screen and (max-width: 991px) {
+    .album-image {
+        width: 12em;
+        height: 12em;
+    }
 }
 </style>

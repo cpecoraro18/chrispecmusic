@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container py-5">
         <h1 class="text-cente mb-4">Portfolio</h1>
         <h2 class="pb-1 mb-4">Videos</h2>
 

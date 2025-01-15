@@ -2,7 +2,7 @@
   <div class="container">
     <div class="text-center mt-5">
       <h1>Chris Pecoraro</h1>
-      <h2 class="h5 text-muted">Professional Electric and Upright Bassist | Chicago</h2>
+      <h2 class="h5 text-muted">Electric and Upright Bassist | Chicago</h2>
       <img src="/img/ChrisPecMusic.jpg" alt="Chris Pecoraro" class="img-fluid rounded mt-3 profile-image">
     </div>
 

@@ -1,5 +1,5 @@
 <template>
-<div class="services py-5">
+<div class="services">
     <div class="container">
         <div class="row">
         <div class="col-12 col-lg-6 mb-4">

@@ -12,7 +12,6 @@ The frontend is built with Nuxt 3 and includes the following directories:
 
 - `components/`: Vue components used throughout the site.
 - `pages/`: Vue pages for different routes.
-- `plugins/`: Nuxt plugins.
 - `public/`: Static assets.
 - `server/`: Server-side code.
 - `package.json`: Project dependencies and scripts.

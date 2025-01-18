@@ -1,18 +1,12 @@
 <template>
-    <div class="container py-5">
+    <div class="container-fluid p-5">
         <h1 class="text-cente mb-4">Portfolio</h1>
         <h2 class="pb-1 mb-4">Videos</h2>
 
         <div class="row">
             <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
-                <div class="card bg-light-blue">
-                    <div class="card-body">
-                        <h3 class="card-title">{{ video.title }}</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
-                        </div>
-                        <p class="card-text mt-3">{{ video.description }}</p>
-                    </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -74,9 +68,24 @@ export default {
                 },
                 {
                     id: 3,
-                    title: 'Sean McKee Band - Live at Madcats',
+                    title: 'Sean McKee Band - Monester - Live at Madcats',
                     url: 'https://www.youtube.com/embed/u-lH9EmIN_o?si=B9FS9ooxKwxLu2Gl',
                     description: 'Join the Sean McKee Band for a live performance at Madcats. This video captures the band\'s sound and stage presence, offering an engaging musical experience.'
+                },
+                {
+                    id: 4,
+                    title: "Sean McKee Band - Ain't talkin about love",
+                    url: "https://www.youtube.com/embed/h2jR9AGe0yI?si=MGbckEkR2MWq140-"
+                },
+                {
+                    title: "Sean McKee Band - Live at Madcats - Fragile",
+                    id: 5,
+                    url: "https://www.youtube.com/embed/5e3GEKrsUnc?si=HkDcvv5sKU_bWoJO"
+                },
+                {
+                    title: "Sean McKee Band - Poison Ivy",
+                    id: 6,
+                    url: "https://www.youtube.com/embed/_sUEwDyL70w?si=fOH6MAVO0AZMRWkf"
                 },
                 {
                     id: 4,

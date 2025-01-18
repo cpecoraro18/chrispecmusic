@@ -15,8 +15,8 @@
                     <option value="Bass">Bass</option>
                     <option value="Amp">Amp</option>
                     <option value="Cabinet">Cabinet</option>
-                    <option value="Preamp">Preamp</option>
                     <option value="Pedal">Pedal</option>
+                    <option value="Pedalboard">Pedalboard</option>
                     <option value="Power Supply">Power Supply</option>
                     <option value="Microphone">Microphone</option>
                 </select>
@@ -102,7 +102,7 @@ export default {
                 },
                 {
                     name: 'Tonebone Bass Preamp by Radial',
-                    type: 'Preamp',
+                    type: 'Pedal',
                     image: '/img/gear/Radial-Bassbone-V2.png',
                     description: 'Versatile DI and preamp for seamless switching between electric and upright basses.',
                     link: 'https://amzn.to/3MDDMBR'
@@ -168,7 +168,7 @@ export default {
                 },
                 {
                     name: 'Pedaltrain Metro 20',
-                    type: 'Pedal',
+                    type: 'Pedalboard',
                     image: '/img/gear/Pedaltrain-Metro-20.png',
                     description: 'Compact pedalboard with enough space to keep my essential pedals organized.',
                     link: 'https://amzn.to/3AV2pXQ'

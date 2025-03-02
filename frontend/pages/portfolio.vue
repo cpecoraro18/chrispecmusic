@@ -49,6 +49,16 @@ export default {
         return {
             videos: [
                 {
+                    id: -2,
+                    title: "Sean's Guitar Lounge Ft Brandon Simmons - Sweet Little Angel Cover",
+                    url: "https://www.youtube.com/embed/4dWC3QAfFyY?si=Gb6jWZif7R_f89nz"
+                },
+                {
+                    id: -1,
+                    title: "Sean's Guitar Lounge - Suburban Glory Cover",
+                    url: "https://www.youtube.com/embed/8d3lh_wB8Zk?si=V-A1PNsEe9q9Xo7-"
+                },
+                {
                     id: 0,
                     title: 'Sean\'s Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover',
                     url: 'https://www.youtube.com/embed/OFJ75eQKOlc?si=qs_fROpyNnZkR5uX',

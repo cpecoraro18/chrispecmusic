@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
 exports.handler = async (event) => {
-  const bucketName = "websitephotos2";  // 🔹 Replace with your bucket name
+  const bucketName = "chrispecphotos";  // 🔹 Replace with your bucket name
 
   try {
     const data = await s3.listObjectsV2({ Bucket: bucketName }).promise();

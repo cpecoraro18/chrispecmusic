@@ -1,34 +1,28 @@
 <template>
   <div class="container py-5">
-    <h1 class="text-center display-4 fw-bold mb-4">Gig Photos</h1>
-    <p class="text-center mb-5">
-      Download your gig photos for free! Want an EPK? 
-      <a href="/epk" class="text-primary text-decoration-underline">Click here</a>.
-    </p>
-
     <div class="row g-4">
       <div 
         v-for="(photo, index) in photos" 
         :key="index" 
         class="col-6 col-md-4 col-lg-3"
       >
-        <div class="card shadow-sm">
+        <div class="card shadow-sm position-relative">
           <img 
             :src="photo.src" 
             :alt="photo.name" 
-            class="card-img-top rounded" 
+            class="card-img-top rounded"
             @click="openModal(photo)" 
             style="cursor: pointer;"
           />
-          <div class="card-body text-center bg-light">
-            <a 
-              :href="photo.src" 
-              download 
-              class="btn btn-primary btn-sm"
-            >
-              Download
-            </a>
-          </div>
+          <!-- Download Icon -->
+          <a 
+            :href="photo.src" 
+            download 
+            class="download-icon"
+            title="Download"
+          >
+            <i class="fas fa-download"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -57,15 +51,32 @@
 export default {
   data() {
     return {
-      photos: [
-        { name: "Gig 1", src: "/img/BuddyGuys.jpg" },
-        { name: "Gig 2", src: "/images/gig2.jpg" },
-        { name: "Gig 3", src: "/images/gig3.jpg" },
-      ],
+      photos: [],  // Start with an empty array for photos
       modalPhoto: null,
     };
   },
+  mounted() {
+    // Fetch photos when the component is mounted
+    this.fetchPhotos();
+  },
   methods: {
+    async fetchPhotos() {
+      try {
+        // Make an API call to your photos endpoint
+        const response = await fetch('https://api.chrispecmusic.com/photos');
+        const data = await response.json();
+        
+        // Populate the photos array with the response data
+        if (data.images) {
+          this.photos = data.images.map((image) => ({
+            name: image.split('/').pop(),  // Extract file name from URL
+            src: image,
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching photos:', error);
+      }
+    },
     openModal(photo) {
       this.modalPhoto = photo;
     },
@@ -74,5 +85,28 @@ export default {
 </script>
 
 <style>
-/* No custom styles needed as Bootstrap handles the styling */
+/* Position the download icon on top of the image */
+.download-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;  /* Make sure it's above the image */
+}
+
+/* Show the download icon on hover */
+.card:hover .download-icon {
+  opacity: 1;  /* Make the icon visible when the card is hovered */
+}
+
+.card {
+  position: relative;  /* Ensure that the card is positioned for the icon */
+}
+
+.card-img-top {
+  position: relative;  /* Ensure the image can hold the absolute icon */
+}
 </style>

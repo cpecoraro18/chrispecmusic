@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   const bucketName = "websitephotos2";  // 🔹 Replace with your bucket name
 
   try {

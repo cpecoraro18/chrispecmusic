@@ -20,6 +20,7 @@ exports.handler = async (event) => {
             product_data: {
                 name: imageId,
             },
+            unit_amount: (amount || process.env.DEFAULT_PRICE) * 100,
         },
         adjustable_quantity: {
             enabled: true

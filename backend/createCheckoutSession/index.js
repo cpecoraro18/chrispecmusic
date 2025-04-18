@@ -20,8 +20,8 @@ exports.handler = async (event) => {
       },
     ],
     mode: 'payment',
-    success_url: `${process.env.BASE_URL}/download?imageId=${imageId}`,
-    cancel_url: `${process.env.BASE_URL}/photos`,
+    success_url: `https://api.${process.env.BASE_URL}/download?imageId=${imageId}`,
+    cancel_url: `https://${process.env.BASE_URL}/photos`,
   });
 
   return {

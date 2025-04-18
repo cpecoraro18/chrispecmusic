@@ -20,9 +20,9 @@ exports.handler = async (event) => {
   try {
     const data = await s3.listObjectsV2(params).promise();
 
-    const imageUrls = data.Contents.map(file => 
-      `https://${bucketName}.s3.amazonaws.com/${file.Key}`
-    );
+    const imageUrls = data.Contents
+    .filter(file => file.Key !== prefix)
+    .map(file => `https://${bucketName}.s3.amazonaws.com/${file.Key}`);
 
     return {
       statusCode: 200,

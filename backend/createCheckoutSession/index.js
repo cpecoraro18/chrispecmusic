@@ -15,16 +15,7 @@ exports.handler = async (event) => {
     payment_method_types: ['card'],
     line_items: [
       {
-        price_data: {
-            currency: 'usd',
-            product_data: {
-                name: imageId,
-            },
-            unit_amount: (amount || process.env.DEFAULT_PRICE) * 100,
-        },
-        adjustable_quantity: {
-            enabled: true
-        },
+        price: process.env.STRIPE_PRICE_ID,
         quantity: 1,
       },
     ],

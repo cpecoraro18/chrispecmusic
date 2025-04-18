@@ -6,7 +6,7 @@
         :key="index" 
         class="col-6 col-md-4 col-lg-3"
       >
-        <div class="card shadow-sm position-relative">
+        <div class="card shadow-sm position-relative group">
           <img 
             :src="photo.src" 
             :alt="photo.name" 
@@ -14,15 +14,26 @@
             @click="openModal(photo)" 
             style="cursor: pointer;"
           />
-          <!-- Download Icon -->
-          <a 
-            :href="photo.src" 
-            download 
-            class="download-icon"
-            title="Download"
-          >
-            <i class="fas fa-download"></i>
-          </a>
+          
+          <!-- Action Icons -->
+          <div class="photo-actions">
+            <a 
+              :href="photo.src" 
+              download 
+              class="action-icon" 
+              title="Download"
+            >
+              <i class="fas fa-download"></i>
+            </a>
+            <a 
+              role="button"
+              class="action-icon" 
+              title="Buy Full Resolution" 
+              @click.prevent="downloadPhoto(photo.src)"
+            >
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -80,7 +91,30 @@ export default {
     openModal(photo) {
       this.modalPhoto = photo;
     },
-  },
+    async downloadPhoto(src) {
+      const imageId = src.split('/').pop();
+
+      try {
+        const response = await fetch('https://api.chrispecmusic.com/photo/buy', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ imageId }),
+        });
+
+        const result = await response.json();
+
+        if (result.url) {
+          window.open(result.url, '_blank');
+        } else {
+          console.error('No URL returned from server');
+        }
+      } catch (error) {
+        console.error('Error starting checkout:', error);
+      }
+    }
+  }
 };
 </script>
 
@@ -108,5 +142,27 @@ export default {
 
 .card-img-top {
   position: relative;  /* Ensure the image can hold the absolute icon */
+}
+
+/* Common style for action icons */
+.photo-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.action-icon {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+
+.card:hover .photo-actions {
+  opacity: 1;
 }
 </style>

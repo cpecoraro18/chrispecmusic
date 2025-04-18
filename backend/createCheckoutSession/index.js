@@ -16,15 +16,13 @@ exports.handler = async (event) => {
     line_items: [
       {
         price_data: {
-          currency: 'usd',
-          product_data: {
-            name: imageId,
-          },
-          custom_unit_amount: {
-            enabled: true,
-            minimum: 0,
-            maximum: 1000,
-          },
+            currency: 'usd',
+            product_data: {
+                name: imageId,
+            },
+            adjustable_quantity: {
+                enabled: true
+            },
         },
         quantity: 1,
       },

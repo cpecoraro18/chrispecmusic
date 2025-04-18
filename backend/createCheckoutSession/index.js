@@ -20,9 +20,9 @@ exports.handler = async (event) => {
             product_data: {
                 name: imageId,
             },
-            adjustable_quantity: {
-                enabled: true
-            },
+        },
+        adjustable_quantity: {
+            enabled: true
         },
         quantity: 1,
       },

@@ -50,8 +50,28 @@
           <img 
             :src="modalPhoto.src" 
             :alt="modalPhoto.name" 
-            class="img-fluid rounded"
+            class="img-fluid rounded custom-modal-image"
           />
+          <div>
+            <!-- DOwnload and buy buttons-->
+            <a 
+              :href="modalPhoto.src" 
+              download 
+              class="btn btn-primary mt-2 me-2"
+              title="Download"
+            >
+              <i class="fas fa-download"></i> Download
+            </a>
+
+            <a 
+              role="button" 
+              class="btn btn-success mt-2" 
+              title="Buy Full Resolution" 
+              @click.prevent="downloadPhoto(modalPhoto.src)"
+            >
+              <i class="fas fa-shopping-cart"></i> Buy Full Resolution
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,10 @@
 <template>
   <div class="container py-5">
+    <h2 class="mb-4">Photo Gallery</h2>
+    <p class="lead mb-4">Explore a collection of images from recent jam sessions. Download full-resolution versions for your personal use.</p>
+    <p class="mb-5">Purchasing a download supports future photography and music projects. Thank you for your support!</p>
+
+
     <div class="row g-4">
       <div 
         v-for="(photo, index) in photos" 
@@ -35,6 +40,14 @@
             </a>
           </div>
         </div>
+      </div>
+      <div v-if="token" class="col-12 text-center mt-4">
+        <button 
+          class="btn btn-primary" 
+          @click.prevent="fetchPhotos"
+        >
+          Load More Photos
+        </button>
       </div>
     </div>
 
@@ -84,6 +97,7 @@ export default {
     return {
       photos: [],  // Start with an empty array for photos
       modalPhoto: null,
+      token: null,  // Token for pagination
     };
   },
   mounted() {
@@ -94,7 +108,11 @@ export default {
     async fetchPhotos() {
       try {
         // Make an API call to your photos endpoint
-        const response = await fetch('https://api.chrispecmusic.com/photos');
+        var url = 'https://api.chrispecmusic.com/photos';
+        if (this.token) {
+          url += `?token=${this.token}`;  // Append token for pagination if available
+        }
+        const response = await fetch(url);
         const data = await response.json();
         
         // Populate the photos array with the response data
@@ -103,6 +121,10 @@ export default {
             name: image.split('/').pop(),  // Extract file name from URL
             src: image,
           }));
+        }
+        // Set the token for pagination if needed
+        if (data.token) {
+          this.token = data.token;
         }
       } catch (error) {
         console.error('Error fetching photos:', error);

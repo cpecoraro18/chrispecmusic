@@ -10,6 +10,7 @@
       <div class="row">
         <div class="col-12 text-center">
           <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.chrispecmusic.com" target="_blank">Website</a>
+          <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/photos">Photos Page</nuxt-link>
           <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.instagram.com/chrispecmusic" target="_blank">Instagram</a>
           <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/contact">Contact Me</nuxt-link>
         </div>

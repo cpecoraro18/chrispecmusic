@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5 bg-dark text-white p-4 rounded">
+  <div class="mt-5 bg-dark text-white p-4 rounded">
     <h2 class="mb-4 text-center">Upcoming Events</h2>
     
     <!-- Loading Icon -->
@@ -9,13 +9,21 @@
     
     <!-- Events List -->
     <div v-if="!loading && events.length" class="list-group">
-      <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item list-group-item-dark mb-3">
-        <div class="p-2">
-          <h5 class="mb-1">{{ event.summary }}</h5>
-          <small>{{ formatEvent(event.start.dateTime, event.end.dateTime) }}</small>
+      <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item mb-3 bg-dark border-0">
+        <div class="row border-bottom border-1 pb-3">
+          <div class="col-12 col-md-2 mb-4 mb-md-0">
+            <h3 class="mb-1">{{ event.date}}</h3>
+            <p class="text-muted">{{ event.month }}</p>
+          </div>
+          <div class="col-12 col-md-10 text-md-end">
+            <h4 class="mb-1">{{ event.summary }}</h4>
+            <p v-if="event.description" class="mt-2 mb-0">{{ event.description }}</p>
+            <p class="text-muted my-1"><i class="fa fa-clock me-2"></i> {{ event.timeRange }}</p>
+            <div class="mb-1 text-info small">
+              <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank"><i class="fa fa-map-marker me-2"></i>{{ event.location.split(",")[0] }}</a>
+            </div>
+          </div>
         </div>
-        <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank" class="mb-1 text-info">{{ event.location }}</a>
-        <p v-if="event.description" class="mt-2 mb-0">{{ event.description }}</p>
       </div>
       <div v-if="events.length > limit" class="text-center mt-3">
         <a href="/events" class="text-info">See all</a>
@@ -42,20 +50,20 @@ const loading = ref(true); // Add loading state
 
 async function getEvents() {
   const response = await $fetch('https://api.chrispecmusic.com/events');
-  events.value = JSON.parse(response).items;
+  events.value = JSON.parse(response).items.map((x) => {
+    var start = new Date(x.start.dateTime);
+    var end = new Date(x.end.dateTime);
+    return {
+      id: x.id,
+      summary: x.summary,
+      location: x.location,
+      description: x.description,
+      date: start.getDate(),
+      month: start.toLocaleString('default', { month: 'long' }),
+      timeRange: `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
+    };
+  })
   loading.value = false; // Set loading to false once the events are loaded
-}
-
-function formatEvent(startDateString, endDateString) {
-  const startDate = new Date(startDateString);
-  const endDate = new Date(endDateString);
-
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = startDate.toLocaleDateString(undefined, options);
-  const formattedStartTime = startDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  const formattedEndTime = endDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-
-  return `${formattedDate} ${formattedStartTime} - ${formattedEndTime}`;
 }
 
 const limitedEvents = computed(() => {
@@ -70,11 +78,6 @@ onMounted(() => {
 <style scoped>
 .container {
   max-width: 800px;
-}
-
-.list-group-item {
-  background-color: #333;
-  border-color: #444;
 }
 
 .list-group-item h5 {

@@ -4,13 +4,13 @@
             <h3 class="mx-auto fw-bold h2 mb-5">Discography</h3>
         </div>
         <div class="row">
-            <div class="col-6 col-lg-4" v-for="album in discography" :key="album.name">
+            <div class="col-6 col-xl-3 col-sm-4" v-for="album in discography" :key="album.name">
                 <div class="album">
                     <a :href="album.link" target="_blank" class="album-link">
                         <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
-                        <div class="album-info d-none d-lg-block" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
-                            <h5 class="album-name fs-6">{{ album.name }}</h5>
-                            <p class="small mb-0">{{ album.artist }}</p>
+                        <div class="album-info d-none" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
+                            <h5 class="album-name">{{ album.name }}</h5>
+                            <p class=" mb-0">{{ album.artist }}</p>
                             <p class="small">{{ album.year }}</p>
                         </div>
                     </a>
@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .container-fluid {
-    background-color: var(--bg-black);
+    background-color: var(--bg-dark);
 }
 
 .album {
@@ -55,13 +55,15 @@ export default {
 }
 
 .album-image:hover, .album:hover .album-image {
-  box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.5); /* 10px / 16 and 30px / 16 */
+    box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.5); /* 10px / 16 and 30px / 16 */
+    transform: scale(1.05);
 }
 
 .album-image {
   width: 18.75em; /* 300px / 16 */
   height: 18.75em; /* 300px / 16 */
   object-fit: cover;
+  transition: transform .3s, box-shadow .3s;
 }
 
 @media only screen and (max-width: 991px) {

@@ -13,9 +13,9 @@
 
 <style>
 :root {
-  --primary: #0066CC;
+  --primary:  #623033;
   --primary-rgb: 0, 102, 204;
-  --secondary: #a6b3c2;
+  --secondary: #8a8588;
   --brown: #5c4033;
   --brown-dark: #2e1f1a;
   --orange: #d17934;
@@ -26,7 +26,7 @@
   --text-color-rgb: rgb(255,255,255);
   --text-color-dark: rgb(0,0,0, 0.7);
 
-  --bg-dark: #404040;
+  --bg-dark: #292323;
   --bg-dark-blue: #1f2d43;
   --bg-light-blue: #a6b3c2;
   --bg-light: #f0f0f0;
@@ -35,7 +35,7 @@
   --bs-body-bg: var(--bg-dark-blue) !important;
   --bs-body-color: var(--text-color) !important;
 
-  --bs-secondary-color: #6c757d !important;
+  --bs-secondary-color: var(--secondary) !important;
 
   --bs-link-color: var(--text-color) !important;
   --bs-link-color-rgb: var(--text-color-rgb) !important;
@@ -78,8 +78,12 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
+    background-color: #4f2627;
+    border-color: #4f2627;
+}
+
+.bg-dark {
+  background-color: var(--bg-dark) !important;
 }
 
 .text-info {

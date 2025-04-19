@@ -8,30 +8,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <router-link to="/" class="nav-link">Home</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/bio" class="nav-link">Bio</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/services" class="nav-link">Services</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/events" class="nav-link">Events</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/gear" class="nav-link">Gear</router-link>
+                        <router-link to="/events" class="nav-link">Events</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/contact" class="nav-link">Contact</router-link>
+                        <router-link to="/gear" class="nav-link">Gear</router-link>
                     </li>
                 </ul>
-                <div class="d-flex justify-content-center justify-self-end align-items-center">
+                <div class="d-flex justify-content-center justify-self-end align-items-center ms-lg-3 mb-3 mb-lg-0">
                     <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
                         <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
@@ -39,6 +30,7 @@
                         <img src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
                     </a>          
                 </div>
+                <button class="btn btn-outline-light ms-lg-4" type="button"><router-link to="/contact" class="nav-link">Contact</router-link></button>
             </div>
         </div>
     </header>
@@ -53,8 +45,12 @@ export default {
 <style scoped>
 
 .logo {
-        width: 150px; /* adjust as needed */
+        width: 9em;
         height: auto; /* maintain aspect ratio */
+}
+
+.nav-link {
+    font-size: 1.2em;
 }
 
 .social-icon {

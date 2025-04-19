@@ -1,7 +1,6 @@
 <template>
   <div class="container py-5">
     <h2 class="mb-4">Photo Gallery</h2>
-    <p class="lead mb-4">Explore a collection of images from recent jam sessions. Download full-resolution versions for your personal use.</p>
     <p class="mb-5">Purchasing a download supports future photography and music projects. Thank you for your support!</p>
 
 
@@ -41,9 +40,12 @@
           </div>
         </div>
       </div>
+      <div v-if="loadingPhotos" class="text-center py-4">
+        <i class="fa fa-spinner fa-spin fa-2x"></i> <!-- Add a spinner icon -->
+      </div>
       <div v-if="token" class="col-12 text-center mt-4">
         <button 
-          class="btn btn-primary" 
+          class="btn btn-outline-light" 
           @click.prevent="fetchPhotos"
         >
           Load More Photos
@@ -70,7 +72,7 @@
             <a 
               :href="modalPhoto.src" 
               download 
-              class="btn btn-primary mt-2 me-2"
+              class="btn btn-outline-light mt-2 me-2"
               title="Download"
             >
               <i class="fas fa-download"></i> Download
@@ -88,6 +90,9 @@
         </div>
       </div>
     </div>
+    <div v-if="loadingBuy" class="loading-overlay">
+      <i class="fa fa-spinner fa-spin fa-2x"></i> <!-- Add a spinner icon -->
+    </div>
   </div>
 </template>
 
@@ -98,6 +103,8 @@ export default {
       photos: [],  // Start with an empty array for photos
       modalPhoto: null,
       token: null,  // Token for pagination
+      loadingPhotos: false, // Loading state for fetching photos
+      loadingBuy: false,    // Loading state for "Buy" action
     };
   },
   mounted() {
@@ -106,6 +113,7 @@ export default {
   },
   methods: {
     async fetchPhotos() {
+      this.loadingPhotos = true; // Start loading for fetching photos
       try {
         // Make an API call to your photos endpoint
         var url = 'https://api.chrispecmusic.com/photos';
@@ -128,12 +136,15 @@ export default {
         }
       } catch (error) {
         console.error('Error fetching photos:', error);
+      } finally {
+        this.loadingPhotos = false; // Stop loading for fetching photos
       }
     },
     openModal(photo) {
       this.modalPhoto = photo;
     },
     async downloadPhoto(src) {
+      this.loadingBuy = true; // Start loading for "Buy" action
       const imageId = src.split('/').pop();
 
       try {
@@ -154,6 +165,8 @@ export default {
         }
       } catch (error) {
         console.error('Error starting checkout:', error);
+      } finally {
+        this.loadingBuy = false; // Stop loading for "Buy" action
       }
     }
   }
@@ -207,4 +220,18 @@ export default {
 .card:hover .photo-actions {
   opacity: 1;
 }
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Ensure it appears above other elements */
+}
+
 </style>

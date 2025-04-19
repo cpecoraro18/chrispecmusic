@@ -1,7 +1,6 @@
 <template>
     <div class="container-fluid p-5">
         <h1 class="text-cente mb-4">Portfolio</h1>
-        <h2 class="pb-1 mb-4">Videos</h2>
 
         <div class="row">
             <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
@@ -16,9 +15,11 @@
 
 
     <div class="bg-light-blue py-5">
-      <h3 class="text-dark">Reviews</h3>
-      <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
-      <review-list></review-list>
+        <div class="container">
+            <h3 class="text-dark">Reviews</h3>
+            <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
+        </div>
+        <review-list></review-list>
     </div>
 
 

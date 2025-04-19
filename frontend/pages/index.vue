@@ -4,21 +4,17 @@
       <div class="hero-text text-center">
         <h1>Chris Pecoraro</h1>
         <h2 class="h5 text-muted">Professional Electric and Upright Bassist | Chicago</h2>
-        <nuxt-link class="btn btn-primary hero-button mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
+        <nuxt-link class="btn btn-outline-light hero-button mt-3 rounded-lg" to="/contact">Get In Touch</nuxt-link>
       </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container my-5">
       <div class="row">
-        <div class="col-12 col-lg-5 offset-2 mx-auto">
-          <h3 class="display-4 text-center mb-4">Welcome</h3>
+        <div class="col-12 col-lg-5 mx-auto">
+          <h3 class="display-4 text-center mb-4">About</h3>
           <p class="lead text-center mb-4">
-            I’m <span class=" fw-bold">Chris Pecoraro</span>, a professional electric and upright bassist offering 
-            <span class="fw-semibold">live performance</span> and
-            <span class="fw-semibold">studio recording</span>.
-            Whether you're a band, producer, or aspiring bassist, I’m here to provide the sound and support you need. 
-            Let’s make your next project a success. 
-            <router-link class="fw-semibold" to="/bio">Read more...</router-link>
+            Chris Pecoraro is a professional upright and electric bassist with over a decade of experience in live performances and studio recordings.
+            Currently, he is a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 International Blues Challenge semi-finalists.
         </p>
         </div>
         <div class="col-12 col-lg-5">
@@ -27,22 +23,18 @@
       </div>
     </div>
 
-    <h3 class="text-center fw-bold mb-2 h2">Services</h3>
-    <div class="text-center mb-2">
-      <p class="lead">Explore live gig and studio session bass services</p>
-    </div> 
+    <discography-list></discography-list>
 
-    <service-cards></service-cards>
-
-    <div class="bg-light-blue py-5 mt-5">
+    <div class="bg-light-blue py-5">
       <h3 class="text-dark fw-bold h2">Reviews</h3>
       <p class="lead text-muted">Read what my clients have to say about working with me.</p>
       <review-list></review-list>
     </div>
 
-    <discography-list></discography-list>
+    <div class="container">
+      <events-list :limit="5"></events-list>
+    </div>
 
-    <events-list :limit="5"></events-list>
 
     <div class="container mt-5">
       <div class="w-100 border-bottom"></div>
@@ -64,7 +56,7 @@
       </div>
       <div class="row mt-2 mb-4">
         <div class="col-lg-6 mx-auto text-center">
-          <nuxt-link class="btn btn-primary mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
+          <nuxt-link class="btn btn-outline-light mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
         </div>
       </div>
     </div>
@@ -97,18 +89,16 @@ export default {
   transition: all 0.5s ease;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .hero-text {
-  text-align: left;
-  position: relative;
-  left: 5%;
-  color: white;
+  margin-top: 8%;
 }
 
 .hero-text h1 {
-  font-size: 60px;
+  font-size: 5em;
 }
 
 .hero-text h2 {
@@ -164,17 +154,11 @@ export default {
     background-position: center center;
     background-size: cover;
   }
-
-  .hero-text {
-    position: absolute;
-    top: 65%;
-    left: 25%;
-    transform: translate(-30%, -50%);
-  }
-
+  
   .hero-text h1 {
-    font-size: 30px;
+    font-size: 2.5em;
   }
+
 
   .hero-text h2 {
     font-size: 20px;

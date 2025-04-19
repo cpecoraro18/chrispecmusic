@@ -2,11 +2,10 @@
     <div class="container py-5 vh-100">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h1 class="mb-4">Contact Information</h1>
+                <h1 class="mb-4">Get In Touch</h1>
                 <div class="contact-info mt-5">
                     <p class="h4">Email: <a href="mailto:contact@chrispecmusic.com">contact@chrispecmusic.com</a></p>
                 </div>
-                <h2 class="mt-5">Send me a message</h2>
                 <form @submit.prevent="submitForm" class="mt-4" v-if="!thankYouMessage">
                     <div class="mb-3">
                         <label for="email" class="form-label">Your Email Address</label>

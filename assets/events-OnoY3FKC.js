@@ -1,0 +1,1 @@
+import{_ as t}from"./EventsList-1oatMrD0.js";import{_ as c,c as o,b as n,o as _}from"./entry-CFkACPfa.js";const s={},a={class:"container pb-5"};function r(p,d){const e=t;return _(),o("div",a,[n(e)])}const f=c(s,[["render",r],["__scopeId","data-v-99acc605"]]);export{f as default};

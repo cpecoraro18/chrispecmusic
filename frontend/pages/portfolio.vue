@@ -23,7 +23,7 @@
     </div>
 
 
-    <div class="container-fluid py-3 mt-5">
+    <div class="container-fluid py-5">
         <div class="row text-center">
             <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
             <p>Have questions or want to book a session? <a href="mailto:contact@chrispecmusic.com">Reach Out!</a></p>

@@ -12,25 +12,29 @@
 </script>
 
 <style>
+
 :root {
-  --primary:  #623033;
-  --primary-rgb: 0, 102, 204;
-  --secondary: #8a8588;
-  --brown: #5c4033;
-  --brown-dark: #2e1f1a;
-  --orange: #d17934;
-  --gray: #f0f0f0;
-  --gray-rgb: 211, 211, 211;
+  --primary: #9E3B32;
+  --primary-rgb: 158, 59, 50;
 
-  --text-color: #ffffff;
-  --text-color-rgb: rgb(255,255,255);
-  --text-color-dark: rgb(0,0,0, 0.7);
+  --secondary: #8A8588;
 
-  --bg-dark: #292323;
-  --bg-dark-blue: #1f2d43;
-  --bg-light-blue: #a6b3c2;
-  --bg-light: #f0f0f0;
-  --bg-black: #1a1a1a;
+  --brown: #5C4033;
+  --brown-dark: #2E1F1A;
+  --orange: #D17934;
+
+  --gray: #F0F0F0;
+  --gray-rgb: 240, 240, 240;
+
+  --text-color: #F4F1EE;
+  --text-color-rgb: 244, 241, 238;
+  --text-color-dark: rgba(0, 0, 0, 0.7);
+
+  --bg-dark: #2E2E2E;
+  --bg-dark-blue: #4A5A75;
+  --bg-light-blue: #F4F1EE;
+  --bg-light: #F0F0F0;
+  --bg-black: #1A1A1A;
 
   --bs-body-bg: var(--bg-dark-blue) !important;
   --bs-body-color: var(--text-color) !important;
@@ -43,9 +47,8 @@
   --bs-link-hover-color-rgb: var(--gray-rgb) !important;
 
   --bs-btn-bg: var(--primary) !important;
-
-  
 }
+
 body {
   background-color: var(--bg-dark-blue);
 }

@@ -13,9 +13,10 @@
         <div class="col-12 col-lg-5 mx-auto">
           <h3 class="display-4 text-center mb-4">About</h3>
           <p class="lead text-center mb-4">
-            Chris Pecoraro is a professional upright and electric bassist with over a decade of experience in live performances and studio recordings.
+            Chris Pecoraro is a professional upright and electric bassist based in Chicago with over a decade of experience in live performances and studio recordings. <br><br>
             Currently, he is a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 International Blues Challenge semi-finalists.
-        </p>
+          </p>
+
         </div>
         <div class="col-12 col-lg-5">
           <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid mx-auto d-block rounded mb-5">
@@ -44,13 +45,13 @@
     <div class="container-fluid py-3 mt-5">
       <div class="row text-center">
         <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
-        <p class="text-muted lead">Have questions or want to book a session? Let’s connect!</p>
+        <p class="lead">Have questions or want to book a session? Let’s connect!</p>
       </div>
       <div class="row">
         <div class="col-lg-6 mx-auto text-center">
-          <p class="lead">
-            <i class="bi bi-envelope text-primary"></i> 
-            Email: <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+          <p class="lead d-flex justify-content-center align-items-center">
+            <i class="fa fa-envelope me-2"></i>
+            <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
           </p>
         </div>
       </div>

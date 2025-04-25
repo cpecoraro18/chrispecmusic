@@ -8,14 +8,14 @@
                 </div>
                 <form @submit.prevent="submitForm" class="mt-4" v-if="!thankYouMessage">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Your Email Address</label>
-                        <input type="email" class="form-control" id="email" v-model="email" placeholder="Your email" required>
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" v-model="email" placeholder="Your email address" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
                         <textarea class="form-control" id="message" v-model="message" rows="3" placeholder="Your message" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-outline-light">Submit</button>
                 </form>
                 <div v-if="thankYouMessage" class="mt-4 alert alert-success" role="alert">
                     {{ thankYouMessage }}
@@ -38,7 +38,7 @@ const errorMessage = ref('');
 
 
 useHead({
-    title: 'Contact Me - Chris Pecoraro',
+    title: 'Contact - Chris Pecoraro',
     script: [
         {
             src: 'https://www.google.com/recaptcha/api.js?render=6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF',

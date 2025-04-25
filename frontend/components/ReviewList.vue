@@ -178,7 +178,7 @@ export default {
 }
 
 .review-item {
-  background-color: var(--bg-light);
+  background-color: var(--bg-grey);
   border-radius: 0.625em; /* 10px / 16 */
   padding: 1.25em; /* 20px / 16 */
   margin: 0.3125em; /* 5px / 16 */
@@ -186,11 +186,11 @@ export default {
 
 .review-text {
   font-size: 1rem;
-  color: #333;
+  color: var(--text-color-dark)
 }
 
 .review-author {
-  color: #007bff;
+  color: var(--bg-dark-blue);
 }
 
 .review-author a {

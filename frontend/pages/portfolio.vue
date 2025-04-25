@@ -1,6 +1,8 @@
 <template>
     <div class="container-fluid p-5">
-        <h1 class="text-cente mb-4">Portfolio</h1>
+        <div class="mb-5">
+            <h1 class="text-center">Videos</h1>
+        </div>
 
         <div class="row">
             <div class="col-md-4 mb-4" v-for="video in videos" :key="video.id">
@@ -10,25 +12,6 @@
             </div>
         </div>
     </div>
-
-    <discography-list></discography-list>
-
-
-    <div class="bg-light-blue py-5">
-        <div class="container">
-            <h3 class="text-dark">Reviews</h3>
-            <p class="text-center text-muted mb-3">Read what my clients have to say about working with me.</p>
-        </div>
-        <review-list></review-list>
-    </div>
-
-
-    <div class="container-fluid py-5">
-        <div class="row text-center">
-            <h2 class="mx-auto mb-4 fw-bold">Get in Touch</h2>
-            <p>Have questions or want to book a session? <a href="mailto:contact@chrispecmusic.com">Reach Out!</a></p>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -36,7 +19,7 @@ export default {
     name: 'PortfolioPage',
     created() {
         useHead({
-            title: 'Portfolio - Chris Pecoraro',
+            title: 'Videos - Chris Pecoraro',
             meta: [
                 {
                     hid: 'description',

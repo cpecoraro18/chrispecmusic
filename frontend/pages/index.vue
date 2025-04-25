@@ -8,15 +8,14 @@
       </div>
     </div>
 
-    <div class="container my-5">
-      <div class="row">
+    <div class="container">
+      <div class="row py-5">
         <div class="col-12 col-lg-5 mx-auto">
-          <h3 class="display-4 text-center mb-4">About</h3>
+          <h3 class="display-4 text-center mb-4" id="about">About</h3>
           <p class="lead text-center mb-4">
-            Chris Pecoraro is a professional upright and electric bassist based in Chicago with over a decade of experience in live performances and studio recordings. <br><br>
-            Currently, he is a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 International Blues Challenge semi-finalists.
+            Chris Pecoraro is a professional upright and electric bassist with over a decade of experience in studio recording and live performance across Chicago and around the world. <br><br>
+            He’s currently a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 Chicago Blues Challenge Winners.
           </p>
-
         </div>
         <div class="col-12 col-lg-5">
           <img src="/img/BuddyGuys.jpg" alt="Sean Mckee Band at Buddy Guys Legends - Upright Bass" class="img-fluid mx-auto d-block rounded mb-5">
@@ -28,7 +27,7 @@
 
     <div class="bg-light-blue py-5">
       <h3 class="text-dark fw-bold h2">Reviews</h3>
-      <p class="lead text-muted">Read what my clients have to say about working with me.</p>
+      <p class="lead text-muted mx-3">Read what my clients have to say about working with me.</p>
       <review-list></review-list>
     </div>
 
@@ -81,7 +80,7 @@ export default {
 
 <style scoped>
 .hero-image {
-  height: 70vh;
+  height: 100vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/img/ChrisPecMusic.jpg");
   background-position: center 20%;
   background-repeat: no-repeat;
@@ -151,8 +150,8 @@ export default {
 /* Mobile styles */
 @media only screen and (max-width: 991px) {
   .hero-image {
-    height: 60vh;
-    background-position: center center;
+    height: 100vh;
+    background-position: 60% center;
     background-size: cover;
   }
   

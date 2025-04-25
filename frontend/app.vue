@@ -32,6 +32,7 @@
 
   --bg-dark: #2E2E2E;
   --bg-dark-blue: #4A5A75;
+  --bg-grey: #D0D0D0;
   --bg-light-blue: #F4F1EE;
   --bg-light: #F0F0F0;
   --bg-black: #1A1A1A;
@@ -60,7 +61,6 @@ body {
   text-align: center;
   color: #ffffff;
   background-color: var(--bg-dark-blue);
-  margin-bottom: 3em;
 }
 
 .vh-100 {

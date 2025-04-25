@@ -3,7 +3,18 @@
         <events-list />
     </div>
 </template>
-
+<script setup>
+    useHead({
+        title: 'Events - Chris Pecoraro',
+        meta: [
+            {
+                hid: 'description',
+                name: 'description',
+                content: 'Check out the upcoming events and performances by Chris Pecoraro.'
+            }
+        ]
+    })
+</script>
 
 <style scoped>
 /* Add your styles here */

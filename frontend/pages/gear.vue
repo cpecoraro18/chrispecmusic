@@ -1,11 +1,23 @@
 <template>
     <div class="container py-5 min-vh-100">
-        <h1 class="mb-4 text-center">My Gear</h1>
+        <h1 class="mb-4 text-center">Gear</h1>
         <p class="lead">
             Learn more about the gear I use for live performances, studio recordings, and practice sessions.
         </p>
         <div class="row mb-4 gx-3">
-            <div class="col-lg-3 offset-lg-9 mb-3">
+            <div class="col-lg-12 mb-3 d-none d-lg-block">
+                <div class="d-flex flex-wrap gap-2 justify-content-end">
+                    <button
+                        v-for="type in gearTypes"
+                        :key="type"
+                        @click="selectedType = type"
+                        :class="['btn', 'btn-outline-light', 'rounded-pill', { active: selectedType === type }]"
+                    >
+                        {{ type || 'All' }}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-9 mb-3 d-lg-none">
                 <select
                     v-model="selectedType"
                     class="form-select"
@@ -50,6 +62,7 @@ export default {
         return {
             searchQuery: '',
             selectedType: '',
+            gearTypes: ['', 'Bass', 'Amp', 'Cabinet', 'Pedal', 'Pedalboard', 'Power Supply', 'Microphone'],
             gearItems: [
                 {
                     name: 'Lakland 5501',
@@ -58,16 +71,16 @@ export default {
                     description: 'Versatile 5-string bass with a bright, punchy tone and smooth playability. Upgraded with Bartolini pickups and a Lakland LH3 preamp.'
                 },
                 {
-                    name: 'Fender Jazz Bass',
-                    type: 'Bass',
-                    image: '/img/gear/Fender-J-Bass.png',
-                    description: 'My first bass, used for everything from jazz standards to Red Hot Chili Peppers covers.'
-                },
-                {
                     name: 'Fender American Standard P Bass',
                     type: 'Bass',
                     image: '/img/gear/Fender-P-Bass.png',
                     description: 'Delivering classic Precision Bass tones with modern reliability.'
+                },
+                {
+                    name: 'Fender Jazz Bass',
+                    type: 'Bass',
+                    image: '/img/gear/Fender-J-Bass.png',
+                    description: 'My first bass, used for everything from jazz standards to Red Hot Chili Peppers covers.'
                 },
                 {
                     name: 'Knilling Bucharest Upright Bass',
@@ -82,6 +95,13 @@ export default {
                     description: 'Reliable, lightweight amp head with powerful, transparent sound.'
                 },
                 {
+                    name: 'Phil Jones Double 4',
+                    type: 'Amp',
+                    image: '/img/gear/Phil-Jones-Double-Four.png',
+                    description: 'Compact, high-fidelity practice amp with a surprising amount of power for its size.',
+                    link: 'https://amzn.to/3XB42CW'
+                },
+                {
                     name: 'Markbass 4x10 Cab',
                     type: 'Cabinet',
                     image: '/img/gear/Markbass-4x10.png',
@@ -92,13 +112,6 @@ export default {
                     type: 'Cabinet',
                     image: '/img/gear/Markbass-NewYork-121.png',
                     description: 'Compact, lightweight cab with a warm, full sound for small venues and rehearsals.'
-                },
-                {
-                    name: 'Phil Jones Double 4',
-                    type: 'Amp',
-                    image: '/img/gear/Phil-Jones-Double-Four.png',
-                    description: 'Compact, high-fidelity practice amp with a surprising amount of power for its size.',
-                    link: 'https://amzn.to/3XB42CW'
                 },
                 {
                     name: 'Tonebone Bass Preamp by Radial',
@@ -125,13 +138,6 @@ export default {
                     image: '/img/gear/Kork-Pitchblack-Advanced.png',
                     description: 'Accurate, easy-to-read tuner with true bypass and multiple tuning modes.',
                     link: 'https://amzn.to/3MHbA0G'
-                },
-                {
-                    name: 'Cioks DC7 Battery',
-                    type: 'Power Supply',
-                    image: '/img/gear/Cioks-DC7.png',
-                    description: 'Slim, multi-output power supply to handle all my pedals without noise.',
-                    link: 'https://amzn.to/4d9uvMI'
                 },
                 {
                     name: 'Cali76 Bass Compressor',
@@ -174,6 +180,13 @@ export default {
                     link: 'https://amzn.to/3AV2pXQ'
                 },
                 {
+                    name: 'Cioks DC7 Battery',
+                    type: 'Power Supply',
+                    image: '/img/gear/Cioks-DC7.png',
+                    description: 'Slim, multi-output power supply to handle all my pedals without noise.',
+                    link: 'https://amzn.to/4d9uvMI'
+                },
+                {
                     name: 'Shure SM57 Microphone',
                     type: 'Microphone',
                     image: '/img/gear/Shure-SM57.png',
@@ -191,7 +204,7 @@ export default {
     },
     created() {
         useHead({
-            title: 'My Gear - Chris Pecoraro',
+            title: 'Gear - Chris Pecoraro',
             meta: [
                 {
                     hid: 'description',

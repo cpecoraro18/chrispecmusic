@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 bg-dark text-white p-4 rounded">
-    <h2 class="mb-4 text-center">Upcoming Events</h2>
+    <h2 class="mb-4 text-center">Events</h2>
     
     <!-- Loading Icon -->
     <div v-if="loading" class="text-center py-4">

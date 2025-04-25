@@ -4,7 +4,7 @@
             <h3 class="mx-auto fw-bold h2 mb-5">Discography</h3>
         </div>
         <div class="row">
-            <div class="col-6 col-xl-3 col-sm-4" v-for="album in discography" :key="album.name">
+            <div class="col-6 col-xxl-2 col-xl-3 col-sm-4" v-for="album in discography" :key="album.name">
                 <div class="album">
                     <a :href="album.link" target="_blank" class="album-link">
                         <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
@@ -60,10 +60,17 @@ export default {
 }
 
 .album-image {
-  width: 18.75em; /* 300px / 16 */
-  height: 18.75em; /* 300px / 16 */
+  width: 12.75em; /* 300px / 16 */
+  height: 12.75em; /* 300px / 16 */
   object-fit: cover;
   transition: transform .3s, box-shadow .3s;
+}
+
+@media only screen and (max-width: 1400px) {
+    .album-image {
+        width: 16em;
+        height: 16em;
+    }
 }
 
 @media only screen and (max-width: 991px) {

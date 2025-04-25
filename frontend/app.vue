@@ -67,6 +67,10 @@ body {
     height: 100vh;
 }
 
+.vh-75 {
+    height: 75vh;
+}
+
 .content {
   margin-bottom: 5em;
 }
@@ -92,4 +96,6 @@ body {
 .text-info {
   color: var(--secondary) !important;
 }
+
+
 </style>

@@ -12,16 +12,16 @@
       <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item mb-3 bg-dark border-0">
         <div class="row border-bottom border-1 pb-3">
           <div class="col-12 col-md-2 mb-4 mb-md-0">
-            <h3 class="mb-1">{{ event.date}}</h3>
+            <h4 class="mb-1">{{ event.date}}</h4>
             <p class="text-muted">{{ event.month }}</p>
+            <p class="text-muted mb-0"> {{ event.timeRange }}</p>
           </div>
           <div class="col-12 col-md-10 text-md-end">
-            <h4 class="mb-1">{{ event.summary }}</h4>
-            <p v-if="event.description" class="mt-2 mb-0">{{ event.description }}</p>
-            <p class="text-muted my-1"><i class="fa fa-clock me-2"></i> {{ event.timeRange }}</p>
-            <div class="mb-1 text-info small">
+            <h4 class="mb-2">{{ event.summary }}</h4>
+            <div class="mb-2 text-info small">
               <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank"><i class="fa fa-map-marker me-2"></i>{{ event.location.split(",")[0] }}</a>
             </div>
+            <p v-if="event.description" class="mb-0">{{ event.description }}</p>
           </div>
         </div>
       </div>

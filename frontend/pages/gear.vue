@@ -1,9 +1,7 @@
 <template>
     <div class="container py-5 min-vh-100">
         <h1 class="mb-4 text-center">Gear</h1>
-        <p class="lead">
-            Learn more about the gear I use for live performances, studio recordings, and practice sessions.
-        </p>
+
         <div class="row mb-4 gx-3">
             <div class="col-lg-12 mb-3 d-none d-lg-block">
                 <div class="d-flex flex-wrap gap-2 justify-content-end">
@@ -68,136 +66,135 @@ export default {
                     name: 'Lakland 5501',
                     type: 'Bass',
                     image: '/img/gear/Lakland5501.png',
-                    description: 'Versatile 5-string bass with a bright, punchy tone and smooth playability. Upgraded with Bartolini pickups and a Lakland LH3 preamp.'
+                    description: 'Upgraded with Bartolini pickups and a Lakland LH3 preamp. A bright, punchy 5-string that plays smooth and fits any mix.'
                 },
                 {
                     name: 'Fender American Standard P Bass',
                     type: 'Bass',
                     image: '/img/gear/Fender-P-Bass.png',
-                    description: 'Delivering classic Precision Bass tones with modern reliability.'
+                    description: 'Classic Precision Bass tone with the reliability to match.'
                 },
                 {
                     name: 'Fender Jazz Bass',
                     type: 'Bass',
                     image: '/img/gear/Fender-J-Bass.png',
-                    description: 'My first bass, used for everything from jazz standards to Red Hot Chili Peppers covers.'
+                    description: 'My first bass—used for everything from jazz gigs to rock covers.'
                 },
                 {
                     name: 'Knilling Bucharest Upright Bass',
                     type: 'Bass',
                     image: '/img/gear/Knilling-Upright.png',
-                    description: 'Upright bass, perfect for jazz and acoustic sessions.'
+                    description: 'Go-to for jazz sessions and acoustic sets.'
                 },
                 {
                     name: 'Markbass Little Mark 3 Amp',
                     type: 'Amp',
                     image: '/img/gear/Markbass-Little-Mark-3.png',
-                    description: 'Reliable, lightweight amp head with powerful, transparent sound.'
+                    description: 'Lightweight, powerful head with a clean, punchy sound.'
                 },
                 {
                     name: 'Phil Jones Double 4',
                     type: 'Amp',
                     image: '/img/gear/Phil-Jones-Double-Four.png',
-                    description: 'Compact, high-fidelity practice amp with a surprising amount of power for its size.',
+                    description: 'Small practice amp with a clear, surprisingly big sound.',
                     link: 'https://amzn.to/3XB42CW'
                 },
                 {
                     name: 'Markbass 4x10 Cab',
                     type: 'Cabinet',
                     image: '/img/gear/Markbass-4x10.png',
-                    description: '4x10 cabinet delivering punchy lows and detailed mids for live performances.'
+                    description: 'Big, punchy lows and clean mids for live shows.'
                 },
                 {
                     name: 'Markbass New York 121 Cab',
                     type: 'Cabinet',
                     image: '/img/gear/Markbass-NewYork-121.png',
-                    description: 'Compact, lightweight cab with a warm, full sound for small venues and rehearsals.'
+                    description: 'Compact cab that still brings the warmth and punch.'
                 },
                 {
                     name: 'Tonebone Bass Preamp by Radial',
                     type: 'Pedal',
                     image: '/img/gear/Radial-Bassbone-V2.png',
-                    description: 'Versatile DI and preamp for seamless switching between electric and upright basses.',
+                    description: 'DI and preamp for fast switching between upright and electric bass.',
                     link: 'https://amzn.to/3MDDMBR'
                 },
                 {
                     name: 'Origin Effects Bass Rig Super Vintage',
                     type: 'Pedal',
                     image: '/img/gear/Origin-Effects-BassRig-Super-Vintage.png',
-                    description: 'Vintage-inspired SVT simulator with tube-like warmth and harmonics.',
+                    description: 'SVT-style tones with tube-like feel and grit.'
                 },
                 {
-                    name: "JHS Colour Box V2",
+                    name: 'JHS Colour Box V2',
                     type: 'Pedal',
                     image: '/img/gear/JHS-ColorBox.webp',
-                    description: 'Versatile preamp pedal with a wide range of tones, from clean to overdriven.',
+                    description: 'Flexible preamp that goes from clean to driven tones easily.'
                 },
                 {
                     name: 'Korg Pitchblack Advanced',
                     type: 'Pedal',
                     image: '/img/gear/Kork-Pitchblack-Advanced.png',
-                    description: 'Accurate, easy-to-read tuner with true bypass and multiple tuning modes.',
+                    description: 'Reliable tuner with true bypass and clear visibility.',
                     link: 'https://amzn.to/3MHbA0G'
                 },
                 {
                     name: 'Cali76 Bass Compressor',
                     type: 'Pedal',
                     image: '/img/gear/Cali76-Bass-Compressor.png',
-                    description: 'Studio-grade compression with a vintage sound, perfect for bass solos and slap lines.',
+                    description: 'Smooth, studio-style compression with a touch of vintage vibe.'
                 },
                 {
                     name: 'MXR Bass Compressor',
                     type: 'Pedal',
                     image: '/img/gear/MXR-Bass-Compressor.png',
-                    description: 'Transparent compression to balance dynamics while retaining punch and clarity.',
+                    description: 'Clean, transparent compression that keeps your attack intact.',
                     link: 'https://amzn.to/4cZIqos'
                 },
                 {
                     name: 'MXR Octave Deluxe',
                     type: 'Pedal',
                     image: '/img/gear/MXR-Bass-Octave-Delux.png',
-                    description: 'Adds rich, sub-octave tones for a thicker, fuller sound.',
-                    link: 'https://amzn.to/4ekdyjm'
+                    description: 'Fat sub-octave sounds that thicken your tone.'
                 },
                 {
                     name: 'Aguilar Twin Filter',
                     type: 'Pedal',
                     image: '/img/gear/Aguilar-Filter-Twin.png',
-                    description: 'Dynamic filter pedal to shape bass tone with vintage-inspired sweeps.',
+                    description: 'Dual filter pedal for funky sweeps and vintage textures.',
                     link: 'https://amzn.to/47lap0C'
                 },
                 {
-                    name: "Electro-Harmonix Pico Pog",
+                    name: 'Electro-Harmonix Pico Pog',
                     type: 'Pedal',
                     image: '/img/gear/PicoPog.png',
-                    description: 'Octave pedal with polyphonic tracking, used mainly for soloing and Thundercat tones.',
+                    description: 'Polyphonic octave pedal—great for solos and layering.'
                 },
                 {
                     name: 'Pedaltrain Metro 20',
                     type: 'Pedalboard',
                     image: '/img/gear/Pedaltrain-Metro-20.png',
-                    description: 'Compact pedalboard with enough space to keep my essential pedals organized.',
+                    description: 'Compact pedalboard that keeps the essentials tight and tidy.',
                     link: 'https://amzn.to/3AV2pXQ'
                 },
                 {
                     name: 'Cioks DC7 Battery',
                     type: 'Power Supply',
                     image: '/img/gear/Cioks-DC7.png',
-                    description: 'Slim, multi-output power supply to handle all my pedals without noise.',
+                    description: 'Quiet, low-profile power supply that handles a full board with ease.',
                     link: 'https://amzn.to/4d9uvMI'
                 },
                 {
                     name: 'Shure SM57 Microphone',
                     type: 'Microphone',
                     image: '/img/gear/Shure-SM57.png',
-                    description: 'Industry-standard dynamic mic, great for miking amps and live performances.',
+                    description: 'Classic dynamic mic—works anywhere, sounds great.',
                     link: 'https://amzn.to/4eguoQe'
                 },
                 {
                     name: 'Audio-Technica AT2038 Microphone',
                     type: 'Microphone',
                     image: '/img/gear/Audio-Technica-AT2038.png',
-                    description: 'High-quality condenser mic, perfect for recording upright bass and vocals.'
+                    description: 'Solid condenser mic for upright bass, vocals, and more.'
                 }
             ]
         };

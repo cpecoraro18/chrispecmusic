@@ -23,7 +23,7 @@
                         <router-link to="/gear" class="nav-link" @click="closeNavbar">Gear</router-link>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light ms-lg-2 mb-2 mb-lg-0" type="button"><router-link to="/contact" class="nav-link" @click="closeNavbar">Contact</router-link></button>
+                <button class="btn btn-outline-light ms-lg-2 my-2 my-lg-0" type="button"><router-link to="/contact" class="nav-link" @click="closeNavbar">Contact</router-link></button>
                 <div class="d-flex justify-content-center justify-self-end align-items-center ms-lg-3 mb-3 mb-lg-0">
                     <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
                         <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>

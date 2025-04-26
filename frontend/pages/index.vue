@@ -3,7 +3,7 @@
     <div class="hero-image">
       <div class="hero-text text-center">
         <h1>Chris Pecoraro</h1>
-        <h2 class="h5 text-muted">Professional Electric and Upright Bassist | Chicago</h2>
+        <h2 class="h4 text-muted mx-2">Professional Electric and Upright Bassist | Chicago</h2>
         <nuxt-link class="btn btn-outline-light hero-button mt-3 rounded-lg" to="/contact">Get In Touch</nuxt-link>
       </div>
     </div>
@@ -14,7 +14,7 @@
           <h3 class="display-4 text-center mb-4" id="about">About</h3>
           <p class="lead text-center mb-4">
             Chris Pecoraro is a professional upright and electric bassist with over a decade of experience in studio recording and live performance across Chicago and around the world. <br><br>
-            He’s currently a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 Chicago Blues Challenge Winners.
+            He’s currently a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 Chicago Blues Challenge Winners. Chris is always excited to connect with other artists and contribute to new projects. 
           </p>
         </div>
         <div class="col-12 col-lg-5">
@@ -99,10 +99,11 @@ export default {
 
 .hero-text h1 {
   font-size: 5em;
+  font-weight: 600;
 }
 
 .hero-text h2 {
-  font-size: 20px;
+  font-size: 1.5em
 }
 
 .album {

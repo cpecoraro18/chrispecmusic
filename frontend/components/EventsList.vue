@@ -51,16 +51,18 @@ const loading = ref(true); // Add loading state
 async function getEvents() {
   const response = await $fetch('https://api.chrispecmusic.com/events');
   events.value = JSON.parse(response).items.map((x) => {
-    var start = new Date(x.start.dateTime);
-    var end = new Date(x.end.dateTime);
+    const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
+    const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
     return {
       id: x.id,
       summary: x.summary,
-      location: x.location,
-      description: x.description,
-      date: start.getDate(),
-      month: start.toLocaleString('default', { month: 'long' }),
-      timeRange: `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
+      location: x.location || 'TBD',
+      description: x.description || "",
+      date: start ? start.getDate() : 'N/A',
+      month: start ? start.toLocaleString('default', { month: 'long' }) : 'N/A',
+      timeRange: start && end
+        ? `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+        : 'Time not available',
     };
   })
   loading.value = false; // Set loading to false once the events are loaded

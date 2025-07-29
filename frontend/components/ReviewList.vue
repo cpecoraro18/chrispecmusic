@@ -155,6 +155,55 @@ export default {
           "rating": 5,
           "review": "Chris provided two options for my song, both of which were excellent, and I can't decide which I like more! Also, very prompt delivery. Highly recommend!",
           "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "abelyss",
+          "country": "United Kingdom",
+          "rating": 5,
+          "review": "Chris has been an outstanding addition to our team, bringing not only technical skill on the bass but also sensitivity to the emotional core of our music. His lines are tasteful, supportive, and full of nuance, enhancing the depth of each piece without ever overwhelming the arrangement. Beyond his musicality, Chris has been reliable, collaborative, and open to ideas — a true professional who elevates the creative process.",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "abelyss",
+          "country": "United Kingdom",
+          "rating": 4.7,
+          "review": "Chris was professional, responsive, and deeply musical. His performance brought great tone and sensitivity to the piece, and he handled everything with care and creativity. A pleasure to work with — highly recommended.",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "joshuahamm",
+          "country": "United States",
+          "rating": 5,
+          "review": "Delivered precisely what I asked for and expected in a very timely manner! Sound quality is professional, and he is skilled enough to make the piece his own as well. Highly recommend!",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "giovanniseba170",
+          "country": "Austria",
+          "rating": 5,
+          "review": "Great work within 1 day. :-)",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "jusufwinardi",
+          "country": "Indonesia",
+          "rating": 4.3,
+          "review": "Super quick response and delivery. It was less than a day. Loving the sound of the bass and the playing. Made my vision of the production manifested. Definitely going back for my contra bass projects.",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "harold_g",
+          "country": "Japan",
+          "rating": 5,
+          "review": "Thank you for the great bass track, which was perfect for the song!",
+          "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          "name": "kedaman1337",
+          "country": "Sweden",
+          "rating": 5,
+          "review": "Amazing job!",
+          "link": "https://www.fiverr.com/cpecoraro18"
         }
       ]
     };

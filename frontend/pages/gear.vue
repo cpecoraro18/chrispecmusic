@@ -173,7 +173,7 @@ export default {
                     name: 'Damnation Audio MBD',
                     type: 'Pedal',
                     image: '/img/gear/MBD.jpg',
-                    description: 'Bass distortion with depth and blend knob to maintain lowend"
+                    description: 'Bass distortion with depth and blend knob to maintain lowend'
                 },
                 {
                     name: 'Pedaltrain Metro 20',

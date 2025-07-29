@@ -170,6 +170,12 @@ export default {
                     description: 'Polyphonic octave pedal—great for solos and layering.'
                 },
                 {
+                    name: 'Damnation Audio MBD',
+                    type: 'Pedal',
+                    image: '/img/gear/MBD.jpg',
+                    description: 'Bass distortion with depth and blend knob to maintain lowend"
+                },
+                {
                     name: 'Pedaltrain Metro 20',
                     type: 'Pedalboard',
                     image: '/img/gear/Pedaltrain-Metro-20.png',

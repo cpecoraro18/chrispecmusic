@@ -18,20 +18,76 @@ jobs:
         run: |
           git fetch origin main --depth=2
           COMMIT_RANGE="$(git rev-parse HEAD~1)..HEAD"
-          echo "Commit range: $COMMIT_RANGE"
+          echo "COMMIT_RANGE: $COMMIT_RANGE"
           git diff "$COMMIT_RANGE" > diff.txt
+          echo "DIFF SIZE: $(wc -c < diff.txt) bytes"
+          head -20 diff.txt
 
-      - name: Summarize with GPT
+      - name: Preprocess diff (remove noise)
+        run: |
+          grep -vE '^diff --git .*\.(md|txt)' diff.txt > diff_filtered.txt || cp diff.txt diff_filtered.txt
+          echo "FILTERED DIFF SIZE: $(wc -c < diff_filtered.txt) bytes"
+          head -20 diff_filtered.txt
+
+      - name: Split diff into chunks
+        run: |
+          split -b 12000 diff_filtered.txt diff_chunk_
+          echo "Chunks created:"
+          ls -lh diff_chunk_*
+          for chunk in diff_chunk_*; do
+            echo "$chunk: $(wc -c < $chunk) bytes"
+          done
+
+      - name: Summarize each chunk (Map step)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          echo "Generating commit summary for Product and QA..."
-          DIFF_CONTENT=$(head -c 4000 diff.txt | jq -Rs .)
+          rm -f all_summaries.txt
+          for chunk in diff_chunk_*; do
+            echo "Processing $chunk"
+            DIFF_CONTENT=$(cat "$chunk" | jq -Rs .)
+            echo "DIFF_CONTENT (first 300 chars):"
+            echo "$DIFF_CONTENT" | head -c 300
+            JSON_PAYLOAD=$(jq -n \
+              --arg model "gpt-4-32k" \
+              --arg content_system "You are a technical product analyst. Summarize this git diff chunk for Product Managers and QA. Highlight user-visible changes, new or modified features, and areas requiring QA attention." \
+              --argjson content_user "$DIFF_CONTENT" \
+              '{
+                model: $model,
+                messages: [
+                  { role: "system", content: $content_system },
+                  { role: "user", content: $content_user }
+                ],
+                temperature: 0.5
+              }'
+            )
+            echo "JSON_PAYLOAD (first 300 chars):"
+            echo "$JSON_PAYLOAD" | head -c 300
+            RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+              -H "Authorization: Bearer $OPENAI_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$JSON_PAYLOAD")
+            echo "RAW RESPONSE:"
+            echo "$RESPONSE"
+            SUMMARY=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
+            echo "SUMMARY:"
+            echo "$SUMMARY"
+            echo "$SUMMARY" >> all_summaries.txt
+            echo -e "\n---\n" >> all_summaries.txt
+          done
 
-          JSON_PAYLOAD=$(jq -n \
-            --arg model "gpt-4.1" \
-            --arg content_system "You are a technical product analyst. Summarize the following git diff for Product Managers and QA. Highlight user-visible changes, new or modified features, and areas requiring QA attention." \
-            --argjson content_user "$DIFF_CONTENT" \
+      - name: Reduce step (final summary)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Reducing all chunk summaries..."
+          FINAL_CONTENT=$(cat all_summaries.txt | jq -Rs .)
+          echo "FINAL_CONTENT (first 300 chars):"
+          echo "$FINAL_CONTENT" | head -c 300
+          FINAL_PAYLOAD=$(jq -n \
+            --arg model "gpt-4-32k" \
+            --arg content_system "You are a technical product analyst. Merge and summarize these chunk summaries for Product Managers and QA." \
+            --argjson content_user "$FINAL_CONTENT" \
             '{
               model: $model,
               messages: [
@@ -41,23 +97,18 @@ jobs:
               temperature: 0.5
             }'
           )
-
-          echo "$JSON_PAYLOAD" > payload.json
-          echo "PAYLOAD (first 500 chars):"
-          echo "$JSON_PAYLOAD" | head -c 500
-
-          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+          echo "FINAL_PAYLOAD (first 300 chars):"
+          echo "$FINAL_PAYLOAD" | head -c 300
+          FINAL_RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
             -H "Authorization: Bearer $OPENAI_API_KEY" \
             -H "Content-Type: application/json" \
-            -d "$JSON_PAYLOAD")
-
-          echo "RAW RESPONSE:"
-          echo "$RESPONSE"
-
-          SUMMARY=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
-          echo "SUMMARY:"
-          echo "$SUMMARY"
-          echo "$SUMMARY" > summary.txt
+            -d "$FINAL_PAYLOAD")
+          echo "FINAL RAW RESPONSE:"
+          echo "$FINAL_RESPONSE"
+          FINAL_SUMMARY=$(echo "$FINAL_RESPONSE" | jq -r '.choices[0].message.content')
+          echo "FINAL SUMMARY:"
+          echo "$FINAL_SUMMARY"
+          echo "$FINAL_SUMMARY" > summary.txt
 
       - name: Upload summary as artifact
         uses: actions/upload-artifact@v4

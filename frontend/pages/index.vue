@@ -13,8 +13,8 @@
         <div class="col-12 col-lg-5 mx-auto">
           <h3 class="display-4 text-center mb-4" id="about">About</h3>
           <p class="lead text-center mb-4">
-            Chris Pecoraro is a professional upright and electric bassist with over a decade of experience in studio recording and live performance across Chicago and around the world. <br><br>
-            He’s currently a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 Chicago Blues Challenge Winners. Chris is always excited to connect with other artists and contribute to new projects. 
+            Chris Pecoraro is a professional upright and electric bassist with 10+ of experience in studio recording and live performance.He plays both upright and electric bass and has worked in jazz, soul, blues, theater, and modern pop/rock settings.<br><br>
+            Chris is currently a member of the <a href="https://www.seanmckeeband.com">Sean McKee Band</a>, 2024 Chicago Blues Challenge Winners. He is always excited to connect with other artists and contribute to new projects. 
           </p>
         </div>
         <div class="col-12 col-lg-5">

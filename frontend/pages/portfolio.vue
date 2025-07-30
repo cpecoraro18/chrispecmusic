@@ -1,15 +1,29 @@
 <template>
-    <div class="container-fluid p-5">
-        <div class="mb-5">
-            <h1 class="text-center">Videos</h1>
+    <div>
+        <div class="container">
+            <div class="my-5">
+                <h1 class="text-center">Portfolio</h1>
+                <p class="text-center text-muted">Checkout some of my work below.</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 mb-4" v-for="video in videos" :key="video.url">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
+
+        <div class="mb-3">
+            <discography-list></discography-list>
+        </div>
+
+        <div class="container-fluid">
+            <h3 class="mx-auto fw-bold h2 my-5">Videos</h3>
+            <div class="row">
+                <div class="col-md-3 mb-4" v-for="video in videos" :key="video.url">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" :src="video.url" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </template>
 
@@ -32,8 +46,24 @@ export default {
         return {
             videos: [
                 {
-                    title: "Alright Maybes - Tin Roof",
-                    url: "https://www.youtube.com/embed/videoseries?si=AmnCPpmpvxDt7hEa&amp;list=PLOwsrbnuQ5SZCUSb5TeqQz7KPHZMlyFy0"
+                    title: "Alright Maybes - Come and Get Your Love",
+                    url: "https://www.youtube.com/embed/-1akA4BaSkc?si=KDkcxETpf_iaQ6Z6"
+                },
+                {
+                    title: "Alright Maybes - Misery Business Cover",
+                    url: "https://www.youtube.com/embed/NJOk4imcY50?si=1z7Ehn35ZN_nzRfi"
+                },
+                {
+                    title: "Alright Maybes - Paradise City Cover",
+                    url: "https://www.youtube.com/embed/I_nMxVfUFpM?si=5wQghRdnomj9_l6u"
+                },
+                {
+                    title: "Alright Maybes - Red Wine Supernova Cover",
+                    url: "https://www.youtube.com/embed/A5KX41GrZsc?si=34Pa7rQ-0XTte_wt"
+                },
+                {
+                    title: "Alright Maybes - Ain't It Fun Cover",
+                    url: "https://www.youtube.com/embed/UevnkOhMo2o?si=ipygWPGdKI0rqH9O"
                 },
                 {
                     title: "Sean's Guitar Lounge Ft Brandon Simmons - Sweet Little Angel Cover",

@@ -12,9 +12,9 @@
           <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.chrispecmusic.com" target="_blank">
             <i class="fa fa-globe me-2"></i>
             Website</a>
-          <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/photos">
-            <i class="fa fa-camera me-2"></i>
-            Photos Page
+          <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/portfolio">
+            <i class="fa fa-video me-2"></i>
+            Portfolio
           </nuxt-link>
           <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.instagram.com/chrispecmusic" target="_blank">
             <img src="/instagram-logo.png" alt="Instagram" class="social-icon me-1"/>

@@ -14,7 +14,7 @@
                         <router-link to="/" class="nav-link" @click="closeNavbar">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Videos</router-link>
+                        <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Portfolio</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/events" class="nav-link" @click="closeNavbar">Events</router-link>
@@ -24,14 +24,7 @@
                     </li>
                 </ul>
                 <button class="btn btn-outline-light ms-lg-2 my-2 my-lg-0" type="button"><router-link to="/contact" class="nav-link" @click="closeNavbar">Contact</router-link></button>
-                <div class="d-flex justify-content-center justify-self-end align-items-center ms-lg-3 mb-3 mb-lg-0">
-                    <a href="https://www.instagram.com/chrispecmusic/" target="_blank" class="nav-link me-2">
-                        <img src="/instagram-logo.png" alt="Instagram" class="social-icon"/>
-                    </a>          
-                    <a href="https://www.youtube.com/channel/UCxZoyuxrCDUY_67PVsGbUDg" target="_blank" class="nav-link">
-                        <img src="/youtube-logo.png" alt="Instagram" class="social-icon"/>
-                    </a>          
-                </div>
+                <social-links class="ms-0 ms-lg-3 my-3 my-lg-0"></social-links>
             </div>
         </div>
     </header>

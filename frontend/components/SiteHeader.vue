@@ -87,7 +87,7 @@
             const fadeEnd = windowHeight * 0.8;
             const progress = Math.min(Math.max((scrollY - fadeStart) / (fadeEnd - fadeStart), 0), 1)
             navbarOpacity.value = progress
-            navbarHeight.value = progress > 0 ? newHeight : 0 // shrink to 0 height at top
+            navbarHeight.value = newHeight * progress
         } else {
             navbarOpacity.value = 1
             navbarHeight.value = newHeight

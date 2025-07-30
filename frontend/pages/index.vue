@@ -5,6 +5,10 @@
         <h1>Chris Pecoraro</h1>
         <h2 class="h4 text-muted mx-2">Professional Electric and Upright Bassist | Chicago</h2>
         <nuxt-link class="btn btn-outline-light hero-button mt-3 rounded-lg" to="/contact">Get In Touch</nuxt-link>
+
+        <div class="mt-5">
+          <a class="text-muted" href="#about" >See More</a>
+        </div>
       </div>
     </div>
 

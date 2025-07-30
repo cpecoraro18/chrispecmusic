@@ -211,9 +211,26 @@ export default {
   computed: {
     chunkedReviews() {
       const chunkSize = 3;
+      const sorted = [...this.reviews].sort((a, b) => b.review.length - a.review.length);
+  
+      // Split into thirds
+      const third = Math.ceil(sorted.length / 3);
+      const long = sorted.slice(0, third);
+      const medium = sorted.slice(third, 2 * third);
+      const short = sorted.slice(2 * third);
+  
+      // Interleave: [long, medium, short, long, medium, short, ...]
+      const interleaved = [];
+      for (let i = 0; i < third; i++) {
+        if (long[i]) interleaved.push(long[i]);
+        if (medium[i]) interleaved.push(medium[i]);
+        if (short[i]) interleaved.push(short[i]);
+      }
+  
+      // Chunk into groups of 3
       const chunks = [];
-      for (let i = 0; i < this.reviews.length; i += chunkSize) {
-        chunks.push(this.reviews.slice(i, i + chunkSize));
+      for (let i = 0; i < interleaved.length; i += chunkSize) {
+        chunks.push(interleaved.slice(i, i + chunkSize));
       }
       return chunks;
     },

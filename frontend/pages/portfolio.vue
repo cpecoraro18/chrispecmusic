@@ -3,7 +3,7 @@
         <div class="container">
             <div class="my-5">
                 <h1 class="text-center">Portfolio</h1>
-                <p class="text-center text-muted">Checkout some of my work below.</p>
+                <p class="text-center">Checkout some of my work below.</p>
             </div>
         </div>
 

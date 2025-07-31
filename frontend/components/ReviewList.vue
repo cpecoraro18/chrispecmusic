@@ -222,8 +222,8 @@ export default {
       // Interleave: [long, medium, short, long, medium, short, ...]
       const interleaved = [];
       for (let i = 0; i < third; i++) {
-        if (long[i]) interleaved.push(long[i]);
         if (medium[i]) interleaved.push(medium[i]);
+        if (long[i]) interleaved.push(long[i]);
         if (short[i]) interleaved.push(short[i]);
       }
   

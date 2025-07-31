@@ -17,6 +17,9 @@
                         <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Portfolio</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/photos" class="nav-link" @click="closeNavbar">Photos</router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/events" class="nav-link" @click="closeNavbar">Events</router-link>
                     </li>
                     <li class="nav-item">

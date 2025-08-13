@@ -93,9 +93,9 @@ export default {
     async fetchPhotos() {
       this.loadingPhotos = true;
       try {
-        let url = 'https://api.chrispecmusic.com/photos';
+       const url = new URL('https://api.chrispecmusic.com/photos');
         if (this.token) {
-          url += `?token=${this.token}`;
+          url.searchParams.append('token', this.token);
         }
         const response = await fetch(url);
         const data = await response.json();
@@ -110,6 +110,8 @@ export default {
         }
         if (data.token) {
           this.token = data.token;
+        } else {
+          this.token = null; // No more photos to load
         }
       } catch (error) {
         console.error('Error fetching photos:', error);

@@ -56,6 +56,7 @@
               :src="modalPhoto.src" 
               :alt="modalPhoto.name" 
               class="img-fluid rounded custom-modal-image"
+              loading="lazy"
             />
             <div>
               <a 
@@ -99,10 +100,13 @@ export default {
         const response = await fetch(url);
         const data = await response.json();
         if (data.images) {
-          this.photos = data.images.map((image) => ({
-            name: image.split('/').pop(),
-            src: image,
-          }));
+          this.photos = [
+            ...this.photos,
+            ...data.images.map((image) => ({
+              name: image.split('/').pop(),
+              src: image,
+            })),
+          ];
         }
         if (data.token) {
           this.token = data.token;

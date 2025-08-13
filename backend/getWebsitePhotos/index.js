@@ -5,7 +5,7 @@ exports.handler = async (event) => {
   const bucketName = process.env.BUCKET_NAME;
   const prefix = 'low/';
   const maxKeys = 10;
-  const continuationToken = event.queryStringParameters?.continuationToken;
+  const token = event.queryStringParameters?.token;
 
   const params = {
     Bucket: bucketName,
@@ -13,8 +13,8 @@ exports.handler = async (event) => {
     MaxKeys: maxKeys,
   };
 
-  if (continuationToken) {
-    params.ContinuationToken = continuationToken;
+  if (token) {
+    params.ContinuationToken = token;
   }
 
   try {

@@ -15,7 +15,7 @@
               :alt="photo.name" 
               class="card-img-top rounded"
               @click="openModal(photo)" 
-              style="cursor: pointer;"
+              loading="lazy"
             />
             <!-- Download Icon -->
             <div class="photo-actions">
@@ -57,6 +57,7 @@
               :alt="modalPhoto.name" 
               class="img-fluid rounded custom-modal-image"
               loading="lazy"
+              style="max-width: 90vw; max-height: 80vh; object-fit: contain;"
             />
             <div>
               <a 

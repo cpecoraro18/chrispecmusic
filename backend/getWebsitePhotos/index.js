@@ -4,7 +4,7 @@ const s3 = new AWS.S3();
 exports.handler = async (event) => {
   const bucketName = process.env.BUCKET_NAME;
   const prefix = 'low/';
-  const maxKeys = 100;
+  const maxKeys = 10;
   const continuationToken = event.queryStringParameters?.continuationToken;
 
   const params = {

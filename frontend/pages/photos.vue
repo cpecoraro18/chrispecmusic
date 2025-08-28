@@ -1,6 +1,6 @@
 <template>
-  <div class="min-vh-100">
-    <div class="container py-5">
+  <div class="min-vh-100 d-flex flex-column">
+    <div class="container py-5 flex-grow-1">
       <h2 class="mb-4">Photo Gallery</h2>
 
       <div class="row g-4">
@@ -73,6 +73,9 @@
         </div>
       </div>
     </div>
+    <footer class="text-center py-3 mt-auto">
+      <p class="text-light">Photos by AJ Thied. Thank you for your work!</p>
+    </footer>
   </div>
 
 </template>
@@ -150,6 +153,7 @@ export default {
 
 .card-img-top {
   position: relative;
+  object-fit: cover;
 }
 
 .photo-actions {

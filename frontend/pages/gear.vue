@@ -109,7 +109,7 @@ export default {
                     name: 'Markbass New York 121 Cab',
                     type: 'Cabinet',
                     image: '/img/gear/Markbass-NewYork-121.png',
-                    description: 'Compact cab that still brings the warmth and punch.'
+                    description: 'Compact cab that still brings the warmth and punch. I own two of these for a flexible live sound options.'
                 },
                 {
                     name: 'Tonebone Bass Preamp by Radial',
@@ -131,13 +131,6 @@ export default {
                     description: 'Flexible preamp that goes from clean to driven tones easily.'
                 },
                 {
-                    name: 'Korg Pitchblack Advanced',
-                    type: 'Pedal',
-                    image: '/img/gear/Kork-Pitchblack-Advanced.png',
-                    description: 'Reliable tuner with true bypass and clear visibility.',
-                    link: 'https://amzn.to/3MHbA0G'
-                },
-                {
                     name: 'Cali76 Bass Compressor',
                     type: 'Pedal',
                     image: '/img/gear/Cali76-Bass-Compressor.png',
@@ -151,10 +144,22 @@ export default {
                     link: 'https://amzn.to/4cZIqos'
                 },
                 {
+                    name: "HX Stomp",
+                    type: "Pedal",
+                    image: "/img/gear/HX-Stomp.png",
+                    description: "Compact multi-effects processor with extensive routing options."
+                },
+                {
                     name: 'MXR Octave Deluxe',
                     type: 'Pedal',
                     image: '/img/gear/MXR-Bass-Octave-Delux.png',
                     description: 'Fat sub-octave sounds that thicken your tone.'
+                },
+                {
+                    name: 'Electro-Harmonix Pico Pog',
+                    type: 'Pedal',
+                    image: '/img/gear/PicoPog.png',
+                    description: 'Polyphonic octave pedal—great for solos and layering.'
                 },
                 {
                     name: 'Aguilar Twin Filter',
@@ -164,16 +169,17 @@ export default {
                     link: 'https://amzn.to/47lap0C'
                 },
                 {
-                    name: 'Electro-Harmonix Pico Pog',
-                    type: 'Pedal',
-                    image: '/img/gear/PicoPog.png',
-                    description: 'Polyphonic octave pedal—great for solos and layering.'
-                },
-                {
                     name: 'Damnation Audio MBD',
                     type: 'Pedal',
-                    image: '/img/gear/MBD.jpg',
+                    image: '/img/gear/MBD.png',
                     description: 'Bass distortion with depth and blend knob to maintain lowend'
+                },
+                {
+                    name: 'Korg Pitchblack Advanced',
+                    type: 'Pedal',
+                    image: '/img/gear/Kork-Pitchblack-Advanced.png',
+                    description: 'Reliable tuner with true bypass and clear visibility.',
+                    link: 'https://amzn.to/3MHbA0G'
                 },
                 {
                     name: 'Pedaltrain Metro 20',

@@ -74,7 +74,7 @@
       </div>
     </div>
     <footer class="text-center py-3 mt-auto">
-      <p class="text-light">Photos by AJ Thied. Thank you for your work!</p>
+      <p class="text-light">Photos by AJ Thiede. Thank you for your work!</p>
     </footer>
   </div>
 

@@ -203,6 +203,12 @@ export default {
                     link: 'https://amzn.to/4eguoQe'
                 },
                 {
+                    name: "Electro-Voice RE20 Microphone",
+                    type: 'Microphone',
+                    image: '/img/gear/EV-RE20.png',
+                    description: 'Versatile dynamic mic perfect for bass amps and vocals.'
+                },
+                {
                     name: 'Audio-Technica AT2038 Microphone',
                     type: 'Microphone',
                     image: '/img/gear/Audio-Technica-AT2038.png',

@@ -11,13 +11,23 @@
       >
         Upcoming
       </button>
-      <button 
-        class="btn btn-outline-light btn-sm me-2"
-        :class="{ active: selectedFilter === 'past' }"
-        @click="filterEvents('past')"
-      >
-        Past
-      </button>
+      
+      <!-- Past Events Dropdown -->
+      <div class="btn-group me-2" role="group">
+        <button 
+          class="btn btn-outline-light btn-sm dropdown-toggle"
+          :class="{ active: selectedFilter.startsWith('past') }"
+          type="button" 
+          data-bs-toggle="dropdown"
+        >
+          Past Events
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2025')">2025</a></li>
+          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2024')">2024</a></li>
+        </ul>
+      </div>
+      
       <button 
         class="btn btn-outline-light btn-sm"
         :class="{ active: selectedFilter === 'all' }"
@@ -38,7 +48,7 @@
         <div class="row border-bottom border-1 pb-3">
           <div class="col-12 col-md-2 mb-4 mb-md-0">
             <h4 class="mb-1">{{ event.date}}</h4>
-            <p class="text-muted">{{ event.month }}</p>
+            <p class="text-muted">{{ event.month }} {{ event.year }}</p>
             <p class="text-muted mb-0"> {{ event.timeRange }}</p>
           </div>
           <div class="col-12 col-md-10 text-md-end">
@@ -100,6 +110,7 @@ async function getEvents(timeMin = null, timeMax = null) {
       description: x.description || "",
       date: start ? start.getDate() : 'N/A',
       month: start ? start.toLocaleString('default', { month: 'long' }) : 'N/A',
+      year: start ? start.getFullYear() : 'N/A',
       timeRange: start && end
         ? `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
         : 'Time not available',
@@ -113,9 +124,15 @@ const limitedEvents = computed(() => {
 });
 
 // Helper functions for different event queries
-function getPastEvents() {
-  const today = new Date().toISOString().split('T')[0];
-  return getEvents(null, today);
+function getPastEvents(year = null) {
+  if (year) {
+    const startOfYear = `${year}-01-01`;
+    const endOfYear = `${year}-12-31`;
+    return getEvents(startOfYear, endOfYear);
+  } else {
+    const today = new Date().toISOString().split('T')[0];
+    return getEvents(null, today);
+  }
 }
 
 function getAllEvents() {
@@ -131,17 +148,22 @@ async function filterEvents(filter) {
   selectedFilter.value = filter;
   loading.value = true;
   
-  switch (filter) {
-    case 'past':
-      await getPastEvents();
-      break;
-    case 'all':
-      await getAllEvents();
-      break;
-    case 'future':
-    default:
-      await getFutureEvents();
-      break;
+  if (filter.startsWith('past-')) {
+    const year = filter.split('-')[1];
+    await getPastEvents(year);
+  } else {
+    switch (filter) {
+      case 'past':
+        await getPastEvents();
+        break;
+      case 'all':
+        await getAllEvents();
+        break;
+      case 'future':
+      default:
+        await getFutureEvents();
+        break;
+    }
   }
 }
 

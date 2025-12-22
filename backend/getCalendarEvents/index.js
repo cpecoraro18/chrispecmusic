@@ -16,10 +16,10 @@ exports.handler = async (event) => {
             orderBy: 'startTime'
         };
 
-        // Default to today if no timeMin specified
+        // Default to today if no timeMin specified and no timeMax specified
         if (timeMin) {
             params.timeMin = new Date(timeMin).toISOString();
-        } else {
+        } else if (!timeMax) {
             params.timeMin = new Date().toISOString();
         }
 

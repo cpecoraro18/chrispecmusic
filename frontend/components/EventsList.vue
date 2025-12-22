@@ -27,14 +27,6 @@
           <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2024')">2024</a></li>
         </ul>
       </div>
-      
-      <button 
-        class="btn btn-outline-light btn-sm"
-        :class="{ active: selectedFilter === 'all' }"
-        @click="filterEvents('all')"
-      >
-        All
-      </button>
     </div>
     
     <!-- Loading Icon -->
@@ -81,8 +73,8 @@ const props = defineProps({
 });
 
 const events = ref([]);
-const loading = ref(true); // Add loading state
-const selectedFilter = ref('future'); // Track selected filter
+const loading = ref(true); 
+const selectedFilter = ref('future');
 
 async function getEvents(timeMin = null, timeMax = null) {
   let url = 'https://api.chrispecmusic.com/events';
@@ -116,14 +108,13 @@ async function getEvents(timeMin = null, timeMax = null) {
         : 'Time not available',
     };
   })
-  loading.value = false; // Set loading to false once the events are loaded
+  loading.value = false;
 }
 
 const limitedEvents = computed(() => {
   return events.value.slice(0, props.limit);
 });
 
-// Helper functions for different event queries
 function getPastEvents(year = null) {
   if (year) {
     const startOfYear = `${year}-01-01`;
@@ -135,15 +126,10 @@ function getPastEvents(year = null) {
   }
 }
 
-function getAllEvents() {
-  return getEvents(null, null);
-}
-
 function getFutureEvents() {
-  return getEvents(); // Default behavior
+  return getEvents();
 }
 
-// Filter events based on selection
 async function filterEvents(filter) {
   selectedFilter.value = filter;
   loading.value = true;
@@ -155,9 +141,6 @@ async function filterEvents(filter) {
     switch (filter) {
       case 'past':
         await getPastEvents();
-        break;
-      case 'all':
-        await getAllEvents();
         break;
       case 'future':
       default:

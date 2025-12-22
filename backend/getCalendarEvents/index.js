@@ -8,14 +8,29 @@ exports.handler = async (event) => {
         const client = google.auth.fromJSON(GOOGLE_CREDENTIALS);
         client.scopes = ['https://www.googleapis.com/auth/calendar.readonly'];
 
+        const queryParams = event.queryStringParameters || {};
+        const { timeMin, timeMax } = queryParams;
+
+        const params = {
+            singleEvents: true,
+            orderBy: 'startTime'
+        };
+
+        // Default to today if no timeMin specified
+        if (timeMin) {
+            params.timeMin = new Date(timeMin).toISOString();
+        } else {
+            params.timeMin = new Date().toISOString();
+        }
+
+        if (timeMax) {
+            params.timeMax = new Date(timeMax).toISOString();
+        }
+
         const response = await client.request({
             url: `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`,
             method: 'GET',
-            params: {
-                timeMin: new Date().toISOString(),
-                singleEvents: true,
-                orderBy: 'startTime'
-            }
+            params
         });
 
         return {

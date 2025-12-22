@@ -2,6 +2,31 @@
   <div class="mt-5 bg-dark text-white p-4 rounded">
     <h2 class="mb-4 text-center">Events</h2>
     
+    <!-- Event Filter Buttons -->
+    <div class="mb-3">
+      <button 
+        class="btn btn-outline-light btn-sm me-2"
+        :class="{ active: selectedFilter === 'future' }"
+        @click="filterEvents('future')"
+      >
+        Upcoming
+      </button>
+      <button 
+        class="btn btn-outline-light btn-sm me-2"
+        :class="{ active: selectedFilter === 'past' }"
+        @click="filterEvents('past')"
+      >
+        Past
+      </button>
+      <button 
+        class="btn btn-outline-light btn-sm"
+        :class="{ active: selectedFilter === 'all' }"
+        @click="filterEvents('all')"
+      >
+        All
+      </button>
+    </div>
+    
     <!-- Loading Icon -->
     <div v-if="loading" class="text-center py-4">
       <i class="fa fa-spinner fa-spin fa-2x"></i> <!-- Add a spinner icon -->
@@ -47,9 +72,24 @@ const props = defineProps({
 
 const events = ref([]);
 const loading = ref(true); // Add loading state
+const selectedFilter = ref('future'); // Track selected filter
 
-async function getEvents() {
-  const response = await $fetch('https://api.chrispecmusic.com/events');
+async function getEvents(timeMin = null, timeMax = null) {
+  let url = 'https://api.chrispecmusic.com/events';
+  const params = new URLSearchParams();
+  
+  if (timeMin) {
+    params.append('timeMin', timeMin);
+  }
+  if (timeMax) {
+    params.append('timeMax', timeMax);
+  }
+  
+  if (params.toString()) {
+    url += '?' + params.toString();
+  }
+  
+  const response = await $fetch(url);
   events.value = JSON.parse(response).items.map((x) => {
     const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
     const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
@@ -71,6 +111,39 @@ async function getEvents() {
 const limitedEvents = computed(() => {
   return events.value.slice(0, props.limit);
 });
+
+// Helper functions for different event queries
+function getPastEvents() {
+  const today = new Date().toISOString().split('T')[0];
+  return getEvents(null, today);
+}
+
+function getAllEvents() {
+  return getEvents(null, null);
+}
+
+function getFutureEvents() {
+  return getEvents(); // Default behavior
+}
+
+// Filter events based on selection
+async function filterEvents(filter) {
+  selectedFilter.value = filter;
+  loading.value = true;
+  
+  switch (filter) {
+    case 'past':
+      await getPastEvents();
+      break;
+    case 'all':
+      await getAllEvents();
+      break;
+    case 'future':
+    default:
+      await getFutureEvents();
+      break;
+  }
+}
 
 onMounted(() => {
   getEvents();

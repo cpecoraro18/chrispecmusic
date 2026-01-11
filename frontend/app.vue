@@ -97,5 +97,9 @@ body {
   color: var(--secondary) !important;
 }
 
+.text-primary {
+  color: var(--white) !important;
+}
+
 
 </style>

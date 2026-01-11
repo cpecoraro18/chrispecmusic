@@ -71,13 +71,11 @@
 <script>
 
 import DiscographyList from '../components/DiscographyList.vue';
-import ServiceCards from '~/components/ServiceCards.vue';
 
 export default {
   name: 'HomePage',
   components: {
-    DiscographyList,
-    ServiceCards
+    DiscographyList
   },
 }
 </script>

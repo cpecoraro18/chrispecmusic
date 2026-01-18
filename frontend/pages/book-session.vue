@@ -168,11 +168,24 @@
     </div>
   </div>
 
+
+  <div class="container">
+    <div class="w-100 border-bottom"></div>
+  </div> 
+
   <!-- GET IN TOUCH CTA -->
   <div class="container-fluid py-3">
     <div class="row text-center">
       <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
       <p class="lead">Have questions or want to book a session? Let’s connect!</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center">
+        <p class="lead d-flex justify-content-center align-items-center">
+          <i class="fa fa-envelope me-2"></i>
+          <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+        </p>
+      </div>
     </div>
     <div class="row mt-2 mb-4">
       <div class="col-lg-6 mx-auto text-center">
@@ -226,7 +239,7 @@ function toggleFaq(i) {
 }
 
 useHead({
-  title: 'Book a Session - Chris Pecoraro',
+  title: 'Book - Chris Pecoraro',
   meta: [
     {
       hid: 'description',

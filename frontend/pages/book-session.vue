@@ -167,6 +167,20 @@
       </section>
     </div>
   </div>
+
+  <!-- GET IN TOUCH CTA -->
+  <div class="container-fluid py-3">
+    <div class="row text-center">
+      <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
+      <p class="lead">Have questions or want to book a session? Let’s connect!</p>
+    </div>
+    <div class="row mt-2 mb-4">
+      <div class="col-lg-6 mx-auto text-center">
+        <nuxt-link class="btn btn-outline-light mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
+      </div>
+    </div>
+  </div>
+  
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -240,10 +254,7 @@ useHead({
   padding: 1rem;
   font-size: 1.05rem;
 }
-.btn {
-  border-radius: 2rem;
-  font-weight: 600;
-}
+
 .alert {
   border-radius: 1rem;
 }

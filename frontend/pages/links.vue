@@ -30,10 +30,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LinksPage'
-}
+<script setup>
+  useHead({
+    title: 'Chris Pecoraro - Electric and Upright Bassist',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Chris Pecoraro is a professional electric and upright bassist based in Chicago. Explore his portfolio, music, and contact information.'
+      }
+    ]
+  });
 </script>
 
 <style scoped>

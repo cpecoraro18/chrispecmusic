@@ -22,6 +22,7 @@
   --brown: #5C4033;
   --brown-dark: #2E1F1A;
   --orange: #D17934;
+  --grey: #A9A9A9;
 
   --gray: #F0F0F0;
   --gray-rgb: 240, 240, 240;

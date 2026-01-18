@@ -204,6 +204,188 @@ export default {
           "rating": 5,
           "review": "Amazing job!",
           "link": "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "justinrayna",
+          country: "United States",
+          rating: 5,
+          review: "Excellent contrabass player, friendly and professional, worked with me to deliver precisely what I needed!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "tonycohen2000",
+          country: "United States",
+          rating: 5,
+          review: "Chris did the job perfectly, in a timely manner, with wonderful quality of sound and awesome result. Highly recommended! :)",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "franciskabango",
+          country: "United States",
+          rating: 5,
+          review: "Good result, talented musician.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "loops4producers",
+          country: "United States",
+          rating: 5,
+          review: "Great work and quality",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "pablomg89",
+          country: "Mexico",
+          rating: 4.3,
+          review: "chris delivered 2 takes which was super useful. really loved the tone of the bass, it was super solid and clean. i think it really helps the song and overall im very pleased with the result. can recommend for sure.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "chrisdoran1984",
+          country: "United Kingdom",
+          rating: 5,
+          review: "Great player, knew exactly what I needed and delivered with no fuss",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "kiowaearth123",
+          country: "United Kingdom",
+          rating: 5,
+          review: "Another professional bassline from mr bass man, highly recommend",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "holgarjacobsen",
+          country: "Faroe Islands",
+          rating: 5,
+          review: "Very nice to work with Cris looking forward another time",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "leoralala",
+          country: "Israel",
+          rating: 5,
+          review: "working with Chris was very good. he played by ear the written part and also made another take of him improvising on the take. the sound quality was good and his playing was on point. he worked with me until i was 100% ready, and any revision i asked for doing small fixes was very easy in communication and he was glad to provide it for me.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "adam_glen",
+          country: "United Kingdom",
+          rating: 5,
+          review: "Just listened mate, over the moon really. Finally got my track sounding how I visioned it. Thanks so much man!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "kbarchitek",
+          country: "United States",
+          rating: 5,
+          review: "I'm not sure what he did, but I love it! definitely something I can build on",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "jagosto089",
+          country: "United States",
+          rating: 5,
+          review: "Chris is an exceptional artist who has truly elevated my work. He is a master at the base and has a remarkable ability to bring my projects to life. I am incredibly grateful for artists like him who are always willing to collaborate and contribute their talents to my endeavors. I not only trust him as a collaborator but also as a friend.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "raindance_de",
+          country: "Germany",
+          rating: 5,
+          review: "Absolutely outstanding work! We hired Chris to record a double bass track for our band and the result completely blew us away. The tone, groove and musical sensitivity were perfect — exactly what the song needed. Communication was quick and friendly, the delivery was right on time, and the performance was flawless.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "cvan_kan",
+          country: "Israel",
+          rating: 5,
+          review: "Great work :)",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "one_d_hundred",
+          country: "Morocco",
+          rating: 5,
+          review: "Chris est d'une efficacité et d'une rapidité incroyable, j'ai commandé la veille pour recevoir son travail d'une grande qualité le lendemain, un grand merci à lui :-)",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "gluiu86",
+          country: "Italy",
+          rating: 5,
+          review: "Thank you for your help! It was a pleasure working with you and I'm looking forward to working with you more in the future.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "theimprovingmus",
+          country: "United States",
+          rating: 5,
+          review: "Chris did a great job recording upright bass for a project of mine! His tone and intonation were excellent, and his style was right on for the genre of the song. I would recommend him, and will certainly be using him again.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "mauxtumb",
+          country: "Germany",
+          rating: 4,
+          review: "Working with Chris was a fantastic experience! He responded quickly and professionally, and the upright bass tracks he recorded for my project added so much depth and soul. I sent him my audio and MIDI files, and in no time, he delivered exactly what I was looking for. The collaboration was smooth, and I highly recommend him.",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "kangaroocrucifx",
+          country: "United States",
+          rating: 5,
+          review: "Chris made my track come to life. Tasteful and present, warm and smooth. He was quick to respond and quick to deliver, and I'd gladly work with him again. Thanks again and I'll be back for more!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "smoochyface",
+          country: "United States",
+          rating: 5,
+          review: "Absolutely nailed it. Thanks so much!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "richopportunity",
+          country: "United States",
+          rating: 5,
+          review: "Great bassist! Provided tracks that work very well with the mix! Interpreted things perfectly!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "davidebiale",
+          country: "Italy",
+          rating: 5,
+          review: "Epic work!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "c_arthur_adams",
+          country: "United Kingdom",
+          rating: 5,
+          review: "Wonderful playing, great communication. Look no further !",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "eivindroysland",
+          country: "Norway",
+          rating: 4.7,
+          review: "Really good sounding bass that adds a lot of character to the mix. Nice working with Chris!",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "miketackett285",
+          country: "United States",
+          rating: 5,
+          review: "Played exactly what I wanted",
+          link: "https://www.fiverr.com/cpecoraro18"
+        },
+        {
+          name: "lousaskatoon",
+          country: "United States",
+          rating: 5,
+          review: "Efficient and impressive.",
+          link: "https://www.fiverr.com/cpecoraro18"
         }
       ]
     };
@@ -261,7 +443,6 @@ export default {
 
 .review-author a {
   color: inherit;
-  text-decoration: none;
 }
 
 .review-author a:hover {

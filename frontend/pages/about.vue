@@ -6,7 +6,7 @@
       </div>
       <div class="col-lg-7">
         <h1 class="mb-4">About</h1>
-        <p class="lead mb-4">
+        <p class="mb-4 fw-bold">
           Chris Pecoraro is an upright and electric bassist based in Chicago, recording and performing with artists locally and remotely around the world. He has completed over 100 remote recording sessions for songwriters, producers, and bands, providing bass tracks for projects across many styles and genres.
         </p>
         <p>

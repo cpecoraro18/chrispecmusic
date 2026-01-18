@@ -159,6 +159,11 @@
     margin-left: 10px;
 }
 
+.router-link-active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 991px) {
 
 

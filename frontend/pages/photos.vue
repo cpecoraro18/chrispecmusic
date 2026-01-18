@@ -80,54 +80,60 @@
 
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      photos: [],
-      modalPhoto: null,
-      token: null,
-      loadingPhotos: false,
-    };
-  },
-  mounted() {
-    this.fetchPhotos();
-  },
-  methods: {
-    async fetchPhotos() {
-      this.loadingPhotos = true;
-      try {
-       const url = new URL('https://api.chrispecmusic.com/photos');
-        if (this.token) {
-          url.searchParams.append('token', this.token);
+<script setup>
+  useHead({
+    title: 'Photos - Chris Pecoraro',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content: 'Explore the photo gallery of Chris Pecoraro, professional bassist.'
         }
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.images) {
-          this.photos = [
-            ...this.photos,
+    ]
+});
+
+  const photos = ref([]);
+  const modalPhoto = ref(null);
+  const token = ref(null);
+  const loadingPhotos = ref(false);
+
+  onMounted(() => {
+    fetchPhotos();
+  });
+
+  const fetchPhotos = async () => {
+    loadingPhotos.value = true;
+    try {
+      const url = new URL('https://api.chrispecmusic.com/photos');
+      if (token.value) {
+        url.searchParams.append('token', token.value);
+      }
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.images) {
+        photos.value = [
+            ...photos.value,
             ...data.images.map((image) => ({
               name: image.split('/').pop(),
               src: image,
             })),
           ];
-        }
-        if (data.token) {
-          this.token = data.token;
-        } else {
-          this.token = null; // No more photos to load
-        }
-      } catch (error) {
-        console.error('Error fetching photos:', error);
-      } finally {
-        this.loadingPhotos = false;
       }
-    },
-    openModal(photo) {
-      this.modalPhoto = photo;
+      if (data.token) {
+        token.value = data.token;
+      } else {
+        token.value = null; // No more photos to load
+      }
+    } catch (error) {
+      console.error('Error fetching photos:', error);
+    } finally {
+      loadingPhotos.value = false;
     }
-  }
-};
+  };
+
+  const openModal = (photo) => {
+    modalPhoto.value = photo;
+  };
 </script>
 
 <style>

@@ -36,6 +36,16 @@
 </template> 
 <script setup>
 
+useHead({
+    script: [
+        {
+            src: 'https://www.google.com/recaptcha/api.js?render=6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF',
+            async: true,
+            defer: true
+        },
+    ],
+});
+
 const name = ref('');
 const email = ref('');
 const message = ref('');

@@ -62,10 +62,10 @@ exports.handler = async (event) => {
             Message: {
                 Body: {
                     Text: {
-                        Data: `🎸 New Contact Form Submission! 🎶\n\nFrom: ${body.email}\n\nMessage:\n${body.message}`
+                        Data: `You have a new booking inquiry from your website.\n\nReply to: ${body.email}\n\nMessage:\n${body.message}`
                     }
                 },
-                Subject: { Data: '🎵 New Contact Form Submission - ChrisPecMusic.com 🎵' }
+                Subject: { Data: 'New Booking Inquiry - Chris Pec Music' }
             },
             Source: EMAIL_ADDRESS
         };

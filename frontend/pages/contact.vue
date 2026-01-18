@@ -1,5 +1,5 @@
 <template>
-  <div class="container vh-100 d-flex flex-column align-items-center py-5">
+  <div class="container d-flex flex-column align-items-center py-5" style="flex: 1;">
     <h1 class="mb-4 text-center">Get In Touch</h1>
     <div class="row w-100 align-items-center justify-content-center">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
@@ -31,3 +31,6 @@
         ]
     });
 </script>
+
+<style scoped>
+</style>

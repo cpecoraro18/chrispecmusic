@@ -6,17 +6,23 @@
                 <form @submit.prevent="submitForm" class="mt-4" v-if="!thankYouMessage">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" v-model="name" placeholder="Your name" required>
+                        <input type="text" class="form-control" id="name" v-model="name" placeholder="Your name" required :disabled="isLoading">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" v-model="email" placeholder="Your email address" required>
+                        <input type="email" class="form-control" id="email" v-model="email" placeholder="Your email address" required :disabled="isLoading">
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" v-model="message" rows="3" placeholder="Your message" required></textarea>
+                        <textarea class="form-control" id="message" v-model="message" rows="3" placeholder="Your message" required :disabled="isLoading"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-light">Submit</button>
+                    <button type="submit" class="btn btn-outline-light" :disabled="isLoading">
+                        <span v-if="isLoading">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Sending...
+                        </span>
+                        <span v-else>Submit</span>
+                    </button>
                 </form>
                 <div v-if="thankYouMessage" class="mt-4 alert alert-success" role="alert">
                     {{ thankYouMessage }}
@@ -35,7 +41,13 @@ const email = ref('');
 const message = ref('');
 const thankYouMessage = ref('');
 const errorMessage = ref('');
+const isLoading = ref(false);
+
 const submitForm = async () => {
+    if (isLoading.value) return;
+    isLoading.value = true;
+    errorMessage.value = '';
+    thankYouMessage.value = '';
     try {
         if (typeof grecaptcha !== 'undefined') {
             grecaptcha.ready(function() {
@@ -69,6 +81,8 @@ const submitForm = async () => {
                     } catch (error) {
                         console.error('A problem occurred while sending the message.', error);
                         errorMessage.value = 'Something went wrong. Please try again later.';
+                    } finally {
+                        isLoading.value = false;
                     }
                 });
             });
@@ -78,6 +92,7 @@ const submitForm = async () => {
     } catch (error) {
         console.error('A problem occurred while processing the form.', error);
         errorMessage.value = 'Something went wrong. Please try again later.';
+        isLoading.value = false;
     }
 };
 </script>

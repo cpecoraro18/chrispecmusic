@@ -30,7 +30,6 @@
             <audio
               :src="getAudioSrc(focusedSample)"
               controls
-              loop
               class="w-100 mt-2 compact-audio"
             ></audio>
             <div class="mt-2 small text-muted text-truncate" :title="getAudioFile(focusedSample)">
@@ -95,8 +94,8 @@ const samples = [
     withoutDrums: '/audio/lakland-slap.wav',
   },
   {
-    title: 'Upright Bass Pizz',
-    baseFile: 'upright-pizz',
+    title: 'Upright Bass',
+    baseFile: 'upright',
     withDrums: '/audio/upright-drums.wav',
     withoutDrums: '/audio/upright.wav',
   },

@@ -203,6 +203,7 @@ function focusSample(baseFile) {
 .sample-title {
   font-weight: 600;
   font-size: 1.1rem;
+  max-width: 70%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

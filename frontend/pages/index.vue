@@ -27,10 +27,6 @@
       </div>
     </div>
 
-    <div class="container mb-5">
-      <bass-audio-samples></bass-audio-samples>
-    </div>
-
     <discography-list></discography-list>
 
     <div class="bg-light py-5">

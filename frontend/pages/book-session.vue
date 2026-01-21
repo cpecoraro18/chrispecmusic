@@ -54,9 +54,6 @@
         <section class="row g-5 mb-5">
           <div class="p-4 mb-5">
             <h2 class="mb-4 border-bottom pb-3 text-center text-primary">Why Work With Me?</h2>
-            <p class="lead text-center mb-4">
-              I’m a professional bassist with extensive studio and live experience across a wide range of styles, from jazz and soul to pop, rock, orchestral, and beyond. My philosophy is to create bass parts that serve the song, feel great, and sit perfectly in the mix.
-            </p>
             <div class="mb-4 why-work-with-me-points row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 text-center">
               <div class="col">
                 <div class="card h-100 border-0 bg-white shadow-sm p-3">
@@ -98,17 +95,6 @@
           <p class="text-dark mb-3 text-center">
             Working with a remote bassist saves you studio costs, gear rental, and engineer fees—all included in the quote. The more tracks you order, the lower the per-track price.
           </p>
-          <ul class="list-unstyled mb-4">
-            <li class="mb-2 text-dark">
-              <strong>Flexible Packages:</strong> From a single track to multiple songs, you can bundle tracks for savings or spread them over time.
-            </li>
-            <li class="mb-2 text-dark">
-              <strong>Secure Payment:</strong> You’ll receive a secure payment link once you’re happy with the finished track.
-            </li>
-            <li class="mb-2 text-dark">
-              <strong>Revisions Included:</strong> Each package comes with a few free revisions so your track feels perfect.
-            </li>
-          </ul>
 
           <div class="row text-center g-4">
             <div class="col-md-4">

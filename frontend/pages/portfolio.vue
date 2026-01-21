@@ -7,6 +7,10 @@
       </div>
     </div>
 
+    <div class="container mb-5">
+      <bass-audio-samples></bass-audio-samples>
+    </div>
+
     <div class="mb-3">
       <discography-list></discography-list>
     </div>

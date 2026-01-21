@@ -27,9 +27,13 @@
       </div>
     </div>
 
+    <div class="container mb-5">
+      <bass-audio-samples></bass-audio-samples>
+    </div>
+
     <discography-list></discography-list>
 
-    <div class="bg-light-blue py-5">
+    <div class="bg-light py-5">
       <h3 class="text-dark fw-bold h2">Reviews</h3>
       <p class="lead text-dark mx-3">Read what my clients have to say about working with me.</p>
       <review-list></review-list>

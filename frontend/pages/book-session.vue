@@ -43,6 +43,11 @@
         </div>
       </section>
     </div>
+
+    <div class="container mb-5">
+      <bass-audio-samples></bass-audio-samples>
+    </div>
+
     <div class="container-fluid bg-dark pt-5">
       <!-- WHY WORK WITH ME (restyled, fewer emojis) -->
       <div class="container">
@@ -156,13 +161,14 @@
           </div>
         </div>
       </section>
-
+    </div>
+    <div class="container-fluid bg-light">
       <!-- REVIEWS -->
       <section>
-        <h2 class="text-center mb-4 border-bottom pb-3">Reviews</h2>
-        <p class="lead mx-3">Read what my clients have to say about working with me.</p>
-        <div class="mb-5 rounded overflow-hidden">
-          <review-list />
+        <div class="bg-light py-5">
+          <h3 class="text-dark fw-bold h2">Reviews</h3>
+          <p class="lead text-dark mx-3">Read what my clients have to say about working with me.</p>
+          <review-list></review-list>
         </div>
       </section>
     </div>
@@ -202,6 +208,10 @@ const faqs = [
   {
     q: 'Who is this service for?',
     a: 'Songwriters, producers, bands, and artists who want professional bass recorded remotely without booking studio time.'
+  },
+  {
+    q: 'What do you need from me to get started?',
+    a: 'A rough mix or demo of your track (WAV, MP3, etc.), tempo (BPM) is helpful, and any notes on style, tone, or feel you want.'
   },
   {
     q: 'What if I don’t know exactly what bass line I want?',

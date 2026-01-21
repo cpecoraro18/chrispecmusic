@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-3 bg-light-blue review-container">
+  <div class="container-fluid py-3 bg-light review-container">
     <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
       <div class="carousel-inner px-5">
         <div

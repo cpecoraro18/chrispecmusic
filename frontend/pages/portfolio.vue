@@ -84,10 +84,12 @@ export default {
         { title: "Sean McKee Band - Poison Ivy", url: "https://www.youtube.com/embed/_sUEwDyL70w?si=fOH6MAVO0AZMRWkf", genre: "Rock" },
         { title: "Sean McKee Band - Color Outside the Lines", url: "https://www.youtube.com/embed/xjNzCIJnm7I?si=rVDUIRxabTValGlt", genre: "Rock" },
         { title: "Sean McKee Band - Monster - Live at Madcats", url: "https://www.youtube.com/embed/u-lH9EmIN_o?si=B9FS9ooxKwxLu2Gl", genre: "Rock" },
+        { title: "Joey Acopiado - I Might Let You Down", url: "https://www.youtube.com/embed/zyLH9_pgqCA?si=77InEn_rPejE-81X", genre: "Rock" },
 
         // --- Blues ---
         { title: "Sean's Guitar Lounge Ft Brandon Simmons - Sweet Little Angel Cover", url: "https://www.youtube.com/embed/4dWC3QAfFyY?si=Gb6jWZif7R_f89nz", genre: "Blues" },
         { title: "Sean's Guitar Lounge - Suburban Glory Cover", url: "https://www.youtube.com/embed/8d3lh_wB8Zk?si=V-A1PNsEe9q9Xo7-", genre: "Blues" },
+        { title: "Sean's Guitar Lounge - I Wouldn't Treat a Dog Cover", url: "https://www.youtube.com/embed/8VqFfWw5Roo?si=Ycx4d_XqY_p2PzHi", genre: "Blues" },
 
         // --- Jazz ---
         { title: "University of Minnesota Jazz Ensemble I 2019 Spring Concert", url: "https://www.youtube.com/embed/VwqKnToOPik?si=cKkhHEbjdgcKHF4B", genre: "Jazz" },

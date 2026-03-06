@@ -26,8 +26,10 @@ export default {
     data() {
         return {
             discography: [
+                { name: 'Blades and Bullets', artist: 'Tyler Nail', image: '/img/albums/BladesandBullets.jpg', year: "2026", link: 'https://open.spotify.com/album/2Y3E1IBYxaMLrT14dZCobN?si=fzY5enVITxeg8ULQr5Ld9w' },
                 { name: 'Family Pt. 2', artist: 'Tyler Nail', image: '/img/albums/FamilyPt2.jpg', year: "2025", link: 'https://open.spotify.com/album/5Kg1EusZf3DbtTxqcdL6on?si=Dru1ZG5PSsGXv27v04_biA' },
                 { name: 'Family', artist: 'Tyler Nail', image:  '/img/albums/Family.jpg', year: "2025", link: 'https://open.spotify.com/album/087F8TL4iU2i9R6M9kQLRk?si=chERu7rITpaeAfBMro1tNw' },
+                { name: 'Haunted Houses', artist: 'Tyler Nail', image: '/img/albums/HauntedHouses.jpg', year: "2024", link: 'https://open.spotify.com/album/58OClXQ0nt2smCWe3teUou?si=ljG23vrBSwmzU00hynytjA' },
                 { name: 'Advent of the Symphonina: Spreading the Joy of Symphonic Music to Young Audiences Around the World',  artist: 'The 2024 International Symphonina Orchestra', image:'/img/albums/AdventoftheSymphonina.jpeg', year: '2024', link: 'https://open.spotify.com/album/6qyRRoHPScyfYQcoqSkQnH?si=YpAMZ2SbQo6JBGbPr3L8Zg&nd=1&dlsi=cb332c81c38042c9'},
                 { name: 'In This Life', artist: 'Sean Mckee Band', image: '/img/albums/InThisLife.jpeg', year: "2023", link: 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ' },
                 { name: 'So Long My Queen', artist: 'Sean Mckee Band', image: '/img/albums/SoLongMyQueen.jpeg', year: "2022", link: 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA' },

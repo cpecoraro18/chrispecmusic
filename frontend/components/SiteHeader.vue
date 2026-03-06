@@ -13,6 +13,12 @@
                     <li class="nav-item">
                         <router-link to="/" class="nav-link" @click="closeNavbar">Home</router-link>
                     </li>
+                     <li class="nav-item">
+                        <router-link to="/about" class="nav-link" @click="closeNavbar">About</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/book-session" class="nav-link" @click="closeNavbar">Book Session</router-link>
+                    </li>
                     <li class="nav-item">
                         <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Portfolio</router-link>
                     </li>
@@ -151,6 +157,11 @@
     width: 1em;
     height: auto;
     margin-left: 10px;
+}
+
+.router-link-active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 991px) {

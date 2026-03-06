@@ -51,6 +51,17 @@ export default {
                 { name: 'YouTube', icon: '/youtube-logo.png' }
             ],
             discography: [
+                {
+                    name: 'Blades and Bullets',
+                    artist: 'Tyler Nail',
+                    image: '/img/albums/BladesandBullets.jpg',
+                    year: "2026",
+                    links: {
+                        'Spotify': 'https://open.spotify.com/album/2Y3E1IBYxaMLrT14dZCobN?si=fzY5enVITxeg8ULQr5Ld9w',
+                        'Apple Music': 'https://music.apple.com/us/album/blades-and-bullets-single/1882020234',
+                        'YouTube': 'https://www.youtube.com/watch?v=BKUFS1E5WuA&list=RDBKUFS1E5WuA&start_radio=1',
+                    }
+                },
                 { 
                     name: "Haunted Houses", 
                     artist: "Tyler Nail", 

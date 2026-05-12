@@ -11,7 +11,7 @@
             <img src="/img/ChrisPecMusicSmall.jpg" alt="Chris Pecoraro" class="img-fluid rounded shadow mb-4" style="max-height: 320px; object-fit: cover;" />
             <div class="contact-info">
                 <p>
-                Looking to book an online bass session? Head over to the <router-link to="/book-session">Book Session</router-link> page for a simple step-by-step guide. Have a specific idea or just want to get in touch? Use the form on the left—I’m happy to connect.
+                Looking to book an online bass session? Head over to the <router-link to="/book-session">Book Session</router-link> page for a simple step-by-step guide. Have a specific idea or just want to get in touch? Use the form to reach out — I’m happy to connect.
                 </p>
             </div>
         </div>

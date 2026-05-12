@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5 bg-dark text-white p-4 rounded">
+  <div class="mt-5 bg-dark text-white p-4 rounded events-list">
     <h2 class="mb-4 text-center">Events</h2>
     
     <!-- Event Filter Buttons -->
@@ -23,6 +23,7 @@
           Past Events
         </button>
         <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2026')">2026</a></li>
           <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2025')">2025</a></li>
           <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2024')">2024</a></li>
         </ul>
@@ -175,5 +176,15 @@ onMounted(() => {
 /* Add some margin for the spinner */
 .text-center i {
   margin-top: 50px;
+}
+@media (min-width: 992px) {
+  .events-list {
+    max-width: 75%;
+  }
+}
+
+.events-list {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

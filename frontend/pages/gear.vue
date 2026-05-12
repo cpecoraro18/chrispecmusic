@@ -92,7 +92,8 @@ const gearItems = ref([
   { name: 'Shure SM57 Microphone', type: 'Microphone', image: '/img/gear/Shure-SM57.png', description: 'Classic dynamic mic—works anywhere, sounds great.', link: 'https://amzn.to/4eguoQe' },
   { name: 'Electro-Voice RE20 Microphone', type: 'Microphone', image: '/img/gear/EV-RE20.png', description: 'Versatile dynamic mic perfect for bass amps and vocals.' },
   { name: 'Audio-Technica AT2038 Microphone', type: 'Microphone', image: '/img/gear/Audio-Technica-AT2038.png', description: 'Solid condenser mic for upright bass, vocals, and more.' },
-  { name: 'Soyuz 013 FET Microphone', type: 'Microphone', image: '/img/gear/Soyuz-013-FET.png', description: 'High-quality FET microphone with a warm, vintage sound.' }
+  { name: 'Soyuz 013 FET Microphone', type: 'Microphone', image: '/img/gear/Soyuz-013-FET.png', description: 'High-quality FET microphone with a warm, vintage sound.' },
+  { name: 'Audio-Technica AT4041 Microphone', type: 'Microphone', image: '/img/gear/Audio-Technica-AT4041.png', description: 'Small-diaphragm condenser mic with a bright, detailed sound. Great for upright bass.' },
 ]);
 
 const filteredGearItems = computed(() => {

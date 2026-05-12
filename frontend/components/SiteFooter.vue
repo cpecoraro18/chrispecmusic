@@ -1,7 +1,7 @@
 <template>
   <footer class="footer bg-dark text-white text-center py-3 mt-auto">
     <div class="container d-flex justify-content-between align-items-center">
-      <p class="mb-0">&copy; 2025 ChrisPecMusic</p>
+      <p class="mb-0">&copy; 2026 ChrisPecMusic</p>
       <div>
         <social-links></social-links>
       </div>

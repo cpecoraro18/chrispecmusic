@@ -117,8 +117,13 @@ const limitedEvents = computed(() => {
 });
 
 function getPastEvents(year = null) {
+  const thisYear = new Date().getFullYear();
   if (year) {
     const startOfYear = `${year}-01-01`;
+    if (year == thisYear) {
+      const today = new Date().toISOString().split('T')[0];
+      return getEvents(startOfYear, today);
+    }
     const endOfYear = `${year}-12-31`;
     return getEvents(startOfYear, endOfYear);
   } else {

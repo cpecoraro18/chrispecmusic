@@ -102,5 +102,22 @@ body {
   color: var(--white) !important;
 }
 
+.dropdown-menu {
+    background-color: rgba(46, 46, 46, 0.97);
+}
+.dropdown-item {
+    color: #fff;
+    transition: background 0.2s, color 0.2s;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #fff;
+    color: #222;
+}
+.dropdown-item.disabled, .dropdown-item:disabled {
+    color: #bbb;
+    background: none;
+    cursor: not-allowed;
+}
+
 
 </style>

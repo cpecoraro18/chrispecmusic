@@ -2,7 +2,9 @@
   <div id="app">
     <NuxtLayout>
         <SiteHeader/>
-        <NuxtPage/>
+        <main class="main-content">
+          <NuxtPage/>
+        </main>
         <SiteFooter/>
     </NuxtLayout>
   </div>
@@ -62,6 +64,15 @@ body {
   text-align: center;
   color: #ffffff;
   background-color: var(--bg-dark-blue);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .vh-100 {

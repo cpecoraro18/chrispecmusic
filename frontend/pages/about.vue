@@ -1,6 +1,6 @@
 <template>
-  <div class="container py-5">
-    <div class="row align-items-center">
+  <div class="container">
+    <div class="row align-items-center pt-5">
       <div class="col-lg-5 mb-4 mb-lg-0 text-center">
         <img src="/img/ChrisPecMusic.jpg" alt="Chris Pecoraro" class="img-fluid rounded shadow" style="max-height: 340px; object-fit: cover;" />
       </div>

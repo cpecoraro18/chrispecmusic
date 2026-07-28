@@ -1,232 +1,264 @@
 <template>
-  <div class="py-5">
-    <div class="container mb-5 pb-5">
-      <!-- HERO -->
-      <section class="mb-lg-5">
-        <h1 class="text-center mb-3">Book a Recording Session</h1>
-        <p class="lead text-center mb-1">
-          Hire a professional upright or electric bassist and get mix-ready tracks recorded remotely and delivered fast.
-        </p>
-        <p class="text-center">
-          Simple process • Multiple takes • Revisions included
-        </p>
-      </section>
-      <!-- MAIN ROW: IMAGE + CTA -->
-      <section class="row g-5 align-items-stretch flex-column-reverse flex-lg-row">
-        <div class="col-lg-6 d-flex flex-column gap-4 order-lg-1">
-          <div class="card border-0 flex-grow-1">
-            <div class="p-4 rounded-3">
-              <h2 class="mb-4 border-bottom pb-3 text-center">How It Works</h2>
-              <ol class="list-group list-group-numbered my-4 bg-transparent">
-                <li class="list-group-item bg-transparent border-0">
-                  <strong>Reach Out:</strong> Contact me via form, email, or call and tell me about your project.
-                </li>
-                <li class="list-group-item bg-transparent border-0">
-                  <strong>Share Your Music & Preferences:</strong> Send your track with references, notes, or a rough guide bass line, and let me know your preferred BPM, style, and tone. I can suggest what works best if you’re unsure.
-                </li>
-                <li class="list-group-item bg-transparent border-0">
-                  <strong>Recording:</strong> I record 2–3 takes with different approaches for you to choose from.
-                </li>
-                <li class="list-group-item bg-transparent border-0">
-                  <strong>Revisions:</strong> Request tweaks until the bass fits your track perfectly.
-                </li>
-                <li class="list-group-item bg-transparent border-0">
-                  <strong>Delivery:</strong> Receive the final mix-ready files and a secure payment link.
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 order-lg-2">
-        <!-- CONTACT / CTA -->
-          <contact-form></contact-form>
-        </div>
-      </section>
-    </div>
-
-    <div class="container mb-5">
-      <bass-audio-samples></bass-audio-samples>
-    </div>
-
-    <div class="container-fluid bg-dark pt-5">
-      <!-- WHY WORK WITH ME (restyled, fewer emojis) -->
+  <div>
+    <!-- ================= HERO ================= -->
+    <section class="section-tight">
       <div class="container">
-        <section class="row g-5 mb-5">
-          <div class="p-4 mb-5">
-            <h2 class="mb-4 border-bottom pb-3 text-center text-primary">Why Work With Me?</h2>
-            <div class="mb-4 why-work-with-me-points row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 text-center">
-              <div class="col">
-                <div class="card h-100 border-0 bg-white shadow-sm p-3">
-                  <div class="mb-2"><i class="fas fa-music fa-2x text-dark"></i></div>
-                  <h5 class="fw-bold text-dark mb-2">Experience</h5>
-                  <p class="mb-0 small text-dark">Hundreds of tracks for artists & producers worldwide.</p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-0 bg-white shadow-sm p-3">
-                  <div class="mb-2"><i class="fas fa-microphone-alt fa-2x text-dark"></i></div>
-                  <h5 class="fw-bold text-dark mb-2">Pro Studio Quality</h5>
-                  <p class="mb-0 small text-dark">High-end gear, mix-ready files, no extra engineering needed.</p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-0 bg-white shadow-sm p-3">
-                  <div class="mb-2"><i class="fas fa-handshake fa-2x text-dark"></i></div>
-                  <h5 class="fw-bold text-dark mb-2">Reliable & Easy</h5>
-                  <p class="mb-0 small text-dark">Clear communication, fast turnaround, and revisions included.</p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100 border-0 bg-white shadow-sm p-3">
-                  <div class="mb-2"><i class="fas fa-dollar-sign fa-2x text-dark"></i></div>
-                  <h5 class="fw-bold text-dark mb-2">Cost-Effective</h5>
-                  <p class="mb-0 small text-dark">World-class bass without studio or rental costs.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <h1 class="mb-3">Book a Remote Bass Session</h1>
+        <p class="lead measure mb-4">
+          Send me your track and I'll record upright or electric bass in my studio, then send back
+          mix-ready files. {{ TAKES_PER_TRACK }} takes to choose from, revisions included,
+          typically back within {{ TURNAROUND }}.
+        </p>
+        <a class="btn btn-cta" href="#start">Start a Project</a>
       </div>
-    </div>
-    <div class="container mb-5">
-      <section class="row g-5 mb-5">
-        <div class="p-4 rounded-3 mb-5 bg-light color-dark">
-          <h2 class="mb-4 border-bottom pb-3 text-center text-dark">Pricing & Payment</h2>
-          <p class="text-dark mb-3 text-center">
-            Working with a remote bassist saves you studio costs, gear rental, and engineer fees—all included in the quote. The more tracks you order, the lower the per-track price.
-          </p>
+    </section>
 
-          <div class="row text-center g-4">
-            <div class="col-md-4">
-              <div class="p-3 border rounded shadow-sm bg-light text-dark">
-                <h3 class="mb-2 text-dark">1 Track</h3>
-                <p class="mb-1">$100 per track</p>
-                <p class="mb-1">2–3 takes included</p>
-                <p class="mb-2">First few revisions free</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="p-3 border rounded shadow-sm bg-light text-dark">
-                <h3 class="mb-2 text-dark">3–4 Tracks</h3>
-                <p class="mb-1">$90 per track</p>
-                <p class="mb-1">2–3 takes included</p>
-                <p class="mb-2">First few revisions free</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="p-3 border rounded shadow-sm bg-light text-dark">
-                <h3 class="mb-2 text-dark">5+ Tracks</h3>
-                <p class="mb-1">$80 per track</p>
-                <p class="mb-1">2–3 takes included</p>
-                <p class="mb-2">First few revisions free</p>
-              </div>
+    <!-- ================= PROCESS + FORM ================= -->
+    <section id="start" class="section-tight">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-12 col-lg-6">
+            <h2 class="mb-4 text-lg-start">How it works</h2>
+            <ol class="process-list">
+              <li v-for="step in steps" :key="step.title">
+                <h3 class="h4 mb-1">{{ step.title }}</h3>
+                <p class="mb-0 text-muted">{{ step.copy }}</p>
+              </li>
+            </ol>
+          </div>
+          <div class="col-12 col-lg-6">
+            <contact-form
+              heading="Tell me about your project"
+              intro="A few details are enough to get started — I'll reply with a plan and a quote."
+              message-label="About your project"
+              message-placeholder="How many tracks, what style, upright or electric, and when you need it by. A link to a rough mix is welcome."
+              message-hint="Not sure yet? A rough description is fine — we can work the details out together."
+              submit-label="Send Project Details"
+              reassurance="No obligation, and you don't pay until you're happy with the takes."
+            ></contact-form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SAMPLES ================= -->
+    <section class="section-tight bg-light text-dark">
+      <div class="container">
+        <h2 class="text-dark mb-3">Hear the tones</h2>
+        <p class="lead text-dark measure mb-4">
+          Real takes from my studio across five basses, with both DI and amp tones. Toggle drums
+          on or off to hear how the part sits in a mix.
+        </p>
+        <bass-audio-samples></bass-audio-samples>
+      </div>
+    </section>
+
+    <!-- ================= WHAT YOU GET ================= -->
+    <section class="section-tight what-you-get">
+      <div class="container">
+        <h2 class="mb-5">What you get</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+          <div class="col" v-for="item in included" :key="item.title">
+            <div class="included-card h-100">
+              <i :class="item.icon" class="included-icon" aria-hidden="true"></i>
+              <h3 class="h4 mb-2">{{ item.title }}</h3>
+              <p class="mb-0 text-muted">{{ item.copy }}</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <p class="text-muted text-center mt-3 small">
-            Prices include all recording and engineering costs. Pay only when satisfied.
-          </p>
+    <!-- ================= PRICING ================= -->
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="mb-3">Pricing</h2>
+        <p class="lead measure mb-5">
+          One rate covers recording, engineering, and revisions — there's no studio time, gear
+          rental, or engineer fee on top. Per-track pricing drops as the project gets bigger.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-12 col-md-4" v-for="tier in pricing" :key="tier.tracks">
+            <div class="price-card h-100" :class="{ 'price-card--featured': tier.featured }">
+              <span v-if="tier.featured" class="price-flag">Best value</span>
+              <h3 class="h4 mb-1">{{ tier.tracks }}</h3>
+              <p class="price-amount mb-3">
+                <span class="price-number">${{ tier.price }}</span>
+                <span class="price-unit">per track</span>
+              </p>
+              <ul class="price-points">
+                <li>{{ TAKES_PER_TRACK }} takes included</li>
+                <li>Revisions included</li>
+                <li>Mix-ready files</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </section>
-      <!-- FAQ -->
-      <section class="row g-5 mb-5">
-        <div class="col-6 mx-auto border-bottom">
-          <h3 class="mb-3 text-primary text-center">Frequently Asked Questions</h3>
-        </div>
-        <div class="col-12">
-          <div class="faq-list mx-auto" style="max-width: 700px;">
-            <div v-for="(faq, i) in faqs" :key="i" class="faq-item mb-3">
-              <button class="faq-question btn btn-link w-100 text-start px-0" @click="toggleFaq(i)">
-                <strong>{{ faq.q }}</strong>
-                <span class="float-end"><i :class="openedFaq === i ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i></span>
+
+        <p class="pricing-note measure mt-4 mb-4">
+          You don't pay until you've heard the takes and you're happy with them.
+        </p>
+        <a class="btn btn-cta" href="#start">Start a Project</a>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section-tight faq-section">
+      <div class="container">
+        <h2 class="mb-5">Common questions</h2>
+        <div class="faq-list">
+          <div v-for="(faq, i) in faqs" :key="i" class="faq-item">
+            <h3 class="mb-0">
+              <button
+                class="faq-question"
+                :aria-expanded="openedFaq === i"
+                :aria-controls="`faq-answer-${i}`"
+                :id="`faq-question-${i}`"
+                @click="toggleFaq(i)"
+              >
+                <span>{{ faq.q }}</span>
+                <span class="faq-indicator" aria-hidden="true">{{ openedFaq === i ? '−' : '+' }}</span>
               </button>
-              <div v-if="openedFaq === i" class="faq-answer bg-white text-dark p-3 rounded shadow-sm mt-2">
-                {{ faq.a }}
-              </div>
+            </h3>
+            <div
+              v-show="openedFaq === i"
+              :id="`faq-answer-${i}`"
+              role="region"
+              :aria-labelledby="`faq-question-${i}`"
+              class="faq-answer"
+            >
+              {{ faq.a }}
             </div>
           </div>
         </div>
-      </section>
-    </div>
-    <div class="container-fluid bg-light">
-      <!-- REVIEWS -->
-      <section>
-        <div class="bg-light py-5">
-          <h3 class="text-dark fw-bold h2">Reviews</h3>
-          <p class="lead text-dark mx-3">Read what my clients have to say about working with me.</p>
-          <review-list></review-list>
-        </div>
-      </section>
-    </div>
-  </div>
+      </div>
+    </section>
 
-
-  <div class="container">
-    <div class="w-100 border-bottom"></div>
-  </div> 
-
-  <!-- GET IN TOUCH CTA -->
-  <div class="container-fluid py-3">
-    <div class="row text-center">
-      <h3 class="mx-auto mb-4 fw-bold h2">Get in Touch</h3>
-      <p class="lead">Have questions or want to book a session? Let’s connect!</p>
+    <!-- ================= REVIEWS ================= -->
+    <div class="bg-light pb-5">
+      <div class="text-center pt-5">
+        <h2 class="text-dark mb-2">What clients say</h2>
+        <p class="lead text-dark measure mb-0">
+          A selection of reviews from clients.
+        </p>
+      </div>
+      <review-list></review-list>
     </div>
-    <div class="row">
-      <div class="col-lg-6 mx-auto text-center">
-        <p class="lead d-flex justify-content-center align-items-center">
-          <i class="fa fa-envelope me-2"></i>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="mb-3">Ready when you are</h2>
+        <p class="lead measure mb-4">
+          Send over what you have and I'll come back with a plan and a quote. No obligation.
+        </p>
+        <a class="btn btn-cta" href="#start">Start a Project</a>
+        <p class="mt-4 mb-0">
+          <i class="fa fa-envelope me-2" aria-hidden="true"></i>
           <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
         </p>
       </div>
-    </div>
-    <div class="row mt-2 mb-4">
-      <div class="col-lg-6 mx-auto text-center">
-        <nuxt-link class="btn btn-outline-light mt-3 rounded-lg" to="/contact">Contact Me</nuxt-link>
-      </div>
-    </div>
+    </section>
   </div>
-  
 </template>
+
 <script setup>
 import { ref } from 'vue';
 
+// Kept in sync with the same constants on the homepage.
+const TURNAROUND = '2–3 days';
+const TAKES_PER_TRACK = '2–3';
+
+const steps = [
+  {
+    title: 'Send your track',
+    copy: 'A rough mix or demo, plus the tempo and any notes on style, tone, or feel. References or a rough guide bass line help, but are not required.',
+  },
+  {
+    title: 'We agree on the details',
+    copy: "I'll come back with a plan and a quote. If you're not sure what you want the bass to do, I'll suggest a few directions.",
+  },
+  {
+    title: 'I record your bass',
+    copy: `I cut ${TAKES_PER_TRACK} takes with different approaches so you have options, recorded and edited in my studio.`,
+  },
+  {
+    title: 'You request changes',
+    copy: 'Revisions are included. I adjust the part, tone, or feel until it fits the song.',
+  },
+  {
+    title: 'You get the files',
+    copy: 'Mix-ready stems land in your inbox with a payment link. Once the project is paid, the recordings are yours to use however you like.',
+  },
+];
+
+const included = [
+  {
+    icon: 'fas fa-music',
+    title: 'Experience',
+    copy: '100+ remote sessions for songwriters, producers, and bands worldwide.',
+  },
+  {
+    icon: 'fas fa-sliders',
+    title: 'Mix-ready files',
+    copy: 'Recorded and edited in my studio, so the stems drop straight into your session.',
+  },
+  {
+    icon: 'fas fa-rotate',
+    title: 'Revisions included',
+    copy: 'Changes to the part, tone, or feel are part of the price, not an extra.',
+  },
+  {
+    icon: 'fas fa-lock',
+    title: 'You own the tracks',
+    copy: 'Once the project is paid for, the recordings are yours with no further licensing.',
+  },
+];
+
+const pricing = [
+  { tracks: '1 track', price: 100, featured: false },
+  { tracks: '3–4 tracks', price: 90, featured: false },
+  { tracks: '5+ tracks', price: 80, featured: true },
+];
+
 const faqs = [
   {
-    q: 'Who is this service for?',
-    a: 'Songwriters, producers, bands, and artists who want professional bass recorded remotely without booking studio time.'
+    q: 'Who is this for?',
+    a: 'Songwriters, producers, bands, and artists who want professional bass on a record without booking studio time.',
   },
   {
     q: 'What do you need from me to get started?',
-    a: 'A rough mix or demo of your track (WAV, MP3, etc.), tempo (BPM) is helpful, and any notes on style, tone, or feel you want.'
+    a: 'A rough mix or demo of your track (WAV, MP3, or similar), the tempo if you know it, and any notes on style, tone, or feel.',
   },
   {
-    q: 'What if I don’t know exactly what bass line I want?',
-    a: 'That’s completely fine. Many projects start with only a rough idea. I’ll create musical bass parts that support your song and give you options to choose from.'
+    q: "What if I don't know what bass line I want?",
+    a: "That's normal — a lot of projects start with only a rough idea. I'll write parts that support the song and give you options to choose from.",
   },
   {
-    q: 'What happens if the first take isn’t quite right?',
-    a: 'Revisions are included. I’ll adjust the part, tone, or feel until it fits your track.'
+    q: "What if the first take isn't right?",
+    a: "Revisions are included. I'll adjust the part, tone, or feel until it fits your track.",
   },
   {
     q: 'What styles do you play?',
-    a: 'Jazz, soul, folk, rock, pop, and singer-songwriter projects.'
+    a: 'Jazz, soul, folk, rock, pop, blues, and singer-songwriter projects, on both upright and electric bass.',
   },
   {
-    q: 'Can you work on multiple songs or a full album?',
-    a: 'Yes. I regularly work on EPs and full albums, and I can keep tones and feel consistent across all tracks.'
+    q: 'Can you do a full EP or album?',
+    a: 'Yes. I regularly work on EPs and albums, and can keep tone and feel consistent across every track.',
   },
   {
     q: 'Do I own the bass recordings?',
-    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.'
+    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.',
   },
   {
     q: 'Can we talk before starting?',
-    a: 'Absolutely. You can schedule a call to talk through your project, goals, and any questions before recording begins.'
+    a: 'Of course. We can schedule a call to go through your project, goals, and any questions before recording begins.',
   },
   {
-    q: 'How does pricing and payment work?',
-    a: 'I’ll provide a quote based on your project size and requirements. Once you approve, you’ll receive a payment link and can pay securely online. Payment is only requested after you’re happy with the final recordings.'
-  }
+    q: 'How does payment work?',
+    a: "I'll quote based on the size and requirements of your project. Once you approve, you'll get a payment link and can pay securely online. Payment is only requested after you're happy with the final recordings.",
+  },
 ];
 
 const openedFaq = ref(null);
@@ -235,70 +267,221 @@ function toggleFaq(i) {
 }
 
 useHead({
-  title: 'Book - Chris Pecoraro',
+  title: 'Book a Remote Bass Session | Chris Pecoraro',
   meta: [
     {
       hid: 'description',
       name: 'description',
-      content: 'Hire a professional upright or electric bassist and get mix-ready tracks—recorded remotely and delivered fast.'
-    }
-  ]
+      content:
+        'Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $80 per track.',
+    },
+  ],
 });
 </script>
 
 <style scoped>
-.card {
-  border-radius: 1rem;
-}
-.card-body {
-  padding: 2rem;
-}
-.img-fluid {
-  max-height: 260px;
-  object-fit: cover;
-  width: 100%;
-}
-.list-group-item {
-  border: none;
-  padding: 1rem;
-  font-size: 1.05rem;
+/* ---------------- Process ---------------- */
+.process-list {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
-.alert {
-  border-radius: 1rem;
+.process-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3.25rem;
+  padding-bottom: 1.75rem;
 }
-input.form-control,
-textarea.form-control {
-  background-color: var(--bg-dark)
+
+.process-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(var(--text-color-rgb), 0.12);
+  border: 1px solid rgba(var(--text-color-rgb), 0.28);
+  font-weight: 700;
+  font-size: 0.95rem;
 }
+
+/* Connecting line between the step markers. */
+.process-list li::after {
+  content: '';
+  position: absolute;
+  left: 1.125rem;
+  top: 2.5rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background-color: rgba(var(--text-color-rgb), 0.2);
+}
+
+.process-list li:last-child {
+  padding-bottom: 0;
+}
+
+.process-list li:last-child::after {
+  display: none;
+}
+
+/* ---------------- What you get ---------------- */
+.what-you-get {
+  background-color: var(--blue-deep);
+}
+
+.included-card {
+  text-align: left;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background-color: rgba(var(--text-color-rgb), 0.06);
+  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+}
+
+.included-icon {
+  font-size: 1.35rem;
+  color: var(--blue);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+/* ---------------- Pricing ---------------- */
+.price-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background-color: rgba(var(--text-color-rgb), 0.06);
+  border: 1px solid rgba(var(--text-color-rgb), 0.16);
+}
+
+.price-card--featured {
+  background-color: rgba(var(--text-color-rgb), 0.11);
+  border-color: rgba(var(--text-color-rgb), 0.34);
+  box-shadow: var(--shadow-lg);
+}
+
+.price-flag {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-color);
+  color: var(--blue-deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.price-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.price-number {
+  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.price-unit {
+  font-size: 0.85rem;
+  color: var(--text-muted-on-dark);
+}
+
+.price-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.price-points li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-muted-on-dark);
+}
+
+.price-points li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.pricing-note {
+  color: var(--text-muted-on-dark);
+}
+
+/* ---------------- FAQ ---------------- */
+.faq-section {
+  background-color: var(--blue-deep);
+}
+
+.faq-list {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(var(--text-color-rgb), 0.18);
+}
+
 .faq-question {
-  font-size: 1.1rem;
-  color: var(--bs-body-color, #222);
-  text-decoration: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0;
   background: none;
   border: none;
-  outline: none;
-  box-shadow: none;
-  transition: color 0.2s;
+  color: var(--text-color);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
+
 .faq-question:hover {
-  color: var(--grey);
+  color: var(--blue);
 }
+
+.faq-indicator {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--blue);
+}
+
 .faq-answer {
-  font-size: 1rem;
+  padding: 0 0 1.25rem;
+  color: var(--text-muted-on-dark);
+  line-height: 1.65;
 }
-@media (min-width: 992px) {
-  .sticky-cta {
-    position: sticky;
-    top: 2rem;
-  }
-}
-@media (max-width: 991px) {
-  .order-lg-1 {
-    order: 2;
-  }
-  .order-lg-2 {
-    order: 1;
-  }
+
+/* ---------------- Final CTA ---------------- */
+.final-cta {
+  background-color: var(--blue-deep);
+  padding-block: var(--section-y);
+  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
 }
 </style>

@@ -4,7 +4,10 @@
     <div class="row w-100 align-items-center justify-content-center">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100">
-            <contact-form></contact-form>
+            <contact-form
+                heading="Send a message"
+                message-placeholder="Tell me what you have in mind — a recording project, a gig, or a question."
+            ></contact-form>
             </div>
         </div>
         <div class="col-md-6 text-center mb-4 mb-md-0 d-flex flex-column align-items-center">

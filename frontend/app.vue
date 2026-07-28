@@ -2,7 +2,9 @@
   <div id="app">
     <NuxtLayout>
         <SiteHeader/>
-        <NuxtPage/>
+        <main class="main-content">
+          <NuxtPage/>
+        </main>
         <SiteFooter/>
     </NuxtLayout>
   </div>

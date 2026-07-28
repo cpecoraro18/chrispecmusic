@@ -17,10 +17,20 @@
                         <router-link to="/about" class="nav-link" @click="closeNavbar">About</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/book-session" class="nav-link" @click="closeNavbar">Book Session</router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Portfolio</router-link>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="hireMeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hire Me
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="hireMeDropdown">
+                        <li>
+                          <router-link to="/book-session" class="dropdown-item" @click="closeNavbar">Recording Session</router-link>
+                        </li>
+                        <li>
+                          <router-link to="/book-live-gig" class="dropdown-item" @click="closeNavbar">Live Gig</router-link>
+                        </li>
+                      </ul>
                     </li>
                     <li class="nav-item">
                         <router-link to="/photos" class="nav-link" @click="closeNavbar">Photos</router-link>
@@ -144,6 +154,7 @@
     top: 0;
     width: 100%;
 }
+
 .logo {
         width: 9em;
         height: auto; /* maintain aspect ratio */

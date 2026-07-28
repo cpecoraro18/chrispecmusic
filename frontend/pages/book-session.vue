@@ -3,7 +3,7 @@
     <div class="container mb-5 pb-5">
       <!-- HERO -->
       <section class="mb-lg-5">
-        <h1 class="text-center mb-3">Book a Session</h1>
+        <h1 class="text-center mb-3">Book a Recording Session</h1>
         <p class="lead text-center mb-1">
           Hire a professional upright or electric bassist and get mix-ready tracks recorded remotely and delivered fast.
         </p>

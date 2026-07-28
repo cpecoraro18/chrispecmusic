@@ -67,6 +67,9 @@
    ========================================================================== */
 body {
   background-color: var(--bg-dark-blue);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #app {
@@ -76,6 +79,12 @@ body {
   text-align: center;
   color: var(--white);
   background-color: var(--bg-dark-blue);
+}
+
+.main-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .vh-100 {
@@ -120,4 +129,21 @@ body {
 
 .text-primary {
   color: var(--white) !important;
+}
+
+.dropdown-menu {
+  background-color: rgba(46, 46, 46, 0.97); /* matches --bg-dark at 97% opacity */
+}
+.dropdown-item {
+  color: var(--white);
+  transition: background 0.2s, color 0.2s;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: var(--white);
+  color: var(--text-color-dark);
+}
+.dropdown-item.disabled, .dropdown-item:disabled {
+  color: var(--grey);
+  background: none;
+  cursor: not-allowed;
 }

@@ -12,7 +12,7 @@
           </p>
           <div class="hero-actions">
             <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-            <a class="text-link" href="#listen">Listen first <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#listen">See more <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>

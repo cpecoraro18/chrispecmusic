@@ -1,71 +1,137 @@
 <template>
-  <div class="container vh-75">
-    <div class="text-center mt-5">
-      <h1>Chris Pecoraro</h1>
-      <h2 class="h5 text-muted">Electric and Upright Bassist | Chicago</h2>
-      <img src="/img/ChrisPecMusic.jpg" alt="Chris Pecoraro" class="img-fluid rounded mt-3 profile-image">
-    </div>
+  <div class="links-page">
+    <div class="container">
+      <img
+        src="/img/ChrisPecMusicSmall.jpg"
+        alt="Chris Pecoraro"
+        class="profile-image mb-4"
+        loading="eager"
+        decoding="async"
+      >
+      <h1 class="h2 mb-1">Chris Pecoraro</h1>
+      <p class="profile-tagline mb-5">Upright &amp; Electric Bass · Chicago</p>
 
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-12 text-center">
-          <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.chrispecmusic.com" target="_blank">
-            <i class="fa fa-globe me-2"></i>
-            Website</a>
-          <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/portfolio">
-            <i class="fa fa-video me-2"></i>
-            Portfolio
-          </nuxt-link>
-          <a class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" href="https://www.instagram.com/chrispecmusic" target="_blank">
-            <img src="/instagram-logo.png" alt="Instagram" class="social-icon me-1"/>
-            Instagram
-          </a>
-          <nuxt-link class="btn btn-outline-light m-4 m-md-2 d-block d-md-inline-block" to="/contact">
-            <i class="fa fa-envelope me-2"></i>
-            Contact Me
-          </nuxt-link>
-        </div>
-      </div>
+      <nav class="link-stack" aria-label="Links">
+        <nuxt-link class="link-button link-button--primary" to="/book-session">
+          <i class="fa fa-headphones" aria-hidden="true"></i>
+          Book a Recording Session
+        </nuxt-link>
+        <nuxt-link class="link-button" to="/book-live-gig">
+          <i class="fa fa-guitar" aria-hidden="true"></i>
+          Book a Live Gig
+        </nuxt-link>
+        <nuxt-link class="link-button" to="/portfolio">
+          <i class="fa fa-video" aria-hidden="true"></i>
+          Portfolio &amp; Music
+        </nuxt-link>
+        <nuxt-link class="link-button" to="/events">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          Upcoming Shows
+        </nuxt-link>
+        <a
+          class="link-button"
+          href="https://www.instagram.com/chrispecmusic"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+          Instagram
+        </a>
+        <a
+          class="link-button"
+          href="https://www.youtube.com/@ChrisPecMusicOfficial"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="fab fa-youtube" aria-hidden="true"></i>
+          YouTube
+        </a>
+        <nuxt-link class="link-button" to="/contact">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          Get in Touch
+        </nuxt-link>
+      </nav>
     </div>
   </div>
 </template>
 
 <script setup>
-  useHead({
-    title: 'Chris Pecoraro - Electric and Upright Bassist',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Chris Pecoraro is a professional electric and upright bassist based in Chicago. Explore his portfolio, music, and contact information.'
-      }
-    ]
-  });
+useHead({
+  title: 'Chris Pecoraro | Upright & Electric Bassist, Chicago',
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content:
+        'Chris Pecoraro, upright and electric bassist based in Chicago. Book a remote recording session or a live gig, watch performances, and get in touch.',
+    },
+  ],
+});
 </script>
 
 <style scoped>
-.text-center {
-  text-align: center;
+.links-page {
+  padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+}
+
+.links-page .container {
+  max-width: 30rem;
 }
 
 .profile-image {
-  max-width: 30em;
+  width: 9rem;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(var(--text-color-rgb), 0.25);
+  box-shadow: var(--shadow-lg);
 }
 
-@media (max-width: 767px) {
-  .profile-image {
-    max-width: 200px; /* Smaller size for mobile devices */
-  }
-}
-.social-icon {
-    width: 1em;
-    height: auto;
+.profile-tagline {
+  color: var(--text-muted-on-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
 }
 
-@media only screen and (max-width: 991px) {
-    .social-icon {
-        margin-left: 0;
-    }
+.link-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
 
+.link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(var(--text-color-rgb), 0.4);
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.link-button:hover,
+.link-button:focus-visible {
+  background-color: rgba(var(--text-color-rgb), 0.12);
+  border-color: var(--text-color);
+  color: var(--text-color);
+  transform: translateY(-2px);
+}
+
+.link-button--primary {
+  background-color: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--blue-deep);
+  box-shadow: var(--shadow-md);
+}
+
+.link-button--primary:hover,
+.link-button--primary:focus-visible {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: var(--blue-deep);
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 bg-dark text-white p-4 rounded events-list">
-    <h2 class="mb-4 text-center">Events</h2>
+    <h2 v-if="showHeading" class="mb-4 text-center">{{ heading }}</h2>
     
     <!-- Event Filter Buttons -->
     <div class="mb-3">
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div v-if="events.length > limit" class="text-center mt-3">
-        <a href="/events" class="text-info">See all</a>
+        <nuxt-link to="/events" class="text-info">See all events</nuxt-link>
       </div>
     </div>
 
@@ -70,6 +70,16 @@ const props = defineProps({
   limit: {
     type: Number,
     default: Infinity
+  },
+  heading: {
+    type: String,
+    default: 'Events'
+  },
+  // The /events page supplies its own <h1>, so it turns this off rather than
+  // rendering the word "Events" twice.
+  showHeading: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -93,7 +103,10 @@ async function getEvents(timeMin = null, timeMax = null) {
   }
   
   const response = await $fetch(url);
-  events.value = JSON.parse(response).items.map((x) => {
+  // $fetch parses JSON responses itself; the Lambda returns a JSON-encoded
+  // string body. Handle both so a change on either side doesn't blank the list.
+  const payload = typeof response === 'string' ? JSON.parse(response) : response;
+  events.value = (payload?.items ?? []).map((x) => {
     const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
     const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
     return {

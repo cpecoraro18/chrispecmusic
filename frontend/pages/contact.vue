@@ -1,39 +1,89 @@
 <template>
-  <div class="container d-flex flex-column align-items-center py-5" style="flex: 1;">
-    <h1 class="mb-4 text-center">Get In Touch</h1>
-    <div class="row w-100 align-items-center justify-content-center">
-        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <div class="w-100">
+  <div>
+    <section class="section-tight">
+      <div class="container">
+        <h1 class="mb-3">Get in touch</h1>
+        <p class="lead measure mb-5">
+          Recording project, live date, or just a question — send it over and I'll get back to
+          you.
+        </p>
+
+        <div class="row g-5 align-items-start justify-content-center">
+          <div class="col-12 col-lg-6">
             <contact-form
-                heading="Send a message"
-                message-placeholder="Tell me what you have in mind — a recording project, a gig, or a question."
+              heading="Send a message"
+              message-placeholder="Tell me what you have in mind — a recording project, a gig, or a question."
             ></contact-form>
+          </div>
+
+          <div class="col-12 col-lg-5 text-lg-start">
+            <div class="contact-aside">
+              <h2 class="h4 mb-2">Prefer email?</h2>
+              <p class="mb-4">
+                <a href="mailto:contact@chrispecmusic.com" class="contact-email">
+                  contact@chrispecmusic.com
+                </a>
+              </p>
+
+              <h2 class="h4 mb-2">Booking something specific?</h2>
+              <p class="text-muted mb-3">
+                These pages cover how it works, what's included, and what it costs.
+              </p>
+              <div class="aside-actions mb-4">
+                <nuxt-link class="btn btn-ghost" to="/book-session">Recording session</nuxt-link>
+                <nuxt-link class="btn btn-ghost" to="/book-live-gig">Live gig</nuxt-link>
+              </div>
+
+              <h2 class="h4 mb-2">Elsewhere</h2>
+              <social-links class="aside-social"></social-links>
             </div>
+          </div>
         </div>
-        <div class="col-md-6 text-center mb-4 mb-md-0 d-flex flex-column align-items-center">
-            <img src="/img/ChrisPecMusicSmall.jpg" alt="Chris Pecoraro" class="img-fluid rounded shadow mb-4" style="max-height: 320px; object-fit: cover;" />
-            <div class="contact-info">
-                <p>
-                Looking to book an online bass session? Head over to the <router-link to="/book-session">Recording Session</router-link> page for a simple step-by-step guide. Have a specific idea or just want to get in touch? Use the form to reach out — I’m happy to connect.
-                </p>
-            </div>
-        </div>
-    </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-    useHead({
-        title: 'Contact - Chris Pecoraro',
-        meta: [
-            {
-                hid: 'description',
-                name: 'description',
-                content: 'Contact Chris Pecoraro by email at contact@chrispecmusic.com.'
-            }
-        ]
-    });
+useHead({
+  title: 'Contact | Chris Pecoraro, Chicago Bassist',
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content:
+        'Get in touch with Chris Pecoraro about remote bass recording sessions or live bookings. Email contact@chrispecmusic.com or use the contact form.',
+    },
+  ],
+});
 </script>
 
 <style scoped>
+.contact-aside {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background-color: rgba(var(--text-color-rgb), 0.06);
+  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+}
+
+.contact-email {
+  font-weight: 600;
+  font-size: 1.05rem;
+  word-break: break-word;
+}
+
+.aside-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.aside-actions .btn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.aside-social {
+  display: block;
+}
 </style>

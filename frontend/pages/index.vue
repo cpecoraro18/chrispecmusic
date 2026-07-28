@@ -96,48 +96,6 @@
   font-size: 1.5em
 }
 
-.album {
-  transition: box-shadow .3s;
-  border-radius: 5px;
-  padding: 20px;
-  cursor: pointer;
-}
-
-.album:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.album-link:hover {
-  color: var(--primary)
-}
-
-.album-image {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
-
-.custom-card {
-  background-color: var(--bg-light);
-  color: var(--text-color-dark);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.custom-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  color: var(--primary);
-}
-
-.card-title {
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 2rem;
-}
-
 /* Mobile styles */
 @media only screen and (max-width: 991px) {
   .hero-image {

@@ -106,19 +106,14 @@ const filteredGearItems = computed(() => {
 
 <style scoped>
 .card-img-top {
-    object-fit: cover;
+    object-fit: contain; /* shows the full image rather than cropping */
     height: 200px;
+    width: 100%;
+    background-color: var(--secondary); /* blends the letterboxing around contain-fit images */
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
-}
-
-.card-img-top {
-    object-fit: contain; /* Adjusts the fitting behavior of the image to show it fully */
-    height: 200px; /* Keeps the height fixed */
-    width: 100%; /* Ensures the image takes up the full width of its container */
-    background-color: #808080; /* Optional: Adds a light background color to better blend letterboxing */
 }
 </style>

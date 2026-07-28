@@ -221,7 +221,7 @@ export default {
     transform: translate(-50%, -50%);
     background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(10px);
-    border: 1px solid #333;
+    border: 1px solid var(--border-dark);
     border-radius: 0.75rem;
     padding: 0;
     z-index: 1000;
@@ -246,21 +246,21 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--border-dark);
     background: rgba(0, 0, 0, 0.3);
     border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .popup-title {
     font-weight: 600;
-    color: #fff;
+    color: var(--white);
     font-size: 0.9rem;
 }
 
 .close-btn {
     background: none;
     border: none;
-    color: #999;
+    color: var(--grey);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
@@ -275,7 +275,7 @@ export default {
 
 .close-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: var(--white);
 }
 
 .platform-options {
@@ -288,7 +288,7 @@ export default {
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     text-decoration: none;
-    color: #fff;
+    color: var(--white);
     border-radius: 0.5rem;
     transition: all 0.2s ease;
     margin-bottom: 0.25rem;
@@ -301,7 +301,7 @@ export default {
 }
 
 .platform-option.disabled {
-    color: #666;
+    color: var(--secondary);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -316,7 +316,7 @@ export default {
 .coming-soon {
     margin-left: auto;
     font-size: 0.75rem;
-    color: #888;
+    color: var(--grey);
     font-style: italic;
 }
 

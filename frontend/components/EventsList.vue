@@ -161,15 +161,15 @@ onMounted(() => {
 }
 
 .list-group-item h5 {
-  color: #f8f9fa;
+  color: var(--text-color);
 }
 
 .list-group-item small {
-  color: #ccc;
+  color: var(--bg-grey);
 }
 
 .list-group-item p {
-  color: #bbb;
+  color: var(--grey);
 }
 
 /* Add some margin for the spinner */

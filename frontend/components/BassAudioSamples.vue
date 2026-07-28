@@ -1,13 +1,13 @@
 <template>
   <div class="mt-5 p-3 rounded bg-light text-dark">
-    <h2 class="mb-3 text-center" style="font-size:1.4rem;">Bass Audio Samples</h2>
+    <h2 class="mb-3 text-center samples-heading">Bass Audio Samples</h2>
     <div class="d-flex flex-column flex-md-row gap-3">
       <!-- Focused Sample -->
       <div class="flex-grow-1">
         <div class="card sample-card bg-white text-dark border-0 shadow-sm h-100">
           <div class="card-body d-flex flex-column justify-content-between p-3">
             <div class="d-flex align-items-center mb-2">
-              <span class="sample-title flex-grow-1" style="font-size:1.2rem;">{{ focusedSample.title }}</span>
+              <span class="sample-title flex-grow-1">{{ focusedSample.title }}</span>
               <div class="toggle-group ms-2">
                 <button
                   class="toggle-btn"
@@ -129,11 +129,15 @@ function focusSample(baseFile) {
 </script>
 
 <style scoped>
+.samples-heading {
+  font-size: 1.4rem;
+}
+
 .sample-card {
   min-height: 180px;
   font-size: 1rem;
-  background: #fff !important;
-  color: #222 !important;
+  background: var(--white) !important;
+  color: var(--text-color-dark) !important;
 }
 
 .side-list {
@@ -146,20 +150,20 @@ function focusSample(baseFile) {
 }
 .list-group-item {
   font-size: 0.98rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin-bottom: 4px;
   transition: background 0.15s, color 0.15s;
-  background: #fff !important;
-  color: #222 !important;
+  background: var(--white) !important;
+  color: var(--text-color-dark) !important;
 }
 .list-group-item:hover {
-  background: #e9ecef !important;
-  color: #17a2b8 !important;
+  background: var(--bg-light) !important;
+  color: var(--primary) !important;
   cursor: pointer;
 }
 .list-group-item.active, .list-group-item:active {
-  background: #17a2b8 !important;
-  color: #fff !important;
+  background: var(--primary) !important;
+  color: var(--white) !important;
 }
 .side-title {
   max-width: 120px;
@@ -170,35 +174,35 @@ function focusSample(baseFile) {
 .toggle-group {
   display: flex;
   border-radius: 16px;
-  background: #f0f0f0;
+  background: var(--bg-light);
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-sm);
 }
 .toggle-btn {
   border: none;
   background: none;
-  color: #888;
+  color: var(--secondary);
   font-size: 1rem;
   padding: 3px 8px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 .toggle-btn.active {
-  background: #17a2b8;
-  color: #fff;
+  background: var(--primary);
+  color: var(--white);
   transform: scale(1.08) rotate(-4deg);
-  box-shadow: 0 1px 4px #17a2b8aa;
+  box-shadow: var(--shadow-sm);
 }
 .toggle-btn:not(.active):hover {
-  color: #17a2b8;
-  background: #e9ecef;
+  color: var(--primary);
+  background: var(--bg-light);
 }
 .badge.bg-info {
-  background-color: #17a2b8 !important;
+  background-color: var(--primary) !important;
 }
 .badge.bg-secondary {
-  background-color: #6c757d !important;
-    color: #fff !important;
+  background-color: var(--secondary) !important;
+    color: var(--white) !important;
 }
 .sample-title {
   font-weight: 600;
@@ -212,9 +216,9 @@ function focusSample(baseFile) {
   height: 32px;
 }
 .bg-light {
-  background: #f8f9fa !important;
+  background: var(--bg-light) !important;
 }
 .text-dark {
-  color: #222 !important;
+  color: var(--text-color-dark) !important;
 }
 </style>

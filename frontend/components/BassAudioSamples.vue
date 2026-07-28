@@ -158,11 +158,11 @@ function focusSample(baseFile) {
 }
 .list-group-item:hover {
   background: var(--bg-light) !important;
-  color: var(--primary) !important;
+  color: var(--blue-dark) !important;
   cursor: pointer;
 }
 .list-group-item.active, .list-group-item:active {
-  background: var(--primary) !important;
+  background: var(--blue-dark) !important;
   color: var(--white) !important;
 }
 .side-title {
@@ -188,17 +188,17 @@ function focusSample(baseFile) {
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 .toggle-btn.active {
-  background: var(--primary);
+  background: var(--blue-dark);
   color: var(--white);
   transform: scale(1.08) rotate(-4deg);
   box-shadow: var(--shadow-sm);
 }
 .toggle-btn:not(.active):hover {
-  color: var(--primary);
+  color: var(--blue-dark);
   background: var(--bg-light);
 }
 .badge.bg-info {
-  background-color: var(--primary) !important;
+  background-color: var(--blue-dark) !important;
 }
 .badge.bg-secondary {
   background-color: var(--secondary) !important;

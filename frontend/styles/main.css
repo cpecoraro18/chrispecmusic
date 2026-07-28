@@ -73,6 +73,21 @@
   --bs-btn-bg: var(--primary) !important;
 }
 
+/* Bootstrap derives .container's padding from the container's own
+   --bs-gutter-x (1.5rem, so 12px a side) but .row's negative margins from the
+   row's value. A .g-5 row therefore pulls -24px against 12px of padding and
+   hangs 12px past the container on each side. At >=576px the container's
+   max-width leaves free margin that swallows it; below that the container is
+   full-bleed and the bleed becomes a 24px horizontal scroll on every page with
+   a g-5 row. Columns are stacked at that width, so capping the horizontal
+   gutter changes no visible spacing. Scoped under #app to beat .g-5, which
+   would otherwise win on source order at equal specificity. */
+@media (max-width: 575.98px) {
+  #app .row {
+    --bs-gutter-x: 1.5rem;
+  }
+}
+
 /* ==========================================================================
    3. Base Styles
    ========================================================================== */

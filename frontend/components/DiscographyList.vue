@@ -320,12 +320,23 @@ export default {
     font-style: italic;
 }
 
-@media only screen and (max-width: 576px) {
+/* The popup is centered on its album tile, but the tiles are only ~163px wide
+   at col-6 (and ~210px at col-sm-4), so a 250px popup centered on a
+   right-hand tile hangs off the right edge of the screen and the page
+   sidescrolls for as long as it is open. Below 768px, center it in the
+   viewport instead of on the tile, which cannot overflow at any width. */
+@media only screen and (max-width: 767.98px) {
     .platform-popup {
-        min-width: 200px;
-        transform: translate(-50%, -50%) scale(0.95);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 0;
+        width: max-content;
+        max-width: min(20rem, calc(100vw - 2.5rem));
     }
-    
+}
+
+@media only screen and (max-width: 576px) {
     .platform-popup-header {
         padding: 0.75rem 1rem;
     }

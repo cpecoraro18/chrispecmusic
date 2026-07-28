@@ -18,22 +18,22 @@
 
         <div class="genre-filter mb-5" role="group" aria-label="Filter videos by genre">
           <button
-            class="btn genre-btn"
-            :class="selectedGenre === 'all' ? 'genre-btn--active' : ''"
+            class="btn filter-pill"
+            :class="selectedGenre === 'all' ? 'filter-pill--active' : ''"
             :aria-pressed="selectedGenre === 'all'"
             @click="filterByGenre('all')"
           >
-            All <span class="genre-count">{{ videos.length }}</span>
+            All <span class="filter-count">{{ videos.length }}</span>
           </button>
           <button
             v-for="genre in genres"
             :key="genre"
-            class="btn genre-btn"
-            :class="selectedGenre === genre ? 'genre-btn--active' : ''"
+            class="btn filter-pill"
+            :class="selectedGenre === genre ? 'filter-pill--active' : ''"
             :aria-pressed="selectedGenre === genre"
             @click="filterByGenre(genre)"
           >
-            {{ genre }} <span class="genre-count">{{ countByGenre[genre] }}</span>
+            {{ genre }} <span class="filter-count">{{ countByGenre[genre] }}</span>
           </button>
         </div>
 
@@ -60,7 +60,7 @@
     </section>
 
     <!-- ================= CTA ================= -->
-    <section class="final-cta">
+    <section class="cta-band">
       <div class="container">
         <h2 class="mb-3">Want bass like this on your track?</h2>
         <p class="lead measure mb-4">
@@ -139,44 +139,6 @@ useHead({
 </script>
 
 <style scoped>
-.genre-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
-}
-
-.genre-btn {
-  border: 1px solid rgba(var(--text-color-rgb), 0.4);
-  color: var(--text-color);
-  border-radius: 999px;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.95rem;
-  font-weight: 550;
-  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-}
-
-.genre-btn:hover {
-  background-color: rgba(var(--text-color-rgb), 0.12);
-  color: var(--text-color);
-}
-
-.genre-btn--active,
-.genre-btn--active:hover {
-  background-color: var(--text-color);
-  border-color: var(--text-color);
-  color: var(--blue-deep);
-}
-
-.genre-count {
-  opacity: 0.6;
-  font-size: 0.85em;
-  margin-left: 0.15rem;
-}
-
-.genre-btn--active .genre-count {
-  opacity: 0.55;
-}
 
 .video-card {
   display: flex;
@@ -221,22 +183,6 @@ useHead({
   padding: 0.2rem 0.65rem;
 }
 
-.final-cta {
-  background-color: var(--blue-deep);
-  padding-block: var(--section-y);
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
-}
 
-.cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  justify-content: center;
-}
 
-@media (max-width: 575px) {
-  .cta-actions .btn {
-    flex: 1 1 100%;
-  }
-}
 </style>

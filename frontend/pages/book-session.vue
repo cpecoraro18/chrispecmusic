@@ -59,7 +59,7 @@
         <h2 class="mb-5">What you get</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
           <div class="col" v-for="item in included" :key="item.title">
-            <div class="included-card h-100">
+            <div class="included-item rule-top h-100">
               <i :class="item.icon" class="included-icon" aria-hidden="true"></i>
               <h3 class="h4 mb-2">{{ item.title }}</h3>
               <p class="mb-0 text-muted">{{ item.copy }}</p>
@@ -147,7 +147,7 @@
     </div>
 
     <!-- ================= FINAL CTA ================= -->
-    <section class="final-cta">
+    <section class="cta-band">
       <div class="container">
         <h2 class="mb-3">Ready when you are</h2>
         <p class="lead measure mb-4">
@@ -155,8 +155,7 @@
         </p>
         <a class="btn btn-cta" href="#start">Start a Project</a>
         <p class="mt-4 mb-0">
-          <i class="fa fa-envelope me-2" aria-hidden="true"></i>
-          <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+          <a href="mailto:contact@chrispecmusic.com" class="cta-email">contact@chrispecmusic.com</a>
         </p>
       </div>
     </section>
@@ -280,72 +279,14 @@ useHead({
 </script>
 
 <style scoped>
-/* ---------------- Process ---------------- */
-.process-list {
-  list-style: none;
-  counter-reset: step;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
-
-.process-list li {
-  counter-increment: step;
-  position: relative;
-  padding-left: 3.25rem;
-  padding-bottom: 1.75rem;
-}
-
-.process-list li::before {
-  content: counter(step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgba(var(--text-color-rgb), 0.12);
-  border: 1px solid rgba(var(--text-color-rgb), 0.28);
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-/* Connecting line between the step markers. */
-.process-list li::after {
-  content: '';
-  position: absolute;
-  left: 1.125rem;
-  top: 2.5rem;
-  bottom: 0.35rem;
-  width: 1px;
-  background-color: rgba(var(--text-color-rgb), 0.2);
-}
-
-.process-list li:last-child {
-  padding-bottom: 0;
-}
-
-.process-list li:last-child::after {
-  display: none;
-}
 
 /* ---------------- What you get ---------------- */
 .what-you-get {
   background-color: var(--blue-deep);
 }
 
-.included-card {
-  text-align: left;
-  padding: 1.75rem;
-  border-radius: var(--radius-lg);
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
-}
 
-.included-icon {
+.included-item .included-icon {
   font-size: 1.35rem;
   color: var(--blue);
   margin-bottom: 0.9rem;
@@ -434,54 +375,6 @@ useHead({
   background-color: var(--blue-deep);
 }
 
-.faq-list {
-  max-width: 46rem;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.faq-item {
-  border-bottom: 1px solid rgba(var(--text-color-rgb), 0.18);
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.15rem 0;
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.faq-question:hover {
-  color: var(--blue);
-}
-
-.faq-indicator {
-  flex-shrink: 0;
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--blue);
-}
-
-.faq-answer {
-  padding: 0 0 1.25rem;
-  color: var(--text-muted-on-dark);
-  line-height: 1.65;
-}
 
 /* ---------------- Final CTA ---------------- */
-.final-cta {
-  background-color: var(--blue-deep);
-  padding-block: var(--section-y);
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
-}
 </style>

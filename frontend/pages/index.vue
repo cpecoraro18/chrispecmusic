@@ -9,97 +9,69 @@
           <h1 class="hero-title">Remote Session Bass Player</h1>
           <p class="lead hero-sub">
             Upright and electric bass for your record, recorded in my studio and delivered
-            mix-ready. Send me your song — {{ TAKES_PER_TRACK }} takes to choose from, revisions
-            included, typically back within {{ TURNAROUND }}.
+            mix-ready.
           </p>
           <div class="hero-actions">
             <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-            <a class="btn btn-ghost" href="#samples">Hear the Bass</a>
+            <a class="text-link" href="#listen">Listen first <span aria-hidden="true">↓</span></a>
           </div>
-          <p class="hero-note mb-0">
-            100+ remote sessions delivered for songwriters, producers, and bands worldwide.
-          </p>
         </div>
       </div>
-      <a class="hero-scroll" href="#samples" aria-label="Scroll to bass samples">
+      <a class="hero-scroll" href="#listen" aria-label="Scroll to bass samples">
         <i class="fas fa-chevron-down" aria-hidden="true"></i>
       </a>
     </section>
 
-    <!-- ================= TRUST BAR ================= -->
-    <section class="trust-bar">
+    <!-- ================= LISTEN ================= -->
+    <section id="listen" class="section bg-light text-dark">
       <div class="container">
-        <ul class="trust-list">
-          <li v-for="stat in trustStats" :key="stat.label">
-            <span class="trust-value">{{ stat.value }}</span>
-            <span class="trust-label">{{ stat.label }}</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ================= HEAR THE BASS ================= -->
-    <section id="samples" class="section-tight bg-light text-dark">
-      <div class="container">
-        <h2 class="text-dark mb-3">Hear what you'd be getting</h2>
-        <p class="lead text-dark measure mb-4">
-          Real takes from my studio across five basses and both DI and amp tones. Toggle drums on
-          or off to hear how the part sits in a mix.
+        <p class="eyebrow eyebrow-dark mb-2">Listen</p>
+        <h2 class="text-dark mb-3">Bass samples</h2>
+        <p class="lead text-dark measure mb-5">
+          Takes from my studio across upright and electric, DI and amp. Toggle the drums to hear
+          how a part sits in a mix.
         </p>
         <bass-audio-samples></bass-audio-samples>
-        <div class="mt-4">
-          <nuxt-link class="btn btn-cta" to="/book-session">Get Bass on Your Track</nuxt-link>
-        </div>
       </div>
     </section>
 
-    <!-- ================= SERVICES ================= -->
+    <!-- ================= STUDIO & STAGE ================= -->
     <section class="section">
       <div class="container">
-        <h2 class="mb-3">Two ways to work together</h2>
-        <p class="lead text-muted measure mb-5">
-          Whether you need bass on a record or on a stage, you get the same thing: someone who
-          shows up prepared and plays what the song needs.
-        </p>
+        <p class="eyebrow mb-2">What I do</p>
+        <h2 class="mb-5">Two ways to work together</h2>
 
-        <div class="row g-4 justify-content-center">
+        <div class="row g-5">
           <div class="col-12 col-lg-6">
-            <article class="service-card service-card--primary h-100">
-              <span class="service-flag">Most requested</span>
-              <i class="fas fa-headphones service-icon" aria-hidden="true"></i>
-              <h3 class="mb-2">Remote Recording Sessions</h3>
-              <p class="service-copy">
-                Send a rough mix and any notes on feel or tone. You get back mix-ready stems that
-                drop straight into your session — no extra editing or engineering needed.
+            <article class="offer">
+              <h3 class="mb-3">Recording sessions</h3>
+              <p class="offer-copy">
+                Send a rough mix and any notes on feel or tone. I record it here and send back
+                stems that drop straight into your session — nothing left to edit or engineer.
               </p>
-              <ul class="service-points">
-                <li>{{ TAKES_PER_TRACK }} different takes to choose from</li>
-                <li>Upright, fretted, fretless, and slap tones</li>
-                <li>Revisions included until it fits</li>
-                <li>You own the recordings outright</li>
-              </ul>
-              <nuxt-link class="btn btn-cta w-100" to="/book-session">
-                Book a Recording Session
+              <p class="offer-detail">
+                Upright, fretted, fretless, and slap · {{ TAKES_PER_TRACK }} takes ·
+                revisions included · you own the recordings
+              </p>
+              <nuxt-link class="text-link" to="/book-session">
+                How it works <span aria-hidden="true">→</span>
               </nuxt-link>
             </article>
           </div>
 
           <div class="col-12 col-lg-6">
-            <article class="service-card h-100">
-              <i class="fas fa-guitar service-icon" aria-hidden="true"></i>
-              <h3 class="mb-2">Live Performance</h3>
-              <p class="service-copy">
-                Upright and electric bass for clubs, weddings, corporate events, festivals, and
-                touring dates — locally in Chicago or on the road.
+            <article class="offer">
+              <h3 class="mb-3">Live performance</h3>
+              <p class="offer-copy">
+                Upright and electric bass for clubs, weddings, private events, festivals, and
+                touring dates — in Chicago or on the road.
               </p>
-              <ul class="service-points">
-                <li>Reads charts or learns by ear</li>
-                <li>Jazz, blues, rock, pop, soul, and folk</li>
-                <li>Pro backline for any size room</li>
-                <li>Can help assemble a full band</li>
-              </ul>
-              <nuxt-link class="btn btn-ghost w-100" to="/book-live-gig">
-                Book a Live Gig
+              <p class="offer-detail">
+                Charts or by ear · jazz, blues, rock, pop, soul, folk · pro backline ·
+                full band on request
+              </p>
+              <nuxt-link class="text-link" to="/book-live-gig">
+                Check availability <span aria-hidden="true">→</span>
               </nuxt-link>
             </article>
           </div>
@@ -107,37 +79,31 @@
       </div>
     </section>
 
-    <!-- ================= HOW IT WORKS ================= -->
-    <section class="section-tight how-it-works">
+    <!-- ================= PROCESS ================= -->
+    <section class="section-tight process-section">
       <div class="container">
-        <p class="eyebrow mb-2">Simple process</p>
-        <h2 class="mb-5">From your demo to a finished bass track</h2>
-        <div class="row g-4">
+        <p class="eyebrow mb-2">The process</p>
+        <h2 class="mb-5">From demo to finished track</h2>
+        <div class="row g-5">
           <div class="col-12 col-md-4" v-for="(step, i) in steps" :key="step.title">
             <div class="step">
-              <span class="step-number">{{ i + 1 }}</span>
+              <span class="step-number" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
               <h3 class="h4 mb-2">{{ step.title }}</h3>
               <p class="text-muted mb-0">{{ step.copy }}</p>
             </div>
           </div>
         </div>
-        <div class="mt-5">
-          <nuxt-link class="btn btn-ghost" to="/book-session">
-            See pricing and full details
-          </nuxt-link>
-        </div>
       </div>
     </section>
 
-    <!-- ================= PROOF: PULL QUOTES ================= -->
-    <section class="section-tight quotes-section">
+    <!-- ================= QUOTES ================= -->
+    <section class="section">
       <div class="container">
-        <p class="eyebrow mb-2">In their words</p>
-        <h2 class="mb-5">Producers keep coming back</h2>
-        <div class="row g-4">
+        <p class="eyebrow mb-2">Reviews</p>
+        <h2 class="mb-5">What clients say</h2>
+        <div class="row g-5">
           <div class="col-12 col-md-4" v-for="review in featuredReviews" :key="review.name">
-            <figure class="quote-card h-100 mb-0">
-              <star-rating :rating="review.rating" variant="light" class="quote-stars" />
+            <figure class="quote mb-0">
               <blockquote class="quote-text">{{ review.review }}</blockquote>
               <figcaption class="quote-author">
                 {{ review.name }} <span class="quote-country">· {{ review.country }}</span>
@@ -150,10 +116,8 @@
 
     <div class="bg-light pb-5">
       <div class="text-center pt-5">
-        <h2 class="text-dark mb-2">What clients say</h2>
-        <p class="lead text-dark measure mb-3">
-          A selection of reviews from clients.
-        </p>
+        <h2 class="text-dark mb-2">More reviews</h2>
+        <p class="lead text-dark measure mb-0">A selection of reviews from clients.</p>
       </div>
       <review-list></review-list>
     </div>
@@ -184,7 +148,14 @@
               record remotely for artists around the world. I'm always glad to hear about a new
               project, in the studio or on stage.
             </p>
-            <nuxt-link class="btn btn-ghost mt-3" to="/about">More about me</nuxt-link>
+            <ul class="credit-list">
+              <li>Member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge</li>
+              <li>Shared stages with Buddy Guy, Doc Severinsen, and members of Prince's band</li>
+              <li>Played Buddy Guy's Legends, the Grand Ole Opry, Lincoln Hall, and Rum Boogie Café</li>
+            </ul>
+            <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
+              More about me <span aria-hidden="true">→</span>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -197,21 +168,18 @@
       </div>
     </section>
 
-    <!-- ================= FINAL CTA ================= -->
-    <section class="final-cta">
+    <!-- ================= CLOSING ================= -->
+    <section class="cta-band">
       <div class="container">
-        <h2 class="mb-3">Let's put bass on your track</h2>
+        <h2 class="mb-3">Got a project in mind?</h2>
         <p class="lead measure mb-4">
-          Tell me about your project and I'll come back with a plan and a quote. No obligation,
-          and you don't pay until you're happy with the takes.
+          Send it over and I'll come back with a plan and a quote.
         </p>
-        <div class="hero-actions justify-content-center">
-          <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-          <nuxt-link class="btn btn-ghost" to="/contact">Ask a Question</nuxt-link>
-        </div>
+        <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
         <p class="mt-4 mb-0">
-          <i class="fa fa-envelope me-2" aria-hidden="true"></i>
-          <a href="mailto:contact@chrispecmusic.com" class="fw-bold">contact@chrispecmusic.com</a>
+          <a href="mailto:contact@chrispecmusic.com" class="cta-email">
+            contact@chrispecmusic.com
+          </a>
         </p>
       </div>
     </section>
@@ -226,15 +194,6 @@ import { featuredReviews } from '~/data/reviews';
 const TURNAROUND = '2–3 days';
 const TAKES_PER_TRACK = '2–3';
 
-// Deliberately not derived from the reviews array — see the note in
-// data/reviews.js. "15+" is a floor claim (those countries are evidenced by
-// reviews on file), not an average or a total.
-const trustStats = [
-  { value: '100+', label: 'Remote sessions delivered' },
-  { value: '15+', label: 'Countries worked with' },
-  { value: TURNAROUND, label: 'Typical turnaround' },
-];
-
 const steps = [
   {
     title: 'Send your track',
@@ -246,18 +205,18 @@ const steps = [
   },
   {
     title: 'You get mix-ready stems',
-    copy: 'Final files land in your inbox ready to drop into your session. You pay once you are happy, and the recordings are yours to use however you like.',
+    copy: `Final files land in your inbox, usually within ${TURNAROUND}. You pay once you are happy, and the recordings are yours to use however you like.`,
   },
 ];
 
 useHead({
-  title: 'Chris Pecoraro | Remote Bass Recording & Chicago Session Bassist',
+  title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
   meta: [
     {
       hid: 'description',
       name: 'description',
       content:
-        'Hire a professional upright and electric bassist. Mix-ready remote bass tracks recorded in my Chicago studio, with multiple takes and revisions included. 100+ remote sessions for artists worldwide.',
+        'Remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
     },
   ],
   link: [
@@ -279,7 +238,6 @@ useHead({
   background-position: center 20%;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Separate scrim element so the gradient can be tuned per breakpoint without
@@ -290,10 +248,10 @@ useHead({
   inset: 0;
   background: linear-gradient(
       100deg,
-      rgba(12, 18, 23, 0.94) 0%,
-      rgba(12, 18, 23, 0.78) 38%,
-      rgba(12, 18, 23, 0.25) 68%,
-      rgba(12, 18, 23, 0.05) 100%
+      rgba(12, 18, 23, 0.92) 0%,
+      rgba(12, 18, 23, 0.72) 38%,
+      rgba(12, 18, 23, 0.2) 68%,
+      rgba(12, 18, 23, 0.02) 100%
     ),
     linear-gradient(to bottom, rgba(12, 18, 23, 0.55) 0%, rgba(12, 18, 23, 0) 30%);
 }
@@ -310,31 +268,21 @@ useHead({
 }
 
 .hero-title {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   text-wrap: balance;
 }
 
 .hero-sub {
   color: var(--text-muted-on-dark);
-  max-width: 34rem;
-  margin-bottom: 2rem;
+  max-width: 32rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-bottom: 1.75rem;
-}
-
-.hero-note {
-  font-size: 0.95rem;
-  color: var(--text-muted-on-dark);
-}
-
-.hero-note .fa-star {
-  color: #E8B931;
-  margin-right: 0.35rem;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .hero-scroll {
@@ -343,9 +291,9 @@ useHead({
   bottom: 1.75rem;
   transform: translateX(-50%);
   z-index: 1;
-  color: var(--text-muted-on-dark);
-  font-size: 1.25rem;
-  animation: heroBob 2.4s ease-in-out infinite;
+  color: rgba(var(--text-color-rgb), 0.6);
+  font-size: 1.1rem;
+  animation: heroBob 2.6s ease-in-out infinite;
 }
 
 .hero-scroll:hover {
@@ -364,8 +312,8 @@ useHead({
   .hero-scrim {
     background: linear-gradient(
       to bottom,
-      rgba(12, 18, 23, 0.72) 0%,
-      rgba(12, 18, 23, 0.6) 45%,
+      rgba(12, 18, 23, 0.7) 0%,
+      rgba(12, 18, 23, 0.58) 45%,
       rgba(12, 18, 23, 0.92) 100%
     );
   }
@@ -381,179 +329,64 @@ useHead({
   .hero-actions {
     justify-content: center;
   }
-  .hero-actions .btn {
-    flex: 1 1 15rem;
-  }
-}
-
-/* ---------------- Trust bar ---------------- */
-.trust-bar {
-  background-color: var(--blue-deep);
-  border-block: 1px solid rgba(var(--text-color-rgb), 0.12);
-  padding-block: 1.75rem;
-}
-
-.trust-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.trust-list li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.trust-value {
-  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.trust-label {
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  color: var(--text-muted-on-dark);
-}
-
-@media only screen and (max-width: 575px) {
-  .trust-list {
-    grid-template-columns: 1fr;
-    gap: 1.1rem;
-  }
 }
 
 /* ---------------- Eyebrow on light sections ---------------- */
 .eyebrow-dark {
-  color: rgba(0, 0, 0, 0.55);
+  color: rgba(0, 0, 0, 0.5);
 }
 
-/* ---------------- Services ---------------- */
-.service-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+/* ---------------- Offers ---------------- */
+/* Hairline rule rather than a bordered card: the boxed treatment read like a
+   pricing table, which is not the impression a musician's site wants to give. */
+.offer {
   text-align: left;
-  padding: 2.25rem;
-  border-radius: var(--radius-lg);
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  border-top: 1px solid rgba(var(--text-color-rgb), 0.28);
+  padding-top: 2rem;
 }
 
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(var(--text-color-rgb), 0.3);
-  background-color: rgba(var(--text-color-rgb), 0.09);
-}
-
-.service-card--primary {
-  background-color: rgba(var(--text-color-rgb), 0.11);
-  border-color: rgba(var(--text-color-rgb), 0.32);
-  box-shadow: var(--shadow-lg);
-}
-
-.service-flag {
-  position: absolute;
-  top: -0.75rem;
-  left: 2.25rem;
-  background-color: var(--text-color);
-  color: var(--blue-deep);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-}
-
-.service-icon {
-  font-size: 1.6rem;
-  color: var(--blue);
-  margin-bottom: 1rem;
-}
-
-.service-copy {
+.offer-copy {
   color: var(--text-muted-on-dark);
   margin-bottom: 1.25rem;
 }
 
-.service-points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.75rem;
-  flex-grow: 1;
+.offer-detail {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(var(--text-color-rgb), 0.62);
+  margin-bottom: 1.75rem;
 }
 
-.service-points li {
-  position: relative;
-  padding-left: 1.6rem;
-  margin-bottom: 0.6rem;
-  color: var(--text-muted-on-dark);
-}
-
-/* Drawn with a plain unicode check rather than a Font Awesome glyph: the FA kit
-   can render in SVG mode, in which case the icon webfont is never loaded and a
-   ::before glyph would silently fall back to tofu. */
-.service-points li::before {
-  content: '\2713';
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--blue);
-}
-
-/* ---------------- How it works ---------------- */
-.how-it-works {
+/* ---------------- Process ---------------- */
+.process-section {
   background-color: var(--blue-deep);
 }
 
 .step {
   text-align: left;
-  padding: 1.5rem 0 0;
-  border-top: 2px solid rgba(var(--text-color-rgb), 0.22);
-  height: 100%;
 }
 
 .step-number {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--blue);
-  margin-bottom: 0.6rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: rgba(var(--text-color-rgb), 0.3);
+  margin-bottom: 1rem;
 }
 
-/* ---------------- Pull quotes ---------------- */
-.quote-card {
-  display: flex;
-  flex-direction: column;
+/* ---------------- Quotes ---------------- */
+.quote {
   text-align: left;
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  background-color: rgba(var(--text-color-rgb), 0.07);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
-}
-
-/* Sizing/colour live in StarRating itself; this only handles placement, to
-   avoid two same-specificity scoped rules fighting over the component root. */
-.quote-stars {
-  display: block;
-  margin-bottom: 0.9rem;
+  border-top: 1px solid rgba(var(--text-color-rgb), 0.28);
+  padding-top: 2rem;
 }
 
 .quote-text {
-  font-size: 1.02rem;
-  line-height: 1.65;
+  font-size: 1.1rem;
+  line-height: 1.7;
   margin-bottom: 1.25rem;
-  flex-grow: 1;
 }
 
 .quote-text::before {
@@ -565,14 +398,14 @@ useHead({
 }
 
 .quote-author {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-muted-on-dark);
+  letter-spacing: 0.04em;
+  color: rgba(var(--text-color-rgb), 0.62);
 }
 
 .quote-country {
   font-weight: 400;
-  opacity: 0.8;
 }
 
 /* ---------------- About ---------------- */
@@ -584,7 +417,7 @@ useHead({
 .credit-list {
   list-style: none;
   padding: 0;
-  margin: 1.5rem 0 0;
+  margin: 1.75rem 0 0;
   text-align: left; /* #app centers text globally; the dash markers need left */
 }
 
@@ -601,18 +434,9 @@ useHead({
   left: 0;
   top: 0.65em;
   width: 0.6rem;
-  height: 2px;
-  background-color: var(--blue);
+  height: 1px;
+  background-color: rgba(var(--text-color-rgb), 0.5);
 }
 
-/* ---------------- Final CTA ---------------- */
-.final-cta {
-  background-color: var(--blue-deep);
-  padding-block: var(--section-y);
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
-}
-
-.final-cta .hero-actions {
-  margin-bottom: 0;
-}
+/* ---------------- Closing ---------------- */
 </style>

@@ -10,7 +10,7 @@
       </div>
     </section>
 
-    <section class="final-cta">
+    <section class="cta-band">
       <div class="container">
         <h2 class="mb-3">Looking for a bass player?</h2>
         <p class="lead measure mb-4">
@@ -39,23 +39,3 @@ useHead({
 });
 </script>
 
-<style scoped>
-.final-cta {
-  background-color: var(--blue-deep);
-  padding-block: var(--section-y);
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
-}
-
-.cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  justify-content: center;
-}
-
-@media (max-width: 575px) {
-  .cta-actions .btn {
-    flex: 1 1 100%;
-  }
-}
-</style>

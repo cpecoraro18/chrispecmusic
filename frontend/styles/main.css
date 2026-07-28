@@ -339,7 +339,214 @@ html {
 }
 
 /* ==========================================================================
-   9. Accessibility
+   9. Page Furniture
+   Patterns that repeat across pages. These lived as near-identical copies in
+   six different page <style> blocks; keeping one definition here is what stops
+   the pages from drifting apart visually.
+   ========================================================================== */
+
+/* Closing call-to-action band that ends most pages. */
+.cta-band {
+  background-color: var(--blue-deep);
+  padding-block: var(--section-y);
+  border-top: 1px solid rgba(var(--text-color-rgb), 0.12);
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+}
+
+@media (max-width: 575px) {
+  .cta-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* The mailto fallback under a closing CTA, offered quietly so it doesn't
+   compete with the button above it. */
+#app .cta-email {
+  color: var(--text-muted-on-dark);
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--text-color-rgb), 0.3);
+  padding-bottom: 2px;
+}
+
+#app .cta-email:hover,
+#app .cta-email:focus-visible {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+
+/* Understated inline link. Used where a button would be too much pressure. */
+#app .text-link {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(var(--text-color-rgb), 0.45);
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+#app .text-link:hover,
+#app .text-link:focus-visible {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+
+/* Hairline rule above a block of content, in place of a bordered card. Content
+   sections use this; only genuine cards (media thumbnails, pricing) get boxes. */
+.rule-top {
+  border-top: 1px solid rgba(var(--text-color-rgb), 0.28);
+  padding-top: 2rem;
+  text-align: left;
+}
+
+/* Raised panel, for sidebars and pricing where a boxed surface is warranted. */
+.surface {
+  background-color: rgba(var(--text-color-rgb), 0.06);
+  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+  border-radius: var(--radius-lg);
+}
+
+/* Numbered vertical process list, shared by both booking pages. */
+.process-list {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.process-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3.25rem;
+  padding-bottom: 1.75rem;
+}
+
+.process-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(var(--text-color-rgb), 0.12);
+  border: 1px solid rgba(var(--text-color-rgb), 0.28);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Connecting line between the step markers. */
+.process-list li::after {
+  content: '';
+  position: absolute;
+  left: 1.125rem;
+  top: 2.5rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background-color: rgba(var(--text-color-rgb), 0.2);
+}
+
+.process-list li:last-child {
+  padding-bottom: 0;
+}
+
+.process-list li:last-child::after {
+  display: none;
+}
+
+/* Accordion FAQ, shared by both booking pages. */
+.faq-list {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(var(--text-color-rgb), 0.18);
+}
+
+#app .faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#app .faq-question:hover {
+  color: var(--blue);
+}
+
+.faq-indicator {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--blue);
+}
+
+.faq-answer {
+  padding: 0 0 1.25rem;
+  color: var(--text-muted-on-dark);
+  line-height: 1.65;
+}
+
+/* Filter pill row, shared by the portfolio and gear filters. */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+#app .filter-pill {
+  border: 1px solid rgba(var(--text-color-rgb), 0.4);
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 550;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+#app .filter-pill:hover {
+  background-color: rgba(var(--text-color-rgb), 0.12);
+  color: var(--text-color);
+}
+
+#app .filter-pill--active,
+#app .filter-pill--active:hover {
+  background-color: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--blue-deep);
+}
+
+.filter-count {
+  opacity: 0.6;
+  font-size: 0.85em;
+  margin-left: 0.15rem;
+}
+
+/* ==========================================================================
+   10. Accessibility
    ========================================================================== */
 #app a:focus-visible,
 #app button:focus-visible,

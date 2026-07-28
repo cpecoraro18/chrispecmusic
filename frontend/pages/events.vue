@@ -26,16 +26,9 @@
 </template>
 
 <script setup>
-useHead({
+useSeo({
   title: 'Upcoming Events | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Upcoming live performances and past shows featuring Chris Pecoraro on upright and electric bass around Chicago and beyond.',
-    },
-  ],
+  description: 'Upcoming live performances and past shows featuring Chris Pecoraro on upright and electric bass around Chicago and beyond.',
 });
 </script>
 

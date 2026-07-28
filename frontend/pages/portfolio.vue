@@ -125,16 +125,9 @@ function filterByGenre(genre) {
   selectedGenre.value = genre;
 }
 
-useHead({
+useSeo({
   title: 'Portfolio | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Records Chris Pecoraro has played bass on, plus live footage with the Sean McKee Band and others across rock, blues, jazz, and pop.',
-    },
-  ],
+  description: 'Records Chris Pecoraro has played bass on, plus live footage with the Sean McKee Band and others across rock, blues, jazz, and pop.',
 });
 </script>
 

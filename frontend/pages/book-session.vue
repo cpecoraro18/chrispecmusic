@@ -265,16 +265,9 @@ function toggleFaq(i) {
   openedFaq.value = openedFaq.value === i ? null : i;
 }
 
-useHead({
+useSeo({
   title: 'Book a Remote Bass Session | Chris Pecoraro',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $80 per track.',
-    },
-  ],
+  description: 'Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $80 per track.',
 });
 </script>
 

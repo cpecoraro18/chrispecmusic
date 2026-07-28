@@ -56,16 +56,9 @@
 </template>
 
 <script setup>
-useHead({
+useSeo({
   title: 'Chris Pecoraro | Upright & Electric Bassist, Chicago',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Chris Pecoraro, upright and electric bassist based in Chicago. Book a remote recording session or a live gig, watch performances, and get in touch.',
-    },
-  ],
+  description: 'Chris Pecoraro, upright and electric bassist based in Chicago. Book a remote recording session or a live gig, watch performances, and get in touch.',
 });
 </script>
 

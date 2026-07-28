@@ -45,16 +45,9 @@
 </template>
 
 <script setup>
-useHead({
+useSeo({
   title: 'Contact | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Get in touch with Chris Pecoraro about remote bass recording sessions or live bookings. Email contact@chrispecmusic.com or use the contact form.',
-    },
-  ],
+  description: 'Get in touch with Chris Pecoraro about remote bass recording sessions or live bookings. Email contact@chrispecmusic.com or use the contact form.',
 });
 </script>
 

@@ -72,16 +72,9 @@
 </template>
 
 <script setup>
-useHead({
+useSeo({
   title: 'Photos | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Photo gallery of Chris Pecoraro performing on upright and electric bass at shows and studio sessions.',
-    },
-  ],
+  description: 'Photo gallery of Chris Pecoraro performing on upright and electric bass at shows and studio sessions.',
 });
 
 const photos = ref([]);

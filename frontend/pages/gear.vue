@@ -117,16 +117,9 @@ const filteredGearItems = computed(() =>
     : gearItems.value
 );
 
-useHead({
+useSeo({
   title: 'Gear | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'The basses, amps, cabinets, pedals, and microphones Chris Pecoraro uses for remote recording sessions and live performances.',
-    },
-  ],
+  description: 'The basses, amps, cabinets, pedals, and microphones Chris Pecoraro uses for remote recording sessions and live performances.',
 });
 </script>
 

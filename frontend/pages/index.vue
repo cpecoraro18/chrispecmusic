@@ -209,16 +209,14 @@ const steps = [
   },
 ];
 
-useHead({
+useSeo({
   title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
-    },
-  ],
+  description: 'Remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
+});
+
+usePersonStructuredData();
+
+useHead({
   link: [
     // The hero image is the LCP element; preloading it shaves a round trip.
     { rel: 'preload', as: 'image', href: '/img/ChrisPecMusic.jpg', fetchpriority: 'high' },

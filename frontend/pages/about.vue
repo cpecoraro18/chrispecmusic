@@ -52,16 +52,9 @@
 </template>
 
 <script setup>
-useHead({
+useSeo({
   title: 'About | Chris Pecoraro, Chicago Bassist',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        "Chris Pecoraro is an upright and electric bassist based in Chicago. Member of the Sean McKee Band, 100+ remote recording sessions, and stages shared with Buddy Guy and Doc Severinsen.",
-    },
-  ],
+  description: "Chris Pecoraro is an upright and electric bassist based in Chicago. Member of the Sean McKee Band, 100+ remote recording sessions, and stages shared with Buddy Guy and Doc Severinsen.",
 });
 </script>
 

@@ -229,16 +229,9 @@ function toggleFaq(i) {
   openedFaq.value = openedFaq.value === i ? null : i;
 }
 
-useHead({
+useSeo({
   title: 'Book a Live Bass Player in Chicago | Chris Pecoraro',
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content:
-        'Hire an upright and electric bass player for live shows in Chicago and beyond — clubs, weddings, private events, festivals, and touring dates. Reads charts or plays by ear.',
-    },
-  ],
+  description: 'Hire an upright and electric bass player for live shows in Chicago and beyond — clubs, weddings, private events, festivals, and touring dates. Reads charts or plays by ear.',
 });
 </script>
 

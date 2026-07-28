@@ -39,11 +39,19 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: 'assets',
     head: {
-      title: 'Chris Pecoraro - Chicago Bass Player',
+      // Screen readers need this to pick a pronunciation; Nuxt does not set it.
+      htmlAttrs: { lang: 'en' },
+      title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '' }
+        {
+          name: 'description',
+          content:
+            'Remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready.'
+        },
+        { name: 'author', content: 'Chris Pecoraro' },
+        { name: 'theme-color', content: '#426075' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

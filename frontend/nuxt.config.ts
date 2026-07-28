@@ -1,9 +1,30 @@
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+import { generateSitemap } from './scripts/generate-sitemap.mjs'
+
+const rootDir = dirname(fileURLToPath(import.meta.url))
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: true,
   css: ['~/styles/main.css'],
+  hooks: {
+    // Rebuild public/sitemap.xml from the pages directory on every build. The
+    // previous sitemap was maintained by hand and had drifted badly — it listed
+    // /bio and /services, which 404, and omitted five real pages. Deriving it
+    // from the filesystem means adding a page is enough to list it.
+    // Lives here rather than in an npm script because CI invokes
+    // `npx nuxi generate` directly, which would skip package.json scripts.
+    'build:before': () => {
+      const routes = generateSitemap(
+        resolve(rootDir, 'pages'),
+        resolve(rootDir, 'public/sitemap.xml')
+      )
+      console.info(`[sitemap] wrote ${routes.length} routes to public/sitemap.xml`)
+    },
+  },
   vite: {
     build: {
       rollupOptions: {

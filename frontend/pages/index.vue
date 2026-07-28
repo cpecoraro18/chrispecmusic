@@ -8,8 +8,7 @@
           <p class="eyebrow mb-2">Chris Pecoraro · Chicago</p>
           <h1 class="hero-title">Remote Session Bass Player</h1>
           <p class="lead hero-sub">
-            Upright and electric bass for your record, recorded in my studio and delivered
-            mix-ready.
+            Professional Electric and Upright Bassist
           </p>
           <div class="hero-actions">
             <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>

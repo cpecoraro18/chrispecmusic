@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-3 bg-light review-container">
+  <div class="container-fluid py-3 review-container">
     <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
       <div class="carousel-inner px-5">
         <div
@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-md-4" v-for="(review, i) in chunk" :key="review.name + i">
               <figure class="text-center p-3 review-item h-100 mb-0">
-                <star-rating :rating="review.rating" class="mb-2" />
+                <star-rating :rating="review.rating" variant="light" class="mb-2" />
                 <blockquote class="mb-2 review-text">"{{ review.review }}"</blockquote>
                 <figcaption class="fst-italic review-author">
                   <a :href="FIVERR_PROFILE" target="_blank" rel="noopener">{{ review.name }}</a>
@@ -68,22 +68,25 @@ const chunkedReviews = computed(() => {
   min-height: 15em; /* 200px / 16 */
 }
 
+/* Translucent surface matching the cards elsewhere on the site, rather than a
+   light grey tile on a light band. */
 .review-item {
-  background-color: var(--bg-grey);
-  border-radius: 0.625em; /* 10px / 16 */
-  padding: 1.25em; /* 20px / 16 */
-  margin: 0.3125em; /* 5px / 16 */
+  background-color: rgba(var(--text-color-rgb), 0.07);
+  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+  border-radius: var(--radius-md);
+  padding: 1.25em;
+  margin: 0.3125em;
 }
 
 .review-text {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--text-color-dark);
+  color: var(--text-color);
 }
 
 .review-author {
   font-size: 0.875rem;
-  color: var(--blue-deep);
+  color: var(--text-muted-on-dark);
 }
 
 .review-author a {
@@ -92,6 +95,7 @@ const chunkedReviews = computed(() => {
 
 .review-author a:hover {
   text-decoration: underline;
+  color: var(--white);
 }
 
 .review-country {
@@ -110,9 +114,8 @@ const chunkedReviews = computed(() => {
   height: 2.25em;
   padding: 0.5em;
   border-radius: 50%;
-  background-color: var(--bg-dark);
+  background-color: rgba(var(--text-color-rgb), 0.14);
   background-origin: content-box;
-  box-shadow: var(--shadow-md);
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -120,7 +123,7 @@ const chunkedReviews = computed(() => {
 .carousel-control-prev:focus .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon,
 .carousel-control-next:focus .carousel-control-next-icon {
-  background-color: var(--bg-black);
+  background-color: rgba(var(--text-color-rgb), 0.3);
   transform: scale(1.08);
 }
 
@@ -133,12 +136,12 @@ const chunkedReviews = computed(() => {
 }
 
 .carousel-item {
-  color: var(--text-color-dark);
+  color: var(--text-color);
 }
 
 @media only screen and (max-width: 991px) {
   .review-container {
-    min-height: 40em; /* 200px / 16 */
+    min-height: 40em;
   }
 }
 </style>

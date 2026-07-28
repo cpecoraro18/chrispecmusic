@@ -47,7 +47,7 @@ export function usePersonStructuredData() {
   const services = {
     '@type': 'ProfessionalService',
     '@id': `${SITE_URL}/#service`,
-    name: 'Chris Pecoraro — Session Bass',
+    name: 'Chris Pecoraro Session Bass',
     url: SITE_URL,
     image: `${SITE_URL}/img/BuddyGuys.jpg`,
     provider: { '@id': `${SITE_URL}/#chris` },

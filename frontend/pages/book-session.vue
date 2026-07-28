@@ -29,10 +29,10 @@
           <div class="col-12 col-lg-6">
             <contact-form
               heading="Tell me about your project"
-              intro="A few details are enough to get started — I'll reply with a plan and a quote."
+              intro="A few details are enough to get started, and I'll reply with a plan and a quote."
               message-label="About your project"
               message-placeholder="How many tracks, what style, upright or electric, and when you need it by. A link to a rough mix is welcome."
-              message-hint="Not sure yet? A rough description is fine — we can work the details out together."
+              message-hint="Not sure yet? A rough description is completely fine, and we can work the details out together."
               submit-label="Send Project Details"
               reassurance="No obligation, and you don't pay until you're happy with the takes."
             ></contact-form>
@@ -42,10 +42,10 @@
     </section>
 
     <!-- ================= SAMPLES ================= -->
-    <section class="section-tight bg-light text-dark">
+    <section class="section-tight listen-section">
       <div class="container">
-        <h2 class="text-dark mb-3">Hear the tones</h2>
-        <p class="lead text-dark measure mb-4">
+        <h2 class="mb-3">Hear the tones</h2>
+        <p class="lead text-muted measure mb-4">
           Real takes from my studio across five basses, with both DI and amp tones. Toggle drums
           on or off to hear how the part sits in a mix.
         </p>
@@ -74,7 +74,7 @@
       <div class="container">
         <h2 class="mb-3">Pricing</h2>
         <p class="lead measure mb-5">
-          One rate covers recording, engineering, and revisions — there's no studio time, gear
+          One rate covers recording, engineering, and revisions. There's no studio time, gear
           rental, or engineer fee on top. Per-track pricing drops as the project gets bigger.
         </p>
 
@@ -136,15 +136,15 @@
     </section>
 
     <!-- ================= REVIEWS ================= -->
-    <div class="bg-light pb-5">
-      <div class="text-center pt-5">
-        <h2 class="text-dark mb-2">What clients say</h2>
-        <p class="lead text-dark measure mb-0">
+    <section class="section-tight reviews-section">
+      <div class="container">
+        <h2 class="mb-2">What clients say</h2>
+        <p class="lead text-muted measure mb-4">
           A selection of reviews from clients.
         </p>
       </div>
       <review-list></review-list>
-    </div>
+    </section>
 
     <!-- ================= FINAL CTA ================= -->
     <section class="cta-band">
@@ -166,17 +166,17 @@
 import { ref } from 'vue';
 
 // Kept in sync with the same constants on the homepage.
-const TURNAROUND = '2–3 days';
-const TAKES_PER_TRACK = '2–3';
+const TURNAROUND = '2 to 3 days';
+const TAKES_PER_TRACK = 'two or three';
 
 const steps = [
   {
     title: 'Send your track',
-    copy: 'A rough mix or demo, plus the tempo and any notes on style, tone, or feel. References or a rough guide bass line help, but are not required.',
+    copy: 'Send a rough mix or demo, along with the tempo and any notes on style, tone, or feel. References or a rough guide bass line help, but they are not required.',
   },
   {
     title: 'We agree on the details',
-    copy: "I'll come back with a plan and a quote. If you're not sure what you want the bass to do, I'll suggest a few directions.",
+    copy: "I'll come back with a plan and a quote. If you're not sure what you want the bass to do, I'm happy to suggest a few directions.",
   },
   {
     title: 'I record your bass',
@@ -184,7 +184,7 @@ const steps = [
   },
   {
     title: 'You request changes',
-    copy: 'Revisions are included. I adjust the part, tone, or feel until it fits the song.',
+    copy: "Revisions are included, so I'll adjust the part, tone, or feel until it fits the song.",
   },
   {
     title: 'You get the files',
@@ -217,47 +217,47 @@ const included = [
 
 const pricing = [
   { tracks: '1 track', price: 100, featured: false },
-  { tracks: '3–4 tracks', price: 90, featured: false },
+  { tracks: '3 to 4 tracks', price: 90, featured: false },
   { tracks: '5+ tracks', price: 80, featured: true },
 ];
 
 const faqs = [
   {
-    q: 'Who is this for?',
-    a: 'Songwriters, producers, bands, and artists who want professional bass on a record without booking studio time.',
+    q: 'Who is this service for?',
+    a: 'Songwriters, producers, bands, and artists who want professional bass recorded remotely without booking studio time.'
   },
   {
     q: 'What do you need from me to get started?',
-    a: 'A rough mix or demo of your track (WAV, MP3, or similar), the tempo if you know it, and any notes on style, tone, or feel.',
+    a: 'A rough mix or demo of your track (WAV, MP3, etc.), tempo (BPM) is helpful, and any notes on style, tone, or feel you want.'
   },
   {
-    q: "What if I don't know what bass line I want?",
-    a: "That's normal — a lot of projects start with only a rough idea. I'll write parts that support the song and give you options to choose from.",
+    q: 'What if I don’t know exactly what bass line I want?',
+    a: 'That’s completely fine. Many projects start with only a rough idea. I’ll create musical bass parts that support your song and give you options to choose from.'
   },
   {
-    q: "What if the first take isn't right?",
-    a: "Revisions are included. I'll adjust the part, tone, or feel until it fits your track.",
+    q: 'What happens if the first take isn’t quite right?',
+    a: 'Revisions are included. I’ll adjust the part, tone, or feel until it fits your track.'
   },
   {
     q: 'What styles do you play?',
-    a: 'Jazz, soul, folk, rock, pop, blues, and singer-songwriter projects, on both upright and electric bass.',
+    a: 'Jazz, soul, folk, rock, pop, and singer-songwriter projects.'
   },
   {
-    q: 'Can you do a full EP or album?',
-    a: 'Yes. I regularly work on EPs and albums, and can keep tone and feel consistent across every track.',
+    q: 'Can you work on multiple songs or a full album?',
+    a: 'Yes. I regularly work on EPs and full albums, and I can keep tones and feel consistent across all tracks.'
   },
   {
     q: 'Do I own the bass recordings?',
-    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.',
+    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.'
   },
   {
     q: 'Can we talk before starting?',
-    a: 'Of course. We can schedule a call to go through your project, goals, and any questions before recording begins.',
+    a: 'Absolutely. You can schedule a call to talk through your project, goals, and any questions before recording begins.'
   },
   {
-    q: 'How does payment work?',
-    a: "I'll quote based on the size and requirements of your project. Once you approve, you'll get a payment link and can pay securely online. Payment is only requested after you're happy with the final recordings.",
-  },
+    q: 'How does pricing and payment work?',
+    a: 'I’ll provide a quote based on your project size and requirements. Once you approve, you’ll receive a payment link and can pay securely online. Payment is only requested after you’re happy with the final recordings.'
+  }
 ];
 
 const openedFaq = ref(null);
@@ -272,6 +272,11 @@ useSeo({
 </script>
 
 <style scoped>
+.listen-section,
+.reviews-section {
+  background-color: var(--blue-deep);
+}
+
 
 /* ---------------- What you get ---------------- */
 .what-you-get {

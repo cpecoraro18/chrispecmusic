@@ -44,7 +44,7 @@
         </div>
 
         <p class="photo-credit mt-5 mb-0">
-          Photos by AJ Thiede and many others — thank you for your work.
+          Photos by AJ Thiede and many others. Thank you for your work.
         </p>
       </div>
     </section>

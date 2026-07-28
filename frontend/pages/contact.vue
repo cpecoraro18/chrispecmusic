@@ -4,7 +4,7 @@
       <div class="container">
         <h1 class="mb-3">Get in touch</h1>
         <p class="lead measure mb-5">
-          Recording project, live date, or just a question — send it over and I'll get back to
+          Recording project, live date, or just a question. Send it over and I'll get back to
           you.
         </p>
 
@@ -12,7 +12,7 @@
           <div class="col-12 col-lg-6">
             <contact-form
               heading="Send a message"
-              message-placeholder="Tell me what you have in mind — a recording project, a gig, or a question."
+              message-placeholder="Tell me what you have in mind, whether it's a recording project, a gig, or a question."
             ></contact-form>
           </div>
 

@@ -123,7 +123,7 @@ const sendMessage = async (token) => {
         throw new Error(data?.message || 'Failed to send email');
     }
 
-    thankYouMessage.value = "Thanks — your message is on its way. I'll get back to you as soon as I can.";
+    thankYouMessage.value = "Thanks, your message is on its way. I'll get back to you as soon as I can.";
     name.value = '';
     email.value = '';
     message.value = '';

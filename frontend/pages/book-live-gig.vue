@@ -6,7 +6,7 @@
         <h1 class="mb-3">Book a Live Bass Player</h1>
         <p class="lead measure mb-4">
           Upright and electric bass for clubs, weddings, private events, festivals, and touring
-          dates — in Chicago or on the road. I read charts, learn by ear, and turn up prepared.
+          dates, in Chicago or on the road. I'm happy to read charts or learn the material by ear, and I'll arrive prepared.
         </p>
         <a class="btn btn-cta" href="#start">Check Availability</a>
       </div>
@@ -33,10 +33,10 @@
           <div class="col-12 col-lg-6">
             <contact-form
               heading="Tell me about the gig"
-              intro="Send the date and a few details and I'll come back on availability and a rate."
+              intro="Send over the date and a few details, and I'll come back to you on availability and a rate."
               message-label="About the gig"
               message-placeholder="Date, venue or city, set length, and the kind of music. Let me know if you need upright, electric, or both."
-              message-hint="Filling in for someone last minute? Say so — I can often help."
+              message-hint="Filling in for someone last minute? Just say so, I can often help."
               submit-label="Check Availability"
               reassurance="Every booking is quoted individually. No obligation."
             ></contact-form>
@@ -146,7 +146,7 @@ const steps = [
   },
   {
     title: 'Share the material',
-    copy: 'Setlist, charts, lead sheets, or recordings — whatever you have. We can add rehearsals if the material calls for it.',
+    copy: 'Send whatever you have: setlist, charts, lead sheets, or recordings. We can add rehearsals if the material calls for it.',
   },
   {
     title: 'I show up ready',
@@ -174,7 +174,7 @@ const venues = [
 
 const brings = [
   'Upright and electric bass, whichever the material calls for',
-  'Charts, lead sheets, or learned by ear — both are fine',
+  'Charts, lead sheets, or learned by ear, whichever you have',
   'Jazz, blues, rock, pop, soul, funk, and folk',
   'Pro-level basses and amps suitable for any size room',
   'Help with setlists and arrangements if you want it',
@@ -183,45 +183,53 @@ const brings = [
 
 const faqs = [
   {
+    q: 'What styles do you play live?',
+    a: 'Jazz, rock, pop, soul, funk, folk, blues, and more. I adapt quickly to different genres and band settings.'
+  },
+  {
     q: 'Do you travel for gigs?',
-    a: "Yes — I'm available for out-of-town shows, festivals, and touring dates.",
+    a: 'Yes! I’m available for out-of-town shows, tours, and festivals.'
   },
   {
     q: 'Can you fill in last minute?',
-    a: 'Often, yes. Get in touch as early as you can and I\'ll let you know.',
+    a: 'Often, yes. Contact me ASAP for availability.'
   },
   {
     q: 'Can you read charts or play by ear?',
-    a: 'Both. Send charts, lead sheets, or recordings — whatever you have.',
-  },
-  {
-    q: 'Do you play upright and electric?',
-    a: 'Yes. Let me know which the material calls for, or I can bring both.',
+    a: 'Yes, I’m comfortable with both. Send charts, lead sheets, or recordings, whatever you have.'
   },
   {
     q: 'Can you provide a full band?',
-    a: 'I can recommend and coordinate other pro musicians if you need a full group.',
+    a: 'I can recommend and coordinate with other pro musicians if you need a full group.'
   },
   {
     q: 'What gear do you bring?',
-    a: 'Pro-level basses and amps suitable for the room. Let me know if you have specific backline needs or restrictions.',
+    a: 'I bring pro-level basses and amps suitable for any venue. Let me know if you have specific backline needs.'
   },
   {
     q: 'How do rehearsals work?',
-    a: "We'll schedule them as the material needs, in person or remotely. I come prepared so the time gets used well.",
+    a: 'We’ll schedule rehearsals as needed, either in person or virtually. I’ll come prepared so we use time efficiently.'
   },
   {
-    q: 'Can you help with setlists or arrangements?',
-    a: "Yes — I'm happy to help with song selection, arrangements, and musical direction.",
+    q: 'How is payment handled?',
+    a: 'Payment is due after the gig, via cash, check, or secure online payment.'
+  },
+  {
+    q: 'Do you play upright and electric bass?',
+    a: 'Yes, I play both upright and electric bass. Let me know your preference for your event.'
+  },
+  {
+    q: 'Can you help with song selection or arrangements?',
+    a: 'Absolutely! I’m happy to help with setlist planning, arrangements, and musical direction if needed.'
+  },
+  {
+    q: 'Do you play private/corporate events?',
+    a: 'Yes, I regularly play weddings, private parties, and corporate events.'
   },
   {
     q: 'How far in advance should I book?',
-    a: 'Earlier is better, especially for weekends, but last-minute requests are worth asking about.',
-  },
-  {
-    q: 'How does payment work?',
-    a: 'Every booking is quoted individually. Payment is due after the gig by cash, check, or secure online payment.',
-  },
+    a: 'The sooner the better, but I can sometimes accommodate last-minute requests.'
+  }
 ];
 
 const openedFaq = ref(null);
@@ -231,7 +239,7 @@ function toggleFaq(i) {
 
 useSeo({
   title: 'Book a Live Bass Player in Chicago | Chris Pecoraro',
-  description: 'Hire an upright and electric bass player for live shows in Chicago and beyond — clubs, weddings, private events, festivals, and touring dates. Reads charts or plays by ear.',
+  description: 'Hire an upright and electric bass player for live shows in Chicago and beyond, including clubs, weddings, private events, festivals, and touring dates. Reads charts or plays by ear.',
 });
 </script>
 

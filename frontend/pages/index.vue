@@ -23,13 +23,13 @@
     </section>
 
     <!-- ================= LISTEN ================= -->
-    <section id="listen" class="section bg-light text-dark">
+    <section id="listen" class="section listen-section">
       <div class="container">
-        <p class="eyebrow eyebrow-dark mb-2">Listen</p>
-        <h2 class="text-dark mb-3">Bass samples</h2>
-        <p class="lead text-dark measure mb-5">
-          Takes from my studio across upright and electric, DI and amp. Toggle the drums to hear
-          how a part sits in a mix.
+        <p class="eyebrow mb-2">Listen</p>
+        <h2 class="mb-3">Bass samples</h2>
+        <p class="lead text-muted measure mb-5">
+          These are takes from my studio on upright and electric, with both DI and amp tones.
+          Toggle the drums on or off to hear how a part sits in a mix.
         </p>
         <bass-audio-samples></bass-audio-samples>
       </div>
@@ -38,7 +38,7 @@
     <!-- ================= STUDIO & STAGE ================= -->
     <section class="section">
       <div class="container">
-        <p class="eyebrow mb-2">What I do</p>
+        <p class="eyebrow mb-2">What I offer</p>
         <h2 class="mb-5">Two ways to work together</h2>
 
         <div class="row g-5">
@@ -47,11 +47,11 @@
               <h3 class="mb-3">Recording sessions</h3>
               <p class="offer-copy">
                 Send a rough mix and any notes on feel or tone. I record it here and send back
-                stems that drop straight into your session — nothing left to edit or engineer.
+                stems that drop straight into your session, with nothing left to edit or engineer.
               </p>
               <p class="offer-detail">
-                Upright, fretted, fretless, and slap · {{ TAKES_PER_TRACK }} takes ·
-                revisions included · you own the recordings
+                You get {{ TAKES_PER_TRACK }} takes to choose from on upright, fretted, fretless, or
+                slap, revisions are included, and the recordings are yours once the project is paid for.
               </p>
               <nuxt-link class="text-link" to="/book-session">
                 How it works <span aria-hidden="true">→</span>
@@ -64,11 +64,11 @@
               <h3 class="mb-3">Live performance</h3>
               <p class="offer-copy">
                 Upright and electric bass for clubs, weddings, private events, festivals, and
-                touring dates — in Chicago or on the road.
+                touring dates, in Chicago or on the road.
               </p>
               <p class="offer-detail">
-                Charts or by ear · jazz, blues, rock, pop, soul, folk · pro backline ·
-                full band on request
+                I read charts or learn by ear, play across jazz, blues, rock, pop, soul, and folk,
+                and can coordinate other musicians if you need a full band.
               </p>
               <nuxt-link class="text-link" to="/book-live-gig">
                 Check availability <span aria-hidden="true">→</span>
@@ -83,7 +83,7 @@
     <section class="section-tight process-section">
       <div class="container">
         <p class="eyebrow mb-2">The process</p>
-        <h2 class="mb-5">From demo to finished track</h2>
+        <h2 class="mb-5">How a session works</h2>
         <div class="row g-5">
           <div class="col-12 col-md-4" v-for="(step, i) in steps" :key="step.title">
             <div class="step">
@@ -114,13 +114,13 @@
       </div>
     </section>
 
-    <div class="bg-light pb-5">
-      <div class="text-center pt-5">
-        <h2 class="text-dark mb-2">More reviews</h2>
-        <p class="lead text-dark measure mb-0">A selection of reviews from clients.</p>
+    <section class="section-tight reviews-section">
+      <div class="container">
+        <h2 class="mb-2">More reviews</h2>
+        <p class="lead text-muted measure mb-4">A selection of reviews from clients.</p>
       </div>
       <review-list></review-list>
-    </div>
+    </section>
 
     <!-- ================= DISCOGRAPHY ================= -->
     <discography-list></discography-list>
@@ -141,7 +141,7 @@
             >
           </div>
           <div class="col-12 col-lg-7 text-lg-start">
-            <p class="eyebrow mb-2">Who you're hiring</p>
+            <p class="eyebrow mb-2">A bit about me</p>
             <h2 class="mb-3">Chicago bassist, upright and electric</h2>
             <p class="lead text-muted">
               I play with rock and jazz bands, orchestras, musicals, and vocal ensembles, and I
@@ -191,13 +191,13 @@ import { featuredReviews } from '~/data/reviews';
 
 // Service promises surfaced in several places on this page. Kept as constants so
 // they can be changed in one spot rather than hunted down across the copy.
-const TURNAROUND = '2–3 days';
-const TAKES_PER_TRACK = '2–3';
+const TURNAROUND = '2 to 3 days';
+const TAKES_PER_TRACK = 'two or three';
 
 const steps = [
   {
     title: 'Send your track',
-    copy: 'A rough mix or demo, plus any references or notes on the feel you want. Not sure what you want? That is normal — I will suggest options.',
+    copy: 'Send a rough mix or demo, along with any references or notes on the feel you want. If you are not sure, that is completely fine, and I can suggest what works best.',
   },
   {
     title: 'I record your bass',
@@ -225,6 +225,11 @@ useHead({
 </script>
 
 <style scoped>
+.listen-section,
+.reviews-section {
+  background-color: var(--blue-deep);
+}
+
 /* ---------------- Hero ---------------- */
 .hero {
   position: relative;
@@ -329,10 +334,6 @@ useHead({
   }
 }
 
-/* ---------------- Eyebrow on light sections ---------------- */
-.eyebrow-dark {
-  color: rgba(0, 0, 0, 0.5);
-}
 
 /* ---------------- Offers ---------------- */
 /* Hairline rule rather than a bordered card: the boxed treatment read like a

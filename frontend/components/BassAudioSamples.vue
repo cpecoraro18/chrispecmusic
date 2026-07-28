@@ -1,10 +1,10 @@
 <template>
-  <div class="mt-5 p-3 rounded bg-light text-dark">
+  <div class="samples-panel mt-5 p-3 p-md-4 rounded">
     <h2 class="mb-3 text-center samples-heading">Bass Audio Samples</h2>
     <div class="d-flex flex-column flex-md-row gap-3">
       <!-- Focused Sample -->
       <div class="flex-grow-1">
-        <div class="card sample-card bg-white text-dark border-0 shadow-sm h-100">
+        <div class="card sample-card border-0 h-100">
           <div class="card-body d-flex flex-column justify-content-between p-3">
             <div class="d-flex align-items-center mb-2">
               <span class="sample-title flex-grow-1">{{ focusedSample.title }}</span>
@@ -32,7 +32,7 @@
               controls
               class="w-100 mt-2 compact-audio"
             ></audio>
-            <div class="mt-2 small text-muted text-truncate" :title="getAudioFile(focusedSample)">
+            <div class="mt-2 small sample-file text-truncate" :title="getAudioFile(focusedSample)">
               <i class="fa fa-file-audio me-1"></i>{{ getAudioFile(focusedSample) }}
               <span class="ms-2 badge bg-info" v-if="selectedType[focusedSample.baseFile] === 'with'">With Drums</span>
               <span class="ms-2 badge bg-secondary text-dark" v-else>No Drums</span>
@@ -46,7 +46,7 @@
           <button
             v-for="sample in sideSamples"
             :key="sample.baseFile"
-            class="list-group-item list-group-item-action bg-white text-dark d-flex align-items-center gap-2 py-2 px-2 border-0"
+            class="list-group-item list-group-item-action d-flex align-items-center gap-2 py-2 px-2 border-0"
             :class="{active: sample.baseFile === focusedSample.baseFile}"
             @click="focusSample(sample.baseFile)"
           >
@@ -129,81 +129,23 @@ function focusSample(baseFile) {
 </script>
 
 <style scoped>
-.samples-heading {
-  font-size: 1.4rem;
+/* Dark surfaces matching the rest of the page. This block was previously a
+   #F0F0F0 panel of white cards, which glared against the dark palette. */
+.samples-panel {
+  background-color: rgba(var(--text-color-rgb), 0.06);
+  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+  color: var(--text-color);
 }
 
 .sample-card {
   min-height: 180px;
   font-size: 1rem;
-  background: var(--white) !important;
-  color: var(--text-color-dark) !important;
+  background-color: rgba(var(--text-color-rgb), 0.07) !important;
+  border: 1px solid rgba(var(--text-color-rgb), 0.12) !important;
+  color: var(--text-color) !important;
+  border-radius: var(--radius-md);
 }
 
-.side-list {
-  min-width: 180px;
-  max-width: 220px;
-  width: 100%;
-}
-@media (max-width: 900px) {
-  .side-list { min-width: 120px; max-width: 100%; }
-}
-.list-group-item {
-  font-size: 0.98rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 4px;
-  transition: background 0.15s, color 0.15s;
-  background: var(--white) !important;
-  color: var(--text-color-dark) !important;
-}
-.list-group-item:hover {
-  background: var(--bg-light) !important;
-  color: var(--blue-dark) !important;
-  cursor: pointer;
-}
-.list-group-item.active, .list-group-item:active {
-  background: var(--blue-dark) !important;
-  color: var(--white) !important;
-}
-.side-title {
-  max-width: 120px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.toggle-group {
-  display: flex;
-  border-radius: 16px;
-  background: var(--bg-light);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-.toggle-btn {
-  border: none;
-  background: none;
-  color: var(--secondary);
-  font-size: 1rem;
-  padding: 3px 8px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-.toggle-btn.active {
-  background: var(--blue-dark);
-  color: var(--white);
-  transform: scale(1.08) rotate(-4deg);
-  box-shadow: var(--shadow-sm);
-}
-.toggle-btn:not(.active):hover {
-  color: var(--blue-dark);
-  background: var(--bg-light);
-}
-.badge.bg-info {
-  background-color: var(--blue-dark) !important;
-}
-.badge.bg-secondary {
-  background-color: var(--secondary) !important;
-    color: var(--white) !important;
-}
 .sample-title {
   font-weight: 600;
   font-size: 1.1rem;
@@ -212,13 +154,98 @@ function focusSample(baseFile) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.sample-file {
+  color: var(--text-muted-on-dark);
+}
+
+.side-list {
+  min-width: 180px;
+  max-width: 220px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .side-list { min-width: 120px; max-width: 100%; }
+}
+
+.list-group-item {
+  font-size: 0.98rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  transition: background 0.15s, color 0.15s;
+  background-color: rgba(var(--text-color-rgb), 0.07) !important;
+  color: var(--text-color) !important;
+}
+
+.list-group-item:hover {
+  background-color: rgba(var(--text-color-rgb), 0.14) !important;
+  color: var(--white) !important;
+  cursor: pointer;
+}
+
+.list-group-item.active,
+.list-group-item:active {
+  background-color: var(--text-color) !important;
+  color: var(--blue-deep) !important;
+}
+
+.list-group-item .fa-play-circle {
+  color: var(--blue) !important;
+}
+
+.list-group-item.active .fa-play-circle {
+  color: var(--blue-deep) !important;
+}
+
+.side-title {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toggle-group {
+  display: flex;
+  border-radius: 16px;
+  background-color: rgba(var(--text-color-rgb), 0.1);
+  overflow: hidden;
+}
+
+.toggle-btn {
+  border: none;
+  background: none;
+  color: var(--text-muted-on-dark);
+  font-size: 1rem;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn.active {
+  background-color: var(--text-color);
+  color: var(--blue-deep);
+}
+
+.toggle-btn:not(.active):hover {
+  color: var(--white);
+  background-color: rgba(var(--text-color-rgb), 0.12);
+}
+
+.badge.bg-info {
+  background-color: var(--blue-dark) !important;
+  color: var(--text-color) !important;
+}
+
+.badge.bg-secondary {
+  background-color: rgba(var(--text-color-rgb), 0.18) !important;
+  color: var(--text-color) !important;
+}
+
 .compact-audio {
   height: 32px;
-}
-.bg-light {
-  background: var(--bg-light) !important;
-}
-.text-dark {
-  color: var(--text-color-dark) !important;
+  /* Native controls render as a light widget; this stops them being the one
+     bright rectangle left in the panel. */
+  filter: invert(0.9) hue-rotate(180deg);
 }
 </style>

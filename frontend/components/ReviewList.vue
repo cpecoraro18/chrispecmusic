@@ -438,7 +438,7 @@ export default {
 }
 
 .review-author {
-  color: var(--bg-dark-blue);
+  color: var(--blue-deep);
 }
 
 .review-author a {

@@ -15,20 +15,14 @@
           <div class="col-12 col-lg-7 text-lg-start">
             <h1 class="mb-4">About</h1>
             <p class="lead">
-              I'm Chris Pecoraro, an upright and electric bassist based in Chicago. I record and
-              perform with artists here at home and remotely around the world, and I've completed
-              over 100 remote recording sessions for songwriters, producers, and bands across many
-              styles and genres.
+              Chris Pecoraro is an upright and electric bassist based in Chicago, recording and performing with artists locally and remotely around the world. 
+              He has completed over 100 remote recording sessions for songwriters, producers, and bands, providing bass tracks for projects across many styles and genres.
             </p>
             <p class="text-muted">
-              I'm currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues
-              Challenge. I've played with rock bands, jazz bands, orchestras, vocal jazz ensembles,
-              and musicals, and I've had the chance to share a stage with Buddy Guy, Doc
-              Severinsen, and members of Prince's band. I've also played venues including Buddy
-              Guy's Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
+              Chris is a currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge. He has performed with rock bands, jazz bands, orchestras, vocal jazz ensembles, musicals, and more. Chris has also had the privilege to share the stage with world-class artists including Buddy Guy, Doc Severinsen, and members of Prince’s band. He has also appeared at renowned venues such as the Buddy Guy’s Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
             </p>
             <p class="text-muted mb-0">
-              I'm always glad to hear about a new project, whether it's in the studio or on stage.
+              Chris is always excited to connect with other artists and contribute to new projects, whether in the studio or on stage, and is continuously looking for opportunities to grow, experiment, and bring fresh musical ideas to life.
             </p>
           </div>
         </div>

@@ -449,14 +449,38 @@ export default {
   text-decoration: underline;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1);
-}
-
 .carousel-control-prev,
 .carousel-control-next {
-  width: 5%; /* 5% of 16px */
+  width: 3em; /* fixed touch target so it stays usable on mobile, not a % of viewport */
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2.25em;
+  height: 2.25em;
+  padding: 0.5em;
+  border-radius: 50%;
+  background-color: var(--bg-dark);
+  background-origin: content-box;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-prev:focus .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon,
+.carousel-control-next:focus .carousel-control-next-icon {
+  background-color: var(--bg-black);
+  transform: scale(1.08);
+}
+
+@media only screen and (max-width: 575px) {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 1.9em;
+    height: 1.9em;
+  }
 }
 
 .carousel-item {

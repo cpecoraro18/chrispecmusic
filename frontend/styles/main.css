@@ -67,9 +67,6 @@
    ========================================================================== */
 body {
   background-color: var(--bg-dark-blue);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 #app {
@@ -79,6 +76,9 @@ body {
   text-align: center;
   color: var(--white);
   background-color: var(--bg-dark-blue);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main-content {

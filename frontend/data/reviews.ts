@@ -14,7 +14,16 @@
  */
 export const FIVERR_PROFILE = "https://www.fiverr.com/cpecoraro18";
 
-export const reviews = [
+export interface Review {
+  /** The reviewer's Fiverr username. Also used as the list key. */
+  name: string;
+  country: string;
+  /** Out of 5. Rendered proportionally, so 4.7 shows as 4.7 stars. */
+  rating: number;
+  review: string;
+}
+
+export const reviews: Review[] = [
   {
     name: "davidalmroth",
     country: "Sweden",

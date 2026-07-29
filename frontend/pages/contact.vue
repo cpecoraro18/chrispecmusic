@@ -20,8 +20,8 @@
             <div class="contact-aside">
               <h2 class="h4 mb-2">Prefer email?</h2>
               <p class="mb-4">
-                <a href="mailto:contact@chrispecmusic.com" class="contact-email">
-                  contact@chrispecmusic.com
+                <a :href="`mailto:${CONTACT_EMAIL}`" class="contact-email">
+                  {{ CONTACT_EMAIL }}
                 </a>
               </p>
 
@@ -45,6 +45,8 @@
 </template>
 
 <script setup>
+import { CONTACT_EMAIL } from '~/data/service';
+
 useSeo({
   title: 'Contact | Chris Pecoraro, Chicago Bassist',
   description: 'Get in touch with Chris Pecoraro about remote bass recording sessions or live bookings. Email contact@chrispecmusic.com or use the contact form.',

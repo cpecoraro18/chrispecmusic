@@ -56,6 +56,11 @@
 </template>
 
 <script setup>
+// Reached from an Instagram or YouTube profile, where the whole job of the page
+// is this stack of buttons. The site nav and footer would add a dozen competing
+// exits to a page deliberately designed to offer seven.
+definePageMeta({ layout: 'bare' });
+
 useSeo({
   title: 'Chris Pecoraro | Upright & Electric Bassist, Chicago',
   description: 'Chris Pecoraro, upright and electric bassist based in Chicago. Book a remote recording session or a live gig, watch performances, and get in touch.',

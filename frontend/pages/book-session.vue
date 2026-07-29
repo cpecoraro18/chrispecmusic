@@ -59,11 +59,7 @@
         <h2 class="mb-5">What you get</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
           <div class="col" v-for="item in included" :key="item.title">
-            <div class="included-item rule-top h-100">
-              <i :class="item.icon" class="included-icon" aria-hidden="true"></i>
-              <h3 class="h4 mb-2">{{ item.title }}</h3>
-              <p class="mb-0 text-muted">{{ item.copy }}</p>
-            </div>
+            <IconFeature :icon="item.icon" :title="item.title" :copy="item.copy" />
           </div>
         </div>
       </div>
@@ -79,7 +75,7 @@
         </p>
 
         <div class="row g-4 justify-content-center">
-          <div class="col-12 col-md-4" v-for="tier in pricing" :key="tier.tracks">
+          <div class="col-12 col-md-4" v-for="tier in PRICING" :key="tier.tracks">
             <div class="price-card h-100" :class="{ 'price-card--featured': tier.featured }">
               <span v-if="tier.featured" class="price-flag">Best value</span>
               <h3 class="h4 mb-1">{{ tier.tracks }}</h3>
@@ -107,31 +103,7 @@
     <section class="section-tight faq-section">
       <div class="container">
         <h2 class="mb-5">Common questions</h2>
-        <div class="faq-list">
-          <div v-for="(faq, i) in faqs" :key="i" class="faq-item">
-            <h3 class="mb-0">
-              <button
-                class="faq-question"
-                :aria-expanded="openedFaq === i"
-                :aria-controls="`faq-answer-${i}`"
-                :id="`faq-question-${i}`"
-                @click="toggleFaq(i)"
-              >
-                <span>{{ faq.q }}</span>
-                <span class="faq-indicator" aria-hidden="true">{{ openedFaq === i ? '−' : '+' }}</span>
-              </button>
-            </h3>
-            <div
-              v-show="openedFaq === i"
-              :id="`faq-answer-${i}`"
-              role="region"
-              :aria-labelledby="`faq-question-${i}`"
-              class="faq-answer"
-            >
-              {{ faq.a }}
-            </div>
-          </div>
-        </div>
+        <FaqAccordion :items="sessionFaqs" id-prefix="session-faq" />
       </div>
     </section>
 
@@ -147,50 +119,19 @@
     </section>
 
     <!-- ================= FINAL CTA ================= -->
-    <section class="cta-band">
-      <div class="container">
-        <h2 class="mb-3">Ready when you are</h2>
-        <p class="lead measure mb-4">
-          Send over what you have and I'll come back with a plan and a quote. No obligation.
-        </p>
-        <a class="btn btn-cta" href="#start">Start a Project</a>
-        <p class="mt-4 mb-0">
-          <a href="mailto:contact@chrispecmusic.com" class="cta-email">contact@chrispecmusic.com</a>
-        </p>
-      </div>
-    </section>
+    <CtaBand
+      title="Ready when you are"
+      lead="Send over what you have and I'll come back with a plan and a quote. No obligation."
+      show-email
+    >
+      <a class="btn btn-cta" href="#start">Start a Project</a>
+    </CtaBand>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-// Kept in sync with the same constants on the homepage.
-const TURNAROUND = '2 to 3 days';
-const TAKES_PER_TRACK = 'two or three';
-
-const steps = [
-  {
-    title: 'Send your track',
-    copy: 'Send a rough mix or demo, along with the tempo and any notes on style, tone, or feel. References or a rough guide bass line help, but they are not required.',
-  },
-  {
-    title: 'We agree on the details',
-    copy: "I'll come back with a plan and a quote. If you're not sure what you want the bass to do, I'm happy to suggest a few directions.",
-  },
-  {
-    title: 'I record your bass',
-    copy: `I cut ${TAKES_PER_TRACK} takes with different approaches so you have options, recorded and edited in my studio.`,
-  },
-  {
-    title: 'You request changes',
-    copy: "Revisions are included, so I'll adjust the part, tone, or feel until it fits the song.",
-  },
-  {
-    title: 'You get the files',
-    copy: 'Mix-ready stems land in your inbox with a payment link. Once the project is paid, the recordings are yours to use however you like.',
-  },
-];
+import { PRICING, TAKES_PER_TRACK, TURNAROUND } from '~/data/service';
+import { sessionFaqs, sessionSteps as steps } from '~/data/faqs';
 
 const included = [
   {
@@ -215,56 +156,6 @@ const included = [
   },
 ];
 
-const pricing = [
-  { tracks: '1 track', price: 100, featured: false },
-  { tracks: '3 to 4 tracks', price: 90, featured: false },
-  { tracks: '5+ tracks', price: 80, featured: true },
-];
-
-const faqs = [
-  {
-    q: 'Who is this service for?',
-    a: 'Songwriters, producers, bands, and artists who want professional bass recorded remotely without booking studio time.'
-  },
-  {
-    q: 'What do you need from me to get started?',
-    a: 'A rough mix or demo of your track (WAV, MP3, etc.), tempo (BPM) is helpful, and any notes on style, tone, or feel you want.'
-  },
-  {
-    q: 'What if I don’t know exactly what bass line I want?',
-    a: 'That’s completely fine. Many projects start with only a rough idea. I’ll create musical bass parts that support your song and give you options to choose from.'
-  },
-  {
-    q: 'What happens if the first take isn’t quite right?',
-    a: 'Revisions are included. I’ll adjust the part, tone, or feel until it fits your track.'
-  },
-  {
-    q: 'What styles do you play?',
-    a: 'Jazz, soul, folk, rock, pop, and singer-songwriter projects.'
-  },
-  {
-    q: 'Can you work on multiple songs or a full album?',
-    a: 'Yes. I regularly work on EPs and full albums, and I can keep tones and feel consistent across all tracks.'
-  },
-  {
-    q: 'Do I own the bass recordings?',
-    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.'
-  },
-  {
-    q: 'Can we talk before starting?',
-    a: 'Absolutely. You can schedule a call to talk through your project, goals, and any questions before recording begins.'
-  },
-  {
-    q: 'How does pricing and payment work?',
-    a: 'I’ll provide a quote based on your project size and requirements. Once you approve, you’ll receive a payment link and can pay securely online. Payment is only requested after you’re happy with the final recordings.'
-  }
-];
-
-const openedFaq = ref(null);
-function toggleFaq(i) {
-  openedFaq.value = openedFaq.value === i ? null : i;
-}
-
 useSeo({
   title: 'Book a Remote Bass Session | Chris Pecoraro',
   description: 'Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $80 per track.',
@@ -284,12 +175,6 @@ useSeo({
 }
 
 
-.included-item .included-icon {
-  font-size: 1.35rem;
-  color: var(--blue);
-  margin-bottom: 0.9rem;
-  display: block;
-}
 
 /* ---------------- Pricing ---------------- */
 .price-card {

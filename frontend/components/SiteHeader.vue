@@ -2,47 +2,54 @@
     <div class="navbar-spacer" :style="spacerStyle"></div>
     <header class="navbar navbar-expand-lg navbar-dark" :style="{ backgroundColor: `rgba(46,46,46, ${navbarOpacity})` }">
         <div class="container">
-            <router-link to="/">
+            <nuxt-link to="/" @click="closeNavbar">
                 <img src="/img/CPMusic-Logo-White.png" alt="Chris Pec Music" class="navbar-brand logo">
-            </router-link>
+            </nuxt-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <router-link to="/" class="nav-link" @click="closeNavbar">Home</router-link>
-                    </li>
-                     <li class="nav-item">
-                        <router-link to="/about" class="nav-link" @click="closeNavbar">About</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/portfolio" class="nav-link" @click="closeNavbar">Portfolio</router-link>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="hireMeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hire Me
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="hireMeDropdown">
-                        <li>
-                          <router-link to="/book-session" class="dropdown-item" @click="closeNavbar">Recording Session</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/book-live-gig" class="dropdown-item" @click="closeNavbar">Live Gig</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/photos" class="nav-link" @click="closeNavbar">Photos</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/events" class="nav-link" @click="closeNavbar">Events</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/gear" class="nav-link" @click="closeNavbar">Gear</router-link>
+                    <li
+                        v-for="item in primaryNav"
+                        :key="item.label"
+                        class="nav-item"
+                        :class="{ dropdown: item.children }"
+                    >
+                        <template v-if="item.children">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                :id="dropdownId(item)"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                {{ item.label }}
+                            </a>
+                            <ul class="dropdown-menu" :aria-labelledby="dropdownId(item)">
+                                <li v-for="child in item.children" :key="child.to">
+                                    <nuxt-link :to="child.to" class="dropdown-item" @click="closeNavbar">
+                                        {{ child.label }}
+                                    </nuxt-link>
+                                </li>
+                            </ul>
+                        </template>
+                        <nuxt-link v-else :to="item.to" class="nav-link" @click="closeNavbar">
+                            {{ item.label }}
+                        </nuxt-link>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light ms-lg-2 my-2 my-lg-0" type="button"><router-link to="/contact" class="nav-link" @click="closeNavbar">Contact</router-link></button>
+                <!-- Previously a <router-link> nested inside a <button>, which is
+                     invalid HTML and left the link unreachable for some screen
+                     readers. A link styled as a button is the correct element. -->
+                <nuxt-link
+                    :to="navCta.to"
+                    class="btn btn-outline-light ms-lg-2 my-2 my-lg-0"
+                    @click="closeNavbar"
+                >
+                    {{ navCta.label }}
+                </nuxt-link>
                 <social-links class="ms-0 ms-lg-3 my-3 my-lg-0"></social-links>
             </div>
         </div>
@@ -50,6 +57,11 @@
 </template>
 
 <script setup>
+    import { primaryNav, navCta } from '~/data/navigation'
+
+    // Bootstrap needs a stable id to tie a dropdown menu to its toggle.
+    const dropdownId = (item) => `nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`
+
     const route = useRoute()
     const isIndex = computed(() => route.path === '/')
     const navbarOpacity = ref(0);

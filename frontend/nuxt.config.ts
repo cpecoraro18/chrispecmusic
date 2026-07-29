@@ -10,6 +10,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   css: ['~/styles/main.css'],
+  runtimeConfig: {
+    public: {
+      // The API Gateway in front of the Lambdas. Overridable at build time with
+      // NUXT_PUBLIC_API_BASE, so a branch can be pointed at a different stage
+      // without editing source. This used to be hardcoded in three components.
+      apiBase: 'https://api.chrispecmusic.com',
+    },
+  },
   hooks: {
     // Rebuild public/sitemap.xml from the pages directory on every build. The
     // previous sitemap was maintained by hand and had drifted badly — it listed

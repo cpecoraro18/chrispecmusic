@@ -168,30 +168,19 @@
     </section>
 
     <!-- ================= CLOSING ================= -->
-    <section class="cta-band">
-      <div class="container">
-        <h2 class="mb-3">Got a project in mind?</h2>
-        <p class="lead measure mb-4">
-          Send it over and I'll come back with a plan and a quote.
-        </p>
-        <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-        <p class="mt-4 mb-0">
-          <a href="mailto:contact@chrispecmusic.com" class="cta-email">
-            contact@chrispecmusic.com
-          </a>
-        </p>
-      </div>
-    </section>
+    <CtaBand
+      title="Got a project in mind?"
+      lead="Send it over and I'll come back with a plan and a quote."
+      show-email
+    >
+      <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
+    </CtaBand>
   </div>
 </template>
 
 <script setup>
 import { featuredReviews } from '~/data/reviews';
-
-// Service promises surfaced in several places on this page. Kept as constants so
-// they can be changed in one spot rather than hunted down across the copy.
-const TURNAROUND = '2 to 3 days';
-const TAKES_PER_TRACK = 'two or three';
+import { TAKES_PER_TRACK, TURNAROUND } from '~/data/service';
 
 const steps = [
   {

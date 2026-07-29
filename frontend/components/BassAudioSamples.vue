@@ -11,16 +11,16 @@
               <div class="toggle-group ms-2">
                 <button
                   class="toggle-btn"
-                  :class="{active: selectedType[focusedSample.baseFile] === 'with'}"
-                  @click="setType(focusedSample.baseFile, 'with')"
+                  :class="{active: selectedType[focusedSample.id] === 'with'}"
+                  @click="setType(focusedSample.id, 'with')"
                   title="With Drums"
                 >
                   <i class="fa fa-drum"></i>
                 </button>
                 <button
                   class="toggle-btn"
-                  :class="{active: selectedType[focusedSample.baseFile] === 'without'}"
-                  @click="setType(focusedSample.baseFile, 'without')"
+                  :class="{active: selectedType[focusedSample.id] === 'without'}"
+                  @click="setType(focusedSample.id, 'without')"
                   title="No Drums"
                 >
                   <i class="fa fa-headphones"></i>
@@ -34,7 +34,7 @@
             ></audio>
             <div class="mt-2 small sample-file text-truncate" :title="getAudioFile(focusedSample)">
               <i class="fa fa-file-audio me-1"></i>{{ getAudioFile(focusedSample) }}
-              <span class="ms-2 badge bg-info" v-if="selectedType[focusedSample.baseFile] === 'with'">With Drums</span>
+              <span class="ms-2 badge bg-info" v-if="selectedType[focusedSample.id] === 'with'">With Drums</span>
               <span class="ms-2 badge bg-secondary text-dark" v-else>No Drums</span>
             </div>
           </div>
@@ -45,10 +45,10 @@
         <div class="list-group">
           <button
             v-for="sample in sideSamples"
-            :key="sample.baseFile"
+            :key="sample.id"
             class="list-group-item list-group-item-action d-flex align-items-center gap-2 py-2 px-2 border-0"
-            :class="{active: sample.baseFile === focusedSample.baseFile}"
-            @click="focusSample(sample.baseFile)"
+            :class="{active: sample.id === focusedSample.id}"
+            @click="focusSample(sample.id)"
           >
             <i class="fa fa-play-circle text-info"></i>
             <span class="side-title text-truncate" :title="sample.title">{{ sample.title }}</span>
@@ -61,70 +61,32 @@
 
 <script setup>
 import { reactive, ref, computed } from 'vue';
+import { samples } from '~/data/samples';
 
-const samples = [
-  {
-    title: 'Fender Precision Bass DI Tone',
-    baseFile: 'pbass-di',
-    withDrums: '/audio/pbass-di-drums.wav',
-    withoutDrums: '/audio/pbass-di.wav',
-  },
-{
-    title: 'Fender Precision Bass Vintage Amp Tone',
-    baseFile: 'pbass-b15',
-    withDrums: '/audio/pbass-b15-drums.wav',
-    withoutDrums: '/audio/pbass-b15.wav',
-  },
-  {
-    title: 'Fender Jazz Bass Amp Tone',
-    baseFile: 'jbass-svt',
-    withDrums: '/audio/jbass-svt-drums.wav',
-    withoutDrums: '/audio/jbass-svt.wav',
-  },
-  {
-    title: 'Lakland DI Tone',
-    baseFile: 'lakland-di',
-    withDrums: '/audio/lakland-di-drums.wav',
-    withoutDrums: '/audio/lakland-di.wav',
-  },
-    {
-    title: 'Lakland Slap Tone',
-    baseFile: 'lakland-slap',
-    withDrums: '/audio/lakland-slap-drums.wav',
-    withoutDrums: '/audio/lakland-slap.wav',
-  },
-  {
-    title: 'Upright Bass',
-    baseFile: 'upright',
-    withDrums: '/audio/upright-drums.wav',
-    withoutDrums: '/audio/upright.wav',
-  },
-];
-
+// Which mix each sample is set to. Tracked per sample so switching between
+// them remembers what you were listening to.
 const selectedType = reactive({});
-samples.forEach(s => selectedType[s.baseFile] = 'with');
+samples.forEach((s) => (selectedType[s.id] = 'with'));
 
-const focusedBaseFile = ref(samples[0].baseFile);
+const focusedId = ref(samples[0].id);
 
-const focusedSample = computed(() => samples.find(s => s.baseFile === focusedBaseFile.value));
-const sideSamples = computed(() => samples.filter(s => s.baseFile !== focusedBaseFile.value));
+const focusedSample = computed(() => samples.find((s) => s.id === focusedId.value));
+const sideSamples = computed(() => samples.filter((s) => s.id !== focusedId.value));
 
-function setType(baseFile, type) {
-  selectedType[baseFile] = type;
+function setType(id, type) {
+  selectedType[id] = type;
 }
 
 function getAudioSrc(sample) {
-  return selectedType[sample.baseFile] === 'with' ? sample.withDrums : sample.withoutDrums;
+  return selectedType[sample.id] === 'with' ? sample.withDrums : sample.withoutDrums;
 }
 
 function getAudioFile(sample) {
-  return selectedType[sample.baseFile] === 'with'
-    ? sample.withDrums.split('/').pop()
-    : sample.withoutDrums.split('/').pop();
+  return getAudioSrc(sample).split('/').pop();
 }
 
-function focusSample(baseFile) {
-  focusedBaseFile.value = baseFile;
+function focusSample(id) {
+  focusedId.value = id;
 }
 </script>
 

@@ -1,4 +1,5 @@
 import { SITE_URL, SITE_NAME } from './useSeo';
+import { CONTACT_EMAIL, STARTING_PRICE } from '~/data/service';
 
 /**
  * Emits JSON-LD describing Chris as a person and the services he offers, so
@@ -20,7 +21,7 @@ export function usePersonStructuredData() {
       'Upright and electric bassist based in Chicago, offering remote bass recording sessions and live performance.',
     url: SITE_URL,
     image: `${SITE_URL}/img/ChrisPecMusic.jpg`,
-    email: 'mailto:contact@chrispecmusic.com',
+    email: `mailto:${CONTACT_EMAIL}`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Chicago',
@@ -71,7 +72,9 @@ export function usePersonStructuredData() {
           url: `${SITE_URL}/book-session`,
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: 80,
+            // Derived from the pricing table so the rate advertised to search
+            // engines cannot contradict the one on /book-session.
+            price: STARTING_PRICE,
             priceCurrency: 'USD',
             unitText: 'per track',
             description: 'Starting price; per-track rate decreases on larger projects.',

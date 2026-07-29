@@ -23,9 +23,9 @@
           Past Events
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2026')">2026</a></li>
-          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2025')">2025</a></li>
-          <li><a class="dropdown-item" href="#" @click.prevent="filterEvents('past-2024')">2024</a></li>
+          <li v-for="year in pastYears" :key="year">
+            <a class="dropdown-item" href="#" @click.prevent="filterEvents(`past-${year}`)">{{ year }}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -84,28 +84,26 @@ const props = defineProps({
 });
 
 const events = ref([]);
-const loading = ref(true); 
+const loading = ref(true);
 const selectedFilter = ref('future');
+const api = useApi();
+
+/**
+ * Years offered in the "Past Events" dropdown, newest first. These used to be
+ * three hardcoded <li> elements, so every January the current year silently
+ * stopped being listed.
+ */
+const FIRST_YEAR_WITH_EVENTS = 2024;
+const pastYears = computed(() => {
+  const thisYear = new Date().getFullYear();
+  return Array.from(
+    { length: Math.max(0, thisYear - FIRST_YEAR_WITH_EVENTS + 1) },
+    (_, i) => thisYear - i
+  );
+});
 
 async function getEvents(timeMin = null, timeMax = null) {
-  let url = 'https://api.chrispecmusic.com/events';
-  const params = new URLSearchParams();
-  
-  if (timeMin) {
-    params.append('timeMin', timeMin);
-  }
-  if (timeMax) {
-    params.append('timeMax', timeMax);
-  }
-  
-  if (params.toString()) {
-    url += '?' + params.toString();
-  }
-  
-  const response = await $fetch(url);
-  // $fetch parses JSON responses itself; the Lambda returns a JSON-encoded
-  // string body. Handle both so a change on either side doesn't blank the list.
-  const payload = typeof response === 'string' ? JSON.parse(response) : response;
+  const payload = await api.get('/events', { timeMin, timeMax });
   events.value = (payload?.items ?? []).map((x) => {
     const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
     const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;

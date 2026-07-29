@@ -17,19 +17,25 @@
                         <!-- Platform Selection Popup -->
                         <div v-if="activeAlbumIndex === index" class="platform-popup" @click.stop>
                             <div class="platform-options">
-                                <a 
-                                    v-for="platform in platforms" 
+                                <!-- A release that is not on a platform yet is a
+                                     <span>, not a dead <a href="#">: an anchor
+                                     with nowhere to go is still focusable and
+                                     still announced as a link. -->
+                                <component
+                                    :is="isPending(album, platform) ? 'span' : 'a'"
+                                    v-for="platform in platforms"
                                     :key="platform.name"
-                                    :href="album.links[platform.name]" 
-                                    target="_blank"
+                                    :href="isPending(album, platform) ? null : album.links[platform.name]"
+                                    :target="isPending(album, platform) ? null : '_blank'"
+                                    :rel="isPending(album, platform) ? null : 'noopener'"
+                                    :aria-disabled="isPending(album, platform) ? 'true' : null"
                                     class="platform-option"
-                                    :class="{ 'disabled': album.links[platform.name] === '#' }"
-                                    @click="album.links[platform.name] !== '#' ? null : $event.preventDefault()"
+                                    :class="{ disabled: isPending(album, platform) }"
                                 >
                                     <img :src="platform.icon" :alt="platform.name" class="platform-option-icon">
                                     <span>{{ platform.name }}</span>
-                                    <span v-if="album.links[platform.name] === '#'" class="coming-soon">Coming Soon</span>
-                                </a>
+                                    <span v-if="isPending(album, platform)" class="coming-soon">Coming Soon</span>
+                                </component>
                             </div>
                         </div>
                     </div>
@@ -39,133 +45,35 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'DiscographyList',
-    data() {
-        return {
-            activeAlbumIndex: null,
-            platforms: [
-                { name: 'Spotify', icon: '/img/spotify-logo.svg' },
-                { name: 'Apple Music', icon: '/img/apple-music-logo.svg' },
-                { name: 'YouTube', icon: '/youtube-logo.png' }
-            ],
-            discography: [
-                {
-                    name: 'Blades and Bullets',
-                    artist: 'Tyler Nail',
-                    image: '/img/albums/BladesandBullets.jpg',
-                    year: "2026",
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/2Y3E1IBYxaMLrT14dZCobN?si=fzY5enVITxeg8ULQr5Ld9w',
-                        'Apple Music': 'https://music.apple.com/us/album/blades-and-bullets-single/1882020234',
-                        'YouTube': 'https://www.youtube.com/watch?v=BKUFS1E5WuA&list=RDBKUFS1E5WuA&start_radio=1',
-                    }
-                },
-                { 
-                    name: "Haunted Houses", 
-                    artist: "Tyler Nail", 
-                    image: "/img/albums/HauntedHouses.jpeg", 
-                    year: "2025", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/track/27bVwMOxai0M5oGX7GfGLb?si=4e45518e92534d58',
-                        'Apple Music': 'https://music.apple.com/us/album/haunted-houses-single/1846783765',
-                        'YouTube': 'https://www.youtube.com/watch?v=cj9yoAB-8vc&list=RDcj9yoAB-8vc&start_radio=1'
-                    }
-                },
-                { 
-                    name: 'Family Pt. 2', 
-                    artist: 'Tyler Nail', 
-                    image: '/img/albums/FamilyPt2.jpg', 
-                    year: "2025", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/5Kg1EusZf3DbtTxqcdL6on?si=Dru1ZG5PSsGXv27v04_biA',
-                        'Apple Music': 'https://music.apple.com/us/album/family-pt-2-single/1788765824',
-                        'YouTube': 'https://www.youtube.com/watch?v=73sHQNnWxX8&list=OLAK5uy_l_XeJ7DGSKq-YWPIgi1z_laLpDoFosHVI'
-                    }
-                },
-                { 
-                    name: 'Family Pt. 1', 
-                    artist: 'Tyler Nail', 
-                    image:  '/img/albums/Family.jpg', 
-                    year: "2025", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/087F8TL4iU2i9R6M9kQLRk?si=chERu7rITpaeAfBMro1tNw',
-                        'Apple Music': 'https://music.apple.com/us/album/family-pt-1-single/1788141490',
-                        'YouTube': 'https://www.youtube.com/watch?v=BLvS-tL1hPE&list=OLAK5uy_kkQuCtZX-gQZfwK-4XmUq-sl7VqkcDR_M'
-                    }
-                },
-                { 
-                    name: 'Advent of the Symphonina: Spreading the Joy of Symphonic Music to Young Audiences Around the World',  
-                    artist: 'The 2024 International Symphonina Orchestra', 
-                    image:'/img/albums/AdventoftheSymphonina.jpeg', 
-                    year: '2024', 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/6qyRRoHPScyfYQcoqSkQnH?si=YpAMZ2SbQo6JBGbPr3L8Zg&nd=1&dlsi=cb332c81c38042c9',
-                        'Apple Music': 'https://music.apple.com/us/album/advent-of-the-symphonina-spreading-the-joy/1752538603',
-                        'YouTube': '#'
-                    }
-                },
-                { 
-                    name: 'In This Life', 
-                    artist: 'Sean Mckee Band', 
-                    image: '/img/albums/InThisLife.jpeg', 
-                    year: "2023", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ',
-                        'Apple Music': 'https://music.apple.com/us/album/in-this-life-ep/1724110519',
-                        'YouTube': 'https://www.youtube.com/watch?v=v3QdME_ZCkQ&list=OLAK5uy_mx-fdqkQbdbJRGyz9epJcCEFIuEQlNWbM'
-                    }
-                },
-                { 
-                    name: 'So Long My Queen', 
-                    artist: 'Sean Mckee Band', 
-                    image: '/img/albums/SoLongMyQueen.jpeg', 
-                    year: "2022", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA',
-                        'Apple Music': 'https://music.apple.com/us/album/so-long-my-queen-ep/1606473575',
-                        'YouTube': 'https://www.youtube.com/watch?v=xjNzCIJnm7I&list=OLAK5uy_nMsFgpzWSVpTnYerATa-dUNL662FaYMTI'
-                    }
-                },
-                { 
-                    name: 'Poison Ivy', 
-                    artist: 'Sean Mckee Band', 
-                    image: '/img/albums/PoisonIvy.jpeg', 
-                    year: "2021", 
-                    links: {
-                        'Spotify': 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A',
-                        'Apple Music': 'https://music.apple.com/us/album/poison-ivy-single/1588077087',
-                        'YouTube': 'https://www.youtube.com/watch?v=_sUEwDyL70w&list=OLAK5uy_lflNt4oOsohmcl1CtF97Z1PZPDT1e7dHo'
-                    }
-                }
-            ],
-        }
-    },
-    methods: {
-        toggleAlbumMenu(index) {
-            this.activeAlbumIndex = this.activeAlbumIndex === index ? null : index;
-        },
-        closeAlbumMenu() {
-            this.activeAlbumIndex = null;
-        },
-        onDocumentClick(e) {
-            if (!e.target.closest('.album')) {
-                this.closeAlbumMenu();
-            }
-        }
-    },
-    mounted() {
-        // Close popup when clicking outside. The handler is a named method so
-        // beforeUnmount can actually remove it — as an inline arrow it leaked
-        // one listener (and the component it closed over) per visit to a page
-        // that renders the discography.
-        document.addEventListener('click', this.onDocumentClick);
-    },
-    beforeUnmount() {
-        document.removeEventListener('click', this.onDocumentClick);
-    }
+<script setup>
+import { discography, platforms, PLATFORM_PENDING } from '~/data/discography';
+
+/**
+ * The album grid. Clicking a cover opens a small menu of streaming links.
+ *
+ * Converted from the Options API — it was the last component still using it —
+ * and the ninety lines of album data it carried now live in data/discography.ts
+ * so a future /discography page can render the same records without importing
+ * this component.
+ */
+const activeAlbumIndex = ref(null);
+
+const isPending = (album, platform) => album.links[platform.name] === PLATFORM_PENDING;
+
+function toggleAlbumMenu(index) {
+  activeAlbumIndex.value = activeAlbumIndex.value === index ? null : index;
 }
+
+function closeAlbumMenu() {
+  activeAlbumIndex.value = null;
+}
+
+function onDocumentClick(e) {
+  if (!e.target.closest('.album')) closeAlbumMenu();
+}
+
+onMounted(() => document.addEventListener('click', onDocumentClick));
+onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
 </script>
 
 <style scoped>
@@ -248,43 +156,6 @@ export default {
     }
 }
 
-.platform-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--border-dark);
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 0.75rem 0.75rem 0 0;
-}
-
-.popup-title {
-    font-weight: 600;
-    color: var(--white);
-    font-size: 0.9rem;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    color: var(--grey);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-}
-
-.close-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-}
-
 .platform-options {
     padding: 0.5rem;
 }
@@ -344,13 +215,7 @@ export default {
 }
 
 @media only screen and (max-width: 576px) {
-    .platform-popup-header {
-        padding: 0.75rem 1rem;
-    }
     
-    .popup-title {
-        font-size: 0.8rem;
-    }
     
     .platform-option {
         padding: 0.6rem 0.8rem;

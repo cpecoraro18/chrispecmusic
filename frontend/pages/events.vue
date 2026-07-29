@@ -10,18 +10,13 @@
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="container">
-        <h2 class="mb-3">Looking for a bass player?</h2>
-        <p class="lead measure mb-4">
-          I take live bookings and record remote sessions from my studio.
-        </p>
-        <div class="cta-actions">
-          <nuxt-link class="btn btn-cta" to="/book-live-gig">Book a Live Gig</nuxt-link>
-          <nuxt-link class="btn btn-ghost" to="/book-session">Book a Recording Session</nuxt-link>
-        </div>
-      </div>
-    </section>
+    <CtaBand
+      title="Looking for a bass player?"
+      lead="I take live bookings and record remote sessions from my studio."
+    >
+      <nuxt-link class="btn btn-cta" to="/book-live-gig">Book a Live Gig</nuxt-link>
+      <nuxt-link class="btn btn-ghost" to="/book-session">Book a Recording Session</nuxt-link>
+    </CtaBand>
   </div>
 </template>
 

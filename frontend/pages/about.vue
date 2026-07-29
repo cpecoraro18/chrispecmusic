@@ -32,18 +32,13 @@
     </section>
 
     <!-- ================= CTA ================= -->
-    <section class="section-tight">
-      <div class="container">
-        <h2 class="mb-3">Work with me</h2>
-        <p class="lead measure mb-4">
-          I record remote bass sessions from my studio and play live dates in Chicago and beyond.
-        </p>
-        <div class="about-actions">
-          <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-          <nuxt-link class="btn btn-ghost" to="/book-live-gig">Book a Live Gig</nuxt-link>
-        </div>
-      </div>
-    </section>
+    <CtaBand
+      title="Work with me"
+      lead="I record remote bass sessions from my studio and play live dates in Chicago and beyond."
+    >
+      <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
+      <nuxt-link class="btn btn-ghost" to="/book-live-gig">Book a Live Gig</nuxt-link>
+    </CtaBand>
   </div>
 </template>
 
@@ -59,18 +54,5 @@ useSeo({
   width: 100%;
   max-height: 30rem;
   object-fit: cover;
-}
-
-.about-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  justify-content: center;
-}
-
-@media (max-width: 575px) {
-  .about-actions .btn {
-    flex: 1 1 100%;
-  }
 }
 </style>

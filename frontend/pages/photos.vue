@@ -82,15 +82,12 @@ const modalPhoto = ref(null);
 const token = ref(null);
 const loadingPhotos = ref(false);
 
+const api = useApi();
+
 const fetchPhotos = async () => {
   loadingPhotos.value = true;
   try {
-    const url = new URL('https://api.chrispecmusic.com/photos');
-    if (token.value) {
-      url.searchParams.append('token', token.value);
-    }
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await api.get('/photos', { token: token.value });
     if (data.images) {
       photos.value = [
         ...photos.value,

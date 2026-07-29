@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a href="mailto:contact@chrispecmusic.com" target="_blank" rel="noopener" class="text-white mx-2" aria-label="Email">
+        <a :href="`mailto:${CONTACT_EMAIL}`" rel="noopener" class="text-white mx-2" aria-label="Email">
             <i class="fa fa-envelope social-icon"></i>
         </a>
         <a href="https://www.instagram.com/chrispecmusic" target="_blank" rel="noopener" class="text-white mx-2" aria-label="Instagram">
@@ -11,6 +11,10 @@
         </a>
     </div>
 </template>
+
+<script setup>
+import { CONTACT_EMAIL } from '~/data/service';
+</script>
 
 <style scoped>
 @media (max-width: 576px) {

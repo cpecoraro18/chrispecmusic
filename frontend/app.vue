@@ -1,14 +1,7 @@
 <template>
   <div id="app">
     <NuxtLayout>
-        <SiteHeader/>
-        <main class="main-content">
-          <NuxtPage/>
-        </main>
-        <SiteFooter/>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
-
-<script>
-</script>

@@ -100,24 +100,15 @@ const thankYouMessage = ref('');
 const errorMessage = ref('');
 const isLoading = ref(false);
 
-const sendMessage = async (token) => {
-    const response = await $fetch('https://api.chrispecmusic.com/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name.value,
-            email: email.value,
-            message: message.value,
-            recaptcha: token
-        })
-    });
+const api = useApi();
 
-    // The Lambda returns a JSON-encoded string body, but $fetch parses JSON
-    // responses on its own — handle both so a change on either side doesn't
-    // turn a successful send into a visible error.
-    const data = typeof response === 'string' ? JSON.parse(response) : response;
+const sendMessage = async (token) => {
+    const data = await api.post('/contact', {
+        name: name.value,
+        email: email.value,
+        message: message.value,
+        recaptcha: token
+    });
 
     if (data?.status !== 'success') {
         throw new Error(data?.message || 'Failed to send email');

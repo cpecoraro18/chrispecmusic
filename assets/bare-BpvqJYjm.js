@@ -1,0 +1,1 @@
+import{_ as n,o as s,c as t,s as o}from"./entry-DnLpdWvJ.js";const a={},c={id:"main",class:"main-content"};function r(e,_){return s(),t("main",c,[o(e.$slots,"default")])}const l=n(a,[["render",r]]);export{l as default};

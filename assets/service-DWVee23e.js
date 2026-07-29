@@ -1,0 +1,1 @@
+const s="2 to 3 days",a="two or three",r="contact@chrispecmusic.com",t=[{tracks:"1 track",price:100},{tracks:"3 to 4 tracks",price:90},{tracks:"5+ tracks",price:80,featured:!0}],o=Math.min(...t.map(c=>c.price));export{r as C,t as P,o as S,a as T,s as a};

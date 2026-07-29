@@ -5,9 +5,13 @@ const SITE_URL = 'https://chrispecmusic.com';
 
 /**
  * Pages that should not be advertised to search engines. Add route paths here
- * (leading slash, no trailing slash).
+ * (leading slash, no trailing slash). Anything listed here should also pass
+ * `noindex: true` to useSeo — the sitemap and the robots meta tag need to agree.
+ *
+ * /links is a link-in-bio page reached from Instagram and YouTube, not from
+ * search. It was competing with the homepage for searches on the name.
  */
-const EXCLUDED_ROUTES = new Set([]);
+const EXCLUDED_ROUTES = new Set(['/links']);
 
 /**
  * Relative crawl priority. Anything not listed falls back to DEFAULT_PRIORITY.

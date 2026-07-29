@@ -143,9 +143,10 @@
             <p class="eyebrow mb-2">A bit about me</p>
             <h2 class="mb-3">Chicago bassist, upright and electric</h2>
             <p class="lead text-muted">
-              I play with rock and jazz bands, orchestras, musicals, and vocal ensembles, and I
-              record remotely for artists around the world. I'm always glad to hear about a new
-              project, in the studio or on stage.
+              I'm Chris Pecoraro, and I release and record as ChrisPecMusic. I play with rock and
+              jazz bands, orchestras, musicals, and vocal ensembles, and I record remotely for
+              artists around the world. I'm always glad to hear about a new project, in the studio
+              or on stage.
             </p>
             <ul class="credit-list">
               <li>Member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge</li>
@@ -197,9 +198,14 @@ const steps = [
   },
 ];
 
+// Leads with the one-word form deliberately. It is the domain and every social
+// handle, so it is what people type — but it appeared nowhere in any title, which
+// left a search for it with no page to prefer and any page free to answer. The
+// two-word name follows immediately, so both forms are matched. Kept under ~60
+// characters so neither gets truncated in a result.
 useSeo({
-  title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
-  description: 'Remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
+  title: 'ChrisPecMusic | Chris Pecoraro, Chicago Session Bassist',
+  description: 'ChrisPecMusic is Chris Pecoraro, a remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
 });
 
 usePersonStructuredData();

@@ -1,4 +1,4 @@
-import { SITE_URL, SITE_NAME } from './useSeo';
+import { SITE_URL, SITE_NAME, BRAND_NAME } from './useSeo';
 import { CONTACT_EMAIL, STARTING_PRICE } from '~/data/service';
 
 /**
@@ -16,6 +16,10 @@ export function usePersonStructuredData() {
     '@type': 'Person',
     '@id': `${SITE_URL}/#chris`,
     name: SITE_NAME,
+    // The domain and every social handle are one word; his name is two. Without
+    // this, a search for "ChrisPecMusic" has no entity to attach to and the two
+    // strings look unrelated.
+    alternateName: BRAND_NAME,
     jobTitle: 'Bassist',
     description:
       'Upright and electric bassist based in Chicago, offering remote bass recording sessions and live performance.',
@@ -43,6 +47,30 @@ export function usePersonStructuredData() {
       'https://www.youtube.com/@ChrisPecMusicOfficial',
       'https://www.fiverr.com/cpecoraro18',
     ],
+  };
+
+  /**
+   * Identifies the site itself, as distinct from the person behind it. This is
+   * what search engines read to decide the name to display for the site and
+   * which URL that name belongs to — so without it, a brand-name search has
+   * nothing pointing at the homepage in particular, and any page can answer it.
+   *
+   * Note the name/alternateName here are the reverse of the Person above, and
+   * deliberately so. The site's name is the one-word form because that is what
+   * the domain says, and a site name that contradicts its own domain is the
+   * case search engines are most likely to override. The person's name is the
+   * two-word form because that is his name. Only this node is emitted on the
+   * homepage alone, so the brand string resolves to `/` and not to whichever
+   * page happens to rank.
+   */
+  const website = {
+    '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
+    name: BRAND_NAME,
+    alternateName: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: 'en-US',
+    publisher: { '@id': `${SITE_URL}/#chris` },
   };
 
   const services = {
@@ -101,7 +129,7 @@ export function usePersonStructuredData() {
         type: 'application/ld+json',
         innerHTML: JSON.stringify({
           '@context': 'https://schema.org',
-          '@graph': [person, services],
+          '@graph': [website, person, services],
         }),
       },
     ],

@@ -61,9 +61,17 @@
 // exits to a page deliberately designed to offer seven.
 definePageMeta({ layout: 'bare' });
 
+// Kept out of search entirely. This page is reached from an Instagram or YouTube
+// bio, never from a search result, so it gives up nothing by being noindexed —
+// but to a crawler it looked like the profile page for the whole site: an <h1>
+// of the name over a portrait, few words, and a brand-first title structurally
+// identical to the homepage's. That made it a credible answer to a search for
+// the name, which is a job the homepage should have. `follow` is kept so the
+// links out of here still count. Also excluded from the sitemap.
 useSeo({
-  title: 'Chris Pecoraro | Upright & Electric Bassist, Chicago',
-  description: 'Chris Pecoraro, upright and electric bassist based in Chicago. Book a remote recording session or a live gig, watch performances, and get in touch.',
+  title: 'Links | Chris Pecoraro, Chicago Bassist',
+  description: 'All of Chris Pecoraro\'s links in one place: book a remote bass session or a live gig, watch performances, and follow on Instagram and YouTube.',
+  noindex: true,
 });
 </script>
 

@@ -8,9 +8,9 @@
           v-for="(chunk, index) in chunkedReviews"
           :key="index"
         >
-          <div class="row">
+          <div class="row g-3">
             <div class="col-md-4" v-for="(review, i) in chunk" :key="review.name + i">
-              <figure class="text-center p-3 review-item h-100 mb-0">
+              <figure class="text-center review-item h-100 mb-0">
                 <star-rating :rating="review.rating" variant="light" class="mb-2" />
                 <blockquote class="mb-2 review-text">"{{ review.review }}"</blockquote>
                 <figcaption class="fst-italic review-author">
@@ -68,6 +68,13 @@ const chunkedReviews = computed(() => {
   min-height: 15em; /* 200px / 16 */
 }
 
+/* Card spacing lives in the row gutters, not a margin on the figure: the figure
+   is h-100, so any margin on it makes the card taller than its column and
+   carousel-inner's overflow: hidden clips the bottom edge off. */
+.carousel-inner {
+  padding-bottom: 0.25em;
+}
+
 /* Translucent surface matching the cards elsewhere on the site, rather than a
    light grey tile on a light band. */
 .review-item {
@@ -75,7 +82,6 @@ const chunkedReviews = computed(() => {
   border: 1px solid rgba(var(--text-color-rgb), 0.14);
   border-radius: var(--radius-md);
   padding: 1.25em;
-  margin: 0.3125em;
 }
 
 .review-text {

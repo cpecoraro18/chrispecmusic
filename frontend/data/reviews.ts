@@ -325,14 +325,3 @@ export const reviews: Review[] = [
     review: "Efficient and impressive.",
   },
 ];
-
-/**
- * A handful of longer, specific reviews used as pull-quotes on the homepage.
- * Specific praise ("tone, groove and musical sensitivity") converts better than
- * generic praise ("great work!"), so these are hand-picked rather than sampled.
- */
-export const featuredReviewNames = ["raindance_de", "abelyss", "oldmanlion"];
-
-export const featuredReviews = featuredReviewNames
-  .map((name) => reviews.find((r) => r.name === name))
-  .filter(Boolean);

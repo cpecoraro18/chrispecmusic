@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="section-tight pb-0">
+    <section class="section-tight">
       <div class="container">
         <h1 class="mb-3">Portfolio</h1>
         <p class="lead measure mb-0">

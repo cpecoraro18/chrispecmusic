@@ -21,14 +21,18 @@
   --text-color: #F4F1EE;
   --text-color-rgb: 244, 241, 238;
   --text-color-dark: rgba(0, 0, 0, 0.7);
-  /* Secondary text on dark backgrounds. Tuned to 4.6:1 against --blue-dark so
+  /* Secondary text on dark backgrounds. Sits at ~5.1:1 against --blue-dark so
      it passes WCAG AA — Bootstrap's default .text-muted grey sits at ~1.9:1
      here and is effectively unreadable. */
   --text-muted-on-dark: rgba(244, 241, 238, 0.82);
 
-  /* Sherwin-Williams "Daphne" (SW 9151, #899CAA) family */
+  /* Sherwin-Williams "Daphne" (SW 9151, #899CAA) family. Every shade here is
+     Daphne's own hue and saturation (H 203, S ~16%) at a different lightness,
+     so the palette reads as one color. --blue-dark is the page background and
+     was the one shade off-family: at S 28% it was nearly twice Daphne's chroma
+     and made the whole site read as blue rather than slate. */
   --blue: #899CAA;
-  --blue-dark: #426075;
+  --blue-dark: #475762;
   --blue-deep: #36444E;
   --blue-tint: #E9EEF2;
 

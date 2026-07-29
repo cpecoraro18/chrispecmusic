@@ -45,12 +45,12 @@
             <article class="offer">
               <h3 class="mb-3">Recording sessions</h3>
               <p class="offer-copy">
-                Send a rough mix and any notes on feel or tone. I record it here and send back
-                stems that drop straight into your session, with nothing left to edit or engineer.
+                Send a rough mix and any notes on feel or tone. I record it and send back
+                stems that drop straight into your session.
               </p>
               <p class="offer-detail">
-                You get {{ TAKES_PER_TRACK }} takes to choose from on upright, fretted, fretless, or
-                slap, revisions are included, and the recordings are yours once the project is paid for.
+                You get {{ TAKES_PER_TRACK }} takes to choose from on upright or electric bass, 
+                revisions are included, and the recordings are yours once the project is paid for.
               </p>
               <nuxt-link class="text-link" to="/book-session">
                 How it works <span aria-hidden="true">→</span>
@@ -66,8 +66,7 @@
                 touring dates, in Chicago or on the road.
               </p>
               <p class="offer-detail">
-                I read charts or learn by ear, play across jazz, blues, rock, pop, soul, and folk,
-                and can coordinate other musicians if you need a full band.
+                I read charts or learn by ear, play across jazz, blues, rock, pop, soul, and folk.
               </p>
               <nuxt-link class="text-link" to="/book-live-gig">
                 Check availability <span aria-hidden="true">→</span>
@@ -78,44 +77,11 @@
       </div>
     </section>
 
-    <!-- ================= PROCESS ================= -->
-    <section class="section-tight process-section">
-      <div class="container">
-        <p class="eyebrow mb-2">The process</p>
-        <h2 class="mb-5">How a session works</h2>
-        <div class="row g-5">
-          <div class="col-12 col-md-4" v-for="(step, i) in steps" :key="step.title">
-            <div class="step">
-              <span class="step-number" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
-              <h3 class="h4 mb-2">{{ step.title }}</h3>
-              <p class="text-muted mb-0">{{ step.copy }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= QUOTES ================= -->
-    <section class="section">
-      <div class="container">
-        <p class="eyebrow mb-2">Reviews</p>
-        <h2 class="mb-5">What clients say</h2>
-        <div class="row g-5">
-          <div class="col-12 col-md-4" v-for="review in featuredReviews" :key="review.name">
-            <figure class="quote mb-0">
-              <blockquote class="quote-text">{{ review.review }}</blockquote>
-              <figcaption class="quote-author">
-                {{ review.name }} <span class="quote-country">· {{ review.country }}</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- ================= REVIEWS ================= -->
     <section class="section-tight reviews-section">
       <div class="container">
-        <h2 class="mb-2">More reviews</h2>
+        <p class="eyebrow mb-2">Reviews</p>
+        <h2 class="mb-2">What clients say</h2>
         <p class="lead text-muted measure mb-4">A selection of reviews from clients.</p>
       </div>
       <review-list></review-list>
@@ -143,16 +109,12 @@
             <p class="eyebrow mb-2">A bit about me</p>
             <h2 class="mb-3">Chicago bassist, upright and electric</h2>
             <p class="lead text-muted">
-              I'm Chris Pecoraro, and I release and record as ChrisPecMusic. I play with rock and
-              jazz bands, orchestras, musicals, and vocal ensembles, and I record remotely for
-              artists around the world. I'm always glad to hear about a new project, in the studio
-              or on stage.
+              I'm Chris Pecoraro, a professional upright and electric bassist based in Chicago. I provide remote bass recording and live performance for songwriters,
+              producers, and bands, with experience across genres including indie, pop, country, rock, blues, jazz, R&B, and Americana. I've completed more than 100 
+              remote recording sessions for clients around the world and believe the best bass parts are the ones that serve the song first. 
+              Whether you have a fully written part or just an idea, my goal is to deliver tasteful, high-quality recordings with fast turnaround and an easy, 
+              collaborative experience.
             </p>
-            <ul class="credit-list">
-              <li>Member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge</li>
-              <li>Shared stages with Buddy Guy, Doc Severinsen, and members of Prince's band</li>
-              <li>Played Buddy Guy's Legends, the Grand Ole Opry, Lincoln Hall, and Rum Boogie Café</li>
-            </ul>
             <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
               More about me <span aria-hidden="true">→</span>
             </nuxt-link>
@@ -180,32 +142,11 @@
 </template>
 
 <script setup>
-import { featuredReviews } from '~/data/reviews';
-import { TAKES_PER_TRACK, TURNAROUND } from '~/data/service';
+import { TAKES_PER_TRACK } from '~/data/service';
 
-const steps = [
-  {
-    title: 'Send your track',
-    copy: 'Send a rough mix or demo, along with any references or notes on the feel you want. If you are not sure, that is completely fine, and I can suggest what works best.',
-  },
-  {
-    title: 'I record your bass',
-    copy: `I cut ${TAKES_PER_TRACK} takes with different approaches so you can pick the one that serves the song, then request tweaks until it fits.`,
-  },
-  {
-    title: 'You get mix-ready stems',
-    copy: `Final files land in your inbox, usually within ${TURNAROUND}. You pay once you are happy, and the recordings are yours to use however you like.`,
-  },
-];
-
-// Leads with the one-word form deliberately. It is the domain and every social
-// handle, so it is what people type — but it appeared nowhere in any title, which
-// left a search for it with no page to prefer and any page free to answer. The
-// two-word name follows immediately, so both forms are matched. Kept under ~60
-// characters so neither gets truncated in a result.
 useSeo({
-  title: 'ChrisPecMusic | Chris Pecoraro, Chicago Session Bassist',
-  description: 'ChrisPecMusic is Chris Pecoraro, a remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
+  title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
+  description: 'Chris Pecoraro is a remote session bass player based in Chicago. Upright and electric bass recorded in my studio and delivered mix-ready, with multiple takes and revisions included.',
 });
 
 usePersonStructuredData();
@@ -348,57 +289,6 @@ useHead({
   line-height: 1.7;
   color: rgba(var(--text-color-rgb), 0.62);
   margin-bottom: 1.75rem;
-}
-
-/* ---------------- Process ---------------- */
-.process-section {
-  background-color: var(--blue-deep);
-}
-
-.step {
-  text-align: left;
-}
-
-.step-number {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: rgba(var(--text-color-rgb), 0.3);
-  margin-bottom: 1rem;
-}
-
-/* ---------------- Quotes ---------------- */
-.quote {
-  text-align: left;
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.28);
-  padding-top: 2rem;
-}
-
-.quote-text {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
-}
-
-.quote-text::before {
-  content: '\201C';
-}
-
-.quote-text::after {
-  content: '\201D';
-}
-
-.quote-author {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(var(--text-color-rgb), 0.62);
-}
-
-.quote-country {
-  font-weight: 400;
 }
 
 /* ---------------- About ---------------- */

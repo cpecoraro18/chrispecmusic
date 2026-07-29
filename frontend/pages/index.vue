@@ -12,25 +12,45 @@
           </p>
           <div class="hero-actions">
             <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-            <a class="text-link" href="#listen">See more <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#about">See more <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>
-      <a class="hero-scroll" href="#listen" aria-label="Scroll to bass samples">
+      <a class="hero-scroll" href="#about" aria-label="Scroll to more about Chris">
         <AppIcon name="chevron-down" />
       </a>
     </section>
 
-    <!-- ================= LISTEN ================= -->
-    <section id="listen" class="section listen-section">
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section about-section">
       <div class="container">
-        <p class="eyebrow mb-2">Listen</p>
-        <h2 class="mb-3">Bass samples</h2>
-        <p class="lead text-muted measure mb-5">
-          These are takes from my studio on upright and electric, with both DI and amp tones.
-          Toggle the drums on or off to hear how a part sits in a mix.
-        </p>
-        <bass-audio-samples></bass-audio-samples>
+        <div class="row align-items-center g-5">
+          <div class="col-12 col-lg-5">
+            <img
+              src="/img/BuddyGuys.webp"
+              alt="Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago"
+              class="img-fluid rounded shadow about-photo"
+              width="1133"
+              height="581"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="col-12 col-lg-7 text-lg-start">
+            <p class="eyebrow mb-2">A bit about me</p>
+            <h2 class="mb-3">Chicago bassist, upright and electric</h2>
+            <p class="lead text-muted">
+              I'm Chris Pecoraro, a professional upright and electric bassist based in Chicago. I provide remote bass recording and live performance for songwriters,
+              producers, and bands, with experience across genres including indie, pop, country, rock, blues, jazz, R&B, and Americana. I've completed more than 100
+              remote recording sessions for clients around the world and believe the best bass parts are the ones that serve the song first.
+              Whether you have a fully written part or just an idea, my goal is to deliver tasteful, high-quality recordings with fast turnaround and an easy,
+              collaborative experience.
+            </p>
+            <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
+              More about me <span aria-hidden="true">→</span>
+            </nuxt-link>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -90,36 +110,16 @@
     <!-- ================= DISCOGRAPHY ================= -->
     <discography-list></discography-list>
 
-    <!-- ================= ABOUT ================= -->
-    <section class="section">
+    <!-- ================= LISTEN ================= -->
+    <section id="listen" class="section listen-section">
       <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-12 col-lg-5">
-            <img
-              src="/img/BuddyGuys.webp"
-              alt="Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago"
-              class="img-fluid rounded shadow about-photo"
-              width="1133"
-              height="581"
-              loading="lazy"
-              decoding="async"
-            >
-          </div>
-          <div class="col-12 col-lg-7 text-lg-start">
-            <p class="eyebrow mb-2">A bit about me</p>
-            <h2 class="mb-3">Chicago bassist, upright and electric</h2>
-            <p class="lead text-muted">
-              I'm Chris Pecoraro, a professional upright and electric bassist based in Chicago. I provide remote bass recording and live performance for songwriters,
-              producers, and bands, with experience across genres including indie, pop, country, rock, blues, jazz, R&B, and Americana. I've completed more than 100 
-              remote recording sessions for clients around the world and believe the best bass parts are the ones that serve the song first. 
-              Whether you have a fully written part or just an idea, my goal is to deliver tasteful, high-quality recordings with fast turnaround and an easy, 
-              collaborative experience.
-            </p>
-            <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
-              More about me <span aria-hidden="true">→</span>
-            </nuxt-link>
-          </div>
-        </div>
+        <p class="eyebrow mb-2">Listen</p>
+        <h2 class="mb-3">Bass samples</h2>
+        <p class="lead text-muted measure mb-5">
+          These are takes from my studio on upright and electric, with both DI and amp tones.
+          Toggle the drums on or off to hear how a part sits in a mix.
+        </p>
+        <bass-audio-samples></bass-audio-samples>
       </div>
     </section>
 
@@ -160,6 +160,7 @@ useHead({
 </script>
 
 <style scoped>
+.about-section,
 .listen-section,
 .reviews-section {
   background-color: var(--blue-deep);

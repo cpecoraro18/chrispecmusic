@@ -133,8 +133,8 @@
               src="/img/BuddyGuys.jpg"
               alt="Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago"
               class="img-fluid rounded shadow about-photo"
-              width="800"
-              height="600"
+              width="1133"
+              height="581"
               loading="lazy"
               decoding="async"
             >

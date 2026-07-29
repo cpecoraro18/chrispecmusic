@@ -70,6 +70,8 @@
               src="/img/SeanMcKeeBand.jpg"
               alt="Chris Pecoraro performing live on bass with the Sean McKee Band"
               class="img-fluid rounded shadow w-100"
+              width="2058"
+              height="1170"
               loading="lazy"
               decoding="async"
             >

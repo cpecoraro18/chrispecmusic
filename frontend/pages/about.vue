@@ -8,6 +8,8 @@
               src="/img/ChrisPecMusic.jpg"
               alt="Chris Pecoraro, upright and electric bassist based in Chicago"
               class="img-fluid rounded shadow about-photo"
+              width="2219"
+              height="937"
               loading="eager"
               decoding="async"
             />

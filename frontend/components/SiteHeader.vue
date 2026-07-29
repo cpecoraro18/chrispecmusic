@@ -1,5 +1,5 @@
 <template>
-    <div :style="{ height: navbarHeight + 'em'}"></div>
+    <div class="navbar-spacer" :style="spacerStyle"></div>
     <header class="navbar navbar-expand-lg navbar-dark" :style="{ backgroundColor: `rgba(46,46,46, ${navbarOpacity})` }">
         <div class="container">
             <router-link to="/">
@@ -55,6 +55,17 @@
     const navbarOpacity = ref(0);
     const navbarHeight = ref(0); // height in em
 
+    // The spacer offsets the fixed header. Everywhere but the homepage the
+    // header is already at its resting size on first paint, so the height is
+    // left to CSS — driving it from JS meant the server rendered 0 and
+    // hydration then pushed the whole page down by ~130px, which is a large
+    // layout shift on every non-home route. Only the homepage, where the
+    // header genuinely grows from nothing as it fades in over the hero, still
+    // needs an inline height.
+    const spacerStyle = computed(() =>
+        isIndex.value ? { height: `${navbarHeight.value}em` } : undefined
+    )
+
     const getNavbarCollapse = () => document.getElementById('navbarNav')
 
     // Single source of truth for the header's opacity and the height of the
@@ -68,15 +79,18 @@
             return
         }
 
-        const scrollY = window.scrollY || window.pageYOffset
-        const windowHeight = window.innerHeight
-        const restingHeight = Math.max(8, windowHeight / 100)
-
         if (!isIndex.value) {
             navbarOpacity.value = 1
-            navbarHeight.value = restingHeight
+            // navbarHeight is deliberately not touched here — the spacer is
+            // sized by CSS on these routes. See spacerStyle above.
             return
         }
+
+        const scrollY = window.scrollY || window.pageYOffset
+        const windowHeight = window.innerHeight
+        // Mirrors the CSS `max(8em, 16vh)` below, so the homepage spacer grows
+        // to exactly the height every other route starts at.
+        const restingHeight = Math.max(8, windowHeight / 100)
 
         // start fade-in around 30% of the hero height, max at 100%
         const fadeStart = windowHeight * 0.3
@@ -141,6 +155,14 @@
 </script>
 
 <style scoped>
+
+/* Resting height of the fixed header, expressed so the server-rendered HTML
+   already reserves the right space. Equivalent to the Math.max(8, innerHeight
+   / 100) em the script uses once mounted: 8em is the floor, and (innerHeight
+   / 100)em resolves to 16vh at a 16px root. */
+.navbar-spacer {
+    height: max(8em, 16vh);
+}
 
 .navbar {
     z-index: 1000;

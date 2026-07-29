@@ -9,14 +9,17 @@
 
         <div class="row g-4">
           <div
-            v-for="(photo, index) in photos"
-            :key="index"
+            v-for="photo in photos"
+            :key="photo.name"
             class="col-6 col-md-4 col-lg-3"
           >
             <div class="photo-card">
               <button class="photo-trigger" @click="openModal(photo)">
+                <!-- Same file the lightbox uses, so opening a photo is a cache
+                     hit rather than a second download. loading="lazy" keeps the
+                     grid from fetching all 24 up front. -->
                 <img
-                  :src="photo.src"
+                  :src="photo.web"
                   :alt="photo.name"
                   class="photo-image"
                   loading="lazy"
@@ -25,9 +28,16 @@
                 <span class="visually-hidden">View larger</span>
               </button>
               <div class="photo-actions">
-                <a :href="photo.src" download class="action-icon" :title="`Download ${photo.name}`">
+                <!-- Links straight at the S3 original. No `download`
+                     attribute: it is ignored cross-origin, so the save is
+                     forced by the Content-Disposition set at upload time. -->
+                <a
+                  :href="photo.full"
+                  class="action-icon"
+                  :title="`Download ${photo.name} at full resolution`"
+                >
                   <i class="fas fa-download" aria-hidden="true"></i>
-                  <span class="visually-hidden">Download {{ photo.name }}</span>
+                  <span class="visually-hidden">Download {{ photo.name }} at full resolution</span>
                 </a>
               </div>
             </div>
@@ -62,9 +72,9 @@
         <i class="fas fa-xmark" aria-hidden="true"></i>
       </button>
       <div class="modal-inner">
-        <img :src="modalPhoto.src" :alt="modalPhoto.name" class="modal-image" />
-        <a :href="modalPhoto.src" download class="btn btn-cta mt-3">
-          <i class="fas fa-download me-2" aria-hidden="true"></i>Download
+        <img :src="modalPhoto.web" :alt="modalPhoto.name" class="modal-image" />
+        <a :href="modalPhoto.full" class="btn btn-cta mt-3">
+          <i class="fas fa-download me-2" aria-hidden="true"></i>Download full resolution
         </a>
       </div>
     </div>
@@ -88,14 +98,9 @@ const fetchPhotos = async () => {
   loadingPhotos.value = true;
   try {
     const data = await api.get('/photos', { token: token.value });
-    if (data.images) {
-      photos.value = [
-        ...photos.value,
-        ...data.images.map((image) => ({
-          name: image.split('/').pop(),
-          src: image,
-        })),
-      ];
+    // The Lambda returns {name, web, full} per photo.
+    if (data.photos) {
+      photos.value = [...photos.value, ...data.photos];
     }
     // No token in the response means there are no further pages.
     token.value = data.token ?? null;

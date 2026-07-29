@@ -20,7 +20,7 @@ export function usePersonStructuredData() {
     description:
       'Upright and electric bassist based in Chicago, offering remote bass recording sessions and live performance.',
     url: SITE_URL,
-    image: `${SITE_URL}/img/ChrisPecMusic.jpg`,
+    image: `${SITE_URL}/img/ChrisPecMusic.webp`,
     email: `mailto:${CONTACT_EMAIL}`,
     address: {
       '@type': 'PostalAddress',
@@ -50,7 +50,7 @@ export function usePersonStructuredData() {
     '@id': `${SITE_URL}/#service`,
     name: 'Chris Pecoraro Session Bass',
     url: SITE_URL,
-    image: `${SITE_URL}/img/BuddyGuys.jpg`,
+    image: `${SITE_URL}/img/BuddyGuys.webp`,
     provider: { '@id': `${SITE_URL}/#chris` },
     areaServed: [
       { '@type': 'Country', name: 'Worldwide' },

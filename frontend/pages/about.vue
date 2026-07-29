@@ -5,11 +5,11 @@
         <div class="row align-items-center g-5">
           <div class="col-12 col-lg-5">
             <img
-              src="/img/ChrisPecMusic.jpg"
+              src="/img/ChrisPecMusic.webp"
               alt="Chris Pecoraro, upright and electric bassist based in Chicago"
               class="img-fluid rounded shadow about-photo"
-              width="2219"
-              height="937"
+              width="1600"
+              height="676"
               loading="eager"
               decoding="async"
             />

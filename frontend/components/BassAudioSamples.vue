@@ -27,15 +27,26 @@
                 </button>
               </div>
             </div>
+            <!-- preload="none" because switching samples swaps this element's
+                 src; without it every click costs a metadata fetch for a file
+                 the visitor may never play. -->
             <audio
               :src="getAudioSrc(focusedSample)"
               controls
+              preload="none"
               class="w-100 mt-2 compact-audio"
             ></audio>
-            <div class="mt-2 small sample-file text-truncate" :title="getAudioFile(focusedSample)">
-              <i class="fa fa-file-audio me-1"></i>{{ getAudioFile(focusedSample) }}
-              <span class="ms-2 badge bg-info" v-if="selectedType[focusedSample.id] === 'with'">With Drums</span>
-              <span class="ms-2 badge bg-secondary text-dark" v-else>No Drums</span>
+            <div class="mt-2 small sample-file d-flex align-items-center flex-wrap gap-2">
+              <a
+                :href="getWavSrc(focusedSample)"
+                download
+                class="wav-download"
+                :title="`Download ${getWavFile(focusedSample)} — uncompressed`"
+              >
+                <i class="fa fa-download me-1" aria-hidden="true"></i>Download WAV
+              </a>
+              <span class="badge bg-info" v-if="selectedType[focusedSample.id] === 'with'">With Drums</span>
+              <span class="badge bg-secondary text-dark" v-else>No Drums</span>
             </div>
           </div>
         </div>
@@ -81,8 +92,15 @@ function getAudioSrc(sample) {
   return selectedType[sample.id] === 'with' ? sample.withDrums : sample.withoutDrums;
 }
 
-function getAudioFile(sample) {
-  return getAudioSrc(sample).split('/').pop();
+// The uncompressed master matching whichever mix is selected. Offered next to
+// the player so an engineer can judge the take in a DAW rather than through a
+// lossy stream — the format is part of the pitch for that audience.
+function getWavSrc(sample) {
+  return selectedType[sample.id] === 'with' ? sample.withDrumsWav : sample.withoutDrumsWav;
+}
+
+function getWavFile(sample) {
+  return getWavSrc(sample).split('/').pop();
 }
 
 function focusSample(id) {
@@ -119,6 +137,18 @@ function focusSample(id) {
 
 .sample-file {
   color: var(--text-muted-on-dark);
+}
+
+.wav-download {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.wav-download:hover,
+.wav-download:focus-visible {
+  color: var(--white);
+  text-decoration: underline;
 }
 
 .side-list {

@@ -13,26 +13,33 @@
  * no-op and can be deleted from one place instead of three.
  */
 
+type Query = Record<string, string | undefined | null>;
+
 /** Handles the string-or-object ambiguity described above. */
 function unwrap<T>(response: unknown): T {
   return (typeof response === 'string' ? JSON.parse(response) : response) as T;
+}
+
+/**
+ * Undefined, null and empty values are dropped rather than serialised as the
+ * string "undefined".
+ */
+function buildQuery(query: Query): string {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (value !== undefined && value !== null && value !== '') params.append(key, value);
+  }
+  const qs = params.toString();
+  return qs ? `?${qs}` : '';
 }
 
 export function useApi() {
   const base = useRuntimeConfig().public.apiBase;
 
   return {
-    /**
-     * GET a route, e.g. get('/events', { timeMin }). Undefined and null query
-     * values are dropped rather than serialised as the string "undefined".
-     */
-    async get<T>(path: string, query: Record<string, string | undefined | null> = {}): Promise<T> {
-      const params = new URLSearchParams();
-      for (const [key, value] of Object.entries(query)) {
-        if (value !== undefined && value !== null && value !== '') params.append(key, value);
-      }
-      const qs = params.toString();
-      return unwrap<T>(await $fetch(`${base}${path}${qs ? `?${qs}` : ''}`));
+    /** GET a route, e.g. get('/events', { timeMin }). */
+    async get<T>(path: string, query: Query = {}): Promise<T> {
+      return unwrap<T>(await $fetch(`${base}${path}${buildQuery(query)}`));
     },
 
     async post<T>(path: string, body: unknown): Promise<T> {

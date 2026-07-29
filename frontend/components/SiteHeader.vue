@@ -3,7 +3,7 @@
     <header class="navbar navbar-expand-lg navbar-dark" :style="{ backgroundColor: `rgba(46,46,46, ${navbarOpacity})` }">
         <div class="container">
             <nuxt-link to="/" @click="closeNavbar">
-                <img src="/img/CPMusic-Logo-White.png" alt="Chris Pec Music" class="navbar-brand logo">
+                <img src="/img/CPMusic-Logo-White.webp" alt="Chris Pec Music" class="navbar-brand logo">
             </nuxt-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

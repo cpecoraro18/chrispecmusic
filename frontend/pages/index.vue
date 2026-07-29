@@ -130,7 +130,7 @@
         <div class="row align-items-center g-5">
           <div class="col-12 col-lg-5">
             <img
-              src="/img/BuddyGuys.jpg"
+              src="/img/BuddyGuys.webp"
               alt="Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago"
               class="img-fluid rounded shadow about-photo"
               width="1133"
@@ -207,7 +207,7 @@ usePersonStructuredData();
 useHead({
   link: [
     // The hero image is the LCP element; preloading it shaves a round trip.
-    { rel: 'preload', as: 'image', href: '/img/ChrisPecMusic.jpg', fetchpriority: 'high' },
+    { rel: 'preload', as: 'image', href: '/img/ChrisPecMusic.webp', fetchpriority: 'high' },
   ],
 });
 </script>
@@ -225,7 +225,7 @@ useHead({
   min-height: 100svh; /* avoids the mobile browser-chrome jump; vh is the fallback */
   display: flex;
   align-items: center;
-  background-image: url('/img/ChrisPecMusic.jpg');
+  background-image: url('/img/ChrisPecMusic.webp');
   background-position: center 20%;
   background-repeat: no-repeat;
   background-size: cover;

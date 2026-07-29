@@ -2,7 +2,7 @@
   <div class="links-page">
     <div class="container">
       <img
-        src="/img/ChrisPecMusicSmall.jpg"
+        src="/img/ChrisPecMusicSmall.webp"
         alt="Chris Pecoraro"
         class="profile-image mb-4"
         loading="eager"

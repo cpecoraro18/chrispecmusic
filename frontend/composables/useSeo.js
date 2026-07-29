@@ -2,13 +2,14 @@ export const SITE_URL = 'https://chrispecmusic.com';
 export const SITE_NAME = 'Chris Pecoraro';
 
 /**
- * Default social sharing image. BuddyGuys.jpg is 1133x581 — a 1.95:1 ratio,
+ * Default social sharing image. BuddyGuys.webp is 1133x581 — a 1.95:1 ratio,
  * near enough to the 1.91:1 that Open Graph wants that platforms won't crop
  * anything meaningful, and it shows Chris playing rather than posed.
  *
- * If this is ever replaced, the ideal is a purpose-made 1200x630.
+ * WebP is fine here: Facebook, LinkedIn, X, iMessage and Slack all render it in
+ * link previews. If this is ever replaced, the ideal is a purpose-made 1200x630.
  */
-const DEFAULT_OG_IMAGE = '/img/BuddyGuys.jpg';
+const DEFAULT_OG_IMAGE = '/img/BuddyGuys.webp';
 const DEFAULT_OG_IMAGE_ALT =
   "Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago";
 
@@ -23,7 +24,7 @@ const DEFAULT_OG_IMAGE_ALT =
  * @param {object}  options
  * @param {string}  options.title        Page title, also used as og:title.
  * @param {string}  options.description  Meta description, also used as og:description.
- * @param {string} [options.image]       Absolute path to a share image, e.g. '/img/x.jpg'.
+ * @param {string} [options.image]       Absolute path to a share image, e.g. '/img/x.webp'.
  * @param {string} [options.imageAlt]    Alt text for that image.
  * @param {string} [options.type]        Open Graph type. Defaults to 'website'.
  */

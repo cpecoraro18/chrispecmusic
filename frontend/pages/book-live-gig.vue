@@ -63,11 +63,11 @@
         <div class="row g-5 align-items-center">
           <div class="col-12 col-lg-6">
             <img
-              src="/img/SeanMcKeeBand.jpg"
+              src="/img/SeanMcKeeBand.webp"
               alt="Chris Pecoraro performing live on bass with the Sean McKee Band"
               class="img-fluid rounded shadow w-100"
-              width="2058"
-              height="1170"
+              width="1600"
+              height="910"
               loading="lazy"
               decoding="async"
             >

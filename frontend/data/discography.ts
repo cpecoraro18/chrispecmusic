@@ -17,7 +17,7 @@ export interface Platform {
 export const platforms: Platform[] = [
   { name: 'Spotify', icon: '/img/spotify-logo.svg' },
   { name: 'Apple Music', icon: '/img/apple-music-logo.svg' },
-  { name: 'YouTube', icon: '/youtube-logo.png' },
+  { name: 'YouTube', icon: '/img/youtube-logo.webp' },
 ];
 
 export interface Album {
@@ -34,7 +34,7 @@ export const discography: Album[] = [
   {
     name: 'Blades and Bullets',
     artist: 'Tyler Nail',
-    image: '/img/albums/BladesandBullets.jpg',
+    image: '/img/albums/BladesandBullets.webp',
     year: '2026',
     links: {
       'Spotify': 'https://open.spotify.com/album/2Y3E1IBYxaMLrT14dZCobN?si=fzY5enVITxeg8ULQr5Ld9w',
@@ -45,7 +45,7 @@ export const discography: Album[] = [
   {
     name: 'Haunted Houses',
     artist: 'Tyler Nail',
-    image: '/img/albums/HauntedHouses.jpeg',
+    image: '/img/albums/HauntedHouses.webp',
     year: '2025',
     links: {
       'Spotify': 'https://open.spotify.com/track/27bVwMOxai0M5oGX7GfGLb?si=4e45518e92534d58',
@@ -56,7 +56,7 @@ export const discography: Album[] = [
   {
     name: 'Family Pt. 2',
     artist: 'Tyler Nail',
-    image: '/img/albums/FamilyPt2.jpg',
+    image: '/img/albums/FamilyPt2.webp',
     year: '2025',
     links: {
       'Spotify': 'https://open.spotify.com/album/5Kg1EusZf3DbtTxqcdL6on?si=Dru1ZG5PSsGXv27v04_biA',
@@ -67,7 +67,7 @@ export const discography: Album[] = [
   {
     name: 'Family Pt. 1',
     artist: 'Tyler Nail',
-    image: '/img/albums/Family.jpg',
+    image: '/img/albums/Family.webp',
     year: '2025',
     links: {
       'Spotify': 'https://open.spotify.com/album/087F8TL4iU2i9R6M9kQLRk?si=chERu7rITpaeAfBMro1tNw',
@@ -78,7 +78,7 @@ export const discography: Album[] = [
   {
     name: 'Advent of the Symphonina: Spreading the Joy of Symphonic Music to Young Audiences Around the World',
     artist: 'The 2024 International Symphonina Orchestra',
-    image: '/img/albums/AdventoftheSymphonina.jpeg',
+    image: '/img/albums/AdventoftheSymphonina.webp',
     year: '2024',
     links: {
       'Spotify': 'https://open.spotify.com/album/6qyRRoHPScyfYQcoqSkQnH?si=YpAMZ2SbQo6JBGbPr3L8Zg&nd=1&dlsi=cb332c81c38042c9',
@@ -89,7 +89,7 @@ export const discography: Album[] = [
   {
     name: 'In This Life',
     artist: 'Sean Mckee Band',
-    image: '/img/albums/InThisLife.jpeg',
+    image: '/img/albums/InThisLife.webp',
     year: '2023',
     links: {
       'Spotify': 'https://open.spotify.com/album/0X0u012zBrFq1537i174tL?si=Ne2uSNhVRxCpsnXgcaFbrQ',
@@ -100,7 +100,7 @@ export const discography: Album[] = [
   {
     name: 'So Long My Queen',
     artist: 'Sean Mckee Band',
-    image: '/img/albums/SoLongMyQueen.jpeg',
+    image: '/img/albums/SoLongMyQueen.webp',
     year: '2022',
     links: {
       'Spotify': 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA',
@@ -111,7 +111,7 @@ export const discography: Album[] = [
   {
     name: 'Poison Ivy',
     artist: 'Sean Mckee Band',
-    image: '/img/albums/PoisonIvy.jpeg',
+    image: '/img/albums/PoisonIvy.webp',
     year: '2021',
     links: {
       'Spotify': 'https://open.spotify.com/album/5xNhmtFlAey1zwkky6c5b0?si=l2mWBcGSRE6v1WA2Eu2n6A',

@@ -30,9 +30,24 @@ Each subfolder is one independently deployable Lambda function (matching AWS fun
 
 - `sendContactEmail/` — validates a reCAPTCHA v3 token, then emails the contact-form submission via AWS SES.
 - `getCalendarEvents/` — reads upcoming events from a Google Calendar via a service account (`google-auth-library`), used by `EventsList.vue`.
-- `getWebsitePhotos/` — paginated listing of low-res watermarked photos from an S3 bucket's `low/` prefix, used by `pages/photos.vue`.
+- `getWebsitePhotos/` — paginated listing of the photo gallery from the `chrispecphotos` S3 bucket, used by `pages/photos.vue`.
 
-Photos are free to download; there is no purchase flow. Two Lambdas (`createCheckoutSession`, `downloadRedirect`) previously sold full-res downloads through Stripe and were removed — do not reintroduce a `full/`-prefix download endpoint without verifying payment server-side, since the old one issued signed S3 URLs to anyone who guessed an image ID.
+### Media on S3
+
+The `chrispecphotos` bucket holds everything too large to commit. All of it is public read, and all of it is linked directly — there is no Lambda in front of any of these:
+
+- `web/` — 1400 px WebP, one per photo. Serves the gallery grid *and* the lightbox; one file for both means opening a photo is a cache hit, not a second download.
+- `full/` — the full-resolution original of each photo, for the download link.
+- `audio-wav/` — the twelve uncompressed bass samples, for the "Download WAV" links. The MP3s that actually play on the page are committed under `frontend/public/audio/`.
+
+`web/` and `full/` must hold **identically-named files** (same stem, `.webp` vs `.jpg`). `getWebsitePhotos` lists only `web/` and derives the `full/` URL from the stem, so a mismatch is a broken download link rather than a build error.
+
+Two non-obvious things about uploading, both of which have bitten before:
+
+- The AWS CLI's MIME table does not know `.webp`, so a plain `aws s3 sync` uploads WebP as `binary/octet-stream`. Browsers sniff and render it anyway, so the page looks fine — pass `--content-type image/webp` explicitly, and use `cp --recursive` rather than `sync` to fix existing objects (`sync` skips files whose size and mtime already match).
+- Anything meant to download rather than display needs `Content-Disposition: attachment` set on the object. The `download` attribute on an `<a>` is **ignored cross-origin**, and these links point at S3. The header also carries a `filename=ChrisPecMusic-<stem>` so saved files are branded.
+
+`low/` is a legacy prefix, superseded by `web/`. Photos are free to download; there is no purchase flow. Two Lambdas (`createCheckoutSession`, `downloadRedirect`) previously sold full-res downloads through Stripe and were removed. **Do not rebuild a signed-URL download endpoint.** The originals are public by a deliberate decision — an endpoint in front of free files adds a Lambda and a redirect while providing no actual access control, which is exactly what made the old one a problem.
 
 All Lambdas read config from environment variables (SES sender address, reCAPTCHA secret, Google service account JSON, S3 bucket name, calendar ID) — there are no `.env` files committed; these are configured directly on the Lambda functions in AWS.
 

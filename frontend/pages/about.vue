@@ -21,7 +21,7 @@
               He has completed over 100 remote recording sessions for songwriters, producers, and bands, providing bass tracks for projects across many styles and genres.
             </p>
             <p class="text-muted">
-              Chris is a currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge. He has performed with rock bands, jazz bands, orchestras, vocal jazz ensembles, musicals, and more. Chris has also had the privilege to share the stage with world-class artists including Buddy Guy, Doc Severinsen, and members of Prince’s band. He has also appeared at renowned venues such as the Buddy Guy’s Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
+              Chris is a currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge. He has performed with rock bands, jazz bands, orchestras, vocal jazz ensembles, musicals, and more. He was selected as a contrabassist for the 2024 <a href="https://symphonina.org/bio-chris-pecoraro" target="_blank" rel="noopener">International Symphonina Orchestra</a>. Chris has also had the privilege to share the stage with world-class artists including Buddy Guy, Doc Severinsen, and members of Prince’s band. He has also appeared at renowned venues such as the Buddy Guy’s Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
             </p>
             <p class="text-muted mb-0">
               Chris is always excited to connect with other artists and contribute to new projects, whether in the studio or on stage, and is continuously looking for opportunities to grow, experiment, and bring fresh musical ideas to life.
@@ -54,5 +54,19 @@ useSeo({
   width: 100%;
   max-height: 30rem;
   object-fit: cover;
+}
+
+/* Inline link in body copy. Bootstrap's default blue is unreadable on the dark
+   background, so the link takes the paragraph's colour and relies on the
+   underline to read as a link. */
+.text-muted a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.text-muted a:hover,
+.text-muted a:focus-visible {
+  color: var(--white);
 }
 </style>

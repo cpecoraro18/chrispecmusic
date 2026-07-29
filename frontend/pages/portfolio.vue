@@ -38,17 +38,9 @@
         </div>
 
         <div class="row g-4">
-          <div class="col-12 col-md-6 col-xl-4" v-for="video in filteredVideos" :key="video.url">
+          <div class="col-12 col-md-6 col-xl-4" v-for="video in filteredVideos" :key="video.id">
             <div class="video-card h-100">
-              <div class="video-frame">
-                <iframe
-                  :src="video.url"
-                  :title="video.title"
-                  loading="lazy"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
+              <you-tube-embed :id="video.id" :title="video.title" />
               <div class="video-meta">
                 <h3 class="h4 mb-2">{{ video.title }}</h3>
                 <span class="genre-badge">{{ video.genre }}</span>
@@ -78,33 +70,36 @@
 <script setup>
 const selectedGenre = ref('all');
 
+// Stored as bare YouTube IDs rather than embed URLs: YouTubeEmbed builds both
+// the thumbnail and the player URL from the ID, and the ?si= share tokens the
+// URLs used to carry were pasted-in tracking parameters that served no purpose
+// here.
 const videos = ref([
   // --- Pop ---
-  { title: "Alright Maybes - Come and Get Your Love", url: "https://www.youtube.com/embed/-1akA4BaSkc?si=KDkcxETpf_iaQ6Z6", genre: "Pop" },
-  { title: "Alright Maybes - Red Wine Supernova Cover", url: "https://www.youtube.com/embed/A5KX41GrZsc?si=34Pa7rQ-0XTte_wt", genre: "Pop" },
-  { title: "Alright Maybes - Ain't It Fun Cover", url: "https://www.youtube.com/embed/UevnkOhMo2o?si=ipygWPGdKI0rqH9O", genre: "Pop" },
+  { title: "Alright Maybes - Come and Get Your Love", id: "-1akA4BaSkc", genre: "Pop" },
+  { title: "Alright Maybes - Red Wine Supernova Cover", id: "A5KX41GrZsc", genre: "Pop" },
+  { title: "Alright Maybes - Ain't It Fun Cover", id: "UevnkOhMo2o", genre: "Pop" },
 
   // --- Rock ---
-  { title: "Alright Maybes - Misery Business Cover", url: "https://www.youtube.com/embed/NJOk4imcY50?si=1z7Ehn35ZN_nzRfi", genre: "Rock" },
-  { title: "Alright Maybes - Paradise City Cover", url: "https://www.youtube.com/embed/I_nMxVfUFpM?si=5wQghRdnomj9_l6u", genre: "Rock" },
-  { title: "Sean's Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover", url: "https://www.youtube.com/embed/OFJ75eQKOlc?si=qs_fROpyNnZkR5uX", genre: "Rock" },
-  { title: "Sean McKee Band - Got to Get Better in a Little While Cover", url: "https://www.youtube.com/embed/53Vx75OUEQw?si=gM0xiImyhF59Mqzs", genre: "Rock" },
-  { title: "Sean McKee Band - Ain't Talkin' About Love", url: "https://www.youtube.com/embed/h2jR9AGe0yI?si=MGbckEkR2MWq140-", genre: "Rock" },
-  { title: "Sean McKee Band - Live at Madcats - Fragile", url: "https://www.youtube.com/embed/5e3GEKrsUnc?si=HkDcvv5sKU_bWoJO", genre: "Rock" },
-  { title: "Sean McKee Band - Poison Ivy", url: "https://www.youtube.com/embed/_sUEwDyL70w?si=fOH6MAVO0AZMRWkf", genre: "Rock" },
-  { title: "Sean McKee Band - Color Outside the Lines", url: "https://www.youtube.com/embed/xjNzCIJnm7I?si=rVDUIRxabTValGlt", genre: "Rock" },
-  { title: "Sean McKee Band - Monster - Live at Madcats", url: "https://www.youtube.com/embed/u-lH9EmIN_o?si=B9FS9ooxKwxLu2Gl", genre: "Rock" },
-  { title: "Joey Acopiado - I Might Let You Down", url: "https://www.youtube.com/embed/zyLH9_pgqCA?si=77InEn_rPejE-81X", genre: "Rock" },
+  { title: "Alright Maybes - Misery Business Cover", id: "NJOk4imcY50", genre: "Rock" },
+  { title: "Alright Maybes - Paradise City Cover", id: "I_nMxVfUFpM", genre: "Rock" },
+  { title: "Sean's Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover", id: "OFJ75eQKOlc", genre: "Rock" },
+  { title: "Sean McKee Band - Got to Get Better in a Little While Cover", id: "53Vx75OUEQw", genre: "Rock" },
+  { title: "Sean McKee Band - Ain't Talkin' About Love", id: "h2jR9AGe0yI", genre: "Rock" },
+  { title: "Sean McKee Band - Live at Madcats - Fragile", id: "5e3GEKrsUnc", genre: "Rock" },
+  { title: "Sean McKee Band - Poison Ivy", id: "_sUEwDyL70w", genre: "Rock" },
+  { title: "Sean McKee Band - Color Outside the Lines", id: "xjNzCIJnm7I", genre: "Rock" },
+  { title: "Sean McKee Band - Monster - Live at Madcats", id: "u-lH9EmIN_o", genre: "Rock" },
 
   // --- Blues ---
-  { title: "Sean's Guitar Lounge Ft. Brandon Simmons - Sweet Little Angel Cover", url: "https://www.youtube.com/embed/4dWC3QAfFyY?si=Gb6jWZif7R_f89nz", genre: "Blues" },
-  { title: "Sean's Guitar Lounge - Suburban Glory Cover", url: "https://www.youtube.com/embed/8d3lh_wB8Zk?si=V-A1PNsEe9q9Xo7-", genre: "Blues" },
-  { title: "Sean's Guitar Lounge - I Wouldn't Treat a Dog Cover", url: "https://www.youtube.com/embed/8VqFfWw5Roo?si=Ycx4d_XqY_p2PzHi", genre: "Blues" },
+  { title: "Sean's Guitar Lounge Ft. Brandon Simmons - Sweet Little Angel Cover", id: "4dWC3QAfFyY", genre: "Blues" },
+  { title: "Sean's Guitar Lounge - Suburban Glory Cover", id: "8d3lh_wB8Zk", genre: "Blues" },
+  { title: "Sean's Guitar Lounge - I Wouldn't Treat a Dog Cover", id: "8VqFfWw5Roo", genre: "Blues" },
 
   // --- Jazz ---
-  { title: "University of Minnesota Jazz Ensemble I - 2019 Spring Concert", url: "https://www.youtube.com/embed/VwqKnToOPik?si=cKkhHEbjdgcKHF4B", genre: "Jazz" },
-  { title: "2018 University of Minnesota Jazz Festival - Jazz Ensemble 1", url: "https://www.youtube.com/embed/pZdC1mELkto?si=lwapEuwtZ2o0NtNd", genre: "Jazz" },
-  { title: "University of Minnesota Jazz Festival 2018 - 12:20 Jazz Combo", url: "https://www.youtube.com/embed/AQ_slt8-i5o?si=3X9Yahu7iaj_h9Sx", genre: "Jazz" }
+  { title: "University of Minnesota Jazz Ensemble I - 2019 Spring Concert", id: "VwqKnToOPik", genre: "Jazz" },
+  { title: "2018 University of Minnesota Jazz Festival - Jazz Ensemble 1", id: "pZdC1mELkto", genre: "Jazz" },
+  { title: "University of Minnesota Jazz Festival 2018 - 12:20 Jazz Combo", id: "AQ_slt8-i5o", genre: "Jazz" }
 ]);
 
 const genres = computed(() => [...new Set(videos.value.map(v => v.genre))].sort());
@@ -142,23 +137,8 @@ useSeo({
   border: 1px solid rgba(var(--text-color-rgb), 0.14);
 }
 
-/* aspect-ratio keeps the embed correctly proportioned at every width; the old
-   fixed 30vh height stretched the video on short or wide viewports. */
-.video-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background-color: var(--bg-black);
-}
-
-.video-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
+/* The 16:9 frame now lives in YouTubeEmbed, which owns both the facade and the
+   player it swaps in. */
 .video-meta {
   padding: 1rem 1.1rem 1.2rem;
   text-align: left;

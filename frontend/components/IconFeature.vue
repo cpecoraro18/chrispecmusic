@@ -1,6 +1,6 @@
 <template>
   <div class="icon-feature rule-top h-100">
-    <i :class="icon" class="icon-feature-icon" aria-hidden="true"></i>
+    <AppIcon :name="icon" class="icon-feature-icon" />
     <h3 class="h4 mb-2">{{ title }}</h3>
     <p class="mb-0 text-muted">{{ copy }}</p>
   </div>
@@ -15,7 +15,7 @@
  * from the class name.
  */
 defineProps({
-  /** Font Awesome classes, e.g. 'fas fa-music'. */
+  /** An icon name from data/icons.generated.ts, e.g. 'music'. */
   icon: { type: String, required: true },
   title: { type: String, required: true },
   copy: { type: String, required: true },

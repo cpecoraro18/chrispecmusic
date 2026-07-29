@@ -135,22 +135,22 @@ import { sessionFaqs, sessionSteps as steps } from '~/data/faqs';
 
 const included = [
   {
-    icon: 'fas fa-music',
+    icon: 'music',
     title: 'Experience',
     copy: '100+ remote sessions for songwriters, producers, and bands worldwide.',
   },
   {
-    icon: 'fas fa-sliders',
+    icon: 'sliders',
     title: 'Mix-ready files',
     copy: 'Recorded and edited in my studio, so the stems drop straight into your session.',
   },
   {
-    icon: 'fas fa-rotate',
+    icon: 'rotate',
     title: 'Revisions included',
     copy: 'Changes to the part, tone, or feel are part of the price, not an extra.',
   },
   {
-    icon: 'fas fa-lock',
+    icon: 'lock',
     title: 'You own the tracks',
     copy: 'Once the project is paid for, the recordings are yours with no further licensing.',
   },

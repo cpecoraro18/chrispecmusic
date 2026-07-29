@@ -106,17 +106,17 @@ import { liveFaqs, liveSteps as steps } from '~/data/faqs';
 
 const venues = [
   {
-    icon: 'fas fa-martini-glass',
+    icon: 'martini-glass',
     title: 'Clubs & venues',
     copy: 'Bars, music clubs, and listening rooms across Chicago and the Midwest.',
   },
   {
-    icon: 'fas fa-champagne-glasses',
+    icon: 'champagne-glasses',
     title: 'Weddings & private events',
     copy: 'Ceremonies, receptions, parties, and corporate events.',
   },
   {
-    icon: 'fas fa-users',
+    icon: 'users',
     title: 'Festivals & touring',
     copy: 'Regional festivals, touring acts, and multi-date runs.',
   },

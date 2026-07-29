@@ -32,7 +32,7 @@
     
     <!-- Loading Icon -->
     <div v-if="loading" class="text-center py-4">
-      <i class="fa fa-spinner fa-spin fa-2x"></i> <!-- Add a spinner icon -->
+      <AppIcon name="spinner" spin :scale="2" label="Loading events" class="events-spinner" />
     </div>
     
     <!-- Events List -->
@@ -47,7 +47,7 @@
           <div class="col-12 col-md-10 text-md-end">
             <h4 class="mb-2">{{ event.summary }}</h4>
             <div class="mb-2 text-info small">
-              <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank"><i class="fa fa-map-marker me-2"></i>{{ event.location.split(",")[0] }}</a>
+              <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank"><AppIcon name="location-dot" class="me-2" />{{ event.location.split(",")[0] }}</a>
             </div>
             <p v-if="event.description" class="mb-0">{{ event.description }}</p>
           </div>
@@ -189,8 +189,9 @@ onMounted(() => {
   color: var(--grey);
 }
 
-/* Add some margin for the spinner */
-.text-center i {
+/* Add some margin for the spinner. Was `.text-center i`, which stopped matching
+   when the spinner became an inline <svg> rather than an icon-font <i>. */
+.events-spinner {
   margin-top: 50px;
 }
 @media (min-width: 992px) {

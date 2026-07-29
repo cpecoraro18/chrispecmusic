@@ -17,7 +17,7 @@
         </div>
       </div>
       <a class="hero-scroll" href="#listen" aria-label="Scroll to bass samples">
-        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        <AppIcon name="chevron-down" />
       </a>
     </section>
 

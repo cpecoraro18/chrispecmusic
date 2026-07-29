@@ -15,7 +15,7 @@
                   @click="setType(focusedSample.id, 'with')"
                   title="With Drums"
                 >
-                  <i class="fa fa-drum"></i>
+                  <AppIcon name="drum" />
                 </button>
                 <button
                   class="toggle-btn"
@@ -23,7 +23,7 @@
                   @click="setType(focusedSample.id, 'without')"
                   title="No Drums"
                 >
-                  <i class="fa fa-headphones"></i>
+                  <AppIcon name="headphones" />
                 </button>
               </div>
             </div>
@@ -43,7 +43,7 @@
                 class="wav-download"
                 :title="`Download ${getWavFile(focusedSample)} — uncompressed`"
               >
-                <i class="fa fa-download me-1" aria-hidden="true"></i>Download WAV
+                <AppIcon name="download" class="me-1" />Download WAV
               </a>
               <span class="badge bg-info" v-if="selectedType[focusedSample.id] === 'with'">With Drums</span>
               <span class="badge bg-secondary text-dark" v-else>No Drums</span>
@@ -61,7 +61,7 @@
             :class="{active: sample.id === focusedSample.id}"
             @click="focusSample(sample.id)"
           >
-            <i class="fa fa-play-circle text-info"></i>
+            <AppIcon name="circle-play" class="sample-play-icon" />
             <span class="side-title text-truncate" :title="sample.title">{{ sample.title }}</span>
           </button>
         </div>
@@ -182,11 +182,15 @@ function focusSample(id) {
   color: var(--blue-deep) !important;
 }
 
-.list-group-item .fa-play-circle {
+/* Was keyed off the .fa-play-circle class the icon font supplied. The icon now
+   carries its own class, since nothing else guarantees a hook to style. The
+   .text-info that used to sit alongside was inert — both rules below are
+   !important and the icon is always inside a .list-group-item. */
+.list-group-item .sample-play-icon {
   color: var(--blue) !important;
 }
 
-.list-group-item.active .fa-play-circle {
+.list-group-item.active .sample-play-icon {
   color: var(--blue-deep) !important;
 }
 

@@ -63,22 +63,24 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        // Bootstrap and Font Awesome each come from a different third-party
-        // origin, so the browser pays a DNS lookup plus TLS handshake for each
-        // before it can even start downloading. Warming both connections while
-        // the HTML is still parsing takes that off the critical path.
+        // Bootstrap comes from a third-party origin, so the browser pays a DNS
+        // lookup plus TLS handshake before it can even start downloading.
+        // Warming the connection while the HTML is still parsing takes that off
+        // the critical path.
         { rel: 'preconnect', href: 'https://cdn.jsdelivr.net', crossorigin: '' },
-        { rel: 'preconnect', href: 'https://kit.fontawesome.com', crossorigin: '' },
         { rel: 'stylesheet', href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"},
       ],
       script: [
-        // Both are deferred: neither is needed to paint, and without `defer` a
+        // Deferred: it is not needed to paint, and without `defer` a
         // <script src> in <head> blocks HTML parsing until it has downloaded
         // and executed. Deferred scripts still run before DOMContentLoaded, so
         // Bootstrap's data-attribute components (collapse, dropdown, carousel)
         // still auto-initialise as they did before.
+        //
+        // The Font Awesome kit script used to sit here. Icons are now inline
+        // SVGs rendered by components/AppIcon.vue, which drops a third-party
+        // origin and the wait for that script before any icon could paint.
         { src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js", defer: true },
-        { src: "https://kit.fontawesome.com/d05f769d21.js", crossorigin: "anonymous", defer: true },
         {
           innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

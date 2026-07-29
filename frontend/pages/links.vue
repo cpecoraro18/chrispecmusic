@@ -13,19 +13,19 @@
 
       <nav class="link-stack" aria-label="Links">
         <nuxt-link class="link-button link-button--primary" to="/book-session">
-          <i class="fa fa-headphones" aria-hidden="true"></i>
+          <AppIcon name="headphones" />
           Book a Recording Session
         </nuxt-link>
         <nuxt-link class="link-button" to="/book-live-gig">
-          <i class="fa fa-guitar" aria-hidden="true"></i>
+          <AppIcon name="guitar" />
           Book a Live Gig
         </nuxt-link>
         <nuxt-link class="link-button" to="/portfolio">
-          <i class="fa fa-video" aria-hidden="true"></i>
+          <AppIcon name="video" />
           Portfolio &amp; Music
         </nuxt-link>
         <nuxt-link class="link-button" to="/events">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <AppIcon name="calendar" />
           Upcoming Shows
         </nuxt-link>
         <a
@@ -34,7 +34,7 @@
           target="_blank"
           rel="noopener"
         >
-          <i class="fab fa-instagram" aria-hidden="true"></i>
+          <AppIcon name="instagram" />
           Instagram
         </a>
         <a
@@ -43,11 +43,11 @@
           target="_blank"
           rel="noopener"
         >
-          <i class="fab fa-youtube" aria-hidden="true"></i>
+          <AppIcon name="youtube" />
           YouTube
         </a>
         <nuxt-link class="link-button" to="/contact">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <AppIcon name="envelope" />
           Get in Touch
         </nuxt-link>
       </nav>

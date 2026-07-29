@@ -36,7 +36,7 @@
                   class="action-icon"
                   :title="`Download ${photo.name} at full resolution`"
                 >
-                  <i class="fas fa-download" aria-hidden="true"></i>
+                  <AppIcon name="download" />
                   <span class="visually-hidden">Download {{ photo.name }} at full resolution</span>
                 </a>
               </div>
@@ -45,7 +45,7 @@
         </div>
 
         <div v-if="loadingPhotos" class="text-center py-5">
-          <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+          <AppIcon name="spinner" spin :scale="2" />
           <span class="visually-hidden">Loading photos</span>
         </div>
 
@@ -69,12 +69,12 @@
       @click.self="closeModal"
     >
       <button class="modal-close" @click="closeModal" aria-label="Close">
-        <i class="fas fa-xmark" aria-hidden="true"></i>
+        <AppIcon name="xmark" />
       </button>
       <div class="modal-inner">
         <img :src="modalPhoto.web" :alt="modalPhoto.name" class="modal-image" />
         <a :href="modalPhoto.full" class="btn btn-cta mt-3">
-          <i class="fas fa-download me-2" aria-hidden="true"></i>Download full resolution
+          <AppIcon name="download" class="me-2" />Download full resolution
         </a>
       </div>
     </div>

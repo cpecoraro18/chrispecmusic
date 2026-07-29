@@ -31,12 +31,10 @@ Each subfolder is one independently deployable Lambda function (matching AWS fun
 - `sendContactEmail/` — validates a reCAPTCHA v3 token, then emails the contact-form submission via AWS SES.
 - `getCalendarEvents/` — reads upcoming events from a Google Calendar via a service account (`google-auth-library`), used by `EventsList.vue`.
 - `getWebsitePhotos/` — paginated listing of low-res watermarked photos from an S3 bucket's `low/` prefix, used by `pages/photos.vue`.
-- `createCheckoutSession/` — creates a Stripe Checkout session to purchase a full-res photo download.
-- `downloadRedirect/` — after Stripe payment succeeds, generates a short-lived signed S3 URL for the full-res photo (`full/` prefix) and 302-redirects to it.
 
-Photo purchase flow: `getWebsitePhotos` (list) → `createCheckoutSession` (Stripe) → `downloadRedirect` (signed download after payment).
+Photos are free to download; there is no purchase flow. Two Lambdas (`createCheckoutSession`, `downloadRedirect`) previously sold full-res downloads through Stripe and were removed — do not reintroduce a `full/`-prefix download endpoint without verifying payment server-side, since the old one issued signed S3 URLs to anyone who guessed an image ID.
 
-All Lambdas read config from environment variables (Stripe keys, SES sender address, reCAPTCHA secret, Google service account JSON, S3 bucket name, calendar ID) — there are no `.env` files committed; these are configured directly on the Lambda functions in AWS.
+All Lambdas read config from environment variables (SES sender address, reCAPTCHA secret, Google service account JSON, S3 bucket name, calendar ID) — there are no `.env` files committed; these are configured directly on the Lambda functions in AWS.
 
 ## Commands
 

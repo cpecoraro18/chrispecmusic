@@ -9,6 +9,20 @@ const RECAPTCHA_SCORE_THRESHOLD = process.env.RECAPTCHA_SCORE_THRESHOLD || 0.5;
 
 const ses = new AWS.SES({ region: AWS_REGION });
 
+// Caps on what a single submission can contain. Without these a bot can POST a
+// multi-megabyte body, which SES would reject anyway but only after we have
+// paid for the reCAPTCHA round trip and the invocation time.
+const MAX_LENGTHS = {
+    name: 100,
+    email: 254, // the maximum length of an address per RFC 5321
+    message: 5000,
+};
+
+// Deliberately loose: the address is used as the Reply-To, so it only has to be
+// well-formed enough that SES will accept it. Anything stricter starts
+// rejecting real addresses.
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 exports.handler = async (event) => {
     try {
         let body;
@@ -27,6 +41,33 @@ exports.handler = async (event) => {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ message: 'Missing email, message, or reCAPTCHA response in form data' })
+            };
+        }
+
+        // The name input carries `required`, but the form is `novalidate` and
+        // nothing checks it before submitting, so an empty name genuinely does
+        // reach here. Treat it as optional rather than reject a real inquiry
+        // over a field the visitor was never actually forced to fill in.
+        const name = typeof body.name === 'string' ? body.name.trim() : '';
+        const email = String(body.email).trim();
+        const message = String(body.message).trim();
+
+        const tooLong = Object.entries({ name, email, message })
+            .find(([field, value]) => value.length > MAX_LENGTHS[field]);
+
+        if (tooLong) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({
+                    message: `The ${tooLong[0]} field is too long (max ${MAX_LENGTHS[tooLong[0]]} characters)`
+                })
+            };
+        }
+
+        if (!EMAIL_PATTERN.test(email)) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ message: 'Invalid email address' })
             };
         }
 
@@ -54,18 +95,28 @@ exports.handler = async (event) => {
             };
         }
 
-        // Send email using SES
+        // Send email using SES.
+        //
+        // Source has to stay as the verified sender address — SES will not send
+        // on behalf of an arbitrary submitter — so the visitor's address goes in
+        // ReplyToAddresses instead. Without it, hitting Reply in a mail client
+        // replies to Chris rather than to the person who filled in the form.
+        const subjectName = name
+            ? ` from ${name.replace(/[\r\n]+/g, ' ')}` // never let a newline reach a header
+            : '';
+
         const params = {
             Destination: {
                 ToAddresses: [EMAIL_ADDRESS]
             },
+            ReplyToAddresses: [email],
             Message: {
                 Body: {
                     Text: {
-                        Data: `You have a new booking inquiry from your website.\n\nReply to: ${body.email}\n\nMessage:\n${body.message}`
+                        Data: `You have a new booking inquiry from your website.\n\nFrom: ${name || 'Not provided'}\nReply to: ${email}\n\nMessage:\n${message}`
                     }
                 },
-                Subject: { Data: 'New Booking Inquiry - Chris Pec Music' }
+                Subject: { Data: `New Booking Inquiry${subjectName} - Chris Pec Music` }
             },
             Source: EMAIL_ADDRESS
         };

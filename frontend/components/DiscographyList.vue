@@ -148,15 +148,22 @@ export default {
         },
         closeAlbumMenu() {
             this.activeAlbumIndex = null;
+        },
+        onDocumentClick(e) {
+            if (!e.target.closest('.album')) {
+                this.closeAlbumMenu();
+            }
         }
     },
     mounted() {
-        // Close popup when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.album')) {
-                this.activeAlbumIndex = null;
-            }
-        });
+        // Close popup when clicking outside. The handler is a named method so
+        // beforeUnmount can actually remove it — as an inline arrow it leaked
+        // one listener (and the component it closed over) per visit to a page
+        // that renders the discography.
+        document.addEventListener('click', this.onDocumentClick);
+    },
+    beforeUnmount() {
+        document.removeEventListener('click', this.onDocumentClick);
     }
 }
 </script>

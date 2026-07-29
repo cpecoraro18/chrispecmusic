@@ -55,94 +55,88 @@
     const navbarOpacity = ref(0);
     const navbarHeight = ref(0); // height in em
 
+    const getNavbarCollapse = () => document.getElementById('navbarNav')
+
+    // Single source of truth for the header's opacity and the height of the
+    // spacer that sits under it. This was previously two near-identical
+    // functions that had already drifted apart in how they set the height.
+    const updateNavbarStyle = () => {
+        // While the mobile menu is open the header is a solid panel, whatever
+        // the scroll position is.
+        if (getNavbarCollapse()?.classList.contains('show')) {
+            navbarOpacity.value = 1
+            return
+        }
+
+        const scrollY = window.scrollY || window.pageYOffset
+        const windowHeight = window.innerHeight
+        const restingHeight = Math.max(8, windowHeight / 100)
+
+        if (!isIndex.value) {
+            navbarOpacity.value = 1
+            navbarHeight.value = restingHeight
+            return
+        }
+
+        // start fade-in around 30% of the hero height, max at 100%
+        const fadeStart = windowHeight * 0.3
+        const fadeEnd = windowHeight * 0.8
+        const progress = Math.min(Math.max((scrollY - fadeStart) / (fadeEnd - fadeStart), 0), 1)
+        navbarOpacity.value = progress
+        navbarHeight.value = restingHeight * progress
+    }
+
+    // Scroll fires far more often than the screen refreshes, and the handler
+    // reads layout, so coalesce to one update per frame.
+    let pendingFrame = 0
+    const onScrollOrResize = () => {
+        if (pendingFrame) return
+        pendingFrame = requestAnimationFrame(() => {
+            pendingFrame = 0
+            updateNavbarStyle()
+        })
+    }
+
+    // Named rather than inline: passing a fresh arrow function to
+    // removeEventListener removes nothing, so the previous inline handlers
+    // accumulated on every mount.
+    const onCollapseShow = () => {
+        navbarOpacity.value = 1
+    }
+    const onCollapseHidden = () => {
+        updateNavbarStyle()
+    }
+
     onMounted(() => {
         updateNavbarStyle()
-        window.addEventListener('scroll', updateNavbarStyle)
-        window.addEventListener('resize', updateNavbarStyle)
+        window.addEventListener('scroll', onScrollOrResize, { passive: true })
+        window.addEventListener('resize', onScrollOrResize, { passive: true })
 
-        const navbarCollapse = document.getElementById('navbarNav');
-        if (navbarCollapse) {
-            navbarCollapse.addEventListener('show.bs.collapse', () => {
-                navbarOpacity.value = 1;
-            });
-            navbarCollapse.addEventListener('hidden.bs.collapse', () => {
-                setNavbarOpacity();
-            });
-        }
+        const navbarCollapse = getNavbarCollapse()
+        navbarCollapse?.addEventListener('show.bs.collapse', onCollapseShow)
+        navbarCollapse?.addEventListener('hidden.bs.collapse', onCollapseHidden)
     })
 
     onBeforeUnmount(() => {
-        window.removeEventListener('scroll', updateNavbarStyle)
-        window.removeEventListener('resize', updateNavbarStyle)
+        window.removeEventListener('scroll', onScrollOrResize)
+        window.removeEventListener('resize', onScrollOrResize)
+        if (pendingFrame) cancelAnimationFrame(pendingFrame)
 
-        const navbarCollapse = document.getElementById('navbarNav');
-        if (navbarCollapse) {
-            navbarCollapse.removeEventListener('show.bs.collapse', () => {
-                navbarOpacity.value = 1;
-            });
-            navbarCollapse.removeEventListener('hidden.bs.collapse', () => {
-                setNavbarOpacity();
-            });
-        }
+        const navbarCollapse = getNavbarCollapse()
+        navbarCollapse?.removeEventListener('show.bs.collapse', onCollapseShow)
+        navbarCollapse?.removeEventListener('hidden.bs.collapse', onCollapseHidden)
     })
 
     watch(() => route.path, () => {
         updateNavbarStyle()
     })
 
-    const updateNavbarStyle = () => {
-        const isMenuOpen = document.getElementById('navbarNav').classList.contains('show');
-        
-        if (isMenuOpen) {
-            navbarOpacity.value = 1
-            return
-        }
-        const scrollY = window.scrollY || window.pageYOffset
-        const windowHeight = window.innerHeight
-        const newHeight = Math.max(8, windowHeight / 100)
-        if (isIndex.value) {
-            // start fade-in around 30% of the hero height, max at 100%
-            const fadeStart = windowHeight * 0.3
-            const fadeEnd = windowHeight * 0.8;
-            const progress = Math.min(Math.max((scrollY - fadeStart) / (fadeEnd - fadeStart), 0), 1)
-            navbarOpacity.value = progress
-            navbarHeight.value = newHeight * progress
-        } else {
-            navbarOpacity.value = 1
-            navbarHeight.value = newHeight
-        }
-    }
-
     const closeNavbar = () => {
-        const navbarCollapse = document.getElementById('navbarNav')
-        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const navbarCollapse = getNavbarCollapse()
+        if (navbarCollapse?.classList.contains('show')) {
             navbarCollapse.classList.remove('show')
         }
-        setNavbarOpacity()
-    }
-
-    const setNavbarOpacity = () => {
-        // check if the navbar is open
-        const navbarCollapse = document.getElementById('navbarNav')
-
-        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            navbarOpacity.value = 1
-        } else {
-            const scrollY = window.scrollY || window.pageYOffset
-            const windowHeight = window.innerHeight
-            const newHeight = Math.max(8, windowHeight / 100)
-            if (isIndex.value) {
-                // start fade-in around 30% of the hero height, max at 100%
-                const fadeStart = windowHeight * 0.3
-                const fadeEnd = windowHeight * 0.8;
-                const progress = Math.min(Math.max((scrollY - fadeStart) / (fadeEnd - fadeStart), 0), 1)
-                navbarOpacity.value = progress
-                navbarHeight.value = progress > 0 ? newHeight : 0 // shrink to 0 height at top
-            } else {
-                navbarOpacity.value = 1
-                navbarHeight.value = newHeight
-            }
-        }
+        updateNavbarStyle()
     }
 </script>
 

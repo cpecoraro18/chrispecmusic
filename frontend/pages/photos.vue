@@ -49,7 +49,16 @@
           <span class="visually-hidden">Loading photos</span>
         </div>
 
-        <div v-if="token" class="text-center mt-5">
+        <!-- The failure used to be console-only, so a visitor got a blank page
+             with no explanation and nothing to click. -->
+        <div v-else-if="loadError" class="text-center py-5" role="alert">
+          <p class="text-muted mb-3">
+            {{ photos.length ? "The next batch of photos couldn't be loaded." : "The photos couldn't be loaded just now." }}
+          </p>
+          <button class="btn btn-ghost" @click="fetchPhotos">Try again</button>
+        </div>
+
+        <div v-else-if="token" class="text-center mt-5">
           <button class="btn btn-ghost" @click.prevent="fetchPhotos">Load More Photos</button>
         </div>
 
@@ -91,11 +100,13 @@ const photos = ref([]);
 const modalPhoto = ref(null);
 const token = ref(null);
 const loadingPhotos = ref(false);
+const loadError = ref(false);
 
 const api = useApi();
 
 const fetchPhotos = async () => {
   loadingPhotos.value = true;
+  loadError.value = false;
   try {
     const data = await api.get('/photos', { token: token.value });
     // The Lambda returns {name, web, full} per photo.
@@ -106,6 +117,7 @@ const fetchPhotos = async () => {
     token.value = data.token ?? null;
   } catch (error) {
     console.error('Error fetching photos:', error);
+    loadError.value = true;
   } finally {
     loadingPhotos.value = false;
   }

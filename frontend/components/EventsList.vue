@@ -34,9 +34,16 @@
     <div v-if="loading" class="text-center py-4">
       <AppIcon name="spinner" spin :scale="2" label="Loading events" class="events-spinner" />
     </div>
-    
+
+    <!-- Failed to load. Kept distinct from the empty state below: reporting a
+         dead API as "no upcoming events" tells visitors he has no gigs. -->
+    <div v-else-if="error" class="text-center py-4" role="alert">
+      <p class="text-muted mb-3">The event list couldn't be loaded just now.</p>
+      <button class="btn btn-outline-light btn-sm" @click="retry">Try again</button>
+    </div>
+
     <!-- Events List -->
-    <div v-if="!loading && events.length" class="list-group">
+    <div v-else-if="events.length" class="list-group">
       <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item mb-3 bg-dark border-0">
         <div class="row border-bottom border-1 pb-3">
           <div class="col-12 col-md-2 mb-4 mb-md-0">
@@ -59,7 +66,7 @@
     </div>
 
     <!-- No Events Message -->
-    <p v-else-if="!loading" class="text-muted text-center">No upcoming events.</p>
+    <p v-else class="text-muted text-center">{{ emptyMessage }}</p>
   </div>
 </template>
 
@@ -85,8 +92,16 @@ const props = defineProps({
 
 const events = ref([]);
 const loading = ref(true);
+const error = ref(false);
 const selectedFilter = ref('future');
 const api = useApi();
+
+/**
+ * Identifies the most recent request. Clicking through the year filters faster
+ * than the Lambda responds used to let an earlier response land after a later
+ * one and leave the list showing a year the visitor is no longer on.
+ */
+let latestRequest = 0;
 
 /**
  * Years offered in the "Past Events" dropdown, newest first. These used to be
@@ -103,29 +118,61 @@ const pastYears = computed(() => {
 });
 
 async function getEvents(timeMin = null, timeMax = null) {
-  const payload = await api.get('/events', { timeMin, timeMax });
-  events.value = (payload?.items ?? []).map((x) => {
-    const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
-    const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
-    return {
-      id: x.id,
-      summary: x.summary,
-      location: x.location || 'TBD',
-      description: x.description || "",
-      date: start ? start.getDate() : 'N/A',
-      month: start ? start.toLocaleString('default', { month: 'long' }) : 'N/A',
-      year: start ? start.getFullYear() : 'N/A',
-      timeRange: start && end
-        ? `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-        : 'Time not available',
-    };
-  })
-  loading.value = false;
+  const request = ++latestRequest;
+  loading.value = true;
+  error.value = false;
+
+  try {
+    const payload = await api.get('/events', { timeMin, timeMax });
+    if (request !== latestRequest) return;
+
+    events.value = (payload?.items ?? []).map((x) => {
+      const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
+      const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
+      return {
+        id: x.id,
+        summary: x.summary,
+        location: x.location || 'TBD',
+        description: x.description || "",
+        date: start ? start.getDate() : 'N/A',
+        month: start ? start.toLocaleString('default', { month: 'long' }) : 'N/A',
+        year: start ? start.getFullYear() : 'N/A',
+        timeRange: start && end
+          ? `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+          : 'Time not available',
+      };
+    })
+  } catch (err) {
+    // Nothing used to catch this. A Lambda error, a cold-start timeout or a
+    // CORS failure left `loading` true forever, so the homepage sat on a
+    // spinner that would never resolve.
+    console.error('Error fetching events:', err);
+    if (request !== latestRequest) return;
+    error.value = true;
+    events.value = [];
+  } finally {
+    if (request === latestRequest) loading.value = false;
+  }
 }
 
 const limitedEvents = computed(() => {
   return events.value.slice(0, props.limit);
 });
+
+/**
+ * "No upcoming events" is wrong under a past-year filter, where an empty list
+ * means that year had none rather than that nothing is booked.
+ */
+const emptyMessage = computed(() =>
+  selectedFilter.value.startsWith('past')
+    ? 'No events found for that year.'
+    : 'No upcoming events.'
+);
+
+/** Re-runs whichever filter is selected, so a retry stays on the same view. */
+function retry() {
+  filterEvents(selectedFilter.value);
+}
 
 function getPastEvents(year = null) {
   const thisYear = new Date().getFullYear();
@@ -149,8 +196,7 @@ function getFutureEvents() {
 
 async function filterEvents(filter) {
   selectedFilter.value = filter;
-  loading.value = true;
-  
+
   if (filter.startsWith('past-')) {
     const year = filter.split('-')[1];
     await getPastEvents(year);

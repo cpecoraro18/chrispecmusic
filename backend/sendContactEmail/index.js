@@ -23,6 +23,51 @@ const MAX_LENGTHS = {
 // rejecting real addresses.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const METRIC_NAMESPACE = 'ChrisPecMusic/ContactForm';
+
+/**
+ * Records an outcome as a CloudWatch metric so it can be alarmed on.
+ *
+ * This exists because every error below is caught and returned as a 500
+ * response, which Lambda counts as a *successful* invocation — the built-in
+ * `Errors` metric stays at zero while every inquiry on the site fails. An alarm
+ * on `Errors` would never fire for the one thing worth being woken up for.
+ *
+ * Uses CloudWatch's embedded metric format: a log line in this shape is turned
+ * into a metric automatically, so there is no SDK call to make, nothing extra
+ * to install, and no added latency on the request. `reason` is a plain property
+ * rather than a dimension, so a new failure kind cannot multiply the number of
+ * billed metrics.
+ */
+function recordOutcome(metric, reason) {
+    console.log(JSON.stringify({
+        _aws: {
+            Timestamp: Date.now(),
+            CloudWatchMetrics: [{
+                Namespace: METRIC_NAMESPACE,
+                Dimensions: [['Function']],
+                Metrics: [{ Name: metric, Unit: 'Count' }],
+            }],
+        },
+        Function: 'sendContactEmail',
+        [metric]: 1,
+        reason,
+    }));
+}
+
+/**
+ * reCAPTCHA error codes that mean *our* configuration is broken rather than
+ * that the submitter is a bot. These matter more than any other failure here:
+ * if the secret is rotated or unset, Google returns success:false for every
+ * request, and without this distinction each genuine inquiry is silently
+ * written off as spam with a 400 and nothing to alarm on.
+ */
+const RECAPTCHA_CONFIG_ERRORS = new Set([
+    'missing-input-secret',
+    'invalid-input-secret',
+    'bad-request',
+]);
+
 exports.handler = async (event) => {
     try {
         let body;
@@ -82,16 +127,33 @@ exports.handler = async (event) => {
 
             const data = response.data;
 
+            const configError = (data['error-codes'] || []).find((code) => RECAPTCHA_CONFIG_ERRORS.has(code));
+            if (configError) {
+                console.error('reCAPTCHA is misconfigured:', data['error-codes']);
+                recordOutcome('Failure', `recaptcha_${configError}`);
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify({ status: 'error', message: 'Unable to verify the request' })
+                };
+            }
+
             if (!data.success || data.score < RECAPTCHA_SCORE_THRESHOLD) {
+                // A rejected submission is the system working, not a failure, so
+                // it is counted separately and never alarms.
+                recordOutcome('Rejected', 'recaptcha_score');
                 return {
                     statusCode: 400,
                     body: JSON.stringify({ message: 'reCAPTCHA verification failed' })
                 };
             }
         } catch (error) {
+            // Google being unreachable is our problem, not the submitter's:
+            // it blocks every legitimate inquiry for as long as it lasts.
+            console.error('reCAPTCHA verification error:', error);
+            recordOutcome('Failure', 'recaptcha_unreachable');
             return {
-                statusCode: 400,
-                body: JSON.stringify({ message: 'reCAPTCHA verification error', error: error.message })
+                statusCode: 500,
+                body: JSON.stringify({ status: 'error', message: 'Unable to verify the request' })
             };
         }
 
@@ -125,19 +187,25 @@ exports.handler = async (event) => {
             await ses.sendEmail(params).promise();
         } catch (error) {
             console.error('SES error:', error);
+            recordOutcome('Failure', 'ses_error');
             return {
                 statusCode: 500,
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     status: "error",
                     message: 'Error sending email',
-                    error: error.message || 'An unknown error occurred with SES' 
+                    error: error.message || 'An unknown error occurred with SES'
                 })
             };
         }
 
+        // Counted as well as the failures: an alarm that has never fired looks
+        // identical to one that is broken, and this is what proves the metric
+        // pipeline is alive.
+        recordOutcome('Success', 'sent');
+
         return {
             statusCode: 200,
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 status: "success",
                 message: 'Email sent successfully'
             })
@@ -145,6 +213,7 @@ exports.handler = async (event) => {
 
     } catch (error) {
         console.error('Unexpected error:', error);
+        recordOutcome('Failure', 'unexpected');
         return {
             statusCode: 500,
             body: JSON.stringify({ 

@@ -49,6 +49,20 @@ Two non-obvious things about uploading, both of which have bitten before:
 
 `low/` is a legacy prefix, superseded by `web/`. Photos are free to download; there is no purchase flow. Two Lambdas (`createCheckoutSession`, `downloadRedirect`) previously sold full-res downloads through Stripe and were removed. **Do not rebuild a signed-URL download endpoint.** The originals are public by a deliberate decision — an endpoint in front of free files adds a Lambda and a redirect while providing no actual access control, which is exactly what made the old one a problem.
 
+`sendContactEmail` catches all of its own errors and returns a 500 response,
+which Lambda counts as a *successful* invocation — so the built-in `Errors`
+metric never moves when an inquiry is lost, and an alarm on it would never fire.
+The handler emits its own metrics in embedded metric format instead, under the
+`ChrisPecMusic/ContactForm` namespace with a `Function` dimension: `Failure`
+(SES rejected the send, Google was unreachable, the reCAPTCHA secret is wrong),
+`Rejected` (a low reCAPTCHA score — the system working, never alarm on it), and
+`Success`. Alarming on `Failure` catches the lost inquiries; the built-in
+`Errors` and `Throttles` metrics still cover the crashes and timeouts that
+happen before any log line runs, so both are worth watching.
+
+Note that a folder added under `backend/` is deployed as a Lambda named after
+itself, so anything that is not a function will fail the backend deploy.
+
 All Lambdas read config from environment variables (SES sender address, reCAPTCHA secret, Google service account JSON, S3 bucket name, calendar ID) — there are no `.env` files committed; these are configured directly on the Lambda functions in AWS.
 
 ## Commands

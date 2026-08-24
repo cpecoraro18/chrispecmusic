@@ -35,13 +35,19 @@
               controls
               preload="none"
               class="w-100 mt-2 compact-audio"
+              @play="onPlay(focusedSample)"
             ></audio>
             <div class="mt-2 small sample-file d-flex align-items-center flex-wrap gap-2">
+              <!-- data-track-ignore: the WAVs live on S3, so the click
+                   delegation in plugins/analytics.client.ts would otherwise
+                   file this under outbound_click alongside Instagram. -->
               <a
                 :href="getWavSrc(focusedSample)"
                 download
                 class="wav-download"
+                data-track-ignore
                 :title="`Download ${getWavFile(focusedSample)} — uncompressed`"
+                @click="onWavDownload(focusedSample)"
               >
                 <AppIcon name="download" class="me-1" />Download WAV
               </a>
@@ -105,6 +111,36 @@ function getWavFile(sample) {
 
 function focusSample(id) {
   focusedId.value = id;
+}
+
+/**
+ * Which sample/mix combinations have already been reported this page view.
+ * The `play` event also fires on every resume after a pause, and counting
+ * those would make a sample someone scrubbed through look more popular than
+ * one they listened to straight through.
+ */
+const playsReported = new Set();
+
+function mixOf(sample) {
+  return selectedType[sample.id] === 'with' ? 'with_drums' : 'no_drums';
+}
+
+function onPlay(sample) {
+  const mix = mixOf(sample);
+  const key = `${sample.id}:${mix}`;
+  if (playsReported.has(key)) return;
+  playsReported.add(key);
+  trackEvent('sample_play', { sample_id: sample.id, sample_title: sample.title, mix });
+}
+
+// Reaching for the uncompressed file means someone is judging the take in a
+// DAW, which is a long way past idle browsing — worth separating from a play.
+function onWavDownload(sample) {
+  trackEvent('sample_download', {
+    sample_id: sample.id,
+    sample_title: sample.title,
+    mix: mixOf(sample),
+  });
 }
 </script>
 

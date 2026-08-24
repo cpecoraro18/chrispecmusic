@@ -67,7 +67,7 @@
 <script setup>
 const RECAPTCHA_SITE_KEY = '6LdNJd8pAAAAAH6F9mgoS5xWO-PUMOqlSilpbcdF';
 
-defineProps({
+const props = defineProps({
     heading: { type: String, default: 'Get in touch' },
     intro: { type: String, default: '' },
     messageLabel: { type: String, default: 'Message' },
@@ -114,6 +114,10 @@ const sendMessage = async (token) => {
         throw new Error(data?.message || 'Failed to send email');
     }
 
+    // The conversion. page_path comes along automatically, which is what
+    // separates a lead from /book-session from one from /contact.
+    trackEvent('generate_lead', { form_heading: props.heading });
+
     thankYouMessage.value = "Thanks, your message is on its way. I'll get back to you as soon as I can.";
     name.value = '';
     email.value = '';
@@ -145,6 +149,13 @@ const submitForm = async () => {
         await sendMessage(token);
     } catch (error) {
         console.error('A problem occurred while sending the message.', error);
+        // A lead that failed to send is worth more attention than one that
+        // succeeded — a console error nobody is looking at is how a broken form
+        // stays broken for a month.
+        trackEvent('form_error', {
+            form_heading: props.heading,
+            error_message: error?.message,
+        });
         errorMessage.value =
             'Something went wrong sending your message. Please try again, or email contact@chrispecmusic.com directly.';
     } finally {

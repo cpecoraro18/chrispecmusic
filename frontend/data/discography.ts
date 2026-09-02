@@ -138,6 +138,8 @@ export const discography: Album[] = [
     artist: 'Sean McKee Band',
     image: '/img/albums/SoLongMyQueen.webp',
     year: '2022',
+    // An EP, so the mix credit names its track rather than claiming the record.
+    credits: ['Bass', { role: 'Mix', track: 'So Long My Queen' }],
     links: {
       'Spotify': 'https://open.spotify.com/album/0khwm9sod28mcfP46kTtLe?si=NG2pyAYARjC_jGA6XkXizA',
       'Apple Music': 'https://music.apple.com/us/album/so-long-my-queen-ep/1606473575',

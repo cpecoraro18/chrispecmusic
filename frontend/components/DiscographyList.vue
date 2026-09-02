@@ -198,14 +198,14 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
     flex-shrink: 0;
 }
 
+/* Sentence case rather than the uppercase this kind of label usually takes: a
+   track-scoped credit carries a song title, and a title set in caps stops
+   looking like a title. */
 .popup-credits {
     margin: 0;
     padding: 0.65rem 1rem 0.75rem;
     border-top: 1px solid var(--border-dark);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 0.8rem;
     color: var(--grey);
 }
 

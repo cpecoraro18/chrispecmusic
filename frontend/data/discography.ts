@@ -6,6 +6,8 @@
  * the UI renders it as a disabled "Coming Soon" row, which reads better than a
  * silently missing option.
  */
+import type { Credited } from './credits';
+
 export const PLATFORM_PENDING = '#';
 
 export interface Platform {
@@ -20,7 +22,7 @@ export const platforms: Platform[] = [
   { name: 'YouTube', icon: '/img/youtube-logo.webp' },
 ];
 
-export interface Album {
+export interface Album extends Credited {
   name: string;
   artist: string;
   /** Path under public/ to the cover art. */
@@ -31,6 +33,40 @@ export interface Album {
 }
 
 export const discography: Album[] = [
+  {
+    name: 'Hold On',
+    artist: 'Sean McKee Band',
+    image: '/img/albums/HoldOn.webp',
+    year: '2026',
+    credits: ['Bass', 'Mix'],
+    links: {
+      'Spotify': 'https://open.spotify.com/track/05bRigqg2ZbDJOMlpR2DBv?si=b00825da317f473d',
+      'Apple Music': 'https://music.apple.com/us/album/hold-on-single/6805040734',
+      'YouTube': 'https://www.youtube.com/watch?v=4w4s5Zdy1HM&list=RD4w4s5Zdy1HM&start_radio=1',
+    },
+  },
+  {
+    name: 'Away From Home',
+    artist: 'Tyler Nail',
+    image: '/img/albums/AwayFromHome.webp',
+    year: '2026',
+    links: {
+      'Spotify': 'https://open.spotify.com/album/6VBeFatAq2wbVIIsZeUel5?si=utBLKbghT8uzZ7DPt_MSJw',
+      'Apple Music': 'https://music.apple.com/us/album/away-from-home-single/6772517971',
+      'YouTube': 'https://www.youtube.com/watch?v=SC5xW3KlPjs',
+    },
+  },
+  {
+    name: 'Western Wind',
+    artist: 'Tyler Nail',
+    image: '/img/albums/WesternWind.webp',
+    year: '2026',
+    links: {
+      'Spotify': 'https://open.spotify.com/album/4UOuTJ4ftjJGCYHA5WUcTy?si=M9CSRVTbSmGCOzUWm-mCLw',
+      'Apple Music': 'https://music.apple.com/us/album/western-wind-single/6774884289',
+      'YouTube': 'https://www.youtube.com/watch?v=vvDXg4DkO0A',
+    },
+  },
   {
     name: 'Blades and Bullets',
     artist: 'Tyler Nail',
@@ -88,7 +124,7 @@ export const discography: Album[] = [
   },
   {
     name: 'In This Life',
-    artist: 'Sean Mckee Band',
+    artist: 'Sean McKee Band',
     image: '/img/albums/InThisLife.webp',
     year: '2023',
     links: {
@@ -99,7 +135,7 @@ export const discography: Album[] = [
   },
   {
     name: 'So Long My Queen',
-    artist: 'Sean Mckee Band',
+    artist: 'Sean McKee Band',
     image: '/img/albums/SoLongMyQueen.webp',
     year: '2022',
     links: {
@@ -110,7 +146,7 @@ export const discography: Album[] = [
   },
   {
     name: 'Poison Ivy',
-    artist: 'Sean Mckee Band',
+    artist: 'Sean McKee Band',
     image: '/img/albums/PoisonIvy.webp',
     year: '2021',
     links: {

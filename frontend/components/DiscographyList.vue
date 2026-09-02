@@ -37,6 +37,12 @@
                                     <span v-if="isPending(album, platform)" class="coming-soon">Coming Soon</span>
                                 </component>
                             </div>
+                            <!-- The tiles are bare cover art, so the credits
+                                 ride in the popup: it is the only part of the
+                                 grid with room for words, and it is already
+                                 what someone opens when they want to know more
+                                 about a record. -->
+                            <p class="popup-credits">{{ creditLine(album) }}</p>
                         </div>
                     </div>
                 </div>
@@ -47,6 +53,7 @@
 
 <script setup>
 import { discography, platforms, PLATFORM_PENDING } from '~/data/discography';
+import { creditLine } from '~/data/credits';
 
 /**
  * The album grid. Clicking a cover opens a small menu of streaming links.
@@ -189,6 +196,17 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
     height: 20px;
     object-fit: contain;
     flex-shrink: 0;
+}
+
+.popup-credits {
+    margin: 0;
+    padding: 0.65rem 1rem 0.75rem;
+    border-top: 1px solid var(--border-dark);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
 }
 
 .coming-soon {

@@ -30,6 +30,7 @@
               <template #media>
                 <YouTubeEmbed :id="video.id" :title="video.title" />
               </template>
+              <p class="video-credits mb-0">{{ creditLine(video) }}</p>
             </MediaCard>
           </div>
         </div>
@@ -49,6 +50,7 @@
 
 <script setup>
 import { videos } from '~/data/videos';
+import { creditLine } from '~/data/credits';
 
 const {
   selected: selectedGenre,
@@ -63,6 +65,12 @@ useSeo({
 </script>
 
 <style scoped>
-/* Card and badge styling now lives in MediaCard; the 16:9 frame lives in
-   YouTubeEmbed. This page needs no styles of its own. */
+/* Card and badge styling lives in MediaCard and the 16:9 frame in
+   YouTubeEmbed; the credit line below each title is the only thing this page
+   styles itself. It is deliberately quiet — the roles are worth stating, but
+   not worth outranking the title of the video. */
+.video-credits {
+  font-size: 0.85rem;
+  color: rgba(var(--text-color-rgb), 0.65);
+}
 </style>

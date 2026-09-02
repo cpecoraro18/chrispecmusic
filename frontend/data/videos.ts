@@ -6,7 +6,9 @@
  * characters after `v=` or `youtu.be/` — not the whole share URL, whose `?si=`
  * token is a tracking parameter that does nothing here.
  */
-export interface Video {
+import type { Credited } from './credits';
+
+export interface Video extends Credited {
   /** YouTube video ID, e.g. 'dQw4w9WgXcQ'. Not a URL. */
   id: string;
   title: string;
@@ -23,7 +25,9 @@ export const videos: Video[] = [
   // --- Rock ---
   { title: "Alright Maybes - Misery Business Cover", id: "NJOk4imcY50", genre: "Rock" },
   { title: "Alright Maybes - Paradise City Cover", id: "I_nMxVfUFpM", genre: "Rock" },
-  { title: "Sean's Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover", id: "OFJ75eQKOlc", genre: "Rock" },
+  { title: "Sean's Guitar Lounge Ft. Sophie Hafer - Got to Get Better in a Little While Cover", id: "OFJ75eQKOlc", genre: "Rock", credits: ["Bass", "Mix"] },
+  { title: "Sean's Guitar Lounge Ft. Sophie Hafer - Heartache Don't Last Long", id: "2UWy3wWjgAY", genre: "Rock", credits: ["Bass", "Mix"] },
+  { title: "Sean's Guitar Lounge Ft. Zach Avery - All Along the Watchtower Cover", id: "n_tqUo2kwJY", genre: "Rock", credits: ["Bass", "Mix"] },
   { title: "Sean McKee Band - Got to Get Better in a Little While Cover", id: "53Vx75OUEQw", genre: "Rock" },
   { title: "Sean McKee Band - Ain't Talkin' About Love", id: "h2jR9AGe0yI", genre: "Rock" },
   { title: "Sean McKee Band - Live at Madcats - Fragile", id: "5e3GEKrsUnc", genre: "Rock" },
@@ -32,9 +36,9 @@ export const videos: Video[] = [
   { title: "Sean McKee Band - Monster - Live at Madcats", id: "u-lH9EmIN_o", genre: "Rock" },
 
   // --- Blues ---
-  { title: "Sean's Guitar Lounge Ft. Brandon Simmons - Sweet Little Angel Cover", id: "4dWC3QAfFyY", genre: "Blues" },
-  { title: "Sean's Guitar Lounge - Suburban Glory Cover", id: "8d3lh_wB8Zk", genre: "Blues" },
-  { title: "Sean's Guitar Lounge - I Wouldn't Treat a Dog Cover", id: "8VqFfWw5Roo", genre: "Blues" },
+  { title: "Sean's Guitar Lounge Ft. Brandon Simmons - Sweet Little Angel Cover", id: "4dWC3QAfFyY", genre: "Blues", credits: ["Bass", "Mix"] },
+  { title: "Sean's Guitar Lounge - Suburban Glory Cover", id: "8d3lh_wB8Zk", genre: "Blues", credits: ["Bass", "Mix"] },
+  { title: "Sean's Guitar Lounge - I Wouldn't Treat a Dog Cover", id: "8VqFfWw5Roo", genre: "Blues", credits: ["Bass", "Mix"] },
 
   // --- Jazz ---
   { title: "University of Minnesota Jazz Ensemble I - 2019 Spring Concert", id: "VwqKnToOPik", genre: "Jazz" },

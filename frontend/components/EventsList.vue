@@ -1,23 +1,24 @@
 <template>
   <div class="mt-5 bg-dark text-white p-4 rounded events-list">
     <h2 v-if="showHeading" class="mb-4 text-center">{{ heading }}</h2>
-    
-    <!-- Event Filter Buttons -->
-    <div class="mb-3">
-      <button 
+
+    <!-- Event Filter Buttons. Centred to sit over a centred list. -->
+    <div class="mb-4 text-center">
+      <button
         class="btn btn-outline-light btn-sm me-2"
         :class="{ active: selectedFilter === 'future' }"
         @click="filterEvents('future')"
       >
         Upcoming
       </button>
-      
+
       <!-- Past Events Dropdown -->
-      <div class="btn-group me-2" role="group">
-        <button 
+      <!-- No trailing margin: it would throw the centred row off by its width. -->
+      <div class="btn-group" role="group">
+        <button
           class="btn btn-outline-light btn-sm dropdown-toggle"
           :class="{ active: selectedFilter.startsWith('past') }"
-          type="button" 
+          type="button"
           data-bs-toggle="dropdown"
         >
           Past Events
@@ -29,7 +30,7 @@
         </ul>
       </div>
     </div>
-    
+
     <!-- Loading Icon -->
     <div v-if="loading" class="text-center py-4">
       <AppIcon name="spinner" spin :scale="2" label="Loading events" class="events-spinner" />
@@ -43,23 +44,41 @@
     </div>
 
     <!-- Events List -->
-    <div v-else-if="events.length" class="list-group">
-      <div v-for="(event, index) in limitedEvents" :key="event.id" class="list-group-item mb-3 bg-dark border-0">
-        <div class="row border-bottom border-1 pb-3">
-          <div class="col-12 col-md-2 mb-4 mb-md-0">
-            <h4 class="mb-1">{{ event.date}}</h4>
-            <p class="text-muted">{{ event.month }} {{ event.year }}</p>
-            <p class="text-muted mb-0"> {{ event.timeRange }}</p>
-          </div>
-          <div class="col-12 col-md-10 text-md-end">
-            <h4 class="mb-2">{{ event.summary }}</h4>
-            <div class="mb-2 text-info small">
-              <a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.location)" target="_blank"><AppIcon name="location-dot" class="me-2" />{{ event.location.split(",")[0] }}</a>
-            </div>
-            <p v-if="event.description" class="mb-0">{{ event.description }}</p>
-          </div>
+    <div v-else-if="events.length" class="events">
+      <article v-for="event in limitedEvents" :key="event.id" class="event">
+        <div class="event-when">
+          <p class="event-date mb-0">{{ unbreakable(event.date) }}</p>
+          <!-- Start time only. The full range is on the event's own page, where
+               there's room for it and someone is checking one gig in detail. -->
+          <p v-if="event.time" class="event-time mb-0">{{ event.time }}</p>
         </div>
-      </div>
+
+        <div class="event-what">
+          <!-- The act is the link to the event's own page: a plain text link
+               rather than a button, so the card stays a listing and not a form. -->
+          <h3 class="event-act">
+            <nuxt-link :to="`/events/${event.slug}`" class="event-act-link">{{ event.act }}</nuxt-link>
+          </h3>
+
+          <!-- The venue and address stay a live map link rather than the flat
+               text they'd be on a poster: this is the listing someone actually
+               navigates from. -->
+          <p v-if="event.venue" class="event-where mb-0">
+            <component
+              :is="event.mapQuery ? 'a' : 'span'"
+              v-bind="event.mapQuery ? { href: mapLink(event.mapQuery), target: '_blank', rel: 'noopener' } : {}"
+              class="event-place"
+            >
+              <AppIcon name="location-dot" class="me-2" />
+              <span class="event-venue">{{ event.venue }}</span>
+              <span v-if="event.address" class="event-address">{{ event.address }}</span>
+            </component>
+          </p>
+
+          <p v-if="event.description" class="event-note mb-0">{{ event.description }}</p>
+        </div>
+      </article>
+
       <div v-if="events.length > limit" class="text-center mt-3">
         <nuxt-link to="/events" class="text-info">See all events</nuxt-link>
       </div>
@@ -72,6 +91,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import { formatEvents, isUpcoming, startOfDay } from '~/utils/events';
 
 const props = defineProps({
   limit: {
@@ -87,6 +107,12 @@ const props = defineProps({
   showHeading: {
     type: Boolean,
     default: true
+  },
+  // 'long' spells the date out ("Friday, September 12"); 'short' ("Sep 12")
+  // suits the narrower column of the teaser on the homepage.
+  dateStyle: {
+    type: String,
+    default: 'long'
   }
 });
 
@@ -117,7 +143,26 @@ const pastYears = computed(() => {
   );
 });
 
-async function getEvents(timeMin = null, timeMax = null) {
+function mapLink(query) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+/**
+ * Ties a month to its day number so the date column can't split them.
+ *
+ * "Friday, September 25" was wrapping to leave "25" stranded on the second
+ * line; a non-breaking space there forces the break after the comma instead,
+ * where it reads as deliberate. Also keeps the two halves of "Sep 12 – Sep 18"
+ * whole, so a range can only break at the dash.
+ *
+ * Drawing only — the date string itself keeps ordinary spaces, since it also
+ * feeds the page title and the meta description.
+ */
+function unbreakable(date) {
+  return date.replace(/([A-Za-z]) (\d)/g, '$1\u00A0$2');
+}
+
+async function getEvents(timeMin = null, timeMax = null, { upcomingOnly = false } = {}) {
   const request = ++latestRequest;
   loading.value = true;
   error.value = false;
@@ -126,22 +171,8 @@ async function getEvents(timeMin = null, timeMax = null) {
     const payload = await api.get('/events', { timeMin, timeMax });
     if (request !== latestRequest) return;
 
-    events.value = (payload?.items ?? []).map((x) => {
-      const start = x.start?.dateTime ? new Date(x.start.dateTime) : null;
-      const end = x.end?.dateTime ? new Date(x.end.dateTime) : null;
-      return {
-        id: x.id,
-        summary: x.summary,
-        location: x.location || 'TBD',
-        description: x.description || "",
-        date: start ? start.getDate() : 'N/A',
-        month: start ? start.toLocaleString('default', { month: 'long' }) : 'N/A',
-        year: start ? start.getFullYear() : 'N/A',
-        timeRange: start && end
-          ? `${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-          : 'Time not available',
-      };
-    })
+    const formatted = formatEvents(payload?.items ?? [], { style: props.dateStyle });
+    events.value = upcomingOnly ? formatted.filter((event) => isUpcoming(event)) : formatted;
   } catch (err) {
     // Nothing used to catch this. A Lambda error, a cold-start timeout or a
     // CORS failure left `loading` true forever, so the homepage sat on a
@@ -191,7 +222,11 @@ function getPastEvents(year = null) {
 }
 
 function getFutureEvents() {
-  return getEvents();
+  // Google filters timeMin against an event's *end*, so asking from midnight
+  // this morning keeps today's gig listed until the day is over rather than
+  // dropping it the moment it starts. The client-side pass applies the same
+  // rule, since the Lambda falls back to "now" if the parameter never arrives.
+  return getEvents(startOfDay(new Date()).toISOString(), null, { upcomingOnly: true });
 }
 
 async function filterEvents(filter) {
@@ -214,7 +249,7 @@ async function filterEvents(filter) {
 }
 
 onMounted(() => {
-  getEvents();
+  getFutureEvents();
 });
 </script>
 
@@ -223,16 +258,137 @@ onMounted(() => {
   max-width: 800px;
 }
 
-.list-group-item h5 {
-  color: var(--text-color);
+/* Two columns on a wide screen — when on the left, who and where on the right —
+   collapsing to one centred stack on a phone. Same type, weights and spacing in
+   both; the grid is the only thing that changes, so the two read as one design.
+
+   Text is stored in natural case and uppercased here, so the map link and
+   screen readers still get the real venue name. */
+.event {
+  display: grid;
+  /* Wide enough for "SEPTEMBER 25" on one line — the longest month plus a day —
+     so the date breaks after the weekday comma and nowhere else. */
+  grid-template-columns: 13rem 1fr;
+  gap: 0 1.75rem;
+  align-items: start;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.list-group-item small {
+.event:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.event-when {
+  /* Nudged down so the date sits on the act's baseline rather than its cap. */
+  padding-top: 0.2rem;
+}
+
+/* Medium. The stack (Avenir Next, Segoe UI, Roboto) only ships discrete
+   weights, so 400 and 500 are the two real options here — anything between
+   snaps to one of them.
+
+   `#app` so the tighter line-height survives: styles/main.css sets
+   `#app p { line-height: 1.65 }`, and an id beats a class. */
+#app .event-date {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.event-time {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.875rem;
   color: var(--bg-grey);
+  margin-top: 0.1rem;
 }
 
-.list-group-item p {
+/* `#app` for the same reason as the date: `#app h3` in styles/main.css would
+   otherwise win and hand this the page's heading scale, negative tracking and
+   all — which is not what a listing row wants. */
+#app .event-act {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+/* Inherits the heading's colour so it doesn't read as a stray blue link in the
+   middle of the card; the underline on hover is what marks it as clickable. */
+.event-act-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.event-act-link:hover,
+.event-act-link:focus-visible {
+  text-decoration: underline;
+}
+
+.event-place {
+  display: inline-block;
+  color: var(--bg-grey);
+  text-decoration: none;
+}
+
+.event-venue {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+}
+
+/* Underlined and on its own line: it's the part someone taps to navigate, and
+   a long street address never squeezes the venue name. */
+.event-address {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+}
+
+a.event-place:hover,
+a.event-place:focus {
+  color: #fff;
+}
+
+.event-note {
+  margin-top: 0.5rem;
   color: var(--grey);
+}
+
+/* One centred column once the two stop fitting side by side. Nothing is
+   dropped here — the phone has the vertical room for all of it. */
+@media (max-width: 767.98px) {
+  .event {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .event-when {
+    padding-top: 0;
+  }
+}
+
+/* Genuinely cramped. Shed in priority order: the address goes first, then the
+   venue name, and the act never goes — it's the reason the line is there. */
+@media (max-width: 399.98px) {
+  .event-address {
+    display: none;
+  }
+}
+
+@media (max-width: 319.98px) {
+  .event-venue {
+    display: none;
+  }
 }
 
 /* Add some margin for the spinner. Was `.text-center i`, which stopped matching
@@ -240,6 +396,7 @@ onMounted(() => {
 .events-spinner {
   margin-top: 50px;
 }
+
 @media (min-width: 992px) {
   .events-list {
     max-width: 75%;

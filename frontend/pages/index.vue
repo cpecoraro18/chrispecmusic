@@ -126,7 +126,7 @@
     <!-- ================= EVENTS ================= -->
     <section class="section-tight">
       <div class="container">
-        <events-list :limit="5"></events-list>
+        <events-list :limit="5" date-style="short"></events-list>
       </div>
     </section>
 

@@ -47,8 +47,20 @@ jobs:
           rm -rf .github
         shell: bash
       
-      - name: Add CNAME file
-        run: echo "chrispecmusic.com" > CNAME
+      - name: Add CNAME and .nojekyll
+        # .nojekyll turns off GitHub Pages' Jekyll build. Jekyll refuses to
+        # publish anything whose name starts with an underscore, and Nuxt emits
+        # two kinds of those: every route's `_payload.json`, and the chunk for
+        # the `events/[slug].vue` route, which Rollup names `_slug_-<hash>.js`.
+        # Both were being dropped silently, so an individual event page served
+        # the SPA shell and then 404'd fetching its own route chunk.
+        #
+        # Created here rather than moved out of .output/public because the move
+        # above globs `*`, which never matches a dotfile.
+        run: |
+          echo "chrispecmusic.com" > CNAME
+          touch .nojekyll
+        shell: bash
       
       - name: Commit and push changes
         run: |

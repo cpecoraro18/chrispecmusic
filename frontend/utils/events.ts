@@ -315,12 +315,39 @@ export function slugify(text: string): string {
 }
 
 /**
- * The local calendar date as YYYY-MM-DD. `toISOString()` would be the UTC day,
- * which for an evening gig in Chicago is tomorrow's date.
+ * The time zone the gigs are played in, and so the one a link's date is read
+ * in. Every visitor has to derive the same slug for the same gig, whatever their
+ * own clock says: a 9 PM Chicago show is already the 13th in London, and a link
+ * shared from Chicago used to resolve to "Event not found" there.
  */
-function localDateKey(date: Date): string {
-  const pad = (part: number) => String(part).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+const EVENT_TIME_ZONE = 'America/Chicago';
+
+const eventDayFormat = new Intl.DateTimeFormat('en-US', {
+  timeZone: EVENT_TIME_ZONE,
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+/**
+ * The date an event falls on, as YYYY-MM-DD.
+ *
+ * A timed event is read on Chicago's calendar. `toISOString()` would be the UTC
+ * day, which for an evening gig is tomorrow's date, and the viewer's local day
+ * differs from one visitor to the next. An all-day event has no instant to
+ * convert: `parseDateOnly` built it from Google's bare date in local time, so
+ * its local fields are that date exactly, wherever the viewer is.
+ */
+function eventDateKey(date: Date, allDay: boolean): string {
+  if (allDay) {
+    const pad = (part: number) => String(part).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  }
+
+  const parts = Object.fromEntries(
+    eventDayFormat.formatToParts(date).map(({ type, value }) => [type, value])
+  );
+  return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
 /**
@@ -332,8 +359,10 @@ function localDateKey(date: Date): string {
  * event id would mean fetching the whole calendar to find one gig, and the act
  * plays the same rooms often enough that the date alone would collide.
  */
-export function eventSlug(event: Pick<FormattedEvent, 'act' | 'venue' | 'start' | 'id'>): string {
-  const day = event.start ? localDateKey(event.start) : '';
+export function eventSlug(
+  event: Pick<FormattedEvent, 'act' | 'venue' | 'start' | 'id' | 'allDay'>
+): string {
+  const day = event.start ? eventDateKey(event.start, event.allDay) : '';
   const name = [slugify(event.act), event.venue ? `at-${slugify(event.venue)}` : '']
     .filter(Boolean)
     .join('-');
@@ -342,14 +371,21 @@ export function eventSlug(event: Pick<FormattedEvent, 'act' | 'venue' | 'start' 
 }
 
 /**
- * The day a slug refers to, as local midnight, or null if it doesn't start with
- * a date. The standalone page turns this into a one-day window to query, which
+ * The span of time to ask the calendar for to resolve a slug, or null if the
+ * slug doesn't start with a date. Querying around just the day the slug names
  * is what lets a link to a gig from last year still resolve.
+ *
+ * Deliberately wider than the day: UTC midnight on the date through UTC
+ * midnight two days later. That contains the whole Chicago day (05:00 or 06:00
+ * UTC to the same the next morning) without working out the DST offset, and
+ * the page matches the full slug among what comes back, so the neighbouring
+ * events it also returns are never shown.
  */
-export function slugDay(slug: string): Date | null {
+export function slugWindow(slug: string): { timeMin: Date; timeMax: Date } | null {
   const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(slug);
   if (!match) return null;
-  return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  const from = Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  return { timeMin: new Date(from), timeMax: new Date(from + 2 * 86_400_000) };
 }
 
 /**
@@ -424,7 +460,7 @@ export function formatEvent(
 
   return {
     id,
-    slug: eventSlug({ id, act, venue, start }),
+    slug: eventSlug({ id, act, venue, start, allDay }),
     act,
     venue,
     address: eventAddress(location),

@@ -41,16 +41,6 @@
         >
           <div class="event-grid">
             <div class="event-body">
-              <header class="event-head">
-                <p class="event-when mb-0">
-                  <span class="event-date">{{ event.date }}</span>
-                  <!-- "Tonight" is the useful label in the list, but a standalone
-                       page gets shared and read later, so the real date goes with it. -->
-                  <span v-if="absoluteDate" class="event-absolute">{{ absoluteDate }}</span>
-                </p>
-                <p v-if="event.timeRange" class="event-time mb-0">{{ event.timeRange }}</p>
-              </header>
-
               <h1 class="event-act">{{ event.act }}</h1>
 
               <p v-if="event.venue" class="event-where mb-0">
@@ -64,6 +54,16 @@
                   <span v-if="event.address" class="event-address">{{ event.address }}</span>
                 </component>
               </p>
+
+              <div class="event-datetime">
+                <p class="event-when mb-0">
+                  <span class="event-date">{{ event.date }}</span>
+                  <!-- "Tonight" is the useful label in the list, but a standalone
+                       page gets shared and read later, so the real date goes with it. -->
+                  <span v-if="absoluteDate" class="event-absolute">{{ absoluteDate }}</span>
+                </p>
+                <p v-if="event.timeRange" class="event-time mb-0">{{ event.timeRange }}</p>
+              </div>
 
               <p v-if="event.description" class="event-note">{{ event.description }}</p>
 
@@ -103,7 +103,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { formatEvents, formatLongDate, eventRelativeDay, slugDay } from '~/utils/events';
+import { formatEvents, formatLongDate, eventRelativeDay, slugWindow } from '~/utils/events';
 import { SITE_URL } from '~/composables/useSeo';
 
 const route = useRoute();
@@ -118,8 +118,8 @@ const error = ref(false);
 /**
  * Fetches just the day the slug names rather than the whole calendar.
  *
- * The slug leads with the date for exactly this reason: a one-day window is a
- * cheap query that resolves a link to a gig from any year, where the list's
+ * The slug leads with the date for exactly this reason: a window around one day
+ * is a cheap query that resolves a link to a gig from any year, where the list's
  * "upcoming" request would never return a past one.
  */
 async function load() {
@@ -127,19 +127,16 @@ async function load() {
   error.value = false;
   event.value = null;
 
-  const day = slugDay(slug.value);
-  if (!day) {
+  const range = slugWindow(slug.value);
+  if (!range) {
     loading.value = false;
     return;
   }
 
-  const nextDay = new Date(day);
-  nextDay.setDate(nextDay.getDate() + 1);
-
   try {
     const payload = await api.get('/events', {
-      timeMin: day.toISOString(),
-      timeMax: nextDay.toISOString(),
+      timeMin: range.timeMin.toISOString(),
+      timeMax: range.timeMax.toISOString(),
     });
     event.value = formatEvents(payload?.items ?? []).find((item) => item.slug === slug.value) ?? null;
   } catch (err) {
@@ -249,12 +246,12 @@ onMounted(load);
   text-align: center;
 }
 
-/* A rule under the date, as on a ticket — the card's only divider, so the eye
-   goes date, then act. */
-.event-head {
-  padding-bottom: 1rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+/* A rule between where and when, as on a ticket — the card's only divider, so
+   the eye goes act and venue, then date. */
+.event-datetime {
+  padding-top: 1rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .event-when {

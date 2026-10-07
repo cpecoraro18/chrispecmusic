@@ -19,7 +19,7 @@ export interface Platform {
 export const platforms: Platform[] = [
   { name: 'Spotify', icon: '/img/spotify-logo.svg' },
   { name: 'Apple Music', icon: '/img/apple-music-logo.svg' },
-  { name: 'YouTube', icon: '/img/youtube-logo.webp' },
+  { name: 'YouTube', icon: '/img/youtube-logo.svg' },
 ];
 
 export interface Album extends Credited {

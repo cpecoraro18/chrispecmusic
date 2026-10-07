@@ -10,7 +10,12 @@
         :class="{ 'review-extra': index >= MOBILE_COUNT }"
       >
         <figure class="review-item on-light h-100 mb-0">
-          <blockquote class="mb-3 review-text">"{{ review.review }}"</blockquote>
+          <div>
+            <!-- Decorative: the blockquote already says this is a quote, so the
+                 straight quote marks around the text went once this arrived. -->
+            <span class="review-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="mb-3 review-text">{{ review.review }}</blockquote>
+          </div>
           <figcaption class="review-author">
             <a :href="FIVERR_PROFILE" target="_blank" rel="noopener">{{ review.name }}</a>
           </figcaption>
@@ -43,6 +48,17 @@ const MOBILE_COUNT = 3;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   padding: 1.5em 1.25em;
+}
+
+.review-mark {
+  display: block;
+  height: 1.6rem;
+  margin-bottom: 0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--daphne-deep);
+  opacity: 0.35;
 }
 
 .review-text {

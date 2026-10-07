@@ -1,97 +1,115 @@
 <template>
-  <div class="mt-5 bg-dark text-white p-4 rounded events-list">
+  <div class="mt-5 events-list">
+    <!-- Outside the card, in the site's own heading style, so the homepage
+         section reads like every other section and the card is the content. -->
     <h2 v-if="showHeading" class="mb-4 text-center">{{ heading }}</h2>
 
-    <!-- Event Filter Buttons. Centred to sit over a centred list. -->
-    <div class="mb-4 text-center">
-      <button
-        class="btn btn-outline-light btn-sm me-2"
-        :class="{ active: selectedFilter === 'future' }"
-        @click="filterEvents('future')"
-      >
-        Upcoming
-      </button>
-
-      <!-- Past Events Dropdown -->
-      <!-- No trailing margin: it would throw the centred row off by its width. -->
-      <div class="btn-group" role="group">
+    <!-- The same dark card and date block as each event's own page, so
+         clicking through from a row feels like opening it up rather than
+         landing somewhere new. -->
+    <div class="events-sheet">
+      <div class="events-filters">
         <button
-          class="btn btn-outline-light btn-sm dropdown-toggle"
-          :class="{ active: selectedFilter.startsWith('past') }"
-          type="button"
-          data-bs-toggle="dropdown"
+          class="filter-btn"
+          :class="{ active: selectedFilter === 'future' }"
+          :aria-pressed="selectedFilter === 'future'"
+          @click="filterEvents('future')"
         >
-          Past Events
+          Upcoming
         </button>
-        <ul class="dropdown-menu">
-          <li v-for="year in pastYears" :key="year">
-            <a class="dropdown-item" href="#" @click.prevent="filterEvents(`past-${year}`)">{{ year }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Loading Icon -->
-    <div v-if="loading" class="text-center py-4">
-      <AppIcon name="spinner" spin :scale="2" label="Loading events" class="events-spinner" />
-    </div>
-
-    <!-- Failed to load. Kept distinct from the empty state below: reporting a
-         dead API as "no upcoming events" tells visitors he has no gigs. -->
-    <div v-else-if="error" class="text-center py-4" role="alert">
-      <p class="text-muted mb-3">The event list couldn't be loaded just now.</p>
-      <button class="btn btn-outline-light btn-sm" @click="retry">Try again</button>
-    </div>
-
-    <!-- Events List -->
-    <div v-else-if="events.length" class="events">
-      <article v-for="event in limitedEvents" :key="event.id" class="event">
-        <div class="event-when">
-          <p class="event-date mb-0">{{ unbreakable(event.date) }}</p>
-          <!-- Start time only. The full range is on the event's own page, where
-               there's room for it and someone is checking one gig in detail. -->
-          <p v-if="event.time" class="event-time mb-0">{{ event.time }}</p>
+        <div class="btn-group" role="group">
+          <button
+            class="filter-btn dropdown-toggle"
+            :class="{ active: selectedFilter.startsWith('past') }"
+            type="button"
+            data-bs-toggle="dropdown"
+          >
+            {{ pastLabel }}
+          </button>
+          <ul class="dropdown-menu">
+            <li v-for="year in pastYears" :key="year">
+              <a class="dropdown-item" href="#" @click.prevent="filterEvents(`past-${year}`)">{{ year }}</a>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <div class="event-what">
-          <!-- The act is the link to the event's own page: a plain text link
-               rather than a button, so the card stays a listing and not a form. -->
-          <h3 class="event-act">
-            <nuxt-link :to="`/events/${event.slug}`" class="event-act-link">{{ event.act }}</nuxt-link>
-          </h3>
+      <!-- Loading Icon -->
+      <div v-if="loading" class="events-status">
+        <AppIcon name="spinner" spin :scale="2" label="Loading events" />
+      </div>
 
-          <!-- The venue and address stay a live map link rather than the flat
-               text they'd be on a poster: this is the listing someone actually
-               navigates from. -->
-          <p v-if="event.venue" class="event-where mb-0">
-            <component
-              :is="event.mapQuery ? 'a' : 'span'"
-              v-bind="event.mapQuery ? { href: mapLink(event.mapQuery), target: '_blank', rel: 'noopener' } : {}"
-              class="event-place"
-            >
-              <AppIcon name="location-dot" class="me-2" />
-              <span class="event-venue">{{ event.venue }}</span>
-              <span v-if="event.address" class="event-address">{{ event.address }}</span>
-            </component>
+      <!-- Failed to load. Kept distinct from the empty state below: reporting a
+           dead API as "no upcoming events" tells visitors he has no gigs. -->
+      <div v-else-if="error" class="events-status" role="alert">
+        <p class="mb-3">The event list couldn't be loaded just now.</p>
+        <button class="filter-btn" @click="retry">Try again</button>
+      </div>
+
+      <!-- Events List -->
+      <div v-else-if="events.length" class="events">
+        <article v-for="event in limitedEvents" :key="event.id" class="event">
+          <!-- Month over a big day number, ruled off, as on the event page. A run of several days has no single number to set
+               big, so it prints its range instead. -->
+          <p class="event-date">
+            <template v-if="event.parts">
+              <span class="event-month">{{ event.parts.month }}</span>
+              <span class="event-day">{{ event.parts.day }}</span>
+              <span v-if="event.parts.year" class="event-year">{{ event.parts.year }}</span>
+            </template>
+            <span v-else class="event-range">{{ unbreakable(event.date) }}</span>
           </p>
 
-          <p v-if="event.description" class="event-note mb-0">{{ event.description }}</p>
+          <div class="event-what">
+            <p v-if="event.relative" class="event-tag">
+              {{ event.relative }}
+            </p>
+
+            <!-- The act is the link to the event's own page: a plain text link
+                 rather than a button, so the row stays a listing and not a form. -->
+            <h3 class="event-act">
+              <nuxt-link :to="`/events/${event.slug}`" class="event-act-link">{{ event.act }}</nuxt-link>
+            </h3>
+
+            <!-- The venue stays a live map link: this is the listing someone
+                 actually navigates from. -->
+            <p v-if="event.venue" class="event-where">
+              <component
+                :is="event.mapQuery ? 'a' : 'span'"
+                v-bind="event.mapQuery ? { href: mapLink(event.mapQuery), target: '_blank', rel: 'noopener' } : {}"
+                class="event-place"
+              >
+                <span class="event-venue">{{ event.venue }}</span>
+                <span v-if="event.address" class="event-address">{{ event.address }}</span>
+              </component>
+            </p>
+
+            <!-- Start time only. The full range is on the event's own page,
+                 where someone is checking one gig in detail. -->
+            <p v-if="event.parts || event.time" class="event-meta">
+              <span v-if="event.parts">{{ event.parts.weekday }}</span>
+              <span v-if="event.time">{{ event.time }}</span>
+            </p>
+
+            <p v-if="event.description" class="event-note">{{ event.description }}</p>
+          </div>
+        </article>
+
+        <div v-if="events.length > limit" class="events-more">
+          <nuxt-link to="/events">See all events &rarr;</nuxt-link>
         </div>
-      </article>
-
-      <div v-if="events.length > limit" class="text-center mt-3">
-        <nuxt-link to="/events" class="text-info">See all events</nuxt-link>
       </div>
-    </div>
 
-    <!-- No Events Message -->
-    <p v-else class="text-muted text-center">{{ emptyMessage }}</p>
+      <!-- No Events Message -->
+      <p v-else class="events-status">{{ emptyMessage }}</p>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { formatEvents, isUpcoming, startOfDay } from '~/utils/events';
+import { formatEvents, isUpcoming, startOfDay, eventDateParts, eventRelativeDay } from '~/utils/events';
 
 const props = defineProps({
   limit: {
@@ -186,9 +204,22 @@ async function getEvents(timeMin = null, timeMax = null, { upcomingOnly = false 
   }
 }
 
-const limitedEvents = computed(() => {
-  return events.value.slice(0, props.limit);
-});
+/**
+ * The rows to draw, each with its date block's pieces and its "Tonight" label
+ * worked out once here rather than on every render of the template.
+ */
+const limitedEvents = computed(() =>
+  events.value.slice(0, props.limit).map((event) => ({
+    ...event,
+    parts: eventDateParts(event),
+    relative: eventRelativeDay(event.start),
+  }))
+);
+
+/** The dropdown names the year it's showing, so the filter row says where you are. */
+const pastLabel = computed(() =>
+  selectedFilter.value.startsWith('past-') ? selectedFilter.value.slice(5) : 'Past events'
+);
 
 /**
  * "No upcoming events" is wrong under a past-year filter, where an empty list
@@ -254,73 +285,149 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.container {
-  max-width: 800px;
+.events-list {
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Two columns on a wide screen — when on the left, who and where on the right —
-   collapsing to one centred stack on a phone. Same type, weights and spacing in
-   both; the grid is the only thing that changes, so the two read as one design.
+/* ---- The card ---------------------------------------------------------
+   Same colours and corner as the card on each event's page. */
+.events-sheet {
+  padding: 1.75rem 2rem 2rem;
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border: 1px solid rgba(var(--card-text-rgb), 0.06);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
 
-   Text is stored in natural case and uppercased here, so the map link and
-   screen readers still get the real venue name. */
+.events-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(var(--card-text-rgb), 0.15);
+}
+
+/* Styled here rather than with Bootstrap's outline-light so the filters use
+   the card's own colours. The selected filter fills solid. */
+.filter-btn {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--card-text);
+  background: transparent;
+  border: 1px solid rgba(var(--card-text-rgb), 0.35);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  border-color: var(--card-text);
+}
+
+.filter-btn.active {
+  color: var(--card-bg);
+  background: var(--card-text);
+  border-color: var(--card-text);
+}
+
+.events-status {
+  margin: 0;
+  padding: 2.5rem 0 0.5rem;
+  text-align: center;
+  color: var(--card-text-soft);
+}
+
+/* ---- One gig ----------------------------------------------------------
+   Date block on the left, who/where/when centred in the column beside it, at
+   every width — the block is narrow enough that a phone never needs to stack
+   them. */
 .event {
   display: grid;
-  /* Wide enough for "SEPTEMBER 25" on one line — the longest month plus a day —
-     so the date breaks after the weekday comma and nowhere else. */
-  grid-template-columns: 13rem 1fr;
-  gap: 0 1.75rem;
-  align-items: start;
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(var(--card-text-rgb), 0.12);
 }
 
 .event:last-of-type {
   border-bottom: 0;
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.event-when {
-  /* Nudged down so the date sits on the act's baseline rather than its cap. */
-  padding-top: 0.2rem;
+.event p {
+  margin: 0;
 }
 
-/* Medium. The stack (Avenir Next, Segoe UI, Roboto) only ships discrete
-   weights, so 400 and 500 are the two real options here — anything between
-   snaps to one of them.
-
-   `#app` so the tighter line-height survives: styles/main.css sets
-   `#app p { line-height: 1.65 }`, and an id beats a class. */
 #app .event-date {
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-weight: 500;
-  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(var(--card-text-rgb), 0.2);
+  line-height: 1;
 }
 
-.event-time {
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-size: 0.875rem;
-  color: var(--bg-grey);
-  margin-top: 0.1rem;
-}
-
-/* `#app` for the same reason as the date: `#app h3` in styles/main.css would
-   otherwise win and hand this the page's heading scale, negative tracking and
-   all — which is not what a listing row wants. */
-#app .event-act {
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+.event-month {
+  font-size: 0.7rem;
   font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  margin-bottom: 0.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card-accent);
 }
 
-/* Inherits the heading's colour so it doesn't read as a stray blue link in the
-   middle of the card; the underline on hover is what marks it as clickable. */
+.event-day {
+  margin-top: 0.2rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.event-year {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--card-text-soft);
+}
+
+/* A multi-day run: "Sep 12 – Sep 18", set small so it fits the column. */
+.event-range {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.event-tag {
+  margin-bottom: 0.25rem !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--card-accent);
+}
+
+/* `#app` because styles/main.css sizes every heading as `#app h3`, and an id
+   beats a class — without it the act takes the page's heading scale. */
+#app .event-act {
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  overflow-wrap: anywhere;
+  color: var(--card-text);
+  margin: 0 0 0.35rem;
+}
+
+/* Inherits the text colour so it doesn't read as a stray link colour; the
+   accent on hover is what marks it as clickable. */
 .event-act-link {
   color: inherit;
   text-decoration: none;
@@ -328,83 +435,96 @@ onMounted(() => {
 
 .event-act-link:hover,
 .event-act-link:focus-visible {
-  text-decoration: underline;
+  color: var(--card-accent);
 }
 
 .event-place {
-  display: inline-block;
-  color: var(--bg-grey);
+  color: inherit;
   text-decoration: none;
 }
 
 .event-venue {
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.9rem;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
-/* Underlined and on its own line: it's the part someone taps to navigate, and
-   a long street address never squeezes the venue name. */
 .event-address {
   display: block;
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
   font-size: 0.85rem;
-  letter-spacing: 0.02em;
+  color: var(--card-text-soft);
+  text-underline-offset: 3px;
+}
+
+a.event-place:hover .event-venue,
+a.event-place:focus-visible .event-venue {
+  color: var(--card-accent);
+}
+
+a.event-place:hover .event-address,
+a.event-place:focus-visible .event-address {
   text-decoration: underline;
 }
 
-a.event-place:hover,
-a.event-place:focus {
-  color: #fff;
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.6rem;
+  margin-top: 0.5rem !important;
+  font-size: 0.9rem;
+  color: var(--card-text-soft);
+}
+
+.event-meta span + span::before {
+  content: '·';
+  margin-right: 0.6rem;
+  color: var(--card-text-soft);
 }
 
 .event-note {
-  margin-top: 0.5rem;
-  color: var(--grey);
+  margin-top: 0.5rem !important;
+  font-size: 0.9rem;
+  color: var(--card-text-soft);
 }
 
-/* One centred column once the two stop fitting side by side. Nothing is
-   dropped here — the phone has the vertical room for all of it. */
-@media (max-width: 767.98px) {
+.events-more {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(var(--card-text-rgb), 0.15);
+  text-align: center;
+}
+
+.events-more a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--card-text);
+  text-decoration: none;
+}
+
+.events-more a:hover,
+.events-more a:focus-visible {
+  color: var(--card-accent);
+}
+
+@media (max-width: 575.98px) {
+  .events-sheet {
+    padding: 1.35rem 1.35rem 1.6rem;
+  }
+
   .event {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-    text-align: center;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 1rem;
   }
 
-  .event-when {
-    padding-top: 0;
+  .event-date {
+    padding-right: 0.5rem;
   }
-}
 
-/* Genuinely cramped. Shed in priority order: the address goes first, then the
-   venue name, and the act never goes — it's the reason the line is there. */
-@media (max-width: 399.98px) {
-  .event-address {
-    display: none;
+  .event-day {
+    font-size: 1.75rem;
   }
-}
-
-@media (max-width: 319.98px) {
-  .event-venue {
-    display: none;
-  }
-}
-
-/* Add some margin for the spinner. Was `.text-center i`, which stopped matching
-   when the spinner became an inline <svg> rather than an icon-font <i>. */
-.events-spinner {
-  margin-top: 50px;
-}
-
-@media (min-width: 992px) {
-  .events-list {
-    max-width: 75%;
-  }
-}
-
-.events-list {
-  margin-left: auto;
-  margin-right: auto;
 }
 </style>

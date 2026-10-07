@@ -397,6 +397,37 @@ export function eventRelativeDay(date: Date | null, now = new Date()): string {
   return date ? relativeDay(date, now) : '';
 }
 
+export interface DateParts {
+  /** "Sep" */
+  month: string;
+  /** 25 */
+  day: number;
+  /** "Friday" */
+  weekday: string;
+  /** The year, or '' when it's this one — noise on a gig three weeks out. */
+  year: number | '';
+}
+
+/**
+ * The pieces a date block sets separately: a small month over a big day number.
+ * Null for an event with no start, or one that runs across several days, which
+ * has no single day to set big and prints its range as a line instead.
+ */
+export function eventDateParts(
+  event: Pick<FormattedEvent, 'start' | 'end'>,
+  now = new Date()
+): DateParts | null {
+  const { start, end } = event;
+  if (!start || (end && !isSameDay(start, end))) return null;
+
+  return {
+    month: start.toLocaleDateString('en-US', { month: 'short' }),
+    day: start.getDate(),
+    weekday: start.toLocaleDateString('en-US', { weekday: 'long' }),
+    year: start.getFullYear() !== now.getFullYear() ? start.getFullYear() : '',
+  };
+}
+
 /** Whether an event is still worth listing as upcoming. */
 export function isUpcoming(
   event: Pick<FormattedEvent, 'start' | 'end'>,

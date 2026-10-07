@@ -44,6 +44,15 @@
 
   --border-dark: #333333;
 
+  /* The dark card shared by the events list and each event's page. The accent
+     is the slate blue rather than --primary: that red sits at under 2:1 on
+     this background and is unreadable at the small sizes it's used for. */
+  --card-bg: var(--bg-dark);
+  --card-text: var(--text-color);
+  --card-text-rgb: var(--text-color-rgb);
+  --card-text-soft: var(--text-muted-on-dark);
+  --card-accent: var(--blue);
+
   --radius-sm: 0.375rem;
   --radius-md: 0.625rem;
   --radius-lg: 1rem;

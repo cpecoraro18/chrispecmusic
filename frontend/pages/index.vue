@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- ================= HERO ================= -->
-    <section class="hero">
+    <section class="hero on-dark">
       <div class="hero-scrim"></div>
       <div class="container hero-inner">
         <div class="hero-text">
@@ -22,83 +22,71 @@
     </section>
 
     <!-- ================= ABOUT ================= -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section band">
       <div class="container">
         <div class="row align-items-center g-5">
-          <div class="col-12 col-lg-5">
-            <img
-              src="/img/BuddyGuys.webp"
-              alt="Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago"
-              class="img-fluid rounded shadow about-photo"
-              width="1133"
-              height="581"
-              loading="lazy"
-              decoding="async"
-            >
+          <!-- The reel, beside the intro so a first-time visitor can hear me
+               play without leaving the page. First in the markup, so it sits
+               above the text on phones. Which video is set in data/videos.ts. -->
+          <div class="col-12 col-lg-6">
+            <div class="about-reel">
+              <YouTubeEmbed :id="showreel.id" :title="showreel.title" />
+            </div>
           </div>
-          <div class="col-12 col-lg-7 text-lg-start">
+          <div class="col-12 col-lg-6 text-lg-start">
             <p class="eyebrow mb-2">A bit about me</p>
             <h2 class="mb-3">Chicago bassist, upright and electric</h2>
             <p class="lead text-muted">
-              I'm Chris Pecoraro, a professional upright and electric bassist based in Chicago. I provide remote bass recording and live performance for songwriters,
-              producers, and bands, with experience across genres including indie, pop, country, rock, blues, jazz, R&B, and Americana. I've completed more than 100
-              remote recording sessions for clients around the world and believe the best bass parts are the ones that serve the song first.
-              Whether you have a fully written part or just an idea, my goal is to deliver tasteful, high-quality recordings with fast turnaround and an easy,
-              collaborative experience.
+              I'm Chris Pecoraro, a professional electric and upright bassist based in Chicago, with 100+
+              remote sessions completed for artists and producers around the world. My studio and live
+              work spans rock, soul, jazz, pop, country, blues, and Americana.
             </p>
             <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
               More about me <span aria-hidden="true">→</span>
             </nuxt-link>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ================= STUDIO & STAGE ================= -->
-    <section class="section">
+    <!-- ================= SOUNDS ================= -->
+    <!-- The tone gallery, after the about section: the reel gives a general
+         sense of my playing, this lets a producer find a specific sound. It only
+         renders once data/sounds.ts has clips, and its id is where shared
+         gallery links land. -->
+    <section v-if="soundClips.length" id="sounds" class="section band band-deep">
       <div class="container">
-        <p class="eyebrow mb-2">What I offer</p>
-        <h2 class="mb-5">Two ways to work together</h2>
+        <SectionHeader
+          eyebrow="Sounds"
+          title="Hear a specific tone"
+          lead="Short clips, one sound each. Search or filter by genre, bass, technique, or gear."
+        />
+        <SoundGallery />
+      </div>
+    </section>
 
-        <div class="row g-5">
-          <div class="col-12 col-lg-6">
-            <article class="offer">
-              <h3 class="mb-3">Recording sessions</h3>
-              <p class="offer-copy">
-                Send a rough mix and any notes on feel or tone. I record it and send back
-                stems that drop straight into your session.
-              </p>
-              <p class="offer-detail">
-                You get {{ TAKES_PER_TRACK }} takes to choose from on upright or electric bass, 
-                revisions are included, and the recordings are yours once the project is paid for.
-              </p>
-              <nuxt-link class="text-link" to="/book-session">
-                How it works <span aria-hidden="true">→</span>
-              </nuxt-link>
-            </article>
-          </div>
-
-          <div class="col-12 col-lg-6">
-            <article class="offer">
-              <h3 class="mb-3">Live performance</h3>
-              <p class="offer-copy">
-                Upright and electric bass for clubs, weddings, private events, festivals, and
-                touring dates, in Chicago or on the road.
-              </p>
-              <p class="offer-detail">
-                I read charts or learn by ear, play across jazz, blues, rock, pop, soul, and folk.
-              </p>
-              <nuxt-link class="text-link" to="/book-live-gig">
-                Check availability <span aria-hidden="true">→</span>
-              </nuxt-link>
-            </article>
-          </div>
+    <!-- ================= DISCOGRAPHY ================= -->
+    <!-- Band colours alternate light and dark down the page, and the sounds
+         section only exists once there are clips, so everything after it is
+         bound to whether it rendered. The records always sit on Deep Daphne,
+         the covers read best on it: as the whole band when this one is dark,
+         as a panel inside it when it is light. -->
+    <section class="section-tight band" :class="{ 'band-deep': !hasSounds }">
+      <div class="container">
+        <div :class="{ 'panel surface-deep': hasSounds }">
+          <SectionHeader
+            eyebrow="Discography"
+            title="Records I've played on"
+            lead="Click a cover to listen."
+          />
+          <discography-list></discography-list>
         </div>
       </div>
     </section>
 
     <!-- ================= REVIEWS ================= -->
-    <section class="section-tight reviews-section">
+    <section class="section-tight band" :class="{ 'band-charcoal': hasSounds }">
       <div class="container">
         <p class="eyebrow mb-2">Reviews</p>
         <h2 class="mb-2">What clients say</h2>
@@ -107,26 +95,10 @@
       <review-list></review-list>
     </section>
 
-    <!-- ================= DISCOGRAPHY ================= -->
-    <discography-list></discography-list>
-
-    <!-- ================= LISTEN ================= -->
-    <section id="listen" class="section listen-section">
-      <div class="container">
-        <p class="eyebrow mb-2">Listen</p>
-        <h2 class="mb-3">Bass samples</h2>
-        <p class="lead text-muted measure mb-5">
-          These are takes from my studio on upright and electric, with both DI and amp tones.
-          Toggle the drums on or off to hear how a part sits in a mix.
-        </p>
-        <bass-audio-samples></bass-audio-samples>
-      </div>
-    </section>
-
     <!-- ================= EVENTS ================= -->
-    <section class="section-tight">
+    <section class="section-tight band" :class="{ 'band-charcoal': !hasSounds }">
       <div class="container">
-        <events-list :limit="5" date-style="short"></events-list>
+        <events-list :limit="3" date-style="short"></events-list>
       </div>
     </section>
 
@@ -142,7 +114,9 @@
 </template>
 
 <script setup>
-import { TAKES_PER_TRACK } from '~/data/service';
+import { showreel } from '~/data/videos';
+
+const hasSounds = soundClips.length > 0;
 
 useSeo({
   title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',
@@ -160,10 +134,10 @@ useHead({
 </script>
 
 <style scoped>
-.about-section,
-.listen-section,
-.reviews-section {
-  background-color: var(--blue-deep);
+/* Every section sits on the Daphne canvas. Contrast comes from the panels and
+   cards inside them rather than from alternating full-width bands. */
+.band {
+  scroll-margin-top: 5rem; /* clears the fixed header when linked to */
 }
 
 /* ---------------- Hero ---------------- */
@@ -212,7 +186,7 @@ useHead({
 }
 
 .hero-sub {
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
   max-width: 32rem;
   margin-bottom: 2.5rem;
 }
@@ -230,13 +204,13 @@ useHead({
   bottom: 1.75rem;
   transform: translateX(-50%);
   z-index: 1;
-  color: rgba(var(--text-color-rgb), 0.6);
+  color: rgba(var(--fg-rgb), 0.6);
   font-size: 1.1rem;
   animation: heroBob 2.6s ease-in-out infinite;
 }
 
 .hero-scroll:hover {
-  color: var(--white);
+  color: var(--fg-strong);
 }
 
 @keyframes heroBob {
@@ -271,31 +245,11 @@ useHead({
 }
 
 
-/* ---------------- Offers ---------------- */
-/* Hairline rule rather than a bordered card: the boxed treatment read like a
-   pricing table, which is not the impression a musician's site wants to give. */
-.offer {
-  text-align: left;
-  border-top: 1px solid rgba(var(--text-color-rgb), 0.28);
-  padding-top: 2rem;
-}
-
-.offer-copy {
-  color: var(--text-muted-on-dark);
-  margin-bottom: 1.25rem;
-}
-
-.offer-detail {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: rgba(var(--text-color-rgb), 0.62);
-  margin-bottom: 1.75rem;
-}
-
 /* ---------------- About ---------------- */
-.about-photo {
-  width: 100%;
-  object-fit: cover;
+.about-reel {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
 .credit-list {
@@ -309,7 +263,7 @@ useHead({
   position: relative;
   padding-left: 1.6rem;
   margin-bottom: 0.7rem;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 .credit-list li::before {
@@ -319,7 +273,7 @@ useHead({
   top: 0.65em;
   width: 0.6rem;
   height: 1px;
-  background-color: rgba(var(--text-color-rgb), 0.5);
+  background-color: rgba(var(--fg-rgb), 0.5);
 }
 
 /* ---------------- Closing ---------------- */

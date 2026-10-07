@@ -25,7 +25,7 @@ defineProps({
 <style scoped>
 .icon-feature-icon {
   font-size: 1.35rem;
-  color: var(--blue);
+  color: var(--accent);
   margin-bottom: 0.9rem;
   display: block;
 }

@@ -209,7 +209,7 @@ onBeforeUnmount(() => {
 
 .photo-credit {
   font-size: 0.85rem;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 /* ---------------- Lightbox ---------------- */

@@ -1,5 +1,5 @@
 <template>
-  <article class="media-card h-100" :class="`media-card--${variant}`">
+  <article class="media-card h-100" :class="[`media-card--${variant}`, { 'on-light': variant === 'light' }]">
     <div class="media-card-media">
       <slot name="media" />
     </div>
@@ -42,13 +42,13 @@ defineProps({
 }
 
 .media-card--dark {
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+  background-color: rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(var(--fg-rgb), 0.14);
 }
 
 .media-card--light {
   border-radius: var(--radius-lg);
-  background-color: var(--bg-light-blue);
+  background-color: var(--card);
   color: var(--text-color-dark);
   box-shadow: var(--shadow-sm);
 }
@@ -72,8 +72,8 @@ defineProps({
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--blue);
-  border: 1px solid rgba(var(--text-color-rgb), 0.24);
+  color: var(--accent);
+  border: 1px solid rgba(var(--fg-rgb), 0.24);
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
 }
@@ -84,7 +84,7 @@ defineProps({
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.09em;
-  color: var(--blue-deep);
+  color: var(--accent);
   border-color: rgba(0, 0, 0, 0.2);
   padding: 0.2rem 0.6rem;
 }

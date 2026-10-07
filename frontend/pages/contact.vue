@@ -57,8 +57,8 @@ useSeo({
 .contact-aside {
   padding: 2rem;
   border-radius: var(--radius-lg);
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
+  background-color: rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(var(--fg-rgb), 0.14);
 }
 
 .contact-email {

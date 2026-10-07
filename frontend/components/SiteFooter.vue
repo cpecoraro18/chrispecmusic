@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer bg-dark text-white text-center py-3 mt-auto">
+  <footer class="footer surface-charcoal on-dark text-center py-3 mt-auto">
     <div class="container d-flex justify-content-between align-items-center">
       <p class="mb-0">&copy; 2026 ChrisPecMusic</p>
       <div>
@@ -19,5 +19,8 @@ export default {
 .footer {
   bottom: 0;
   width: 100%;
+  /* Charcoal like the header, and like the closing CTA band that usually sits
+     right above it, so a hairline keeps the two from running together. */
+  border-top: 1px solid rgba(var(--fg-rgb), 0.12);
 }
 </style>

@@ -96,6 +96,16 @@ useHead({
 const name = ref('');
 const email = ref('');
 const message = ref('');
+
+// /contact?message=... pre-fills the message, so a link from elsewhere on the
+// site (the "Ask for this sound" button in the sound gallery) arrives with the request
+// already written. Read on mount because the page is prerendered without it.
+const route = useRoute();
+onMounted(() => {
+    const prefill = route.query.message;
+    if (typeof prefill === 'string' && !message.value) message.value = prefill;
+});
+
 const thankYouMessage = ref('');
 const errorMessage = ref('');
 const isLoading = ref(false);
@@ -166,14 +176,14 @@ const submitForm = async () => {
 
 <style scoped>
 .contact-card {
-    background-color: var(--bg-dark);
+    background-color: var(--charcoal);
     border-radius: var(--radius-lg);
     padding: 2rem;
     box-shadow: var(--shadow-lg);
 }
 
 .contact-intro {
-    color: var(--text-muted-on-dark);
+    color: var(--fg-soft);
 }
 
 .form-label {
@@ -182,32 +192,34 @@ const submitForm = async () => {
     margin-bottom: 0.35rem;
 }
 
+/* A shade lighter than the charcoal card rather than near-black: a black
+   field inside a charcoal card read as a hole in it. */
 input.form-control,
 textarea.form-control {
-    background-color: var(--bg-black);
-    border: 1px solid rgba(var(--text-color-rgb), 0.22);
-    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(var(--fg-rgb), 0.22);
+    color: var(--fg);
     padding: 0.7rem 0.85rem;
     border-radius: var(--radius-sm);
 }
 
 input.form-control:focus,
 textarea.form-control:focus {
-    background-color: var(--bg-black);
-    color: var(--text-color);
-    border-color: var(--blue);
+    background-color: rgba(255, 255, 255, 0.09);
+    color: var(--fg);
+    border-color: var(--accent);
     box-shadow: none;
 }
 
 input.form-control::placeholder,
 textarea.form-control::placeholder {
-    color: rgba(var(--text-color-rgb), 0.42);
+    color: rgba(var(--fg-rgb), 0.42);
 }
 
 .form-hint,
 .form-reassurance {
     font-size: 0.82rem;
-    color: var(--text-muted-on-dark);
+    color: var(--fg-soft);
 }
 
 .form-hint {

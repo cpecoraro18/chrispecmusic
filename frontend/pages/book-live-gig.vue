@@ -46,7 +46,7 @@
     </section>
 
     <!-- ================= WHERE I PLAY ================= -->
-    <section class="section-tight where-i-play">
+    <section class="section-tight where-i-play band-deep">
       <div class="container">
         <h2 class="mb-5">Where I play</h2>
         <div class="row g-4 justify-content-center">
@@ -83,7 +83,7 @@
     </section>
 
     <!-- ================= FAQ ================= -->
-    <section class="section-tight faq-section">
+    <section class="section-tight faq-section band-charcoal">
       <div class="container">
         <h2 class="mb-5">Common questions</h2>
         <FaqAccordion :items="liveFaqs" id-prefix="live-faq" />
@@ -138,14 +138,6 @@ useSeo({
 </script>
 
 <style scoped>
-
-/* ---------------- Where I play ---------------- */
-.where-i-play {
-  background-color: var(--blue-deep);
-}
-
-
-
 /* ---------------- What I bring ---------------- */
 .bring-list {
   list-style: none;
@@ -158,7 +150,7 @@ useSeo({
   position: relative;
   padding-left: 1.75rem;
   margin-bottom: 0.75rem;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 .bring-list li::before {
@@ -166,15 +158,9 @@ useSeo({
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--blue);
+  color: var(--accent);
   font-weight: 700;
 }
-
-/* ---------------- FAQ ---------------- */
-.faq-section {
-  background-color: var(--blue-deep);
-}
-
 
 /* ---------------- Final CTA ---------------- */
 </style>

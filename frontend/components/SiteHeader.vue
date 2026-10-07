@@ -1,6 +1,6 @@
 <template>
     <div class="navbar-spacer" :style="spacerStyle"></div>
-    <header class="navbar navbar-expand-lg navbar-dark" :style="{ backgroundColor: `rgba(46,46,46, ${navbarOpacity})` }">
+    <header class="navbar navbar-expand-lg navbar-dark on-dark" :style="{ backgroundColor: `rgba(43,46,49, ${navbarOpacity})` }">
         <div class="container">
             <nuxt-link to="/" @click="closeNavbar">
                 <img src="/img/CPMusic-Logo-White.webp" alt="Chris Pec Music" class="navbar-brand logo">

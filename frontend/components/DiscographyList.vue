@@ -1,13 +1,10 @@
 <template>
-    <div class="container-fluid py-5">
-        <div class="row">
-            <h3 class="mx-auto fw-bold h2 mb-5">Discography</h3>
-        </div>
-        <div class="row">
-            <div class="col-6 col-xl-3 col-sm-4" v-for="(album, index) in discography" :key="album.name">
+    <!-- Just the grid: the page supplies the section, container, and heading. -->
+    <div class="row g-4 justify-content-center">
+            <div class="col-4 col-lg-2" v-for="(album, index) in discography" :key="album.name">
                 <div class="album" @click="toggleAlbumMenu(index)" :class="{ 'menu-active': activeAlbumIndex === index }">
                     <div class="album-container">
-                        <img :src="album.image" :alt="album.name" class="img-fluid album-image mb-3">
+                        <img :src="album.image" :alt="album.name" class="img-fluid album-image">
                         <div class="album-info d-none" :title="album.name + ' - ' + album.artist + ' (' + album.year + ')'">
                             <h5 class="album-name">{{ album.name }}</h5>
                             <p class=" mb-0">{{ album.artist }}</p>
@@ -47,7 +44,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 
@@ -84,10 +80,6 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
 </script>
 
 <style scoped>
-.container-fluid {
-    background-color: var(--bg-dark);
-}
-
 .album {
   transition: box-shadow .3s;
   border-radius: 0.3125em; /* 5px / 16 */
@@ -115,25 +107,17 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
     transform: scale(1.05);
 }
 
+/* Each cover fills its column rather than sitting at a fixed size in it:
+   fixed-size covers centred in wider columns left ragged gaps, and the old
+   full-bleed strip they sat in ran wider than every other section. */
 .album-image {
-  width: 12.75em; /* 300px / 16 */
-  height: 12.75em; /* 300px / 16 */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
   transition: transform .3s, box-shadow .3s;
-}
-
-@media only screen and (max-width: 1400px) {
-    .album-image {
-        width: 16em;
-        height: 16em;
-    }
-}
-
-@media only screen and (max-width: 991px) {
-    .album-image {
-        width: 12em;
-        height: 12em;
-    }
 }
 
 .platform-popup {
@@ -143,7 +127,7 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
     transform: translate(-50%, -50%);
     background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-dark);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 0.75rem;
     padding: 0;
     z-index: 1000;
@@ -204,15 +188,15 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocumentClick));
 .popup-credits {
     margin: 0;
     padding: 0.65rem 1rem 0.75rem;
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
     font-size: 0.8rem;
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .coming-soon {
     margin-left: auto;
     font-size: 0.75rem;
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.6);
     font-style: italic;
 }
 

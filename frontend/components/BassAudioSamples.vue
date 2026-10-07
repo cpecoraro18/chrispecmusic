@@ -148,17 +148,17 @@ function onWavDownload(sample) {
 /* Dark surfaces matching the rest of the page. This block was previously a
    #F0F0F0 panel of white cards, which glared against the dark palette. */
 .samples-panel {
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.14);
-  color: var(--text-color);
+  background-color: rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(var(--fg-rgb), 0.14);
+  color: var(--fg);
 }
 
 .sample-card {
   min-height: 180px;
   font-size: 1rem;
-  background-color: rgba(var(--text-color-rgb), 0.07) !important;
-  border: 1px solid rgba(var(--text-color-rgb), 0.12) !important;
-  color: var(--text-color) !important;
+  background-color: rgba(var(--fg-rgb), 0.07) !important;
+  border: 1px solid rgba(var(--fg-rgb), 0.12) !important;
+  color: var(--fg) !important;
   border-radius: var(--radius-md);
 }
 
@@ -172,18 +172,18 @@ function onWavDownload(sample) {
 }
 
 .sample-file {
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 .wav-download {
-  color: var(--blue);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
 }
 
 .wav-download:hover,
 .wav-download:focus-visible {
-  color: var(--white);
+  color: var(--fg-strong);
   text-decoration: underline;
 }
 
@@ -202,20 +202,20 @@ function onWavDownload(sample) {
   border-radius: var(--radius-sm);
   margin-bottom: 4px;
   transition: background 0.15s, color 0.15s;
-  background-color: rgba(var(--text-color-rgb), 0.07) !important;
-  color: var(--text-color) !important;
+  background-color: rgba(var(--fg-rgb), 0.07) !important;
+  color: var(--fg) !important;
 }
 
 .list-group-item:hover {
-  background-color: rgba(var(--text-color-rgb), 0.14) !important;
-  color: var(--white) !important;
+  background-color: rgba(var(--fg-rgb), 0.14) !important;
+  color: var(--fg-strong) !important;
   cursor: pointer;
 }
 
 .list-group-item.active,
 .list-group-item:active {
-  background-color: var(--text-color) !important;
-  color: var(--blue-deep) !important;
+  background-color: var(--fg) !important;
+  color: var(--on-fg) !important;
 }
 
 /* Was keyed off the .fa-play-circle class the icon font supplied. The icon now
@@ -223,11 +223,11 @@ function onWavDownload(sample) {
    .text-info that used to sit alongside was inert — both rules below are
    !important and the icon is always inside a .list-group-item. */
 .list-group-item .sample-play-icon {
-  color: var(--blue) !important;
+  color: var(--accent) !important;
 }
 
 .list-group-item.active .sample-play-icon {
-  color: var(--blue-deep) !important;
+  color: var(--on-fg) !important;
 }
 
 .side-title {
@@ -240,14 +240,14 @@ function onWavDownload(sample) {
 .toggle-group {
   display: flex;
   border-radius: 16px;
-  background-color: rgba(var(--text-color-rgb), 0.1);
+  background-color: rgba(var(--fg-rgb), 0.1);
   overflow: hidden;
 }
 
 .toggle-btn {
   border: none;
   background: none;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
   font-size: 1rem;
   padding: 3px 8px;
   cursor: pointer;
@@ -255,23 +255,23 @@ function onWavDownload(sample) {
 }
 
 .toggle-btn.active {
-  background-color: var(--text-color);
-  color: var(--blue-deep);
+  background-color: var(--fg);
+  color: var(--on-fg);
 }
 
 .toggle-btn:not(.active):hover {
-  color: var(--white);
-  background-color: rgba(var(--text-color-rgb), 0.12);
+  color: var(--fg-strong);
+  background-color: rgba(var(--fg-rgb), 0.12);
 }
 
 .badge.bg-info {
-  background-color: var(--blue-dark) !important;
-  color: var(--text-color) !important;
+  background-color: var(--daphne-deep) !important;
+  color: var(--fg) !important;
 }
 
 .badge.bg-secondary {
-  background-color: rgba(var(--text-color-rgb), 0.18) !important;
-  color: var(--text-color) !important;
+  background-color: rgba(var(--fg-rgb), 0.18) !important;
+  color: var(--fg) !important;
 }
 
 .compact-audio {

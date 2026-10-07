@@ -21,7 +21,7 @@
               He has completed over 100 remote recording sessions for songwriters, producers, and bands, providing bass tracks for projects across many styles and genres.
             </p>
             <p class="text-muted">
-              Chris is a currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge. He has performed with rock bands, jazz bands, orchestras, vocal jazz ensembles, musicals, and more. He was selected as a contrabassist for the 2024 <a href="https://symphonina.org/bio-chris-pecoraro" target="_blank" rel="noopener">International Symphonina Orchestra</a>. Chris has also had the privilege to share the stage with world-class artists including Buddy Guy, Doc Severinsen, and members of Prince’s band. He has also appeared at renowned venues such as the Buddy Guy’s Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
+              Chris is currently a member of the Sean McKee Band, winners of the 2024 Chicago Blues Challenge. He has performed with rock bands, jazz bands, orchestras, vocal jazz ensembles, musicals, and more. He was selected as a contrabassist for the 2024 <a href="https://symphonina.org/bio-chris-pecoraro" target="_blank" rel="noopener">International Symphonina Orchestra</a>. Chris has also had the privilege to share the stage with world-class artists including Buddy Guy, Doc Severinsen, and members of Prince’s band. He has also appeared at renowned venues such as the Buddy Guy’s Legends, the Grand Ole Opry, Lincoln Hall, and the Rum Boogie Café.
             </p>
             <p class="text-muted mb-0">
               Chris is always excited to connect with other artists and contribute to new projects, whether in the studio or on stage, and is continuously looking for opportunities to grow, experiment, and bring fresh musical ideas to life.
@@ -50,10 +50,14 @@ useSeo({
 </script>
 
 <style scoped>
+/* The source is a wide 2.4:1 frame, which at full width in this column was a
+   thin strip beside a much taller block of text. A squarer crop centred on
+   Chris gives the column a real picture to hold. */
 .about-photo {
   width: 100%;
-  max-height: 30rem;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: 60% 30%;
 }
 
 /* Inline link in body copy. Bootstrap's default blue is unreadable on the dark
@@ -67,6 +71,6 @@ useSeo({
 
 .text-muted a:hover,
 .text-muted a:focus-visible {
-  color: var(--white);
+  color: var(--fg-strong);
 }
 </style>

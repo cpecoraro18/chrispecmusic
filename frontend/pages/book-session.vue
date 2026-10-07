@@ -42,7 +42,7 @@
     </section>
 
     <!-- ================= SAMPLES ================= -->
-    <section class="section-tight listen-section">
+    <section class="section-tight listen-section band-deep">
       <div class="container">
         <h2 class="mb-3">Hear the tones</h2>
         <p class="lead text-muted measure mb-4">
@@ -66,7 +66,7 @@
     </section>
 
     <!-- ================= PRICING ================= -->
-    <section class="section-tight">
+    <section class="section-tight band-charcoal">
       <div class="container">
         <h2 class="mb-3">Pricing</h2>
         <p class="lead measure mb-5">
@@ -108,7 +108,7 @@
     </section>
 
     <!-- ================= REVIEWS ================= -->
-    <section class="section-tight reviews-section">
+    <section class="section-tight reviews-section band-deep">
       <div class="container">
         <h2 class="mb-2">What clients say</h2>
         <p class="lead text-muted measure mb-4">
@@ -163,31 +163,18 @@ useSeo({
 </script>
 
 <style scoped>
-.listen-section,
-.reviews-section {
-  background-color: var(--blue-deep);
-}
-
-
-/* ---------------- What you get ---------------- */
-.what-you-get {
-  background-color: var(--blue-deep);
-}
-
-
-
 /* ---------------- Pricing ---------------- */
 .price-card {
   position: relative;
   padding: 2rem;
   border-radius: var(--radius-lg);
-  background-color: rgba(var(--text-color-rgb), 0.06);
-  border: 1px solid rgba(var(--text-color-rgb), 0.16);
+  background-color: rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(var(--fg-rgb), 0.16);
 }
 
 .price-card--featured {
-  background-color: rgba(var(--text-color-rgb), 0.11);
-  border-color: rgba(var(--text-color-rgb), 0.34);
+  background-color: rgba(var(--fg-rgb), 0.11);
+  border-color: rgba(var(--fg-rgb), 0.34);
   box-shadow: var(--shadow-lg);
 }
 
@@ -196,8 +183,8 @@ useSeo({
   top: -0.75rem;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--text-color);
-  color: var(--blue-deep);
+  background-color: var(--fg);
+  color: var(--on-fg);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -222,7 +209,7 @@ useSeo({
 
 .price-unit {
   font-size: 0.85rem;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 .price-points {
@@ -237,7 +224,7 @@ useSeo({
   padding-left: 1.5rem;
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
 
 .price-points li::before {
@@ -245,19 +232,13 @@ useSeo({
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--blue);
+  color: var(--accent);
   font-weight: 700;
 }
 
 .pricing-note {
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
 }
-
-/* ---------------- FAQ ---------------- */
-.faq-section {
-  background-color: var(--blue-deep);
-}
-
 
 /* ---------------- Final CTA ---------------- */
 </style>

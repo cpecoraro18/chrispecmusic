@@ -51,9 +51,22 @@ const props = defineProps({
   id: { type: String, required: true },
   /** Used as the iframe title and the button's accessible name. */
   title: { type: String, required: true },
+  /**
+   * Skip the facade and start playing on mount. Only for embeds that appear
+   * because of a click — picking a clip from a list — never on page load.
+   */
+  autoplay: { type: Boolean, default: false },
 });
 
-const activated = ref(false);
+// Fired once, when the facade is swapped for the player. The iframe is
+// cross-origin, so this click is the only play signal the page ever sees.
+const emit = defineEmits(['play']);
+
+const activated = ref(props.autoplay);
+
+onMounted(() => {
+  if (props.autoplay) emit('play');
+});
 
 // hqdefault is the only still that is guaranteed to exist for every video.
 // maxresdefault 404s on older or lower-resolution uploads, which would leave a
@@ -67,6 +80,7 @@ const playerSrc = computed(
 
 function activate() {
   activated.value = true;
+  emit('play');
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="cta-band">
+  <section class="cta-band on-dark">
     <div class="container">
       <h2 class="mb-3">{{ title }}</h2>
       <p v-if="lead" class="lead measure mb-4">{{ lead }}</p>

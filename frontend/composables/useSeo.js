@@ -10,16 +10,16 @@ export const SITE_NAME = 'Chris Pecoraro';
 export const BRAND_NAME = 'ChrisPecMusic';
 
 /**
- * Default social sharing image. BuddyGuys.webp is 1133x581 — a 1.95:1 ratio,
- * near enough to the 1.91:1 that Open Graph wants that platforms won't crop
- * anything meaningful, and it shows Chris playing rather than posed.
+ * Default social sharing image: the home page hero, so a shared link shows the
+ * same photo the visitor lands on. It is 1600x676, a 2.37:1 ratio, wider than
+ * the 1.91:1 Open Graph wants, so platforms trim the sides; Chris is near the
+ * centre of the frame, so the trim only loses background.
  *
  * WebP is fine here: Facebook, LinkedIn, X, iMessage and Slack all render it in
  * link previews. If this is ever replaced, the ideal is a purpose-made 1200x630.
  */
-const DEFAULT_OG_IMAGE = '/img/BuddyGuys.webp';
-const DEFAULT_OG_IMAGE_ALT =
-  "Chris Pecoraro playing upright bass with the Sean McKee Band at Buddy Guy's Legends in Chicago";
+const DEFAULT_OG_IMAGE = '/img/ChrisPecMusic.webp';
+const DEFAULT_OG_IMAGE_ALT = 'Chris Pecoraro in the studio, smiling with headphones on and an electric bass';
 
 /**
  * Sets the title, description, canonical URL, Open Graph, and Twitter Card tags

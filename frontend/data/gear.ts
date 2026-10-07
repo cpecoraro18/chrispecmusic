@@ -14,7 +14,9 @@ export interface GearItem {
   description: string;
 }
 
-export const gear: GearItem[] = [
+// `as const` so GearName below is a union of the literal names rather than
+// `string` — that is what lets data/sounds.ts flag a misspelled pedal.
+const gearList = [
   { name: 'Lakland 5501', type: 'Bass', image: '/img/gear/Lakland5501.webp', description: 'Upgraded with American Bartolini pickups and a Lakland LH3 preamp. A bright, punchy 5-string that plays smooth and fits any mix.' },
   { name: 'Fender P Bass', type: 'Bass', image: '/img/gear/Fender-P-Bass.webp', description: 'Classic Precision Bass tone with the reliability to match.' },
   { name: 'Fender Jazz Bass', type: 'Bass', image: '/img/gear/Fender-J-Bass.webp', description: 'My first bass, used for everything from jazz gigs to rock covers.' },
@@ -44,4 +46,12 @@ export const gear: GearItem[] = [
   { name: 'Audio-Technica AT2038', type: 'Microphone', image: '/img/gear/Audio-Technica-AT2038.webp', description: 'Solid condenser mic for upright bass, vocals, and more.' },
   { name: 'Soyuz 013 FET', type: 'Microphone', image: '/img/gear/Soyuz-013-FET.webp', description: 'High-quality FET microphone with a warm, vintage sound.' },
   { name: 'Audio-Technica AT4041', type: 'Microphone', image: '/img/gear/Audio-Technica-AT4041.webp', description: 'Small-diaphragm condenser with a bright, detailed sound. Great on upright bass.' },
-];
+] as const satisfies readonly GearItem[];
+
+export const gear: GearItem[] = [...gearList];
+
+/** Any item on /gear, by exact name. Used to tag clips in data/sounds.ts. */
+export type GearName = (typeof gearList)[number]['name'];
+
+/** Just the instruments, for the `bass` field on a clip. */
+export type BassName = Extract<(typeof gearList)[number], { type: 'Bass' }>['name'];

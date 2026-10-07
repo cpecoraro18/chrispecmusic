@@ -89,12 +89,12 @@ useSeo({
   height: 9rem;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid rgba(var(--text-color-rgb), 0.25);
+  border: 3px solid rgba(var(--fg-rgb), 0.25);
   box-shadow: var(--shadow-lg);
 }
 
 .profile-tagline {
-  color: var(--text-muted-on-dark);
+  color: var(--fg-soft);
   font-size: 0.95rem;
   letter-spacing: 0.03em;
 }
@@ -112,8 +112,8 @@ useSeo({
   gap: 0.65rem;
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(var(--text-color-rgb), 0.4);
-  color: var(--text-color);
+  border: 1px solid rgba(var(--fg-rgb), 0.4);
+  color: var(--fg);
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
@@ -121,23 +121,23 @@ useSeo({
 
 .link-button:hover,
 .link-button:focus-visible {
-  background-color: rgba(var(--text-color-rgb), 0.12);
-  border-color: var(--text-color);
-  color: var(--text-color);
+  background-color: rgba(var(--fg-rgb), 0.12);
+  border-color: var(--fg);
+  color: var(--fg);
   transform: translateY(-2px);
 }
 
 .link-button--primary {
-  background-color: var(--text-color);
-  border-color: var(--text-color);
-  color: var(--blue-deep);
+  background-color: var(--fg);
+  border-color: var(--fg);
+  color: var(--on-fg);
   box-shadow: var(--shadow-md);
 }
 
 .link-button--primary:hover,
 .link-button--primary:focus-visible {
-  background-color: var(--white);
-  border-color: var(--white);
-  color: var(--blue-deep);
+  background-color: var(--fg-strong);
+  border-color: var(--fg-strong);
+  color: var(--on-fg);
 }
 </style>

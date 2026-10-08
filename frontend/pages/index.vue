@@ -8,11 +8,10 @@
           <p class="eyebrow mb-2">Chris Pecoraro · Chicago</p>
           <h1 class="hero-title">Remote Session Bass Player</h1>
           <p class="lead hero-sub">
-            Professional Electric and Upright Bassist
+            Upright and electric bass for your songs.
           </p>
           <div class="hero-actions">
             <nuxt-link class="btn btn-cta" to="/book-session">Book a Recording Session</nuxt-link>
-            <a class="text-link" href="#about">See more <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>
@@ -37,9 +36,9 @@
             <p class="eyebrow mb-2">A bit about me</p>
             <h2 class="mb-3">Chicago bassist, upright and electric</h2>
             <p class="lead text-muted">
-              I'm Chris Pecoraro, a professional electric and upright bassist based in Chicago, with 100+
-              remote sessions completed for artists and producers around the world. My studio and live
-              work spans {{ GENRE_LIST }}.
+              Hi, I’m Chris Pecoraro. I’ve recorded 100+ remote sessions for artists and producers
+              around the world. I play everything from rock, soul, and pop to jazz, country, blues, and
+              Americana, in the studio and on stage.
             </p>
             <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
               More about me <span aria-hidden="true">→</span>
@@ -85,7 +84,6 @@
 
 <script setup>
 import { showreel } from '~/data/videos';
-import { GENRE_LIST } from '~/data/service';
 
 useSeo({
   title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',

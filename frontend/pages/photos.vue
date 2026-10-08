@@ -7,11 +7,14 @@
           Shots from shows and sessions. Click any photo to view it larger.
         </p>
 
-        <div class="row g-4">
+        <!-- A mosaic rather than a uniform grid: each tile takes the shape of
+             its photo, and every twelfth is a large feature. Dense packing
+             lets later tiles fill the gaps the larger ones leave. -->
+        <div class="photo-wall">
           <div
-            v-for="photo in photos"
+            v-for="(photo, index) in photos"
             :key="photo.name"
-            class="col-6 col-md-4 col-lg-3"
+            :class="['photo-tile', 'photo-tile--' + tileShape(photo, index)]"
           >
             <div class="photo-card">
               <button class="photo-trigger" @click="openModal(photo)">
@@ -24,6 +27,7 @@
                   class="photo-image"
                   loading="lazy"
                   decoding="async"
+                  @load="onPhotoLoad($event, photo)"
                 />
                 <span class="visually-hidden">View larger</span>
               </button>
@@ -104,6 +108,22 @@ const loadError = ref(false);
 
 const api = useApi();
 
+// The API returns names and URLs only, so a tile learns its photo's
+// orientation when the image loads. Until then it is laid out as a portrait,
+// the most common shape; lazy loading means most of that reflow happens below
+// the fold, before anyone scrolls to it.
+const orientations = ref({});
+
+const onPhotoLoad = (event, photo) => {
+  const { naturalWidth: w, naturalHeight: h } = event.target;
+  if (!w || !h) return;
+  const ratio = w / h;
+  orientations.value[photo.name] = ratio > 1.8 ? 'wide' : ratio > 1.1 ? 'landscape' : 'portrait';
+};
+
+const tileShape = (photo, index) =>
+  index % 12 === 0 ? 'feature' : orientations.value[photo.name] ?? 'portrait';
+
 const fetchPhotos = async () => {
   loadingPhotos.value = true;
   loadError.value = false;
@@ -148,16 +168,60 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* ---------------- Mosaic ---------------- */
+/* Six columns, four on tablets, two on phones. Row height follows the column
+   width (via container units), so a portrait tile keeps roughly a photo's
+   proportions at every screen size instead of turning into a sliver. */
+.photo-wall {
+  --cols: 6;
+  --gap: 12px;
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-auto-rows: calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols) * 0.45);
+  grid-auto-flow: dense;
+  gap: var(--gap);
+}
+
+@media (max-width: 991.98px) {
+  .photo-wall {
+    --cols: 4;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .photo-wall {
+    --cols: 2;
+    --gap: 10px;
+  }
+}
+
+.photo-tile--portrait { grid-row: span 3; }
+.photo-tile--landscape { grid-column: span 2; grid-row: span 3; }
+.photo-tile--wide { grid-column: span 2; grid-row: span 2; }
+.photo-tile--feature { grid-column: span 2; grid-row: span 4; }
+
 .photo-card {
   position: relative;
-  border-radius: var(--radius-md);
+  height: 100%;
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  background-color: var(--charcoal);
   box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.photo-card:hover,
+.photo-card:focus-within {
+  transform: translateY(-4px) rotate(-0.6deg);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+  z-index: 1;
 }
 
 .photo-trigger {
   display: block;
   width: 100%;
+  height: 100%;
   padding: 0;
   border: none;
   background: none;
@@ -167,13 +231,26 @@ onBeforeUnmount(() => {
 .photo-image {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .photo-card:hover .photo-image {
-  transform: scale(1.04);
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-card,
+  .photo-image {
+    transition: none;
+  }
+
+  .photo-card:hover,
+  .photo-card:focus-within,
+  .photo-card:hover .photo-image {
+    transform: none;
+  }
 }
 
 .photo-actions {

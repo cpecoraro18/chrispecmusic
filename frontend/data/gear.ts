@@ -1,13 +1,13 @@
 /**
  * The instruments and equipment listed on /gear.
  *
- * `type` drives the filter on that page: the pills and the mobile select are
- * both derived from the distinct values here, so adding a new category is just
- * a matter of using it.
+ * `type` decides which section of that page an item appears in; the sections
+ * are listed in GEAR_SECTIONS in pages/gear.vue. A new type needs adding there,
+ * or its items won't show.
  */
 export interface GearItem {
   name: string;
-  /** Category, e.g. 'Bass', 'Pedal'. Drives the /gear filter. */
+  /** Category, e.g. 'Bass', 'DI', 'Pedal'. Picks the /gear section. */
   type: string;
   /** Path under public/, e.g. '/img/gear/Fender-P-Bass.webp'. */
   image: string;
@@ -20,13 +20,14 @@ const gearList = [
   { name: 'Lakland 5501', type: 'Bass', image: '/img/gear/Lakland5501.webp', description: 'Upgraded with American Bartolini pickups and a Lakland LH3 preamp. A bright, punchy 5-string that plays smooth and fits any mix.' },
   { name: 'Fender P Bass', type: 'Bass', image: '/img/gear/Fender-P-Bass.webp', description: 'Classic Precision Bass tone with the reliability to match.' },
   { name: 'Fender Jazz Bass', type: 'Bass', image: '/img/gear/Fender-J-Bass.webp', description: 'My first bass, used for everything from jazz gigs to rock covers.' },
+  { name: 'Fender JMJ Mustang Bass', type: 'Bass', image: '/img/gear/Fender-JMJ-Mustang-Bass.webp', description: 'Black short-scale Mustang with a single split-coil pickup. Punchy, focused, and a little gritty, great for indie and garage tones.' },
   { name: 'Knilling Bucharest 1308T', type: 'Bass', image: '/img/gear/Knilling-Upright.webp', description: 'Fully carved upright — go-to for jazz sessions and acoustic sets.' },
   { name: 'Markbass Little Mark 3', type: 'Amp', image: '/img/gear/Markbass-Little-Mark-3.webp', description: 'Lightweight, powerful head with a clean, punchy sound.' },
   { name: 'Phil Jones Double 4', type: 'Amp', image: '/img/gear/Phil-Jones-Double-Four.webp', description: 'Small practice amp with a clear, surprisingly big sound.' },
   { name: 'Markbass 4x10', type: 'Cabinet', image: '/img/gear/Markbass-4x10.webp', description: 'Big, punchy lows and clean mids for live shows.' },
   { name: 'Markbass New York 121', type: 'Cabinet', image: '/img/gear/Markbass-NewYork-121.webp', description: 'Compact cab that still brings warmth and punch. I own two for flexible live setups.' },
-  { name: 'Radial Tonebone', type: 'Pedal', image: '/img/gear/Radial-Bassbone-V2.webp', description: 'DI and preamp for fast switching between upright and electric bass.' },
-  { name: 'Rupert Neve Designs RNDI', type: 'Pedal', image: '/img/gear/Rupert-Neve-RNDI.webp', description: 'Transformer-coupled active DI. The direct signal on most of my remote sessions starts here.' },
+  { name: 'Radial Tonebone', type: 'DI', image: '/img/gear/Radial-Bassbone-V2.webp', description: 'DI and preamp for fast switching between upright and electric bass.' },
+  { name: 'Rupert Neve Designs RNDI', type: 'DI', image: '/img/gear/Rupert-Neve-RNDI.webp', description: 'Transformer-coupled active DI. The direct signal on most of my remote sessions starts here.' },
   { name: 'Origin Effects BassRig Super Vintage', type: 'Pedal', image: '/img/gear/Origin-Effects-BassRig-Super-Vintage.webp', description: 'SVT-style tones with tube-like feel and grit.' },
   { name: 'Origin Effects BassRig Fifteen', type: 'Pedal', image: '/img/gear/Origin-Effects-BassRig-Fifteen.webp', description: 'Ampeg B-15 flip-top preamp tones — warm, round, and a little woolly when pushed. My go-to for vintage-leaning tracks.' },
   { name: 'JHS Colour Box', type: 'Pedal', image: '/img/gear/JHS-ColorBox.webp', description: 'Flexible preamp that goes from clean to driven tones easily.' },

@@ -8,7 +8,7 @@
         v-model="search"
         type="search"
         class="form-control sound-search"
-        placeholder="Search: “upright walking”, “slap”, “B-15”…"
+        placeholder="Search sounds"
         autocomplete="off"
       />
 
@@ -80,11 +80,12 @@
           class="stage-player"
           @play="trackSoundPlay(focused)"
         />
+        <!-- Just the genre and the title. The title already names the bass,
+             and the tags and description that used to sit here made the
+             panel read like a spec sheet. -->
         <div class="stage-info">
           <p class="stage-genres mb-1">{{ focused.genres.join(' · ') }}</p>
-          <h3 class="h4 mb-2">{{ focused.title }}</h3>
-          <p v-if="focused.blurb" class="stage-blurb mb-3">{{ focused.blurb }}</p>
-          <SoundClipTags :clip="focused" />
+          <h3 class="h4 mb-0">{{ focused.title }}</h3>
         </div>
       </div>
 
@@ -92,8 +93,11 @@
         <p class="clip-list-count mb-2" aria-live="polite">
           {{ results.length }} {{ results.length === 1 ? 'sound' : 'sounds' }}
         </p>
-        <ul class="clip-list list-unstyled mb-0">
-          <li v-for="clip in results" :key="clip.id">
+        <!-- Numbered like a tracklist. An <ol> so screen readers get the
+             numbering too; the visible numbers are decorative. They follow the
+             current results, so a filtered list still runs 01, 02, 03. -->
+        <ol class="clip-list list-unstyled mb-0">
+          <li v-for="(clip, position) in results" :key="clip.id">
             <button
               type="button"
               class="clip-item"
@@ -101,6 +105,7 @@
               :aria-current="clip.id === focused.id ? 'true' : undefined"
               @click="pick(clip.id)"
             >
+              <span class="clip-number" aria-hidden="true">{{ String(position + 1).padStart(2, '0') }}</span>
               <img
                 :src="`https://i.ytimg.com/vi/${clip.id}/mqdefault.jpg`"
                 alt=""
@@ -112,11 +117,11 @@
               />
               <span class="clip-item-text">
                 <span class="clip-item-title">{{ clip.title }}</span>
-                <span class="clip-item-meta">{{ clip.bass }}</span>
+                <span class="clip-item-meta">{{ clip.genres.join(' · ') }}</span>
               </span>
             </button>
           </li>
-        </ul>
+        </ol>
       </div>
     </div>
 
@@ -258,7 +263,7 @@ function askForSound() {
 
 // ---- URL --------------------------------------------------------------------
 // Filters and the picked clip live in the query string
-// (/portfolio?bass=Fender%20P%20Bass&clip=abc123#sounds) so a view, or one
+// (/book-session?bass=Fender%20P%20Bass&clip=abc123#sounds) so a view, or one
 // exact sound, can be sent to a client as a link; the hash makes it land on the
 // gallery rather than the top of the page. Read on mount, not during setup: the
 // page is prerendered without a query, and reading it while hydrating would
@@ -316,9 +321,14 @@ watch(search, (term) => {
   text-align: left;
 }
 
+/* The search box and the dropdown buttons share the pill shape of the
+   filters on /portfolio and elsewhere, so every filter on the site looks like
+   one family. */
 .sound-search {
   flex: 1 1 18rem;
   min-width: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
   background-color: rgba(var(--fg-rgb), 0.08);
   border-color: rgba(var(--fg-rgb), 0.3);
   color: var(--fg);
@@ -340,17 +350,19 @@ watch(search, (term) => {
   align-items: center;
   gap: 0.4rem;
   height: 100%;
-  border: 1px solid rgba(var(--fg-rgb), 0.3);
-  border-radius: var(--radius-sm);
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgba(var(--fg-rgb), 0.4);
+  border-radius: 999px;
   color: var(--fg);
-  background-color: rgba(var(--fg-rgb), 0.06);
+  background-color: transparent;
+  font-size: 0.95rem;
   font-weight: 550;
 }
 
 #app .facet-toggle:hover,
 #app .facet-toggle.show {
-  background-color: rgba(var(--fg-rgb), 0.14);
-  border-color: rgba(var(--fg-rgb), 0.5);
+  background-color: rgba(var(--fg-rgb), 0.12);
+  border-color: rgba(var(--fg-rgb), 0.6);
 }
 
 .facet-picked {
@@ -400,7 +412,7 @@ watch(search, (term) => {
   color: var(--fg-soft);
 }
 
-/* On phones the search takes the full row and the four dropdowns share the
+/* On phones the search takes the full row and the three dropdowns share the
    next one, rather than wrapping raggedly. */
 @media (max-width: 575.98px) {
   .sound-search {
@@ -408,7 +420,7 @@ watch(search, (term) => {
   }
 
   .facet-dropdown {
-    flex: 1 1 calc(50% - 0.25rem);
+    flex: 1 1 0;
   }
 
   #app .facet-toggle {
@@ -451,6 +463,40 @@ watch(search, (term) => {
   text-decoration: underline;
 }
 
+/* ---- Scrollbars ---- */
+/* The clip list and the filter menus scroll inside a dark panel, where the
+   browser's default grey scrollbar was the one thing that didn't belong.
+   Thin and rounded in the panel's own ink instead: scrollbar-* for Firefox,
+   the ::-webkit-scrollbar rules for Chrome, Edge, and Safari. */
+.clip-list,
+.facet-menu {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--fg-rgb), 0.3) transparent;
+}
+
+.clip-list::-webkit-scrollbar,
+.facet-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.clip-list::-webkit-scrollbar-track,
+.facet-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.clip-list::-webkit-scrollbar-thumb,
+.facet-menu::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: rgba(var(--fg-rgb), 0.3);
+  background-clip: padding-box;
+}
+
+.clip-list::-webkit-scrollbar-thumb:hover,
+.facet-menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--fg-rgb), 0.5);
+}
+
 /* ---- Player + list ---- */
 .sounds-panel {
   display: flex;
@@ -459,7 +505,7 @@ watch(search, (term) => {
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: var(--radius-md);
-  /* The same translucent card as the live videos on /portfolio, so the page
+  /* The same translucent card as the performance videos on /portfolio, so the site
      has one surface style. A plain 6% tint vanished into the page, so this
      one is a touch stronger, with a firmer border and a shadow to lift it. */
   background-color: rgba(var(--fg-rgb), 0.08);
@@ -524,10 +570,6 @@ watch(search, (term) => {
   color: var(--accent);
 }
 
-.stage-blurb {
-  color: var(--fg-soft);
-}
-
 .clip-list-count {
   font-size: 0.8rem;
   font-weight: 600;
@@ -552,6 +594,16 @@ watch(search, (term) => {
   color: var(--fg);
   text-align: left;
   transition: background-color 0.15s ease;
+}
+
+.clip-number {
+  flex-shrink: 0;
+  width: 1.4rem;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
 }
 
 .clip-item:hover {

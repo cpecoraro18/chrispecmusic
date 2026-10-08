@@ -339,7 +339,7 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   background-color: var(--white);
   color: var(--charcoal);
-  font-weight: 650;
+  font-weight: 500;
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }

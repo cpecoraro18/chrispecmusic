@@ -1,6 +1,6 @@
 /**
  * Which clips the sound gallery shows, and the search and filter logic behind
- * it. Kept out of SoundGallery.vue so /portfolio can tell whether there is
+ * it. Kept out of SoundGallery.vue so the pages can tell whether there is
  * anything to show before rendering the section around it.
  */
 import { sounds, type SoundClip } from '~/data/sounds';
@@ -16,40 +16,40 @@ export const usingDemoSounds = import.meta.dev && sounds.length === 0;
 /** What the gallery shows. Empty in production until real clips exist. */
 export const soundClips: SoundClip[] = usingDemoSounds ? demoSounds : sounds;
 
-export type SoundFacetKey = 'genre' | 'bass' | 'technique' | 'gear';
+export type SoundFacetKey = 'genre' | 'bass' | 'technique';
 
 export interface SoundFacet {
-  /** Also the URL query key, e.g. /portfolio?bass=Fender%20P%20Bass#sounds. */
+  /** Also the URL query key, e.g. /book-session?bass=Fender%20P%20Bass#sounds. */
   key: SoundFacetKey;
   label: string;
   values: (clip: SoundClip) => readonly string[];
 }
 
-/** In the order the filter groups appear. */
+/**
+ * In the order the filter dropdowns appear. Gear has no dropdown: it was the
+ * longest list and the least scannable, and the search still finds it.
+ */
 export const SOUND_FACETS: SoundFacet[] = [
   { key: 'genre', label: 'Genre', values: (clip) => clip.genres },
   { key: 'bass', label: 'Bass', values: (clip) => [clip.bass] },
   { key: 'technique', label: 'Technique', values: (clip) => clip.techniques ?? [] },
-  { key: 'gear', label: 'Gear', values: (clip) => clip.gear ?? [] },
 ];
 
 /** The values picked in each group. An empty group means no filter. */
 export type SoundSelection = Record<SoundFacetKey, string[]>;
 
 export function emptySoundSelection(): SoundSelection {
-  return { genre: [], bass: [], technique: [], gear: [] };
+  return { genre: [], bass: [], technique: [] };
 }
 
 function searchText(clip: SoundClip): string {
   return [
     clip.title,
-    clip.blurb,
     clip.bass,
     ...clip.genres,
     ...(clip.techniques ?? []),
     ...(clip.gear ?? []),
   ]
-    .filter(Boolean)
     .join(' ')
     .toLowerCase();
 }
@@ -61,8 +61,8 @@ function searchText(clip: SoundClip): string {
  * upright". Every word of the search has to appear somewhere in the clip, so
  * "p bass fifteen" finds the P bass through the BassRig Fifteen.
  *
- * @param skip  Leave one group out. Used to count what each pill in that group
- *              would give, given everything else that is selected.
+ * @param skip  Leave one group out. Used to count what each option in that
+ *              group would give, given everything else that is selected.
  */
 export function soundClipMatches(
   clip: SoundClip,

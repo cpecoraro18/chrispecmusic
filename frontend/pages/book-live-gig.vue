@@ -5,43 +5,10 @@
       <div class="container">
         <h1 class="mb-3">Book a Live Bass Player</h1>
         <p class="lead measure mb-4">
-          Upright and electric bass for clubs, weddings, private events, festivals, and touring
-          dates, in Chicago or on the road. I'm happy to read charts or learn the material by ear, and I'll arrive prepared.
+          Upright and electric bass for clubs, weddings, private events, festivals, and tours, in
+          Chicago or on the road. I read charts or learn by ear, and I show up prepared.
         </p>
         <a class="btn btn-cta" href="#start">Check Availability</a>
-      </div>
-    </section>
-
-    <!-- ================= PROCESS + FORM ================= -->
-    <section id="start" class="section-tight">
-      <div class="container">
-        <div class="row g-5 align-items-start">
-          <div class="col-12 col-lg-6">
-            <h2 class="mb-4 text-lg-start">How it works</h2>
-            <ol class="process-list">
-              <li v-for="step in steps" :key="step.title">
-                <h3 class="h4 mb-1">{{ step.title }}</h3>
-                <p class="mb-0 text-muted">{{ step.copy }}</p>
-              </li>
-            </ol>
-            <p class="mt-4 mb-0 text-muted text-lg-start">
-              You can also
-              <nuxt-link to="/events">see where I'm playing next</nuxt-link> or
-              <nuxt-link to="/portfolio">watch live footage</nuxt-link>.
-            </p>
-          </div>
-          <div class="col-12 col-lg-6">
-            <contact-form
-              heading="Tell me about the gig"
-              intro="Send over the date and a few details, and I'll come back to you on availability and a rate."
-              message-label="About the gig"
-              message-placeholder="Date, venue or city, set length, and the kind of music. Let me know if you need upright, electric, or both."
-              message-hint="Filling in for someone last minute? Just say so, I can often help."
-              submit-label="Check Availability"
-              reassurance="Every booking is quoted individually. No obligation."
-            ></contact-form>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -82,27 +49,57 @@
       </div>
     </section>
 
+    <!-- ================= PROCESS + FORM ================= -->
+    <!-- After where I play and what I bring, so someone booking has seen
+         enough before being asked for anything. Every Check Availability
+         button jumps here. -->
+    <section id="start" class="section-tight band-deep">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-12 col-lg-6">
+            <h2 class="mb-4 text-lg-start">How it works</h2>
+            <ol class="process-list">
+              <li v-for="step in steps" :key="step.title">
+                <h3 class="h4 mb-1">{{ step.title }}</h3>
+                <p class="mb-0 text-muted">{{ step.copy }}</p>
+              </li>
+            </ol>
+            <p class="mt-4 mb-0 text-muted text-lg-start">
+              You can also
+              <nuxt-link to="/events">see where I'm playing next</nuxt-link> or
+              <nuxt-link to="/portfolio#videos">watch me play</nuxt-link>.
+            </p>
+          </div>
+          <div class="col-12 col-lg-6">
+            <contact-form
+              heading="Tell me about the gig"
+              intro="Send the date and a few details. I'll get back to you with availability and a rate."
+              message-label="About the gig"
+              message-placeholder="Date, venue or city, set length, and style of music. Upright, electric, or both?"
+              message-hint="Need a last-minute fill-in? Say so. I can often help."
+              submit-label="Check Availability"
+              reassurance="Every gig is quoted individually. No obligation, and I usually reply within a day."
+            ></contact-form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= FAQ ================= -->
+    <!-- Below the form: for whoever still has a question, not in the way of
+         whoever is ready. -->
     <section class="section-tight faq-section band-charcoal">
       <div class="container">
         <h2 class="mb-5">Common questions</h2>
         <FaqAccordion :items="liveFaqs" id-prefix="live-faq" />
       </div>
     </section>
-
-    <!-- ================= FINAL CTA ================= -->
-    <CtaBand
-      title="Got a date in mind?"
-      lead="Send it over and I'll let you know if I'm free and what it would cost."
-      show-email
-    >
-      <a class="btn btn-cta" href="#start">Check Availability</a>
-    </CtaBand>
   </div>
 </template>
 
 <script setup>
 import { liveFaqs, liveSteps as steps } from '~/data/faqs';
+import { GENRE_LIST_SENTENCE } from '~/data/service';
 
 const venues = [
   {
@@ -123,12 +120,12 @@ const venues = [
 ];
 
 const brings = [
-  'Upright and electric bass, whichever the material calls for',
-  'Charts, lead sheets, or learned by ear, whichever you have',
-  'Jazz, blues, rock, pop, soul, funk, and folk',
-  'Pro-level basses and amps suitable for any size room',
-  'Help with setlists and arrangements if you want it',
-  'Other pro musicians I can coordinate if you need a full band',
+  'Upright or electric, whichever the material calls for',
+  'Charts, lead sheets, or learned by ear',
+  GENRE_LIST_SENTENCE,
+  'Pro basses and amps for any size room',
+  'Help with setlists and arrangements, if you want it',
+  'Other pro musicians, if you need a full band',
 ];
 
 useSeo({
@@ -162,5 +159,4 @@ useSeo({
   font-weight: 700;
 }
 
-/* ---------------- Final CTA ---------------- */
 </style>

@@ -1,4 +1,10 @@
-import { TAKES_PER_TRACK } from './service';
+import {
+  TAKES_PER_TRACK,
+  GENRE_LIST_SENTENCE,
+  REVISION_ROUNDS,
+  MAX_SAMPLE_RATE,
+  CONTACT_EMAIL,
+} from './service';
 
 /**
  * FAQ content for the two booking pages.
@@ -15,82 +21,110 @@ export interface Faq {
 export const sessionFaqs: Faq[] = [
   {
     q: 'Who is this service for?',
-    a: 'Songwriters, producers, bands, and artists who want professional bass recorded remotely without booking studio time.',
+    a: 'Songwriters, producers, bands, and artists who want professional bass without booking studio time.',
   },
   {
     q: 'What do you need from me to get started?',
-    a: 'A rough mix or demo of your track (WAV, MP3, etc.), tempo (BPM) is helpful, and any notes on style, tone, or feel you want.',
+    a: 'A rough mix or demo (WAV, MP3, etc.), the tempo if you have it, and any notes on style, tone, or feel.',
   },
   {
     q: 'What if I don’t know exactly what bass line I want?',
-    a: 'That’s completely fine. Many projects start with only a rough idea. I’ll create musical bass parts that support your song and give you options to choose from.',
+    a: 'That’s fine. Many projects start with only a rough idea. I’ll write parts that support the song and give you options to choose from.',
+  },
+  {
+    q: 'Can you play a part I’ve already written?',
+    a: 'Yes. Send a chart, lead sheet, or guide bass line and I’ll play it as written, or I can write a part from scratch.',
   },
   {
     q: 'What happens if the first take isn’t quite right?',
-    a: 'Revisions are included. I’ll adjust the part, tone, or feel until it fits your track.',
+    a: `${REVISION_ROUNDS.charAt(0).toUpperCase() + REVISION_ROUNDS.slice(1)} rounds of revisions are included with every song to adjust the part, tone, or feel. Beyond that, we agree on a price first.`,
+  },
+  {
+    q: 'What files will I get?',
+    a: `WAV files at your session’s sample rate, up to ${MAX_SAMPLE_RATE}, with DI and amp or mic on separate tracks to blend in your mix.`,
+  },
+  {
+    q: 'Can you do a rush job?',
+    a: 'Yes, for an extra fee. Send your deadline with the track and I’ll tell you what’s possible.',
   },
   {
     q: 'What styles do you play?',
-    a: 'Jazz, soul, folk, rock, pop, and singer-songwriter projects.',
+    a: `${GENRE_LIST_SENTENCE}, from singer-songwriter demos to full productions.`,
   },
   {
     q: 'Can you work on multiple songs or a full album?',
-    a: 'Yes. I regularly work on EPs and full albums, and I can keep tones and feel consistent across all tracks.',
+    a: 'Yes. I regularly record EPs and full albums and keep tone and feel consistent across the tracks.',
   },
   {
     q: 'Do I own the bass recordings?',
-    a: 'Yes. Once the project is complete and paid for, you own the recorded bass parts and can use them however you like.',
+    a: 'Yes. Once the project is paid for, the bass parts are yours to use however you like.',
   },
   {
     q: 'Can we talk before starting?',
-    a: 'Absolutely. You can schedule a call to talk through your project, goals, and any questions before recording begins.',
+    a: `Absolutely. Email me at ${CONTACT_EMAIL} and we’ll set up a call before recording begins.`,
   },
   {
     q: 'How does pricing and payment work?',
-    a: 'I’ll provide a quote based on your project size and requirements. Once you approve, you’ll receive a payment link and can pay securely online. Payment is only requested after you’re happy with the final recordings.',
+    a: 'I’ll quote based on the number of songs and what they need. When you’re happy with the final takes, you’ll get a link to pay securely online.',
+  },
+  {
+    q: 'Is the price per song?',
+    a: 'Yes. Every price on this page is per song, and the rate drops as the project grows.',
+  },
+  {
+    q: 'Does upright cost more than electric?',
+    a: 'No. Upright and electric are the same price.',
   },
 ];
 
 export const liveFaqs: Faq[] = [
   {
     q: 'What styles do you play live?',
-    a: 'Jazz, rock, pop, soul, funk, folk, blues, and more. I adapt quickly to different genres and band settings.',
+    a: `${GENRE_LIST_SENTENCE}. I adapt quickly to different bands.`,
   },
   {
     q: 'Do you travel for gigs?',
-    a: 'Yes! I’m available for out-of-town shows, tours, and festivals.',
+    a: 'Yes. I’m available for out-of-town shows, tours, and festivals.',
   },
   {
     q: 'Can you fill in last minute?',
-    a: 'Often, yes. Contact me ASAP for availability.',
+    a: 'Often, yes. Get in touch as soon as you know.',
   },
   {
     q: 'Can you read charts or play by ear?',
-    a: 'Yes, I’m comfortable with both. Send charts, lead sheets, or recordings, whatever you have.',
+    a: 'Both. Send charts, lead sheets, or recordings, whatever you have.',
   },
   {
     q: 'Can you provide a full band?',
-    a: 'I can recommend and coordinate with other pro musicians if you need a full group.',
+    a: 'Yes. I can recommend and coordinate other pro musicians.',
   },
   {
     q: 'What gear do you bring?',
-    a: 'I bring pro-level basses and amps suitable for any venue. Let me know if you have specific backline needs.',
+    a: 'Pro basses and amps for any venue. Let me know about any backline needs.',
   },
   {
     q: 'How do rehearsals work?',
-    a: 'We’ll schedule rehearsals as needed, either in person or virtually. I’ll come prepared so we use time efficiently.',
+    a: 'We schedule them as the material needs, in person or online. I come prepared, so the time goes further.',
   },
   {
     q: 'How is payment handled?',
-    a: 'Payment is due after the gig, via cash, check, or secure online payment.',
+    a: 'After the gig, by cash, check, or secure online payment.',
   },
   {
     q: 'Do you play upright and electric bass?',
-    a: 'Yes, I play both upright and electric bass. Let me know your preference for your event.',
+    a: 'Yes, both. Let me know which you’d prefer.',
+  },
+  {
+    q: 'Do you sing backing vocals?',
+    a: 'No, I only play bass, so plan vocals around the rest of the band.',
+  },
+  {
+    q: 'What do you wear?',
+    a: 'Whatever suits the gig. For weddings and formal events, a suit.',
   },
   {
     q: 'Can you help with song selection or arrangements?',
-    a: 'Absolutely! I’m happy to help with setlist planning, arrangements, and musical direction if needed.',
+    a: 'Yes. I’m happy to help with setlists, arrangements, and musical direction.',
   },
   {
     q: 'Do you play private/corporate events?',
@@ -98,7 +132,7 @@ export const liveFaqs: Faq[] = [
   },
   {
     q: 'How far in advance should I book?',
-    a: 'The sooner the better, but I can sometimes accommodate last-minute requests.',
+    a: 'The sooner the better, though I can sometimes fit in last-minute requests.',
   },
 ];
 
@@ -106,23 +140,23 @@ export const liveFaqs: Faq[] = [
 export const sessionSteps = [
   {
     title: 'Send your track',
-    copy: 'Send a rough mix or demo, along with the tempo and any notes on style, tone, or feel. References or a rough guide bass line help, but they are not required.',
+    copy: "Send a rough mix or demo with the tempo and any notes on style, tone, or feel. References or a guide bass line help but aren't required.",
   },
   {
     title: 'We agree on the details',
-    copy: "I'll come back with a plan and a quote. If you're not sure what you want the bass to do, I'm happy to suggest a few directions.",
+    copy: "I'll reply with a plan and a quote. Not sure what the bass should do? I'll suggest a few directions.",
   },
   {
     title: 'I record your bass',
-    copy: `I cut ${TAKES_PER_TRACK} takes with different approaches so you have options, recorded and edited in my studio.`,
+    copy: `I record ${TAKES_PER_TRACK} takes, each with a different approach, so you have options.`,
   },
   {
     title: 'You request changes',
-    copy: "Revisions are included, so I'll adjust the part, tone, or feel until it fits the song.",
+    copy: `${REVISION_ROUNDS.charAt(0).toUpperCase() + REVISION_ROUNDS.slice(1)} rounds of revisions are included to adjust the part, tone, or feel.`,
   },
   {
     title: 'You get the files',
-    copy: 'Mix-ready stems land in your inbox with a payment link. Once the project is paid, the recordings are yours to use however you like.',
+    copy: 'Mix-ready stems arrive with a payment link. Once paid, the recordings are yours to use however you like.',
   },
 ];
 
@@ -130,15 +164,15 @@ export const sessionSteps = [
 export const liveSteps = [
   {
     title: 'Send the details',
-    copy: 'Date, location, set length, and the kind of music. Let me know whether you want upright, electric, or both.',
+    copy: 'Date, location, set length, and style of music, plus whether you want upright, electric, or both.',
   },
   {
     title: 'I confirm and quote',
-    copy: "I'll check the date and come back with availability and a rate for the booking.",
+    copy: "I'll check the date and come back with availability and a rate.",
   },
   {
     title: 'Share the material',
-    copy: 'Send whatever you have: setlist, charts, lead sheets, or recordings. We can add rehearsals if the material calls for it.',
+    copy: 'Setlist, charts, lead sheets, or recordings, whatever you have. We’ll add rehearsals if the material needs them.',
   },
   {
     title: 'I show up ready',

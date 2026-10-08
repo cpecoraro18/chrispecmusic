@@ -39,7 +39,7 @@
             <p class="lead text-muted">
               I'm Chris Pecoraro, a professional electric and upright bassist based in Chicago, with 100+
               remote sessions completed for artists and producers around the world. My studio and live
-              work spans rock, soul, jazz, pop, country, blues, and Americana.
+              work spans {{ GENRE_LIST }}.
             </p>
             <nuxt-link class="text-link mt-3 d-inline-block" to="/about">
               More about me <span aria-hidden="true">→</span>
@@ -50,56 +50,26 @@
       </div>
     </section>
 
-    <!-- ================= SOUNDS ================= -->
-    <!-- The tone gallery, after the about section: the reel gives a general
-         sense of my playing, this lets a producer find a specific sound. It only
-         renders once data/sounds.ts has clips, and its id is where shared
-         gallery links land. -->
-    <section v-if="soundClips.length" id="sounds" class="section band band-deep">
+    <!-- ================= DISCOGRAPHY ================= -->
+    <section class="section-tight band band-deep">
       <div class="container">
         <SectionHeader
-          eyebrow="Sounds"
-          title="Hear a specific tone"
-          lead="Short clips, one sound each. Search or filter by genre, bass, technique, or gear."
+          eyebrow="Discography"
+          title="Records I've played on"
+          lead="Click a cover to listen."
         />
-        <SoundGallery />
-      </div>
-    </section>
-
-    <!-- ================= DISCOGRAPHY ================= -->
-    <!-- Band colours alternate light and dark down the page, and the sounds
-         section only exists once there are clips, so everything after it is
-         bound to whether it rendered. The records always sit on Deep Daphne,
-         the covers read best on it: as the whole band when this one is dark,
-         as a panel inside it when it is light. -->
-    <section class="section-tight band" :class="{ 'band-deep': !hasSounds }">
-      <div class="container">
-        <div :class="{ 'panel surface-deep': hasSounds }">
-          <SectionHeader
-            eyebrow="Discography"
-            title="Records I've played on"
-            lead="Click a cover to listen."
-          />
-          <discography-list></discography-list>
-        </div>
+        <discography-list></discography-list>
       </div>
     </section>
 
     <!-- ================= REVIEWS ================= -->
-    <section class="section-tight band" :class="{ 'band-charcoal': hasSounds }">
+    <section class="section-tight band">
       <div class="container">
         <p class="eyebrow mb-2">Reviews</p>
         <h2 class="mb-2">What clients say</h2>
         <p class="lead text-muted measure mb-4">A selection of reviews from clients.</p>
       </div>
       <review-list></review-list>
-    </section>
-
-    <!-- ================= EVENTS ================= -->
-    <section class="section-tight band" :class="{ 'band-charcoal': !hasSounds }">
-      <div class="container">
-        <events-list :limit="3" date-style="short"></events-list>
-      </div>
     </section>
 
     <!-- ================= CLOSING ================= -->
@@ -115,8 +85,7 @@
 
 <script setup>
 import { showreel } from '~/data/videos';
-
-const hasSounds = soundClips.length > 0;
+import { GENRE_LIST } from '~/data/service';
 
 useSeo({
   title: 'Chris Pecoraro | Remote Session Bass Player, Chicago',

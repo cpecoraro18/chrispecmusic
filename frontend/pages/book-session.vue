@@ -5,51 +5,35 @@
       <div class="container">
         <h1 class="mb-3">Book a Remote Bass Session</h1>
         <p class="lead measure mb-4">
-          Send me your track and I'll record upright or electric bass in my studio, then send back
-          mix-ready files. {{ TAKES_PER_TRACK }} takes to choose from, revisions included,
-          typically back within {{ TURNAROUND }}.
+          Send me your track and I'll record upright or electric bass in my studio and send back
+          mix-ready files: {{ TAKES_PER_TRACK }} takes to choose from, revisions included, usually
+          within {{ TURNAROUND }}.
         </p>
         <a class="btn btn-cta" href="#start">Start a Project</a>
       </div>
     </section>
 
-    <!-- ================= PROCESS + FORM ================= -->
-    <section id="start" class="section-tight">
-      <div class="container">
-        <div class="row g-5 align-items-start">
-          <div class="col-12 col-lg-6">
-            <h2 class="mb-4 text-lg-start">How it works</h2>
-            <ol class="process-list">
-              <li v-for="step in steps" :key="step.title">
-                <h3 class="h4 mb-1">{{ step.title }}</h3>
-                <p class="mb-0 text-muted">{{ step.copy }}</p>
-              </li>
-            </ol>
-          </div>
-          <div class="col-12 col-lg-6">
-            <contact-form
-              heading="Tell me about your project"
-              intro="A few details are enough to get started, and I'll reply with a plan and a quote."
-              message-label="About your project"
-              message-placeholder="How many tracks, what style, upright or electric, and when you need it by. A link to a rough mix is welcome."
-              message-hint="Not sure yet? A rough description is completely fine, and we can work the details out together."
-              submit-label="Send Project Details"
-              reassurance="No obligation, and you don't pay until you're happy with the takes."
-            ></contact-form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SAMPLES ================= -->
-    <section class="section-tight listen-section band-deep">
+    <!-- ================= HEAR THE TONES ================= -->
+    <!-- The sound gallery's only home: this is where a producer decides, and
+         the clip list scrolls inside its own box, so it doesn't push pricing
+         far down. Until data/sounds.ts has clips, the audio samples stand in.
+         Shared gallery links, and the link from the home page, land on this id. -->
+    <section id="sounds" class="section-tight listen-section band-deep">
       <div class="container">
         <h2 class="mb-3">Hear the tones</h2>
-        <p class="lead text-muted measure mb-4">
-          Real takes from my studio across five basses, with both DI and amp tones. Toggle drums
-          on or off to hear how the part sits in a mix.
-        </p>
-        <bass-audio-samples></bass-audio-samples>
+        <template v-if="soundClips.length">
+          <p class="lead text-muted measure mb-4">
+            Short clips, one sound each. Search, or filter by genre, bass, or technique.
+          </p>
+          <SoundGallery />
+        </template>
+        <template v-else>
+          <p class="lead text-muted measure mb-4">
+            Real takes from my studio on four basses, DI and amp. Toggle the drums to hear how
+            each part sits in a mix.
+          </p>
+          <bass-audio-samples></bass-audio-samples>
+        </template>
       </div>
     </section>
 
@@ -70,8 +54,9 @@
       <div class="container">
         <h2 class="mb-3">Pricing</h2>
         <p class="lead measure mb-5">
-          One rate covers recording, engineering, and revisions. There's no studio time, gear
-          rental, or engineer fee on top. Per-track pricing drops as the project gets bigger.
+          One per-song rate covers recording, engineering, and {{ REVISION_ROUNDS }} rounds of
+          revisions, with no studio, gear, or engineer fees on top. The more songs, the lower the
+          rate.
         </p>
 
         <div class="row g-4 justify-content-center">
@@ -81,29 +66,27 @@
               <h3 class="h4 mb-1">{{ tier.tracks }}</h3>
               <p class="price-amount mb-3">
                 <span class="price-number">${{ tier.price }}</span>
-                <span class="price-unit">per track</span>
+                <span class="price-unit">per song</span>
               </p>
               <ul class="price-points">
-                <li>{{ TAKES_PER_TRACK }} takes included</li>
-                <li>Revisions included</li>
+                <li>{{ takesSentence }} takes included</li>
+                <li>{{ revisionsSentence }} rounds of revisions</li>
                 <li>Mix-ready files</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <p class="pricing-note measure mt-4 mb-4">
-          You don't pay until you've heard the takes and you're happy with them.
-        </p>
-        <a class="btn btn-cta" href="#start">Start a Project</a>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="section-tight faq-section">
-      <div class="container">
-        <h2 class="mb-5">Common questions</h2>
-        <FaqAccordion :items="sessionFaqs" id-prefix="session-faq" />
+        <!-- The specifics a producer asks before booking, answered next to the
+             prices rather than left to the FAQ or an email. -->
+        <div class="deliverables">
+          <dl class="deliverables-list">
+            <div v-for="item in deliverables" :key="item.term">
+              <dt>{{ item.term }}</dt>
+              <dd>{{ item.detail }}</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
 
@@ -112,26 +95,71 @@
       <div class="container">
         <h2 class="mb-2">What clients say</h2>
         <p class="lead text-muted measure mb-4">
-          A selection of reviews from clients.
+          A few words from past clients.
         </p>
       </div>
       <review-list></review-list>
     </section>
 
-    <!-- ================= FINAL CTA ================= -->
-    <CtaBand
-      title="Ready when you are"
-      lead="Send over what you have and I'll come back with a plan and a quote. No obligation."
-      show-email
-    >
-      <a class="btn btn-cta" href="#start">Start a Project</a>
-    </CtaBand>
+    <!-- ================= PROCESS + FORM ================= -->
+    <!-- After the playing, the prices, and the reviews, so a producer has
+         heard and seen enough before being asked for anything. Every Start a
+         Project button jumps here. -->
+    <section id="start" class="section-tight">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-12 col-lg-6">
+            <h2 class="mb-4 text-lg-start">How it works</h2>
+            <ol class="process-list">
+              <li v-for="step in steps" :key="step.title">
+                <h3 class="h4 mb-1">{{ step.title }}</h3>
+                <p class="mb-0 text-muted">{{ step.copy }}</p>
+              </li>
+            </ol>
+          </div>
+          <div class="col-12 col-lg-6">
+            <contact-form
+              heading="Tell me about your project"
+              intro="A few details are enough. I'll reply with a plan and a quote."
+              message-label="About your project"
+              message-placeholder="How many songs, what style, upright or electric, and your deadline. A link to a rough mix helps."
+              message-hint="Not sure yet? A rough idea is fine. We'll work out the rest together."
+              submit-label="Send Project Details"
+              reassurance="No obligation. You don't pay until you're happy with the takes."
+            ></contact-form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <!-- Below the form: for whoever still has a question, not in the way of
+         whoever is ready. -->
+    <section class="section-tight faq-section band-charcoal">
+      <div class="container">
+        <h2 class="mb-5">Common questions</h2>
+        <FaqAccordion :items="sessionFaqs" id-prefix="session-faq" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { PRICING, TAKES_PER_TRACK, TURNAROUND } from '~/data/service';
+import { PRICING, STARTING_PRICE, TAKES_PER_TRACK, TURNAROUND, REVISION_ROUNDS, MAX_SAMPLE_RATE } from '~/data/service';
 import { sessionFaqs, sessionSteps as steps } from '~/data/faqs';
+
+// The service constants are lowercase for use mid-sentence; these open one.
+const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+const takesSentence = capitalize(TAKES_PER_TRACK);
+const revisionsSentence = capitalize(REVISION_ROUNDS);
+
+const deliverables = [
+  { term: 'Files', detail: `WAV at your session's sample rate, up to ${MAX_SAMPLE_RATE}` },
+  { term: 'Tracks', detail: 'DI and amp or mic on separate tracks, to blend as you like' },
+  { term: 'Revisions', detail: `${revisionsSentence} rounds per song included; extra rounds quoted up front` },
+  { term: 'Parts', detail: 'Written from scratch, or played from your chart' },
+  { term: 'Rush', detail: 'Available for an extra fee' },
+];
 
 const included = [
   {
@@ -142,23 +170,23 @@ const included = [
   {
     icon: 'sliders',
     title: 'Mix-ready files',
-    copy: 'Recorded and edited in my studio, so the stems drop straight into your session.',
+    copy: 'Recorded and edited in my studio, ready to drop into your session.',
   },
   {
     icon: 'rotate',
     title: 'Revisions included',
-    copy: 'Changes to the part, tone, or feel are part of the price, not an extra.',
+    copy: `${revisionsSentence} rounds of changes to the part, tone, or feel, at no extra cost.`,
   },
   {
     icon: 'lock',
     title: 'You own the tracks',
-    copy: 'Once the project is paid for, the recordings are yours with no further licensing.',
+    copy: 'Once paid for, the recordings are yours. No further licensing.',
   },
 ];
 
 useSeo({
   title: 'Book a Remote Bass Session | Chris Pecoraro',
-  description: 'Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $80 per track.',
+  description: `Hire a remote session bass player. Upright and electric bass recorded in my Chicago studio and delivered mix-ready, with multiple takes and revisions included. From $${STARTING_PRICE} per song.`,
 });
 </script>
 
@@ -236,9 +264,45 @@ useSeo({
   font-weight: 700;
 }
 
-.pricing-note {
+/* ---------------- The details ---------------- */
+/* A two-column spec list under the price cards: term on the left, answer on
+   the right, a hairline between rows. Stacks on phones. */
+.deliverables {
+  max-width: 46rem;
+  margin: 2.75rem auto 0;
+  text-align: left;
+}
+
+.deliverables-list {
+  margin: 0;
+}
+
+.deliverables-list > div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(var(--fg-rgb), 0.14);
+}
+
+.deliverables-list dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.15rem;
+}
+
+.deliverables-list dd {
+  margin: 0;
   color: var(--fg-soft);
 }
 
-/* ---------------- Final CTA ---------------- */
+@media (max-width: 575.98px) {
+  .deliverables-list > div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
 </style>

@@ -4,6 +4,7 @@
       <slot name="media" />
     </div>
     <div class="media-card-body">
+      <p v-if="eyebrow" class="media-card-eyebrow">{{ eyebrow }}</p>
       <component :is="titleLevel" class="h4 mb-2">{{ title }}</component>
       <span v-if="badge" class="media-card-badge mb-3">{{ badge }}</span>
       <p v-if="copy" class="media-card-copy mb-0">{{ copy }}</p>
@@ -23,6 +24,8 @@
  */
 defineProps({
   title: { type: String, required: true },
+  /** Small caps line above the title, e.g. the band above a song. */
+  eyebrow: { type: String, default: '' },
   /** Small pill above the copy, e.g. a gear type or a video genre. */
   badge: { type: String, default: '' },
   copy: { type: String, default: '' },
@@ -64,6 +67,15 @@ defineProps({
 
 .media-card--light .media-card-body {
   padding: 1.25rem;
+}
+
+.media-card-eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .media-card-badge {

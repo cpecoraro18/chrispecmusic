@@ -104,8 +104,8 @@ export function usePersonStructuredData() {
             // engines cannot contradict the one on /book-session.
             price: STARTING_PRICE,
             priceCurrency: 'USD',
-            unitText: 'per track',
-            description: 'Starting price; per-track rate decreases on larger projects.',
+            unitText: 'per song',
+            description: 'Starting price; per-song rate decreases on larger projects.',
           },
         },
         {

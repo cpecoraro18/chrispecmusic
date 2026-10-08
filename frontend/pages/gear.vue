@@ -30,9 +30,13 @@
       <div class="container">
         <h2 class="gear-section-title">{{ section.label }}</h2>
 
-        <div v-if="section.feature" class="row g-4">
-          <div v-for="item in section.items" :key="item.name" class="col-12 col-md-6">
-            <article class="bass-card on-light">
+        <div v-if="section.feature" class="bass-grid">
+          <div
+            v-for="item in section.items"
+            :key="item.name"
+            :class="{ 'bass-portrait': item.portrait }"
+          >
+            <article class="bass-card">
               <img :src="item.image" :alt="item.name" class="bass-image" loading="lazy" decoding="async" />
               <div class="bass-body">
                 <h3 class="bass-name">{{ item.name }}</h3>
@@ -44,7 +48,7 @@
 
         <div v-else class="row g-3">
           <div v-for="item in section.items" :key="item.name" class="col-12 col-md-6">
-            <article class="gear-item on-light">
+            <article class="gear-item">
               <img :src="item.image" :alt="item.name" class="gear-item-image" loading="lazy" decoding="async" />
               <div>
                 <!-- The kind, only where a section mixes kinds. -->
@@ -136,28 +140,76 @@ useSeo({
   margin-bottom: 1.75rem;
 }
 
-/* The product photos carry this grey in their own backgrounds, so the image
-   boxes match it to hide the letterboxing around contain-fit images. */
+/* Charcoal cards with the photo on a light neutral grey: a plain backdrop
+   that neither tints the gear nor fights the Daphne page. Every product photo
+   has a transparent background so it sits straight on this; a new photo needs
+   one too, or it shows up as a box. The padding keeps the gear clear of the
+   edges. */
+.gear-section {
+  --gear-backdrop: #DEDCD8;
+}
+
 .bass-image,
 .gear-item-image {
   object-fit: contain;
-  background-color: var(--secondary);
+  background-color: var(--gear-backdrop);
 }
 
 /* ---- Basses: large ---- */
+.bass-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* The upright takes the right column for two rows, beside the J and the
+   Mustang, so its tall photo gets a tall card and five basses fill the grid
+   with no card left on its own. Pinned to row 2: built for one portrait
+   bass, and a second would stack below it. On phones it is one card in a
+   single column, given a fixed height. */
+.bass-portrait .bass-image {
+  height: 26rem;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .bass-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bass-portrait {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }
+
+  /* Fills whatever height the two cards beside it set. A zero basis keeps
+     the 600 px photo from deciding the row height and stretching them. */
+  .bass-portrait .bass-image {
+    flex: 1 1 0;
+    height: 0;
+    min-height: 0;
+  }
+
+  /* Only the photo grows; the text stays at its natural height. */
+  .bass-portrait .bass-body {
+    flex: 0 0 auto;
+  }
+}
+
 .bass-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background-color: var(--card);
+  background-color: var(--charcoal);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .bass-image {
   width: 100%;
   height: clamp(12rem, 22vw, 16rem);
+  padding: 1.5rem 2rem;
 }
 
 .bass-body {
@@ -175,7 +227,7 @@ useSeo({
 .bass-copy {
   flex: 1;
   margin-bottom: 0;
-  color: var(--text-color-dark);
+  color: var(--fg-soft);
 }
 
 /* ---- Everything else: compact ---- */
@@ -187,13 +239,14 @@ useSeo({
   overflow: hidden;
   padding-right: 1.1rem;
   border-radius: var(--radius-md);
-  background-color: var(--card);
+  background-color: var(--charcoal);
 }
 
 .gear-item-image {
   flex: 0 0 auto;
   width: 7.5rem;
   height: 6.5rem;
+  padding: 0.6rem;
 }
 
 .gear-item-kind {
@@ -215,7 +268,7 @@ useSeo({
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.5;
-  color: var(--text-color-dark);
+  color: var(--fg-soft);
 }
 
 @media (max-width: 575.98px) {

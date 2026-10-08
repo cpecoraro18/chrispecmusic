@@ -41,7 +41,7 @@
   --text-color-dark: rgba(0, 0, 0, 0.7);
 
   --bg-black: #111214;           /* video letterboxing */
-  --secondary: #8A8588;          /* gear photo backdrops, baked into the images */
+  --secondary: #8A8588;          /* Bootstrap's muted text colour */
 
   /* The dark card shared by the events list and each event's page. Deep
      Daphne rather than charcoal so it still shows on a charcoal band. */

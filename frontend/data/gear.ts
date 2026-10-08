@@ -12,6 +12,11 @@ export interface GearItem {
   /** Path under public/, e.g. '/img/gear/Fender-P-Bass.webp'. */
   image: string;
   description: string;
+  /**
+   * A tall photo, like the upright. On /gear it gets a card two rows tall
+   * instead of a wide one, which would shrink it to a sliver.
+   */
+  portrait?: boolean;
 }
 
 // `as const` so GearName below is a union of the literal names rather than
@@ -21,7 +26,7 @@ const gearList = [
   { name: 'Fender P Bass', type: 'Bass', image: '/img/gear/Fender-P-Bass.webp', description: 'Classic Precision Bass tone with the reliability to match.' },
   { name: 'Fender Jazz Bass', type: 'Bass', image: '/img/gear/Fender-J-Bass.webp', description: 'My first bass, used for everything from jazz gigs to rock covers.' },
   { name: 'Fender JMJ Mustang Bass', type: 'Bass', image: '/img/gear/Fender-JMJ-Mustang-Bass.webp', description: 'Black short-scale Mustang with a single split-coil pickup. Punchy, focused, and a little gritty, great for indie and garage tones.' },
-  { name: 'Knilling Bucharest 1308T', type: 'Bass', image: '/img/gear/Knilling-Upright.webp', description: 'Fully carved upright — go-to for jazz sessions and acoustic sets.' },
+  { name: 'Knilling Bucharest 1308T', type: 'Bass', image: '/img/gear/Knilling-Upright.webp', portrait: true, description: 'Fully carved upright — go-to for jazz sessions and acoustic sets.' },
   { name: 'Markbass Little Mark 3', type: 'Amp', image: '/img/gear/Markbass-Little-Mark-3.webp', description: 'Lightweight, powerful head with a clean, punchy sound.' },
   { name: 'Phil Jones Double 4', type: 'Amp', image: '/img/gear/Phil-Jones-Double-Four.webp', description: 'Small practice amp with a clear, surprisingly big sound.' },
   { name: 'Markbass 4x10', type: 'Cabinet', image: '/img/gear/Markbass-4x10.webp', description: 'Big, punchy lows and clean mids for live shows.' },

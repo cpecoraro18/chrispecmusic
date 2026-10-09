@@ -22,7 +22,7 @@ export interface Video extends Credited {
  * quick sense of my playing. It does not have to be one of the videos below.
  */
 export const showreel = {
-  id: "CiGV9Puublg",
+  id: "Lz7nqXA5c_w",
   title: "Chris Pecoraro - Bassist",
 };
 

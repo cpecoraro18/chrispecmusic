@@ -19,14 +19,11 @@ export interface Video extends Credited {
 
 /**
  * The reel beside the about section on the home page, for someone who wants a
- * quick sense of my playing.
- *
- * A stand-in until there is a proper reel: swap the ID for the reel's when it
- * is cut. It does not have to be one of the videos below.
+ * quick sense of my playing. It does not have to be one of the videos below.
  */
 export const showreel = {
-  id: "n_tqUo2kwJY",
-  title: "Sean's Guitar Lounge Ft. Zach Avery - All Along the Watchtower Cover",
+  id: "CiGV9Puublg",
+  title: "Chris Pecoraro - Bassist",
 };
 
 // Listed in display order, rotating through the bands so the first few

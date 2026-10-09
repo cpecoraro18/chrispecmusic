@@ -1,0 +1,1 @@
+import{_ as n,o as t,c as o,H as s}from"./entry-C25MDWiP.js";const a={},c={id:"main",class:"main-content"};function r(e,_){return t(),o("main",c,[s(e.$slots,"default")])}const l=n(a,[["render",r]]);export{l as default};

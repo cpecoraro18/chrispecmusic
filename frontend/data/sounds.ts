@@ -63,5 +63,7 @@ export const sounds: SoundClip[] = [
     title: 'Mustang, indie',
     genres: ['Indie'],
     bass: 'Fender JMJ Mustang Bass',
+    gear: ['Origin Effects BassRig Fifteen'],
+    techniques: ['Pick'],
   },
 ];

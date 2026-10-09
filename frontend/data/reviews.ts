@@ -42,7 +42,7 @@ export const reviews: Review[] = [
     review: "Chris is an incredible bass player. He turned the project around in under twenty four hours, nailed every detail, and delivered a flawless performance. Super professional throughout the whole process.",
   },
   {
-    name: "kangaroocrucifx",
-    review: "Chris made my track come to life. Tasteful and present, warm and smooth. He was quick to respond and quick to deliver, and I'd gladly work with him again.",
+    name: "tylernail",
+    review: "Chris worked on multiple tracks for me and did a perfect job on every single one. I hope we work together again. He was easy to work with, professional, and creative.",
   },
 ];

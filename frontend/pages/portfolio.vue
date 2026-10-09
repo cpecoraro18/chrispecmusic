@@ -13,12 +13,12 @@
          closing CTA band rather than repeated in each section. -->
 
     <!-- Finished work only. The sound gallery is a tool for finding a tone, so
-         it lives on /book-session, where a producer is deciding. -->
+         it lives on the home page, under the reel. -->
 
-    <!-- ================= RECORDS ================= -->
-    <section id="records" class="section band band-deep">
+    <!-- ================= DISCOGRAPHY ================= -->
+    <section id="discography" class="section band band-deep">
       <div class="container">
-        <SectionHeader title="Records" lead="Albums and singles I've played on. Click a cover to listen." />
+        <SectionHeader title="Discography" lead="Albums and singles I've played on." />
         <DiscographyList />
       </div>
     </section>

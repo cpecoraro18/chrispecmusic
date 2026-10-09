@@ -49,13 +49,34 @@
       </div>
     </section>
 
+    <!-- ================= HEAR THE TONES ================= -->
+    <!-- Right under the reel, so a visitor who liked it can go straight to the
+         exact sound they need. The clip list scrolls inside its own box, so it
+         doesn't push the rest of the page far down. Until data/sounds.ts has
+         clips, the audio samples stand in. Shared gallery links land on this id. -->
+    <section id="sounds" class="section-tight band band-charcoal">
+      <div class="container">
+        <template v-if="soundClips.length">
+          <SectionHeader eyebrow="Sounds" title="Hear the tones" />
+          <SoundGallery />
+        </template>
+        <template v-else>
+          <SectionHeader
+            eyebrow="Sounds"
+            title="Hear the tones"
+            lead="Real takes from my studio on four basses, DI and amp. Toggle the drums to hear how each part sits in a mix."
+          />
+          <bass-audio-samples></bass-audio-samples>
+        </template>
+      </div>
+    </section>
+
     <!-- ================= DISCOGRAPHY ================= -->
     <section class="section-tight band band-deep">
       <div class="container">
         <SectionHeader
           eyebrow="Discography"
           title="Records I've played on"
-          lead="Click a cover to listen."
         />
         <discography-list></discography-list>
       </div>

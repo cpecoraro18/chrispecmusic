@@ -19,7 +19,7 @@ export const soundClips: SoundClip[] = usingDemoSounds ? demoSounds : sounds;
 export type SoundFacetKey = 'genre' | 'bass' | 'technique';
 
 export interface SoundFacet {
-  /** Also the URL query key, e.g. /book-session?bass=Fender%20P%20Bass#sounds. */
+  /** Also the URL query key, e.g. /?bass=Fender%20P%20Bass#sounds. */
   key: SoundFacetKey;
   label: string;
   values: (clip: SoundClip) => readonly string[];

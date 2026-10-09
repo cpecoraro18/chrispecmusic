@@ -263,7 +263,7 @@ function askForSound() {
 
 // ---- URL --------------------------------------------------------------------
 // Filters and the picked clip live in the query string
-// (/book-session?bass=Fender%20P%20Bass&clip=abc123#sounds) so a view, or one
+// (/?bass=Fender%20P%20Bass&clip=abc123#sounds) so a view, or one
 // exact sound, can be sent to a client as a link; the hash makes it land on the
 // gallery rather than the top of the page. Read on mount, not during setup: the
 // page is prerendered without a query, and reading it while hydrating would

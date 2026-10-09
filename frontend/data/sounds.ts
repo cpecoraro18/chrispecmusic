@@ -1,5 +1,5 @@
 /**
- * Clips for the sound gallery on /book-session.
+ * Clips for the sound gallery on the home page.
  *
  * This is not the performance videos on /portfolio (data/videos.ts). Those videos show
  * who I've played with. These are short studio clips, one sound each. Genre,

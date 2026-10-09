@@ -30,32 +30,8 @@
       </div>
     </section>
 
-    <!-- ================= HEAR THE TONES ================= -->
-    <!-- The sound gallery's only home: this is where a producer decides, and
-         the clip list scrolls inside its own box, so it doesn't push pricing
-         far down. Until data/sounds.ts has clips, the audio samples stand in.
-         Shared gallery links, and the link from the home page, land on this id. -->
-    <section id="sounds" class="section-tight listen-section band-deep">
-      <div class="container">
-        <h2 class="mb-3">Hear the tones</h2>
-        <template v-if="soundClips.length">
-          <p class="lead text-muted measure mb-4">
-            Short clips, one sound each. Search, or filter by genre, bass, or technique.
-          </p>
-          <SoundGallery />
-        </template>
-        <template v-else>
-          <p class="lead text-muted measure mb-4">
-            Real takes from my studio on four basses, DI and amp. Toggle the drums to hear how
-            each part sits in a mix.
-          </p>
-          <bass-audio-samples></bass-audio-samples>
-        </template>
-      </div>
-    </section>
-
     <!-- ================= WHAT YOU GET ================= -->
-    <section class="section-tight what-you-get">
+    <section class="section-tight what-you-get band-deep">
       <div class="container">
         <h2 class="mb-5">What you get</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -119,8 +95,8 @@
     </section>
 
     <!-- ================= PROCESS + FORM ================= -->
-    <!-- After the playing, the prices, and the reviews, so a producer has
-         heard and seen enough before being asked for anything. Every Start a
+    <!-- After what you get, the prices, and the reviews, so a producer has
+         seen enough before being asked for anything. Every Start a
          Project button jumps here. -->
     <section id="start" class="section-tight">
       <div class="container">

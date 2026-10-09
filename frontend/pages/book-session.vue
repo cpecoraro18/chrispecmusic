@@ -3,13 +3,30 @@
     <!-- ================= HERO ================= -->
     <section class="section-tight">
       <div class="container">
-        <h1 class="mb-3">Book a Remote Bass Session</h1>
-        <p class="lead measure mb-4">
-          Send me your track and I'll record upright or electric bass in my studio and send back
-          mix-ready files: {{ TAKES_PER_TRACK }} takes to choose from, revisions included, usually
-          within {{ TURNAROUND }}.
-        </p>
-        <a class="btn btn-cta" href="#start">Start a Project</a>
+        <div class="row align-items-center g-5">
+          <div class="col-12 col-lg-6 text-lg-start">
+            <h1 class="mb-3">Book a Remote Bass Session</h1>
+            <p class="lead measure mb-4">
+              Send me your track and I'll record upright or electric bass in my studio and send back
+              mix-ready files: {{ TAKES_PER_TRACK }} takes to choose from, revisions included, usually
+              within {{ TURNAROUND }}.
+            </p>
+            <a class="btn btn-cta" href="#start">Start a Project</a>
+          </div>
+          <!-- The room the lead talks about, so "my studio" is something a
+               producer can see. After the text in the markup, so on phones
+               the pitch and the button come first. -->
+          <div class="col-12 col-lg-6">
+            <img
+              src="/img/studio.webp"
+              alt="Chris with a P bass in his recording studio, with an upright bass, monitors, and acoustic panels"
+              class="studio-photo"
+              width="1600"
+              height="1066"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -191,6 +208,16 @@ useSeo({
 </script>
 
 <style scoped>
+/* ---------------- Hero ---------------- */
+/* Framed like the reel on the home page. */
+.studio-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
 /* ---------------- Pricing ---------------- */
 .price-card {
   position: relative;

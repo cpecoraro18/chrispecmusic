@@ -59,7 +59,7 @@ export const sounds: SoundClip[] = [
     techniques: ['Fingerstyle'],
   },
   {
-    id: 'vAOqTjzTwek',
+    id: 'ApxA0x5mT4o',
     title: 'Mustang, indie',
     genres: ['Indie'],
     bass: 'Fender JMJ Mustang Bass',

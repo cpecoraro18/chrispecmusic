@@ -43,23 +43,23 @@ export interface SoundClip {
 
 export const sounds: SoundClip[] = [
   {
-    id: 'qH6tTIEYOw0',
-    title: 'P Bass, vintage soul',
+    id: 'BwsqrREBctk',
+    title: 'P Bass, soul',
     genres: ['Soul'],
     bass: 'Fender P Bass',
     gear: ['Origin Effects BassRig Fifteen'],
     techniques: ['Fingerstyle'],
   },
   {
-    id: 'MxnsZRqZONs',
-    title: 'Jazz Bass, clean pop',
+    id: 'JijbFsOJMFE',
+    title: 'Jazz Bass, pop',
     genres: ['Pop'],
     bass: 'Fender Jazz Bass',
     gear: ['Origin Effects BassRig Fifteen'],
     techniques: ['Fingerstyle'],
   },
   {
-    id: 'DNODZkZ4gxI',
+    id: 'vAOqTjzTwek',
     title: 'Mustang, indie',
     genres: ['Indie'],
     bass: 'Fender JMJ Mustang Bass',

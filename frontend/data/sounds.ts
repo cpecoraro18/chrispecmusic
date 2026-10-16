@@ -75,7 +75,7 @@ export const sounds: SoundClip[] = [
     techniques: ['Slap'],
   },
   {
-    id: 'toliP9PlS1U',
+    id: 'EjYbHNKDtyg',
     title: 'Upright, pizz',
     bass: 'Knilling Bucharest 1308T',
     gear: ['Electro-Voice RE20', 'Soyuz 013 FET'],

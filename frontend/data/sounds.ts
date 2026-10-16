@@ -71,6 +71,7 @@ export const sounds: SoundClip[] = [
     id: 'KjAEnNzFlkI',
     title: 'Lakland, slap',
     bass: 'Lakland 5501',
+    gear: ['Rupert Neve Designs RNDI'],
     techniques: ['Slap'],
   },
   {

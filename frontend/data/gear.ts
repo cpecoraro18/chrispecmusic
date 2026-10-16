@@ -26,7 +26,7 @@ const gearList = [
   { name: 'Fender P Bass', type: 'Bass', image: '/img/gear/Fender-P-Bass.webp', description: 'Classic Precision Bass tone with the reliability to match.' },
   { name: 'Fender Jazz Bass', type: 'Bass', image: '/img/gear/Fender-J-Bass.webp', description: 'My first bass, used for everything from jazz gigs to rock covers.' },
   { name: 'Fender JMJ Mustang Bass', type: 'Bass', image: '/img/gear/Fender-JMJ-Mustang-Bass.webp', description: 'Black short-scale Mustang with a single split-coil pickup. Punchy, focused, and a little gritty, great for indie and garage tones.' },
-  { name: 'Guild Starfire II Bass', type: 'Bass', image: '/img/gear/Guild-Starfire-II-Bass.webp', description: 'Semi-hollow short-scale with a round, woody thump. Through a pick it has a bark the solid bodies can\'t quite get.' },
+  { name: 'Guild Starfire II Bass', type: 'Bass', image: '/img/gear/Guild-Starfire-II-Bass.webp', description: 'Semi-hollow short-scale with a round, woody thump.' },
   { name: 'Knilling Bucharest 1308T', type: 'Bass', image: '/img/gear/Knilling-Upright.webp', portrait: true, description: 'Fully carved upright — go-to for jazz sessions and acoustic sets.' },
   { name: 'Markbass Little Mark 3', type: 'Amp', image: '/img/gear/Markbass-Little-Mark-3.webp', description: 'Lightweight, powerful head with a clean, punchy sound.' },
   { name: 'Phil Jones Double 4', type: 'Amp', image: '/img/gear/Phil-Jones-Double-Four.webp', description: 'Small practice amp with a clear, surprisingly big sound.' },

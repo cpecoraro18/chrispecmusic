@@ -80,11 +80,11 @@
           class="stage-player"
           @play="trackSoundPlay(focused)"
         />
-        <!-- Just the genre and the title. The title already names the bass,
+        <!-- Just the gear and the title. The title already names the bass,
              and the tags and description that used to sit here made the
              panel read like a spec sheet. -->
         <div class="stage-info">
-          <p class="stage-genres mb-1">{{ focused.genres.join(' · ') }}</p>
+          <p v-if="focused.gear?.length" class="stage-gear mb-1">{{ focused.gear.join(' · ') }}</p>
           <h3 class="h4 mb-0">{{ focused.title }}</h3>
         </div>
       </div>
@@ -117,7 +117,7 @@
               />
               <span class="clip-item-text">
                 <span class="clip-item-title">{{ clip.title }}</span>
-                <span class="clip-item-meta">{{ clip.genres.join(' · ') }}</span>
+                <span v-if="clip.gear?.length" class="clip-item-meta">{{ clip.gear.join(' · ') }}</span>
               </span>
             </button>
           </li>
@@ -562,7 +562,7 @@ watch(search, (term) => {
   padding: 1rem 0.25rem 0.25rem;
 }
 
-.stage-genres {
+.stage-gear {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;

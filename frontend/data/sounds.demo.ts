@@ -13,7 +13,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: 'VwqKnToOPik',
     title: 'Upright, walking',
-    genres: ['Jazz'],
     bass: 'Knilling Bucharest 1308T',
     gear: ['Audio-Technica AT4041', 'Radial Tonebone'],
     techniques: ['Walking', 'Fingerstyle'],
@@ -21,7 +20,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: 'pZdC1mELkto',
     title: 'Upright, bowed',
-    genres: ['Jazz', 'Cinematic'],
     bass: 'Knilling Bucharest 1308T',
     gear: ['Soyuz 013 FET'],
     techniques: ['Arco'],
@@ -29,7 +27,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: '53Vx75OUEQw',
     title: 'P Bass, driven',
-    genres: ['Rock'],
     bass: 'Fender P Bass',
     gear: ['Origin Effects BassRig Super Vintage', 'MXR Bass Compressor'],
     techniques: ['Pick'],
@@ -37,7 +34,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: '4dWC3QAfFyY',
     title: 'P Bass, blues shuffle',
-    genres: ['Blues'],
     bass: 'Fender P Bass',
     gear: ['Origin Effects BassRig Fifteen'],
     techniques: ['Fingerstyle', 'Palm muted'],
@@ -45,7 +41,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: '-1akA4BaSkc',
     title: 'Lakland 5-string, slap',
-    genres: ['Pop', 'Funk'],
     bass: 'Lakland 5501',
     gear: ['Cali76 Bass Compressor', 'Rupert Neve Designs RNDI'],
     techniques: ['Slap'],
@@ -53,7 +48,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: 'A5KX41GrZsc',
     title: 'Lakland 5-string, octave',
-    genres: ['Pop', 'Funk'],
     bass: 'Lakland 5501',
     gear: ['Electro-Harmonix Pico POG', 'Aguilar Twin Filter'],
     techniques: ['Fingerstyle'],
@@ -61,7 +55,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: 'NJOk4imcY50',
     title: 'Jazz Bass, fuzz',
-    genres: ['Rock', 'Punk'],
     bass: 'Fender Jazz Bass',
     gear: ['Damnation Audio MBD'],
     techniques: ['Pick'],
@@ -69,7 +62,6 @@ export const demoSounds: SoundClip[] = [
   {
     id: 'OFJ75eQKOlc',
     title: 'Jazz Bass, clean',
-    genres: ['Soul', 'R&B'],
     bass: 'Fender Jazz Bass',
     gear: ['MXR Bass Chorus Deluxe', 'Rupert Neve Designs RNDI'],
     techniques: ['Fingerstyle'],

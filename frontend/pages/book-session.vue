@@ -11,7 +11,7 @@
               mix-ready files: {{ TAKES_PER_TRACK }} takes to choose from, revisions included, usually
               within {{ TURNAROUND }}.
             </p>
-            <a class="btn btn-cta" href="#start">Start a Project</a>
+            <NuxtLink class="btn btn-cta" to="#start">Start a Project</NuxtLink>
           </div>
           <!-- The room the lead talks about, so "my studio" is something a
                producer can see. After the text in the markup, so on phones

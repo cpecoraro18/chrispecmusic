@@ -8,7 +8,7 @@
           Upright and electric bass for clubs, weddings, private events, festivals, and tours, in
           Chicago or on the road. I read charts or learn by ear, and I show up prepared.
         </p>
-        <a class="btn btn-cta" href="#start">Check Availability</a>
+        <NuxtLink class="btn btn-cta" to="#start">Check Availability</NuxtLink>
       </div>
     </section>
 

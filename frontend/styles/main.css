@@ -190,6 +190,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* The form section every booking-page CTA jumps to. Clears the fixed header,
+   whose resting height is max(8em, 16vh) (see SiteHeader.vue); the router
+   reads this value when it scrolls, so the heading lands below the header
+   rather than under it. */
+#start {
+  scroll-margin-top: max(8rem, 16vh);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

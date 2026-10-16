@@ -15,9 +15,9 @@
           </div>
         </div>
       </div>
-      <a class="hero-scroll" href="#about" aria-label="Scroll to more about Chris">
+      <NuxtLink class="hero-scroll" to="#about" aria-label="Scroll to more about Chris">
         <AppIcon name="chevron-down" />
-      </a>
+      </NuxtLink>
     </section>
 
     <!-- ================= ABOUT ================= -->

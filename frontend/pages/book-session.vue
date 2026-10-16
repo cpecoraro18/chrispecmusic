@@ -115,7 +115,8 @@
               heading="Tell me about your project"
               intro="A few details are enough. I'll reply with a plan and a quote."
               message-label="About your project"
-              message-placeholder="How many songs, what style, upright or electric, and your deadline. A link to a rough mix helps."
+              message-placeholder="How many songs, what style, upright or electric, and your deadline."
+              track-link
               message-hint="Not sure yet? A rough idea is fine. We'll work out the rest together."
               submit-label="Send Project Details"
               reassurance="No obligation. You don't pay until you're happy with the takes."

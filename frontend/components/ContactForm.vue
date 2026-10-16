@@ -30,6 +30,26 @@
                     :disabled="isLoading"
                 >
             </div>
+            <!-- A link rather than an upload: session files run to hundreds of
+                 megabytes, and a share link arrives already scanned by the
+                 host instead of as an attachment from a stranger. -->
+            <div v-if="trackLink" class="mb-3 text-start">
+                <label for="track-link" class="form-label">
+                    Link to your track <span class="form-optional">(optional)</span>
+                </label>
+                <input
+                    type="url"
+                    inputmode="url"
+                    class="form-control"
+                    id="track-link"
+                    v-model="link"
+                    autocomplete="off"
+                    maxlength="500"
+                    placeholder="Dropbox, Google Drive, or WeTransfer link"
+                    :disabled="isLoading"
+                >
+                <p class="form-hint mb-0">No mix yet? Leave it blank and describe the song below.</p>
+            </div>
             <div class="mb-4 text-start">
                 <label for="message" class="form-label">{{ messageLabel }}</label>
                 <textarea
@@ -76,6 +96,8 @@ const props = defineProps({
         default: 'Tell me a bit about what you need.',
     },
     messageHint: { type: String, default: '' },
+    /** Adds an optional field for a link to the client's rough mix. */
+    trackLink: { type: Boolean, default: false },
     submitLabel: { type: String, default: 'Send Message' },
     reassurance: {
         type: String,
@@ -96,6 +118,7 @@ useHead({
 const name = ref('');
 const email = ref('');
 const message = ref('');
+const link = ref('');
 
 // /contact?message=... pre-fills the message, so a link from elsewhere on the
 // site (the "Ask for this sound" button in the sound gallery) arrives with the request
@@ -112,11 +135,21 @@ const isLoading = ref(false);
 
 const api = useApi();
 
+// The link travels at the top of the message rather than as a field of its
+// own, so the Lambda needs no change and it can never be dropped by a backend
+// that predates it. It also means a link with no message still sends.
+const composeMessage = () => {
+    const trackUrl = link.value.trim();
+    const text = message.value.trim();
+    if (!trackUrl) return text;
+    return text ? `Track: ${trackUrl}\n\n${text}` : `Track: ${trackUrl}`;
+};
+
 const sendMessage = async (token) => {
     const data = await api.post('/contact', {
         name: name.value,
         email: email.value,
-        message: message.value,
+        message: composeMessage(),
         recaptcha: token
     });
 
@@ -132,6 +165,7 @@ const sendMessage = async (token) => {
     name.value = '';
     email.value = '';
     message.value = '';
+    link.value = '';
 };
 
 const submitForm = async () => {
@@ -214,6 +248,11 @@ textarea.form-control:focus {
 input.form-control::placeholder,
 textarea.form-control::placeholder {
     color: rgba(var(--fg-rgb), 0.42);
+}
+
+.form-optional {
+    font-weight: 400;
+    color: var(--fg-soft);
 }
 
 .form-hint,

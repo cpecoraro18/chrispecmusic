@@ -25,7 +25,7 @@ export const sessionFaqs: Faq[] = [
   },
   {
     q: 'What do you need from me to get started?',
-    a: 'A rough mix or demo (WAV, MP3, etc.), the tempo if you have it, and any notes on style, tone, or feel.',
+    a: 'A link to a rough mix or demo (Dropbox, Google Drive, or WeTransfer all work), the tempo if you have it, and any notes on style, tone, or feel.',
   },
   {
     q: 'What if I don’t know exactly what bass line I want?',
@@ -139,8 +139,8 @@ export const liveFaqs: Faq[] = [
 /** Steps shown on /book-session. */
 export const sessionSteps = [
   {
-    title: 'Send your track',
-    copy: "Send a rough mix or demo with the tempo and any notes on style, tone, or feel. References or a guide bass line help but aren't required.",
+    title: 'Share your track',
+    copy: "Paste a link to a rough mix or demo in the form, with the tempo and any notes on style, tone, or feel. No mix yet? Describe the song and we'll start there.",
   },
   {
     title: 'We agree on the details',

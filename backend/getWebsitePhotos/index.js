@@ -1,11 +1,11 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-// Photos returned per request. The gallery grid is four wide on a desktop, so
-// the old default of 8 filled two rows and then stopped — most visitors hit
-// "Load More" immediately, which is a round trip that buys them half a screen.
-// 24 fills six rows.
-const DEFAULT_PAGE_SIZE = 24;
+// Photos returned per request: the whole gallery, at its current size. The
+// response is names and URLs only and the images lazy-load, so there is nothing
+// to save by paging — and the mosaic is arranged to end flush, which a page
+// boundary partway through would break. Paging still works past this many.
+const DEFAULT_PAGE_SIZE = 100;
 const MAX_PAGE_SIZE = 100;
 
 // Every photo exists at two sizes, under two prefixes, sharing one file stem:
@@ -29,13 +29,19 @@ const MAX_PAGE_SIZE = 100;
 const LIST_PREFIX = 'web/';
 const DOWNLOAD_PREFIX = 'full/';
 
-// The gallery order, by file stem. S3 only lists alphabetically, so the order
-// lives here and the whole prefix is listed and sorted on every request — at a
-// few dozen photos that is one S3 call. A photo uploaded but not yet added here
-// still shows, after the listed ones, alphabetically; a stem listed here with no
-// file behind it is simply skipped.
+// The gallery order, by file stem, with each photo's tile shape. S3 only lists
+// alphabetically, so the order lives here and the whole prefix is listed and
+// sorted on every request — at a few dozen photos that is one S3 call. A photo
+// uploaded but not yet added here still shows, after the listed ones,
+// alphabetically, with no shape (the page then works it out on load); a stem
+// listed here with no file behind it is simply skipped.
+//
+// The shape is stored rather than measured so the page can lay the grid out
+// before any image arrives — measuring on load reflowed the mosaic as you
+// scrolled and left gaps. `feature` and `tall-feature` are curated, not
+// derived, which is the other reason they live here.
 const ORDER = require('./photo-order.json');
-const rank = new Map(ORDER.map((stem, i) => [stem, i]));
+const entries = new Map(ORDER.map((entry, i) => [entry.name, { rank: i, shape: entry.shape }]));
 
 const listAllStems = async (bucketName) => {
   const stems = [];
@@ -77,13 +83,14 @@ exports.handler = async (event) => {
 
   try {
     const stems = await listAllStems(bucketName);
-    const position = stem => rank.has(stem) ? rank.get(stem) : ORDER.length;
+    const position = stem => entries.get(stem)?.rank ?? ORDER.length;
     stems.sort((a, b) => position(a) - position(b) || a.localeCompare(b));
 
     const base = `https://${bucketName}.s3.amazonaws.com`;
 
     const photos = stems.slice(start, start + maxKeys).map(stem => ({
       name: stem,
+      shape: entries.get(stem)?.shape ?? null,
       web: `${base}/${LIST_PREFIX}${stem}.webp`,
       full: `${base}/${DOWNLOAD_PREFIX}${stem}.jpg`,
     }));

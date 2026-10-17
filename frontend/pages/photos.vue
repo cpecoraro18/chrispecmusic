@@ -8,19 +8,19 @@
         </p>
 
         <!-- A mosaic rather than a uniform grid: each tile takes the shape of
-             its photo, and every twelfth is a large feature. Dense packing
-             lets later tiles fill the gaps the larger ones leave. -->
+             its photo, and a few hand-picked ones are large features. Dense
+             packing lets later tiles fill any gap a narrower screen leaves. -->
         <div class="photo-wall">
           <div
-            v-for="(photo, index) in photos"
+            v-for="photo in photos"
             :key="photo.name"
-            :class="['photo-tile', 'photo-tile--' + tileShape(photo, index)]"
+            :class="['photo-tile', 'photo-tile--' + tileShape(photo)]"
           >
             <div class="photo-card">
               <button class="photo-trigger" @click="openModal(photo)">
                 <!-- Same file the lightbox uses, so opening a photo is a cache
                      hit rather than a second download. loading="lazy" keeps the
-                     grid from fetching all 24 up front. -->
+                     grid from fetching every photo up front. -->
                 <img
                   :src="photo.web"
                   :alt="photo.name"
@@ -108,21 +108,21 @@ const loadError = ref(false);
 
 const api = useApi();
 
-// The API returns names and URLs only, so a tile learns its photo's
-// orientation when the image loads. Until then it is laid out as a portrait,
-// the most common shape; lazy loading means most of that reflow happens below
-// the fold, before anyone scrolls to it.
+// Each photo's tile shape comes from the API (photo-order.json in the Lambda),
+// so the mosaic is laid out before any image arrives. A photo not yet listed
+// there has no shape; it is measured when it loads instead, and until then
+// laid out as a portrait, the most common shape.
 const orientations = ref({});
 
 const onPhotoLoad = (event, photo) => {
+  if (photo.shape) return;
   const { naturalWidth: w, naturalHeight: h } = event.target;
   if (!w || !h) return;
-  const ratio = w / h;
-  orientations.value[photo.name] = ratio > 1.8 ? 'wide' : ratio > 1.1 ? 'landscape' : 'portrait';
+  orientations.value[photo.name] = w / h > 1.1 ? 'landscape' : 'portrait';
 };
 
-const tileShape = (photo, index) =>
-  index % 12 === 0 ? 'feature' : orientations.value[photo.name] ?? 'portrait';
+const tileShape = (photo) =>
+  photo.shape ?? orientations.value[photo.name] ?? 'portrait';
 
 const fetchPhotos = async () => {
   loadingPhotos.value = true;
@@ -196,10 +196,17 @@ onBeforeUnmount(() => {
   }
 }
 
+/* Every tile is three rows tall or six, never two or four. Mixed heights that
+   don't divide into each other are what left gaps in the mosaic; on a common
+   three-row band, tiles can only ever leave a gap at the very end. */
 .photo-tile--portrait { grid-row: span 3; }
 .photo-tile--landscape { grid-column: span 2; grid-row: span 3; }
-.photo-tile--wide { grid-column: span 2; grid-row: span 2; }
-.photo-tile--feature { grid-column: span 2; grid-row: span 4; }
+.photo-tile--tall-feature { grid-column: span 2; grid-row: span 6; }
+.photo-tile--feature { grid-column: span 4; grid-row: span 6; }
+@media (max-width: 575.98px) {
+  /* Four columns don't exist on a phone; a feature drops to a landscape. */
+  .photo-tile--feature { grid-column: span 2; grid-row: span 3; }
+}
 
 .photo-card {
   position: relative;

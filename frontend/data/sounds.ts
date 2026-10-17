@@ -72,6 +72,7 @@ export const sounds: SoundClip[] = [
     title: 'Starfire II, chorus',
     bass: 'Guild Starfire II Bass',
     gear: ['MXR Bass Chorus Deluxe', 'Rupert Neve Designs RNDI'],
+    techniques: ['Pick'],
   },
   {
     id: 'KjAEnNzFlkI',

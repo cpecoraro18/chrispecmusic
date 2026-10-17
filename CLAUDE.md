@@ -40,6 +40,8 @@ The `chrispecphotos` bucket holds everything too large to commit. All of it is p
 - `full/` — the full-resolution original of each photo, for the download link.
 - `audio-wav/` — the twelve uncompressed bass samples, for the "Download WAV" links. The MP3s that actually play on the page are committed under `frontend/public/audio/`.
 
+The gallery order is `backend/getWebsitePhotos/photo-order.json`, a list of file stems. A new photo appears without being added, but at the end; add its stem to place it. Every twelfth position (0, 12, 24…) renders as a large feature tile, so put strong shots there.
+
 `web/` and `full/` must hold **identically-named files** (same stem, `.webp` vs `.jpg`). `getWebsitePhotos` lists only `web/` and derives the `full/` URL from the stem, so a mismatch is a broken download link rather than a build error.
 
 Two non-obvious things about uploading, both of which have bitten before:

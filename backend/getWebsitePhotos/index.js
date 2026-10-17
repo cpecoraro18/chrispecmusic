@@ -29,6 +29,32 @@ const MAX_PAGE_SIZE = 100;
 const LIST_PREFIX = 'web/';
 const DOWNLOAD_PREFIX = 'full/';
 
+// The gallery order, by file stem. S3 only lists alphabetically, so the order
+// lives here and the whole prefix is listed and sorted on every request — at a
+// few dozen photos that is one S3 call. A photo uploaded but not yet added here
+// still shows, after the listed ones, alphabetically; a stem listed here with no
+// file behind it is simply skipped.
+const ORDER = require('./photo-order.json');
+const rank = new Map(ORDER.map((stem, i) => [stem, i]));
+
+const listAllStems = async (bucketName) => {
+  const stems = [];
+  let ContinuationToken;
+  do {
+    const data = await s3.listObjectsV2({
+      Bucket: bucketName,
+      Prefix: LIST_PREFIX,
+      ContinuationToken,
+    }).promise();
+    for (const file of data.Contents) {
+      if (file.Key === LIST_PREFIX) continue;
+      stems.push(file.Key.slice(LIST_PREFIX.length).replace(/\.[^.]+$/, ''));
+    }
+    ContinuationToken = data.IsTruncated ? data.NextContinuationToken : undefined;
+  } while (ContinuationToken);
+  return stems;
+};
+
 exports.handler = async (event) => {
   const bucketName = process.env.BUCKET_NAME;
 
@@ -40,33 +66,30 @@ exports.handler = async (event) => {
     ? Math.min(requested, MAX_PAGE_SIZE)
     : DEFAULT_PAGE_SIZE;
 
+  // The token is now an offset into the sorted list rather than an S3
+  // continuation token, which cannot page through a custom order. Anything
+  // unparseable — including an old S3 token from a page loaded before this
+  // deployed — starts from the top.
+  // Digits only: S3 tokens often begin with one, and parseInt would read them as
+  // a small offset.
   const token = event.queryStringParameters?.token;
-
-  const params = {
-    Bucket: bucketName,
-    Prefix: LIST_PREFIX,
-    MaxKeys: maxKeys,
-  };
-
-  if (token) {
-    params.ContinuationToken = token;
-  }
+  const start = /^\d+$/.test(token ?? '') ? Number(token) : 0;
 
   try {
-    const data = await s3.listObjectsV2(params).promise();
+    const stems = await listAllStems(bucketName);
+    const position = stem => rank.has(stem) ? rank.get(stem) : ORDER.length;
+    stems.sort((a, b) => position(a) - position(b) || a.localeCompare(b));
 
     const base = `https://${bucketName}.s3.amazonaws.com`;
 
-    const photos = data.Contents
-      .filter(file => file.Key !== LIST_PREFIX)
-      .map(file => {
-        const stem = file.Key.slice(LIST_PREFIX.length).replace(/\.[^.]+$/, '');
-        return {
-          name: stem,
-          web: `${base}/${LIST_PREFIX}${stem}.webp`,
-          full: `${base}/${DOWNLOAD_PREFIX}${stem}.jpg`,
-        };
-      });
+    const photos = stems.slice(start, start + maxKeys).map(stem => ({
+      name: stem,
+      web: `${base}/${LIST_PREFIX}${stem}.webp`,
+      full: `${base}/${DOWNLOAD_PREFIX}${stem}.jpg`,
+    }));
+
+    const end = start + maxKeys;
+    const isTruncated = end < stems.length;
 
     return {
       statusCode: 200,
@@ -77,8 +100,8 @@ exports.handler = async (event) => {
         // which finishes first. Remove once the frontend reading `photos` is
         // live.
         images: photos.map(photo => photo.web),
-        isTruncated: data.IsTruncated,
-        token: data.NextContinuationToken || null,
+        isTruncated,
+        token: isTruncated ? String(end) : null,
       }),
     };
   } catch (error) {

@@ -114,12 +114,19 @@ function toggle(index) {
     close();
     return;
   }
+  // Closing a panel above the tapped cover pulls the cover up the page, so
+  // note where it is on screen now and hold it there once the panel moves.
+  const cover = grid.value?.querySelectorAll('.album')[index];
+  const before = cover?.getBoundingClientRect().top;
   // Measure with the panel closed, so it can't push covers onto a new row.
   activeIndex.value = null;
   detailAfter.value = null;
   nextTick(() => {
     detailAfter.value = rowEnd(index);
     activeIndex.value = index;
+    nextTick(() => {
+      if (cover) window.scrollBy(0, cover.getBoundingClientRect().top - before);
+    });
   });
 }
 
@@ -137,8 +144,13 @@ function onKeydown(e) {
 }
 
 // Rows reflow on resize, so the panel's place can change; reopening it at the
-// same cover recomputes the row.
+// same cover recomputes the row. Only a change in width can reflow them: phones
+// fire resize whenever the address bar shows or hides while scrolling, and
+// reopening the panel then made it jump and replay its animation mid-scroll.
+let lastWidth = 0;
 function onResize() {
+  if (window.innerWidth === lastWidth) return;
+  lastWidth = window.innerWidth;
   if (activeIndex.value === null) return;
   const index = activeIndex.value;
   detailAfter.value = null;
@@ -150,6 +162,7 @@ function onResize() {
 }
 
 onMounted(() => {
+  lastWidth = window.innerWidth;
   document.addEventListener('click', onDocumentClick);
   document.addEventListener('keydown', onKeydown);
   window.addEventListener('resize', onResize);
@@ -211,6 +224,9 @@ onBeforeUnmount(() => {
   background-color: rgba(var(--fg-rgb), 0.07);
   border: 1px solid rgba(var(--fg-rgb), 0.14);
   text-align: left;
+  /* The record turning as it slides out reaches past the art box; on a narrow
+     phone that overhang could widen the page and let it scroll sideways. */
+  overflow-x: clip;
   animation: detail-in 0.3s ease;
 }
 

@@ -44,7 +44,9 @@ The gallery order is `backend/getWebsitePhotos/photo-order.json`, a list of `{na
 
 `web/` and `full/` must hold **identically-named files** (same stem, `.webp` vs `.jpg`). `getWebsitePhotos` lists only `web/` and derives the `full/` URL from the stem, so a mismatch is a broken download link rather than a build error.
 
-Two non-obvious things about uploading, both of which have bitten before:
+To add photos, use `scripts/upload-photo.mjs` (or drag files onto `scripts/Upload Photo.bat`; the `/add-photo` skill wraps it and also handles naming and placement). It makes the WebP, uploads both files with the right headers, strips GPS from downloads, and refuses to overwrite an existing name. `node scripts/upload-photo.mjs --check-order` simulates the mosaic at all three widths and reports any band that isn't full.
+
+Two non-obvious things about uploading, both of which have bitten before (the script handles both):
 
 - The AWS CLI's MIME table does not know `.webp`, so a plain `aws s3 sync` uploads WebP as `binary/octet-stream`. Browsers sniff and render it anyway, so the page looks fine — pass `--content-type image/webp` explicitly, and use `cp --recursive` rather than `sync` to fix existing objects (`sync` skips files whose size and mtime already match).
 - Anything meant to download rather than display needs `Content-Disposition: attachment` set on the object. The `download` attribute on an `<a>` is **ignored cross-origin**, and these links point at S3. The header also carries a `filename=ChrisPecMusic-<stem>` so saved files are branded.
